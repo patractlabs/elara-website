@@ -9,8 +9,9 @@ import Footer from "../Footer/index";
 
 import "./index.css";
 
+
 const PROCESS =
-  process.env.NODE_ENV === "development" ? "http://8.210.110.126:7001" : "";
+  process.env.NODE_ENV === "production" ? "" : "http://8.210.110.126:7001";
 
 const imgList = [require("../assets/Github.svg")];
 

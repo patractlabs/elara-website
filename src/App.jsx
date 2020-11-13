@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense,useEffect } from "react";
 // import config from "./router/config";
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { message } from "antd";
@@ -21,10 +21,12 @@ function AuthRoute({ component: Component, ...rest }) {
   const userInfo = userCounterModel();
   const { location } = useRouter();
 
-  if (userInfo.login === false) {
-    message.warning("请登录");
-  }
-
+  // useEffect(()=>{
+  //   if (userInfo.login === false) {
+  //     message.warning("请登录");
+  //   }
+  // },[])
+  
   return (
     <Route
       {...rest}
