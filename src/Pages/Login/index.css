@@ -1,0 +1,44 @@
+.login {
+  width: 100%;
+  height: auto;
+  padding-top: 68px;
+  overflow: hidden;
+}
+
+.loginMain {
+  width: 100%;
+  overflow: hidden;
+  background: url(../assets/loginBg.png) bottom no-repeat;
+}
+
+.loginMain h2 {
+  font-size: 30px;
+  color: #232323;
+  text-align: center;
+  font-weight: bold;
+  margin: 15% 0 60px 0;
+}
+
+.loginBtn {
+  width: 238px;
+  height: 52px;
+  margin: 0 auto;
+  background: #39CA9F;
+  /* border: 1px solid #232323; */
+  border-radius: 28px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 52px;
+}
+
+.loginBtn span {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 18px;
+  font-size: 20px;
+}
+
+.loginBtn img {
+  display: inline-block;
+  margin-top: 12px;
+}
