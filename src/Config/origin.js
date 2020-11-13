@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'development') {
   URL_STAT = '/statApi'
 } else if (process.env.NODE_ENV === 'test') {
   URL_ACCOUNT = 'http://8.210.110.126:7001'
-  URL_STAT = 'http://8.210.110.126:7002/'
+  URL_STAT = 'http://8.210.110.126:7002'
 } else if (process.env.NODE_ENV === 'production') {
   URL_ACCOUNT = '/accountApi'
   URL_STAT = '/statApi'

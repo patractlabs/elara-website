@@ -1,4 +1,4 @@
-import React,{Suspense} from "react";
+import React, { Suspense } from "react";
 // import config from "./router/config";
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { message } from "antd";
@@ -32,8 +32,8 @@ function AuthRoute({ component: Component, ...rest }) {
         userInfo.login === true ? (
           <Component key={location.pathname} {...props} />
         ) : (
-          <Redirect to="/login" />
-        )
+            <Redirect to="/login" />
+          )
       }
     />
   );
@@ -45,11 +45,11 @@ const App = (props) => {
       <HashRouter>
         <Header />
         <Switch>
-          
+
           <Suspense fallback={<PageLoading />}>
-          <Route path="/" exact component={Home}></Route>
-          <Route path="/login" component={Login}></Route>
-            <AuthRoute  path="/dashboard" component={Dashboard} />
+            <Route path="/" exact component={Home}></Route>
+            <Route path="/login" component={Login}></Route>
+            <AuthRoute path="/dashboard" component={Dashboard} />
           </Suspense>
           {/* <Route path="/dashboard" component={Dashboard}></Route> */}
         </Switch>
