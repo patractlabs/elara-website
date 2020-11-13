@@ -33,6 +33,7 @@ const Console: React.FC<childProps> = () => {
   const counter = useCounterModel();
   const [offMask, setOffMask] = useState<boolean>(false);
   const [data, setData] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setData([]);
@@ -47,17 +48,13 @@ const Console: React.FC<childProps> = () => {
         }
         const datalist: any[] = [];
         let resData = res?.data;
-        // arr.forEach((val: { data: any }, index: any) => {
-        //   if (val.data[0].chain.includes(counter.name)) {
-        //     datalist.push(val);
-        //   }
-        // });
         resData.forEach((val: any, index: any) => {
           if (val.chain.includes(counter.name)) {
             datalist.push(val);
           }
         });
         setData(datalist);
+        setLoading(false)
       })
       .catch((err) => {
         console.log("err", err);
@@ -68,15 +65,16 @@ const Console: React.FC<childProps> = () => {
   const closeMask = (code: any) => {
     if (code.hel == "ok" && code.val === "") {
       message.error("请输入正确项目名称");
+      return
     } else if (code.off && code.val !== "") {
       const projectNewData = {
         chain: counter.name,
         name: code.val,
       };
-
       projectNew(projectNewData);
     }
     setOffMask(false);
+    setLoading(true)
   };
 
   const projectNew = (val: any) => {
@@ -139,57 +137,59 @@ const Console: React.FC<childProps> = () => {
           <p>快来创建你的第一个 Polkadot 项目吧。</p>
         </div>
       ) : (
-        <ul className="dataList">
-          {data.map((el: any) => {
-            return (
-              <li className="dataList_li">
-                <div className="dataList_liDiv">
-                  <p>
-                    <img src={imgList[1]} alt="" />
-                    <span>项目名称</span>
-                  </p>
-                  <p>{el.name}</p>
-                </div>
-                <div className="dataList_liDiv">
-                  <p>
-                    <img src={imgList[2]} alt="" />
-                    <span>创建时间</span>
-                  </p>
-                  <p>{time(el.createtime)}</p>
-                </div>
-                <div className="dataList_liDiv">
-                  <p>
-                    <img
-                      src={el.status === "Active" ? imgList[7] : imgList[3]}
-                      alt=""
-                    />
-                    <span>状态</span>
-                  </p>
-                  <p className={el.status === "Active" ? "actsGren" : ""}>
-                    {statusActive(el.status)}
-                  </p>
-                </div>
-                {/* <div className="dataList_liDiv">
+        <Spin spinning={loading}>
+          <ul className="dataList">
+            {data.map((el: any,key:number) => {
+              return (
+                <li className="dataList_li" key={key}>
+                  <div className="dataList_liDiv">
+                    <p>
+                      <img src={imgList[1]} alt="" />
+                      <span>项目名称</span>
+                    </p>
+                    <p>{el.name}</p>
+                  </div>
+                  <div className="dataList_liDiv">
+                    <p>
+                      <img src={imgList[2]} alt="" />
+                      <span>创建时间</span>
+                    </p>
+                    <p>{time(el.createtime)}</p>
+                  </div>
+                  <div className="dataList_liDiv">
+                    <p>
+                      <img
+                        src={el.status === "Active" ? imgList[7] : imgList[3]}
+                        alt=""
+                      />
+                      <span>状态</span>
+                    </p>
+                    <p className={el.status === "Active" ? "actsGren" : ""}>
+                      {statusActive(el.status)}
+                    </p>
+                  </div>
+                  {/* <div className="dataList_liDiv">
                   <p>
                     <img src={imgList[5]} alt="" />
                     <span>今日请求数</span>
                   </p>
                   <p>888</p>
                 </div> */}
-                <div className="dataList_liDiv">
-                  <Link
-                    to={{
-                      pathname: `/dashboard/details`,
-                      state: { id: el.id },
-                    }}
-                  >
-                    <img src={imgList[6]} className="dataListArrow" alt="" />
-                  </Link>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                  <div className="dataList_liDiv">
+                    <Link
+                      to={{
+                        pathname: `/dashboard/details`,
+                        state: { id: el.id },
+                      }}
+                    >
+                      <img src={imgList[6]} className="dataListArrow" alt="" />
+                    </Link>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </Spin>
       )}
     </div>
   );

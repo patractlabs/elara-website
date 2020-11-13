@@ -32,7 +32,7 @@
   color: #39CA9F;
 }
 
-#weekEchart {
+/* #weekEchart {
   width: 100%;
   margin: 50px 0;
   padding: 40px 20px;
@@ -46,6 +46,23 @@
 
 .weekEchart {
   width: 90%;
+  height: 424px;
+} */
+
+#weekEchart {
+  width: 100%;
+  overflow: hidden;
+}
+
+.weekEchart {
+  width: 100%;
+  margin: 50px 0;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 1px solid #DFDFDF;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
+  border-radius: 4px;
   height: 424px;
 }
 

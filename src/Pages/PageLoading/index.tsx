@@ -4,7 +4,7 @@ import { Spin } from "antd";
 export default function PageLoading() {
   return (
     <div className="page-center">
-      <Spin size="large" />
+      <Spin size="large" spinning={false} />
     </div>
   );
 }

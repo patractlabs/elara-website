@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getArticleList } from "../../Api/Interface";
 import { createHashHistory } from "history"; // 如果是history路由
 
+import CountUp from "react-countup";
+
 import Footer from "../Footer/index";
 
 import "./index.css";
@@ -29,6 +31,15 @@ interface props {
   data: { [key: string]: any };
 }
 
+const countUpProps = {
+  star: 0,
+  duration: 2.75,
+  decimals: 2,
+  useEasing: true,
+  useGrouping: true,
+  separator: ",",
+};
+
 const Home: React.FC<props> = ({ data }) => {
   const [total, settotal] = useState(0);
   const history = createHashHistory();
@@ -42,7 +53,7 @@ const Home: React.FC<props> = ({ data }) => {
         let data = res?.data;
         let total = 0;
         for (const key in data) {
-          total = data[key];
+          total = Number(data[key]);
         }
         settotal(total);
       })
@@ -67,7 +78,10 @@ const Home: React.FC<props> = ({ data }) => {
           开始免费使用
         </div>
         <h6>累计请求数</h6>
-        <h2>{total}</h2>
+
+        <h2>
+          <CountUp end={total} suffix="" {...countUpProps}></CountUp>
+        </h2>
       </div>
 
       <div className="product animated fadeInRight">

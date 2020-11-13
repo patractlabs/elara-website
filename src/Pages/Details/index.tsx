@@ -19,6 +19,8 @@ const Details: React.FC<childProps> = (props) => {
   const [projectdata, setProjectdata] = useState<any>({});
   const [projectDaydata, setProjectDaydata] = useState<any>({});
 
+  const [loading, setLoading] = useState<boolean>(true);
+
   // k线相关
   const [projectWeekDate, setProjectWeekDate] = useState<any>({}); //时间
   const [weekRequestData, setWeekRequestData] = useState<any>({}); //七天请求
@@ -107,6 +109,7 @@ const Details: React.FC<childProps> = (props) => {
         setWeekRequestData(datalist);
         setWeekBandwidthData(dataBandwidth);
         setWeekTopData(TopData);
+        setLoading(false);
       })
       .catch((err) => {
         console.log("err", err);
@@ -322,62 +325,62 @@ const Details: React.FC<childProps> = (props) => {
   };
 
   return (
-    <div
-      className="Details"
-    >
-      <ul className="Details_listT" id="Details_listT">
-        <li>
-          <p>创建时间</p>
-          <p>{time(projectdata.createtime)}</p>
-        </li>
-        <li>
-          <p>状态</p>
-          <p className="Details_listTColro">
-            {statusActive(projectdata.status)}
-          </p>
-        </li>
-        <li>
-          <p>今日请求数</p>
-          <p className="Details_listTColro">{projectDaydata.request}</p>
-        </li>
-        <li>
-          <p>今日消耗带宽</p>
-          <p className="Details_listTColro">{projectDaydata.bandwidth} B</p>
-        </li>
-      </ul>
-      <ul className="Details_listT">
-        <li>
-          <p>API</p>
-          <p className="Details_listTColro">PID</p>
-          <p>{projectdata.id}</p>
-        </li>
-        <li>
-          <p className="Sehide">API</p>
-          <p className="Details_listTColro">PSECRET</p>
-          <p>{projectdata.secret}</p>
-        </li>
-        <li>
-          <p className="Sehide">API</p>
-          <p className="Details_listTColro">ENDPOINTS</p>
-          <p className="dMTop">
-            https://elara.patract.io/{projectdata.chain}/{id}
-            <br />
-            wss://elara.patract.io/{projectdata.chain}/{id}
-          </p>
-        </li>
-      </ul>
+    <div className="Details">
+      <Spin spinning={loading}>
+        <ul className="Details_listT" id="Details_listT">
+          <li>
+            <p>创建时间</p>
+            <p>{time(projectdata.createtime)}</p>
+          </li>
+          <li>
+            <p>状态</p>
+            <p className="Details_listTColro">
+              {statusActive(projectdata.status)}
+            </p>
+          </li>
+          <li>
+            <p>今日请求数</p>
+            <p className="Details_listTColro">{projectDaydata.request}</p>
+          </li>
+          <li>
+            <p>今日消耗带宽</p>
+            <p className="Details_listTColro">{projectDaydata.bandwidth} B</p>
+          </li>
+        </ul>
+        <ul className="Details_listT">
+          <li>
+            <p>API</p>
+            <p className="Details_listTColro">PID</p>
+            <p>{projectdata.id}</p>
+          </li>
+          <li>
+            <p className="Sehide">API</p>
+            <p className="Details_listTColro">PSECRET</p>
+            <p>{projectdata.secret}</p>
+          </li>
+          <li>
+            <p className="Sehide">API</p>
+            <p className="Details_listTColro">ENDPOINTS</p>
+            <p className="dMTop">
+              https://elara.patract.io/{projectdata.chain}/{id}
+              <br />
+              wss://elara.patract.io/{projectdata.chain}/{id}
+            </p>
+          </li>
+        </ul>
+      </Spin>
       <div>
-        {/* <div id={"main"} style={{ height: 400 }} /> */}
-        <div id="weekEchart">
-          <Spin spinning={false}>
+        <Spin spinning={loading}>
+          <div id="weekEchart">
             <div className="weekEchart" ref={weekEchart} />
-          </Spin>
-
-        </div>
-        <div className="echartMain">
-          <div className="echartMainLeft" ref={echartMainLeft}></div>
-          <div className="echartMainRight" ref={echartMainRight}></div>
-        </div>
+          </div>
+        </Spin>
+        <Spin spinning={loading}>
+          <div className="echartMain">
+            <div className="echartMainLeft" ref={echartMainLeft}></div>
+            <div className="echartMainRight" ref={echartMainRight}></div>
+          </div>
+        </Spin>
       </div>
     </div>
   );
