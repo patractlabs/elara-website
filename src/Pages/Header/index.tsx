@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { login } from "../../Api/Interface";
+import { login,logout } from "../../Api/Interface";
 import userCounterModel from "../Hox/User";
 import { Menu, Dropdown, Avatar } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
+
+import {delCookie} from '../../utils/index'
 
 import "./index.css";
 
@@ -25,7 +27,6 @@ const Header: React.FC = () => {
       .then((res) => {
         if (res?.code !== 0) {
           userInfo.userOff(false);
-
           return;
         }
         userInfo.userOff(true);
@@ -40,6 +41,25 @@ const Header: React.FC = () => {
     return () => {};
   }, []);
 
+  const logoutFun = () =>{
+    logout()
+      .then((res) => {
+        if (res?.code !== 0) {
+          return;
+        }else{
+          userInfo.userOff(false);
+  
+          //清除cookie
+          delCookie()
+        }
+        
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+    return () => {};
+  }
+
   const menu = (
     <Menu>
       <Menu.Item className="menuTitle">
@@ -53,7 +73,7 @@ const Header: React.FC = () => {
         </h3>
       </Menu.Item>
       <Menu.Item>
-        <div className="signOut">
+        <div className="signOut" onClick={logoutFun}>
           <img src={imglist[1].img} alt="" />
           <span>退出账户</span>
         </div>

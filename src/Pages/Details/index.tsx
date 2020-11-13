@@ -345,7 +345,7 @@ const Details: React.FC<childProps> = (props) => {
             <p>今日消耗带宽</p>
             <p className="Details_listTColro">
               <CountUp
-                end={Number(projectDaydata.bandwidth)}
+                end={Number(projectDaydata.bandwidth) }
                 suffix="B"
                 {...countUpProps}
               ></CountUp>

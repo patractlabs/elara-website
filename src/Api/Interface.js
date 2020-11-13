@@ -113,20 +113,20 @@ const projectDayDetails =(id)=>{
   }) 
 }
 
-// /**
-//  * 控制台详情项目当天统计数据
-//  */
-// const projectDayDetails =(id)=>{
-//   return new Promise((resolve, reject) => {
-//     httpGet(URL_STAT + '/stat/day/'+id)
-//       .then(res => {
-//         resolve (res);
-//       })
-//       .catch(err => {
-//         reject(err)
-//       })
-//   }) 
-// }
+/**
+ * 退出登陆
+ */
+const logout =()=>{
+  return new Promise((resolve, reject) => {
+    httpGet(URL_ACCOUNT + '/auth/logout')
+      .then(res => {
+        resolve (res);
+      })
+      .catch(err => {
+        reject(err)
+      })
+  }) 
+}
 
 
 export {
@@ -136,5 +136,6 @@ export {
   project,
   weekDetails,
   projectDetails,
-  projectDayDetails
+  projectDayDetails,
+  logout
 }
