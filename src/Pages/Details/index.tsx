@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { message } from "antd";
+import { message, Spin } from "antd";
 
 import {
   weekDetails,
@@ -369,7 +369,10 @@ const Details: React.FC<childProps> = (props) => {
       <div>
         {/* <div id={"main"} style={{ height: 400 }} /> */}
         <div id="weekEchart">
-          <div className="weekEchart" ref={weekEchart} />
+          <Spin spinning={false}>
+            <div className="weekEchart" ref={weekEchart} />
+          </Spin>
+
         </div>
         <div className="echartMain">
           <div className="echartMainLeft" ref={echartMainLeft}></div>

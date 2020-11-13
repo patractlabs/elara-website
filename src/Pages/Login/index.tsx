@@ -27,7 +27,6 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
   }, []);
 
   openWindow = () => {
-    console.log(process.env);
     window.open(PROCESS + "/auth/github");
 
     //接受登陆传回来的值
@@ -65,7 +64,7 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
   }
 
   return (
-    <div className="login">
+    <div className="login animated fadeInLeft">
       <div className="loginMain" style={{ height: PageH(128) }}>
         <h2>第三方登录</h2>
         <div

@@ -32,16 +32,21 @@
   color: #39CA9F;
 }
 
-.weekEchart {
+#weekEchart {
   width: 100%;
-  height: 424px;
+  margin: 50px 0;
+  padding: 40px 20px;
+  box-sizing: border-box;
   background: #FFFFFF;
   border: 1px solid #DFDFDF;
   box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
   border-radius: 4px;
-  margin: 50px 0;
-  padding: 40px 0;
-  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.weekEchart {
+  width: 90%;
+  height: 424px;
 }
 
 .Sehide {
@@ -56,7 +61,7 @@
   box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
   border-radius: 4px;
   margin: 50px 0;
-  padding-top: 40px;
+  padding: 40px 20px;
   box-sizing: border-box;
 }
 
@@ -67,15 +72,12 @@
 }
 
 .echartMainRight {
-  width: 30%;
+  width: 36%;
   height: 100%;
   float: right;
 }
 
-.weekEchart{
-  width: 100%;
-  height: 424px;
-}
+
 .dMTop {
   margin-top: 0 !important;
   line-height: 18px;
