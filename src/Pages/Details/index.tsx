@@ -315,46 +315,6 @@ const Details: React.FC<childProps> = (props) => {
     });
   };
 
-  // let initChart = () => {
-  //   let element = document.getElementById("main");
-  //   let myChart = echarts.init(element as HTMLDivElement);
-  //   let option = {
-  //     title: {
-  //       text: "ECharts 入门示例",
-  //     },
-  //     tooltip: {},
-  //     legend: {
-  //       data: ["销量", "利润", "比率"],
-  //     },
-  //     xAxis: {
-  //       data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
-  //     },
-  //     yAxis: {},
-  //     series: [
-  //       {
-  //         name: "销量",
-  //         type: "bar",
-  //         data: [5, 20, 36, 10, 10, 20],
-  //       },
-  //       {
-  //         name: "利润",
-  //         type: "bar",
-  //         data: [30, 25, 15, 20, 20, 35],
-  //       },
-  //       {
-  //         name: "比率",
-  //         type: "line",
-  //         data: [35, 30, 20, 25, 25, 40],
-  //       },
-  //     ],
-  //   };
-  //   myChart.setOption(option);
-  // };
-
-  // useEffect(() => {
-  //   setShowHide(showHide);
-  // }, [showHide, showHideOff]);
-
   const init = () => {
     renderChart();
     renderChartLeft();
@@ -364,9 +324,7 @@ const Details: React.FC<childProps> = (props) => {
   return (
     <div
       className="Details"
-      // style={{ display: !showHideOff ? "block" : "none" }}
     >
-      {/* <p>{counts}</p> */}
       <ul className="Details_listT" id="Details_listT">
         <li>
           <p>创建时间</p>

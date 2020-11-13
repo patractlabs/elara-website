@@ -72,6 +72,10 @@
   float: right;
 }
 
+.weekEchart{
+  width: 100%;
+  height: 424px;
+}
 .dMTop {
   margin-top: 0 !important;
   line-height: 18px;
