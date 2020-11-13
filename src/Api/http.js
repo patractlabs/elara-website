@@ -5,6 +5,7 @@ import axios from 'axios'
 //     process.env.NODE_ENV === 'development' ? 'http://3.15.85.91:18066' : 'https://pro-live.wink.org'
 
 // 创建axios实例
+axios.defaults.withCredentials=true;
 const service = axios.create({
   // baseURL,
   timeout: 15000,
