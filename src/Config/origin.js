@@ -21,8 +21,8 @@ if (process.env.NODE_ENV === 'development') {
 } else if (process.env.NODE_ENV === 'production') {
   // URL_ACCOUNT = 'https://elara.patract.io'
   // URL_STAT = 'https://elara.patract.io'
-  URL_ACCOUNT = 'https://api.elara.patract.io'
-  URL_STAT = 'https://api.elara.patract.io'
+  URL_ACCOUNT = 'https://elara.patract.io'
+  URL_STAT = 'https://elara.patract.io'
 }
 
 
