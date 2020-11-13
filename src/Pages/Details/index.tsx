@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { message, Spin } from "antd";
+import echarts from "echarts";
+import CountUp from "react-countup";
 
 import {
   weekDetails,
@@ -7,7 +9,6 @@ import {
   projectDayDetails,
 } from "../../Api/Interface";
 import { time, statusActive } from "../../utils/index";
-import echarts from "echarts";
 
 import "./index.css";
 
@@ -15,9 +16,21 @@ interface childProps {
   location: any;
 }
 
+const countUpProps = {
+  star: 0,
+  duration: 2.75,
+  decimals: 2,
+  useEasing: true,
+  useGrouping: true,
+  separator: ",",
+};
+
 const Details: React.FC<childProps> = (props) => {
   const [projectdata, setProjectdata] = useState<any>({});
-  const [projectDaydata, setProjectDaydata] = useState<any>({});
+  const [projectDaydata, setProjectDaydata] = useState<any>({
+    request:0,
+    bandwidth:0
+  });
 
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -79,27 +92,6 @@ const Details: React.FC<childProps> = (props) => {
                     });
                   }
                 }
-
-                // if (TopData.length < 1) {
-                //   TopData.push({
-                //     value: parseInt(el),
-                //     name: keys,
-                //   });
-                // } else {
-                //
-                // }
-                // TopData.forEach((els) => {
-                //   if (els.name.includes(keys)) {
-                //     console.log("走的includes(keys)===true");
-                //     els.value = els.value + parseInt(el);
-                //   } else {
-                //     TopData.push({
-                //       value: parseInt(el),
-                //       name: keys,
-                //     });
-                //     console.log("走的includes(keys)===false");
-                //   }
-                // });
               }
             }
           }
@@ -340,11 +332,24 @@ const Details: React.FC<childProps> = (props) => {
           </li>
           <li>
             <p>今日请求数</p>
-            <p className="Details_listTColro">{projectDaydata.request}</p>
+            <p className="Details_listTColro">
+              
+              <CountUp
+                end={Number(projectDaydata.request)}
+                suffix=""
+                {...countUpProps}
+              ></CountUp>
+            </p>
           </li>
           <li>
             <p>今日消耗带宽</p>
-            <p className="Details_listTColro">{projectDaydata.bandwidth} B</p>
+            <p className="Details_listTColro">
+              <CountUp
+                end={Number(projectDaydata.bandwidth)}
+                suffix="B"
+                {...countUpProps}
+              ></CountUp>
+            </p>
           </li>
         </ul>
         <ul className="Details_listT">

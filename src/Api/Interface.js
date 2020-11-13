@@ -43,7 +43,7 @@ const login=()=>{
  */
 const projects=()=>{
   return new Promise((resolve, reject) => {
-    httpGet(URL_STAT+'/projects', {})
+    httpGet(URL_STAT+'/project/list', {})
       .then(res => {
         resolve (res);
       })
@@ -58,7 +58,7 @@ const projects=()=>{
  */
 const project =(data)=> {
   return new Promise((resolve, reject) => {
-    httpPost(URL_STAT + '/project', data)
+    httpPost(URL_STAT + '/project/create', data)
       .then(res => {
         resolve (res);
       })
@@ -112,6 +112,21 @@ const projectDayDetails =(id)=>{
       })
   }) 
 }
+
+// /**
+//  * 控制台详情项目当天统计数据
+//  */
+// const projectDayDetails =(id)=>{
+//   return new Promise((resolve, reject) => {
+//     httpGet(URL_STAT + '/stat/day/'+id)
+//       .then(res => {
+//         resolve (res);
+//       })
+//       .catch(err => {
+//         reject(err)
+//       })
+//   }) 
+// }
 
 
 export {

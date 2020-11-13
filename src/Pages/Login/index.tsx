@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { login } from "../../Api/Interface";
 import userCounterModel from "../Hox/User";
 import { createHashHistory } from "history"; // 如果是history路由
+import {URL_ACCOUNT} from '../../Config/origin'
+
 
 import PageH from "../../utils/pageHeight";
 
 import Footer from "../Footer/index";
 
 import "./index.css";
-
-
-const PROCESS =
-  process.env.NODE_ENV === "production" ? "" : "http://8.210.110.126:7001";
 
 const imgList = [require("../assets/Github.svg")];
 
@@ -27,7 +25,7 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
   }, []);
 
   openWindow = () => {
-    window.open(PROCESS + "/auth/github");
+    window.open(URL_ACCOUNT + "/auth/github");
 
     //接受登陆传回来的值
     window.addEventListener(
