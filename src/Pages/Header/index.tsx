@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { login, logout } from "../../Api/Interface";
 import userCounterModel from "../Hox/User";
 import homeHeight from "../Hox/Home";
-import { Menu, Dropdown, Avatar } from "antd";
+import { Menu, Dropdown, Avatar, message } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
 import { delCookie } from "../../utils/index";
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
       .catch((err) => {
         console.log("err", err);
       });
-    return () => {};
+    return () => { };
   }, []);
 
   const logoutFun = () => {
@@ -58,7 +58,7 @@ const Header: React.FC = () => {
       .catch((err) => {
         console.log("err", err);
       });
-    return () => {};
+    return () => { };
   };
 
   const setHomeHight = (e: any) => {
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
     if (Number(e.target.dataset.id) === 1) {
       HomeHFun.HomeH(0);
     } else if (Number(e.target.dataset.id) === 2) {
-      HomeHFun.HomeH(700);
+      HomeHFun.HomeH(650);
     } else {
       HomeHFun.HomeH(1650);
     }
@@ -97,12 +97,7 @@ const Header: React.FC = () => {
   return (
     <div className="Head_main animated fadeInDown">
       <div className="Head_auto">
-        <Link
-          to="/"
-          onClick={(e) => {
-            setHomeHight(e);
-          }}
-        >
+        <Link to="/">
           <img data-id="1" src={imglist[0].img} alt="" />
         </Link>
 
@@ -134,7 +129,16 @@ const Header: React.FC = () => {
               联系我们
             </Link>
           </li>
-          <li>API文档</li>
+          <li
+            onClick={(e) => {
+              message.warning("敬请期待～");
+            }}
+          >
+            API文档
+            {/* <Link data-id="3" to="/">
+              联系我们
+            </Link> */}
+          </li>
 
           {userInfo.login ? (
             <li className="Head_autoUl_User">
@@ -170,12 +174,12 @@ const Header: React.FC = () => {
               </Dropdown>
             </li>
           ) : (
-            <li className="Head_autoUl_BUtton">
-              <NavLink className="header-link" to="/login" exact>
-                登陆
+              <li className="Head_autoUl_BUtton">
+                <NavLink className="header-link" to="/login" exact>
+                  登陆
               </NavLink>
-            </li>
-          )}
+              </li>
+            )}
         </ul>
       </div>
     </div>

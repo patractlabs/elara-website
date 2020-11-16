@@ -82,6 +82,7 @@ const Console: React.FC<childProps> = () => {
       .then((res) => {
         if (res?.code !== 0) {
           message.error(res?.msg);
+          setLoading(false)
           return;
         }
         message.success("创建成功");
