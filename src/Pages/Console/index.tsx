@@ -134,14 +134,21 @@ const Console: React.FC<childProps> = () => {
             <img src={imgList[0]} alt="" />
             新建项目
           </div>
-          <p>快来创建你的第一个 Polkadot 项目吧。</p>
+          <p>快来创建你的第一个 {counter.name} 项目吧。</p>
         </div>
       ) : (
         <Spin spinning={loading}>
           <ul className="dataList">
             {data.map((el: any,key:number) => {
               return (
-                <li className="dataList_li" key={key}>
+                <Link
+                      to={{
+                        pathname: `/dashboard/details`,
+                        state: { id: el.id },
+                      }}
+                      key={key}
+                    >
+                <li className="dataList_li" >
                   <div className="dataList_liDiv">
                     <p>
                       <img src={imgList[1]} alt="" />
@@ -176,16 +183,12 @@ const Console: React.FC<childProps> = () => {
                   <p>888</p>
                 </div> */}
                   <div className="dataList_liDiv">
-                    <Link
-                      to={{
-                        pathname: `/dashboard/details`,
-                        state: { id: el.id },
-                      }}
-                    >
+                
                       <img src={imgList[6]} className="dataListArrow" alt="" />
-                    </Link>
+                    
                   </div>
                 </li>
+                </Link>
               );
             })}
           </ul>

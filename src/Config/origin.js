@@ -10,19 +10,19 @@ let URL_STAT = ''
 
 if (process.env.NODE_ENV === 'development') {
   URL_ACCOUNT = '/accountApi'
-  URL_STAT = '/statApi'
+  // URL_STAT = '/statApi'
   // URL_ACCOUNT = 'https://api.elara.patract.io'
   // URL_STAT = 'https://api.elara.patract.io'
 } else if (process.env.NODE_ENV === 'test') {
   // URL_ACCOUNT = 'http://8.210.110.126:7001'
   // URL_STAT = 'http://8.210.110.126:7002'
-  URL_ACCOUNT = 'https://api.elara.patract.io'
-  URL_STAT = 'https://api.elara.patract.io'
+  URL_ACCOUNT = 'https://test-elara.patract.io'
+  // URL_STAT = 'https://test-elara.patract.io'
 } else if (process.env.NODE_ENV === 'production') {
   // URL_ACCOUNT = 'https://elara.patract.io'
   // URL_STAT = 'https://elara.patract.io'
-  URL_ACCOUNT = 'https://api.elara.patract.io'
-  URL_STAT = 'https://api.elara.patract.io'
+  URL_ACCOUNT = 'https://elara.patract.io'
+  URL_STAT = 'https://elara.patract.io'
 }
 
 

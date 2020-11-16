@@ -1,6 +1,9 @@
 import {httpPost,httpGet} from './http'
 import {URL_ACCOUNT,URL_STAT} from '@/Config/origin'
 
+
+console.log(URL_ACCOUNT+'/stat/chain')
+
 /**
  * 获取首页列表
  */
@@ -12,8 +15,7 @@ const getArticleList=()=>{
     //   console.log("网络异常~",err);
     //   reject(err)
     // })
-
-    httpGet(URL_STAT+'/stat/chain', {})
+    httpGet(URL_ACCOUNT+'/stat/chain', {})
       .then(res => {
         resolve (res);
       })
@@ -43,7 +45,7 @@ const login=()=>{
  */
 const projects=()=>{
   return new Promise((resolve, reject) => {
-    httpGet(URL_STAT+'/project/list', {})
+    httpGet(URL_ACCOUNT+'/project/list', {})
       .then(res => {
         resolve (res);
       })
@@ -58,7 +60,7 @@ const projects=()=>{
  */
 const project =(data)=> {
   return new Promise((resolve, reject) => {
-    httpPost(URL_STAT + '/project/create', data)
+    httpPost(URL_ACCOUNT + '/project/create', data)
       .then(res => {
         resolve (res);
       })
@@ -73,7 +75,7 @@ const project =(data)=> {
  */
 const weekDetails =(id)=>{
   return new Promise((resolve, reject) => {
-    httpGet(URL_STAT + '/stat/week/'+id)
+    httpGet(URL_ACCOUNT + '/stat/week/'+id)
       .then(res => {
         resolve (res);
       })
@@ -88,7 +90,7 @@ const weekDetails =(id)=>{
  */
 const projectDetails =(id)=>{
   return new Promise((resolve, reject) => {
-    httpGet(URL_STAT + '/project/'+id)
+    httpGet(URL_ACCOUNT + '/project/'+id)
       .then(res => {
         resolve (res);
       })
@@ -103,7 +105,7 @@ const projectDetails =(id)=>{
  */
 const projectDayDetails =(id)=>{
   return new Promise((resolve, reject) => {
-    httpGet(URL_STAT + '/stat/day/'+id)
+    httpGet(URL_ACCOUNT + '/stat/day/'+id)
       .then(res => {
         resolve (res);
       })

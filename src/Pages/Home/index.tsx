@@ -4,6 +4,7 @@ import { createHashHistory } from "history"; // 如果是history路由
 
 import CountUp from "react-countup";
 
+import homeHeight from "../Hox/Home";
 import Footer from "../Footer/index";
 
 import "./index.css";
@@ -43,6 +44,15 @@ const countUpProps = {
 const Home: React.FC<props> = ({ data }) => {
   const [total, settotal] = useState(0);
   const history = createHashHistory();
+  const HomeHeight = homeHeight();
+
+  useEffect(()=>{
+    console.log(HomeHeight)
+    console.log('有变化吗')
+      document.documentElement.scrollTop = HomeHeight.homeHeght
+  },[HomeHeight.homeHeght])
+  
+
   useEffect(() => {
     getArticleList()
       .then((res) => {
@@ -63,7 +73,7 @@ const Home: React.FC<props> = ({ data }) => {
   }, []);
 
   return (
-    <div className="Home">
+    <div className="Home" id="Home">
       <div className="Home_bannre animated fadeInLeft">
         <h3>随时接入 Polkadot 生态开发应用</h3>
         <h5>
@@ -149,7 +159,7 @@ const Home: React.FC<props> = ({ data }) => {
         </div>
       </div>
 
-      <div className="HomeFooter">
+      <div className="HomeFooter" id="HomeFooter">
         <h4>需要更多的服务？</h4>
         <p>您可以通过以下渠道联系我们，我们将为您提供定制方案</p>
         <ul>

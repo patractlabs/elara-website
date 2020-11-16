@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { login,logout } from "../../Api/Interface";
+import { login, logout } from "../../Api/Interface";
 import userCounterModel from "../Hox/User";
+import homeHeight from "../Hox/Home";
 import { Menu, Dropdown, Avatar } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
-import {delCookie} from '../../utils/index'
+import { delCookie } from '../../utils/index'
 
 import "./index.css";
 
@@ -21,6 +22,7 @@ const imglist = [
 
 const Header: React.FC = () => {
   const userInfo = userCounterModel();
+  const HomeHFun = homeHeight();
 
   useEffect(() => {
     login()
@@ -38,26 +40,40 @@ const Header: React.FC = () => {
       .catch((err) => {
         console.log("err", err);
       });
-    return () => {};
+    return () => { };
   }, []);
 
-  const logoutFun = () =>{
+  const logoutFun = () => {
     logout()
       .then((res) => {
         if (res?.code !== 0) {
           return;
-        }else{
+        } else {
           userInfo.userOff(false);
-  
+
           //清除cookie
           delCookie()
         }
-        
+
       })
       .catch((err) => {
         console.log("err", err);
       });
-    return () => {};
+    return () => { };
+  }
+
+  const setHomeHight = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (Number(e.target.dataset.id) === 1) {
+      HomeHFun.HomeH(0)
+    }
+    else if (Number(e.target.dataset.id) === 2) {
+      HomeHFun.HomeH(700)
+    } else {
+      HomeHFun.HomeH(1650)
+    }
+
   }
 
   const menu = (
@@ -89,14 +105,20 @@ const Header: React.FC = () => {
         </Link>
 
         <ul className="Head_autoUl">
-          <li>
-            <Link to="/">首页</Link>
+          <li onClick={(e)=>{
+            setHomeHight(e)
+          }}>
+            <Link data-id='1' to="/">首页</Link>
           </li>
-          <li>
-            <Link to="/">服务</Link>
+          <li onClick={(e)=>{
+            setHomeHight(e)
+          }}>
+            <Link data-id='2' to="/">服务</Link>
           </li>
-          <li>
-            <Link to="/">联系我们</Link>
+          <li onClick={(e)=>{
+            setHomeHight(e)
+          }}>
+            <Link data-id='3' to="/">联系我们</Link>
           </li>
           <li>API文档</li>
 
@@ -134,12 +156,12 @@ const Header: React.FC = () => {
               </Dropdown>
             </li>
           ) : (
-            <li className="Head_autoUl_BUtton">
-              <NavLink className="header-link" to="/login" exact>
-                登陆
+              <li className="Head_autoUl_BUtton">
+                <NavLink className="header-link" to="/login" exact>
+                  登陆
               </NavLink>
-            </li>
-          )}
+              </li>
+            )}
         </ul>
       </div>
     </div>
