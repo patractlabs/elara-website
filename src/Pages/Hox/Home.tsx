@@ -10,7 +10,6 @@ function HomeHeght() {
     setHomeHeght(h);
   }
 
-
   return {
     homeHeght,
     HomeH

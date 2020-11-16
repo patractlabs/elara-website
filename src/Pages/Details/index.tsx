@@ -297,7 +297,9 @@ const Details: React.FC<childProps> = (props) => {
           radius: "55%",
           center: ["50%", "60%"],
           data:
-            weekTopData.length < 1 ? [{ name: "null", value: 0 }] : weekTopData,
+            weekTopData.length < 1 ? [{ name: "null", value: 0 ,itemStyle:{
+              color:'#39CA9F'
+            }}] : weekTopData,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
