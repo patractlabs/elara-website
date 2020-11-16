@@ -37,7 +37,8 @@ const Dashboard: React.FC = (props) => {
   };
 
   return (
-    <div className="dashboard animated fadeInLeft">
+    // animated fadeInLeft
+    <div className="dashboard">
       <Layout style={{ height: PageH(70) }}>
         <Sider style={{ background: "#39CA9F" }}>
           <ul className="siderUl">

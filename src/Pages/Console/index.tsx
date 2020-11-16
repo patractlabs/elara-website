@@ -38,6 +38,7 @@ const Console: React.FC<childProps> = () => {
   useEffect(() => {
     setData([]);
     projectsHttp();
+    setLoading(true);
   }, [counter.name]);
 
   const projectsHttp = () => {
@@ -125,18 +126,20 @@ const Console: React.FC<childProps> = () => {
         </div>
       </div>
       {data.length < 1 ? (
-        <div className="console_newBuild">
-          <div
-            className="console_newBuildBtn"
-            onClick={() => {
-              setOffMask(true);
-            }}
-          >
-            <img src={imgList[0]} alt="" />
-            新建项目
+        <Spin spinning={loading}>
+          <div className="console_newBuild">
+            <div
+              className="console_newBuildBtn"
+              onClick={() => {
+                setOffMask(true);
+              }}
+            >
+              <img src={imgList[0]} alt="" />
+              新建项目
+            </div>
+            <p>快来创建你的第一个 {counter.name} 项目吧。</p>
           </div>
-          <p>快来创建你的第一个 {counter.name} 项目吧。</p>
-        </div>
+        </Spin>
       ) : (
         <Spin spinning={loading}>
           <ul className="dataList" >
