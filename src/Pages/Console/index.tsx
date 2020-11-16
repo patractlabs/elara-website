@@ -71,10 +71,10 @@ const Console: React.FC<childProps> = () => {
         chain: counter.name,
         name: code.val,
       };
+      setLoading(true)
       projectNew(projectNewData);
     }
     setOffMask(false);
-    setLoading(true)
   };
 
   const projectNew = (val: any) => {
