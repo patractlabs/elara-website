@@ -3,8 +3,8 @@ import { message, Spin } from "antd";
 import echarts from "echarts";
 import CountUp from "react-countup";
 
-import {bytesToSize} from '../../utils/index'
-import {WSS_ENDPOINTS_URL,ENDPOINTS_URL} from '../../Config/origin'
+import { bytesToSize } from "../../utils/index";
+import { WSS_ENDPOINTS_URL, ENDPOINTS_URL } from "../../Config/origin";
 
 import {
   weekDetails,
@@ -31,8 +31,8 @@ const countUpProps = {
 const Details: React.FC<childProps> = (props) => {
   const [projectdata, setProjectdata] = useState<any>({});
   const [projectDaydata, setProjectDaydata] = useState<any>({
-    request:0,
-    bandwidth:0
+    request: 0,
+    bandwidth: 0,
   });
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -44,7 +44,7 @@ const Details: React.FC<childProps> = (props) => {
   const [weekTopData, setWeekTopData] = useState<any>({}); //七天Top数据
 
   const { location } = props;
-  const id = location.state?.id || window.sessionStorage.getItem('id');
+  const id = location.state?.id || window.sessionStorage.getItem("id");
 
   const getWeekDetails = () => {
     weekDetails(id)
@@ -63,7 +63,7 @@ const Details: React.FC<childProps> = (props) => {
         for (const key in resData) {
           if (Object.prototype.hasOwnProperty.call(resData, key)) {
             const element = resData[key];
-            dataDateList.push(key.substr(4,2)+ ' - ' +key.substr(6,8));
+            dataDateList.push(key.substr(4, 2) + "-" + key.substr(6, 8));
             datalist.push(element.request);
             dataBandwidth.push(element.bandwidth);
 
@@ -300,9 +300,17 @@ const Details: React.FC<childProps> = (props) => {
           radius: "55%",
           center: ["50%", "60%"],
           data:
-            weekTopData.length < 1 ? [{ name: "null", value: 0 ,itemStyle:{
-              color:'#39CA9F'
-            }}] : weekTopData,
+            weekTopData.length < 1
+              ? [
+                  {
+                    name: "null",
+                    value: 0,
+                    itemStyle: {
+                      color: "#39CA9F",
+                    },
+                  },
+                ]
+              : weekTopData,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -338,12 +346,12 @@ const Details: React.FC<childProps> = (props) => {
           <li>
             <p>今日请求数</p>
             <p className="Details_listTColro">
-              
-              <CountUp
+              {/* <CountUp
                 end={Number(projectDaydata.request)}
                 suffix=""
                 {...countUpProps}
-              ></CountUp>
+              ></CountUp> */}
+              {Number(projectDaydata.request)}
             </p>
           </li>
           <li>
@@ -375,7 +383,7 @@ const Details: React.FC<childProps> = (props) => {
             <p className="dMTop">
               {ENDPOINTS_URL}/{projectdata.chain}/{id}
               <br />
-            {WSS_ENDPOINTS_URL}/{projectdata.chain}/{id}
+              {WSS_ENDPOINTS_URL}/{projectdata.chain}/{id}
             </p>
           </li>
         </ul>
