@@ -35,7 +35,7 @@ interface props {
 const countUpProps = {
   star: 0,
   duration: 2.75,
-  decimals: 2,
+  decimals: 0,
   useEasing: true,
   useGrouping: true,
   separator: ",",
@@ -47,8 +47,6 @@ const Home: React.FC<props> = ({ data }) => {
   const HomeHeight = homeHeight();
 
   useEffect(()=>{
-    console.log(HomeHeight)
-    console.log('有变化吗')
       document.documentElement.scrollTop = HomeHeight.homeHeght
   },[HomeHeight.homeHeght])
   

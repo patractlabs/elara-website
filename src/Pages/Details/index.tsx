@@ -19,7 +19,7 @@ interface childProps {
 const countUpProps = {
   star: 0,
   duration: 2.75,
-  decimals: 2,
+  decimals: 0,
   useEasing: true,
   useGrouping: true,
   separator: ",",
