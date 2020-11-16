@@ -3,6 +3,9 @@ import { message, Spin } from "antd";
 import echarts from "echarts";
 import CountUp from "react-countup";
 
+import {bytesToSize} from '../../utils/index'
+import {WSS_ENDPOINTS_URL,ENDPOINTS_URL} from '../../Config/origin'
+
 import {
   weekDetails,
   projectDetails,
@@ -28,8 +31,8 @@ const countUpProps = {
 const Details: React.FC<childProps> = (props) => {
   const [projectdata, setProjectdata] = useState<any>({});
   const [projectDaydata, setProjectDaydata] = useState<any>({
-    request: 0,
-    bandwidth: 0,
+    request:0,
+    bandwidth:0
   });
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -41,7 +44,7 @@ const Details: React.FC<childProps> = (props) => {
   const [weekTopData, setWeekTopData] = useState<any>({}); //七天Top数据
 
   const { location } = props;
-  const id = location.state?.id || window.sessionStorage.getItem("id");
+  const id = location.state?.id || window.sessionStorage.getItem('id');
 
   const getWeekDetails = () => {
     weekDetails(id)
@@ -60,7 +63,7 @@ const Details: React.FC<childProps> = (props) => {
         for (const key in resData) {
           if (Object.prototype.hasOwnProperty.call(resData, key)) {
             const element = resData[key];
-            dataDateList.push(key.substr(4,4));
+            dataDateList.push(key.substr(4,2)+ ' - ' +key.substr(6,8));
             datalist.push(element.request);
             dataBandwidth.push(element.bandwidth);
 
@@ -222,7 +225,7 @@ const Details: React.FC<childProps> = (props) => {
       );
     chartInstanceLeft.setOption({
       title: {
-        text: "七日消耗带宽统计",
+        text: "七日消耗带宽统计 (B)",
       },
       color: ["#ACC5BD "],
       tooltip: {
@@ -254,7 +257,7 @@ const Details: React.FC<childProps> = (props) => {
       ],
       series: [
         {
-          name: "直接访问",
+          name: "消耗带宽",
           type: "bar",
           barWidth: "60%",
           label: {
@@ -297,17 +300,9 @@ const Details: React.FC<childProps> = (props) => {
           radius: "55%",
           center: ["50%", "60%"],
           data:
-            weekTopData.length < 1
-              ? [
-                  {
-                    name: "null",
-                    value: 0,
-                    itemStyle: {
-                      color: "#39CA9F",
-                    },
-                  },
-                ]
-              : weekTopData,
+            weekTopData.length < 1 ? [{ name: "null", value: 0 ,itemStyle:{
+              color:'#39CA9F'
+            }}] : weekTopData,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -343,6 +338,7 @@ const Details: React.FC<childProps> = (props) => {
           <li>
             <p>今日请求数</p>
             <p className="Details_listTColro">
+              
               <CountUp
                 end={Number(projectDaydata.request)}
                 suffix=""
@@ -353,11 +349,12 @@ const Details: React.FC<childProps> = (props) => {
           <li>
             <p>今日消耗带宽</p>
             <p className="Details_listTColro">
-              <CountUp
-                end={Number(projectDaydata.bandwidth)}
+              {/* <CountUp
+                end={ bytesToSize(Number(projectDaydata.bandwidth)) }
                 suffix="B"
                 {...countUpProps}
-              ></CountUp>
+              ></CountUp> */}
+              {bytesToSize(Number(projectDaydata.bandwidth))}
             </p>
           </li>
         </ul>
@@ -376,9 +373,9 @@ const Details: React.FC<childProps> = (props) => {
             <p className="Sehide">API</p>
             <p className="Details_listTColro">ENDPOINTS</p>
             <p className="dMTop">
-              https://elara.patract.io/{projectdata.chain}/{id}
+              {ENDPOINTS_URL}/{projectdata.chain}/{id}
               <br />
-              wss://elara.patract.io/{projectdata.chain}/{id}
+            {WSS_ENDPOINTS_URL}/{projectdata.chain}/{id}
             </p>
           </li>
         </ul>

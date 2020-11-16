@@ -11,6 +11,7 @@
   display: flex;
 }
 
+
 #Details_listT {
   height: 100px;
 }
@@ -98,4 +99,5 @@
 .dMTop {
   margin-top: 0 !important;
   line-height: 18px;
+  font-size: 14px;
 }

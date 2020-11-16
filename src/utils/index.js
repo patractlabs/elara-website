@@ -31,9 +31,18 @@ const delCookie = () => {
   document.cookie = "sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
+const  bytesToSize = (bytes) => {
+  if (bytes === 0) return '0 B';
+  let k = 1024,
+      sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+      i = Math.floor(Math.log(bytes) / Math.log(k));
+  return (bytes / Math.pow(k, i)).toFixed(1) + ' ' + sizes[i];
+}
+
 export {
   time,
   statusActive,
   delCookie,
-  getCookie
+  getCookie,
+  bytesToSize
 }

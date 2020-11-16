@@ -46,10 +46,9 @@ const Home: React.FC<props> = ({ data }) => {
   const history = createHashHistory();
   const HomeHeight = homeHeight();
 
-  useEffect(()=>{
-      document.documentElement.scrollTop = HomeHeight.homeHeght
-  },[HomeHeight.homeHeght])
-  
+  useEffect(() => {
+    document.documentElement.scrollTop = HomeHeight.homeHeght;
+  }, [HomeHeight.homeHeght]);
 
   useEffect(() => {
     getArticleList()
@@ -157,29 +156,33 @@ const Home: React.FC<props> = ({ data }) => {
         </div>
       </div>
 
-      <div className="HomeFooter" id="HomeFooter">
+      <div className="HomeFooter">
         <h4>需要更多的服务？</h4>
         <p>您可以通过以下渠道联系我们，我们将为您提供定制方案</p>
         <ul>
           <li>
             <img src={homeFonterImg[0]} alt="" />
-            <span>Email</span>
+            <a href="mailto:hi@patractlabs.com">Email</a>
           </li>
           <li>
             <img src={homeFonterImg[1]} alt="" />
-            <span>Github</span>
+            <a href="github:https://github.com/patractlabs/elara">Github</a>
           </li>
           <li>
             <img src={homeFonterImg[2]} alt="" />
-            <span>Twitter</span>
+
+            <a href="twitter:https://twitter.com/patractlabs">Twitter</a>
           </li>
           <li>
             <img src={homeFonterImg[3]} alt="" />
-            <span>Medium</span>
+
+            <a href="medium:https://medium.com/@patractlabs">Medium</a>
           </li>
           <li>
             <img src={homeFonterImg[4]} alt="" />
-            <span>Element</span>
+            <a href="element:https://app.element.io/#/room/#PatractLabsDev:matrix.org">
+              Element
+            </a>
           </li>
         </ul>
       </div>
