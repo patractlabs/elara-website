@@ -139,7 +139,7 @@ const Console: React.FC<childProps> = () => {
         </div>
       ) : (
         <Spin spinning={loading}>
-          <ul className="dataList">
+          <ul className="dataList" >
             {data.map((el: any,key:number) => {
               return (
                 <Link
@@ -148,6 +148,9 @@ const Console: React.FC<childProps> = () => {
                         state: { id: el.id },
                       }}
                       key={key}
+                      onClick={()=>{
+                        window.sessionStorage.setItem('id',el.id)
+                      }}
                     >
                 <li className="dataList_li" >
                   <div className="dataList_liDiv">

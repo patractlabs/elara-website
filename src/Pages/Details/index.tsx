@@ -28,8 +28,8 @@ const countUpProps = {
 const Details: React.FC<childProps> = (props) => {
   const [projectdata, setProjectdata] = useState<any>({});
   const [projectDaydata, setProjectDaydata] = useState<any>({
-    request:0,
-    bandwidth:0
+    request: 0,
+    bandwidth: 0,
   });
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -41,7 +41,7 @@ const Details: React.FC<childProps> = (props) => {
   const [weekTopData, setWeekTopData] = useState<any>({}); //七天Top数据
 
   const { location } = props;
-  const id = location.state?.id || "";
+  const id = location.state?.id || window.sessionStorage.getItem("id");
 
   const getWeekDetails = () => {
     weekDetails(id)
@@ -297,9 +297,17 @@ const Details: React.FC<childProps> = (props) => {
           radius: "55%",
           center: ["50%", "60%"],
           data:
-            weekTopData.length < 1 ? [{ name: "null", value: 0 ,itemStyle:{
-              color:'#39CA9F'
-            }}] : weekTopData,
+            weekTopData.length < 1
+              ? [
+                  {
+                    name: "null",
+                    value: 0,
+                    itemStyle: {
+                      color: "#39CA9F",
+                    },
+                  },
+                ]
+              : weekTopData,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -335,7 +343,6 @@ const Details: React.FC<childProps> = (props) => {
           <li>
             <p>今日请求数</p>
             <p className="Details_listTColro">
-              
               <CountUp
                 end={Number(projectDaydata.request)}
                 suffix=""
@@ -347,7 +354,7 @@ const Details: React.FC<childProps> = (props) => {
             <p>今日消耗带宽</p>
             <p className="Details_listTColro">
               <CountUp
-                end={Number(projectDaydata.bandwidth) }
+                end={Number(projectDaydata.bandwidth)}
                 suffix="B"
                 {...countUpProps}
               ></CountUp>
