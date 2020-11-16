@@ -67,7 +67,6 @@ Webpack alias `@` 映射到项目根目录下的 `src` 目录
 
 ## Plans
 
-- [ ] 项目为 TypeScript
 - [ ] 性能监控
 - [ ] Bundless Dev （Snowpack、Vite）
 - [ ] RxJS

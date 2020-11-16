@@ -67,7 +67,7 @@ const Header: React.FC = () => {
     if (Number(e.target.dataset.id) === 1) {
       HomeHFun.HomeH(0);
     } else if (Number(e.target.dataset.id) === 2) {
-      HomeHFun.HomeH(650);
+      HomeHFun.HomeH(670);
     } else {
       HomeHFun.HomeH(1650);
     }
@@ -143,7 +143,7 @@ const Header: React.FC = () => {
           {userInfo.login ? (
             <li className="Head_autoUl_User">
               <Dropdown overlay={menu}>
-                <a
+                <div
                   className="ant-dropdown-link"
                   onClick={(e) => e.preventDefault()}
                 >
@@ -170,7 +170,7 @@ const Header: React.FC = () => {
                       // margin: "16px 0 10px 0",
                     }}
                   />
-                </a>
+                </div>
               </Dropdown>
             </li>
           ) : (
