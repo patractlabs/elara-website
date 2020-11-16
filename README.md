@@ -13,7 +13,7 @@
 ## 部署环境、CI、CD
 
 ### Test
-网址环境还没配好
+测试环境地址：<a href="https://test-elara.patract.io">https://test-elara.patract.io</a></br>
 测试环境打包 npm run build_test  也可以yarn build_test,把build包一起推上去
 正式环境直接在线上build npm run build
 

@@ -60,7 +60,7 @@ const Details: React.FC<childProps> = (props) => {
         for (const key in resData) {
           if (Object.prototype.hasOwnProperty.call(resData, key)) {
             const element = resData[key];
-            dataDateList.push(key);
+            dataDateList.push(key.substr(4,4));
             datalist.push(element.request);
             dataBandwidth.push(element.bandwidth);
 
