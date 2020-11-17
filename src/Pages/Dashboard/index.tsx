@@ -58,7 +58,7 @@ const Dashboard: React.FC = (props) => {
                 <p data-id="1">Polkadot</p>
               </Link>
             </li>
-            <li
+            {/* <li
               data-id="2"
               onClick={getID}
               className={introduceNum === 2 ? "siderUlActive" : ""}
@@ -89,7 +89,7 @@ const Dashboard: React.FC = (props) => {
                 <img data-id="3" src={imgList[2]} alt="" />
                 <p data-id="3">Jupiter</p>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </Sider>
         <Layout className="site-layout">

@@ -79,12 +79,12 @@ const Details: React.FC<childProps> = (props) => {
               TopDataTEST.push({
                 value: Number(el),
                 name: keys,
-            
               });
             }
           }
         }
         TopData =  combineObjectInList(TopDataTEST,'name',['value'])
+        console.log(TopData)
         // // 设置值七天相关
         setProjectWeekDate(dataDateList);
         setWeekRequestData(datalist);

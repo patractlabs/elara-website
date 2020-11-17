@@ -67,9 +67,9 @@ const Header: React.FC = () => {
     if (Number(e.target.dataset.id) === 1) {
       HomeHFun.HomeH(0);
     } else if (Number(e.target.dataset.id) === 2) {
-      HomeHFun.HomeH(670);
+      HomeHFun.HomeH(1680);
     } else {
-      HomeHFun.HomeH(1650);
+      HomeHFun.HomeH(2100);
     }
   };
 
@@ -98,7 +98,9 @@ const Header: React.FC = () => {
     <div className="Head_main animated fadeInDown">
       <div className="Head_auto">
         <Link to="/">
-          <img data-id="1" src={imglist[0].img} alt="" />
+          <img onClick={()=>{
+            HomeHFun.HomeH(0)
+          }} data-id="1" src={imglist[0].img} alt="" />
         </Link>
 
         <ul className="Head_autoUl">

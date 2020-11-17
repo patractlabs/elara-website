@@ -76,6 +76,37 @@ let copyObj = function (obj) { //obj arr 对象的克隆（区分于指针赋值
 }
 
 
+// var data={
+//   '20201116':{
+//       'method':{
+//           'state_getKeysPaged': "59",
+//           'chain_getBlock': "3"
+//       }
+//   },
+//   '20201117':{
+//       'method':{
+//           'author_pendingExtrinsics': "15",
+//           'chain_getBlock': "36"
+//       }
+//   }
+// }
+
+// let o={}
+// for( day in data){
+//   if( data[day].method){
+//       for( m in data[day].method){
+//           if(o[m]){
+//               o[m]+=parseInt(data[day].method[m])
+//           }
+//           else{
+//               o[m]=parseInt(data[day].method[m])
+//           }
+//       }
+//   }
+// }
+
+// console.log(o)
+
 export {
   time,
   statusActive,
