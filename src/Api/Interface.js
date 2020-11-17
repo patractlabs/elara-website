@@ -73,7 +73,7 @@ const project =(data)=> {
  */
 const weekDetails =(id)=>{
   return new Promise((resolve, reject) => {
-    httpGet('/easydoc' +'/p/88409737/INA1Adqh')
+    httpGet(URL_ACCOUNT + '/stat/week/'+id)
       .then(res => {
         resolve (res);
       })
@@ -88,7 +88,7 @@ const weekDetails =(id)=>{
  */
 const projectDetails =(id)=>{
   return new Promise((resolve, reject) => {
-    httpGet('/easydoc' +'/p/88409737/xKEzQCsU')
+    httpGet(URL_ACCOUNT + '/project/'+id)
       .then(res => {
         resolve (res);
       })
@@ -103,7 +103,7 @@ const projectDetails =(id)=>{
  */
 const projectDayDetails =(id)=>{
   return new Promise((resolve, reject) => {
-    httpGet('/easydoc' +'/p/88409737/ZEMb7CVj')
+    httpGet(URL_ACCOUNT + '/stat/day/'+id)
       .then(res => {
         resolve (res);
       })

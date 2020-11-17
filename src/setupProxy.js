@@ -12,16 +12,16 @@ module.exports = function(app) {
   //   })
   // );
 
-  app.use(
-    '/accountApi',
-    proxy.createProxyMiddleware({
-      target: 'https://test-elara.patract.io',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/accountApi': ''
-      }
-    })
-  );
+  // app.use(
+  //   '/accountApi',
+  //   proxy.createProxyMiddleware({
+  //     target: 'https://test-elara.patract.io',
+  //     changeOrigin: true,
+  //     pathRewrite: {
+  //       '^/accountApi': ''
+  //     }
+  //   })
+  // );
 
   app.use(
     '/easydoc',
