@@ -12,6 +12,7 @@ import Footer from "../Footer/index";
 import "./index.css";
 
 const imgList = [require("../assets/Github.svg")];
+let off = 0
 
 interface prposChild {
   openWindow: Function;
@@ -20,9 +21,9 @@ interface prposChild {
 const Login: React.FC<prposChild> = ({ openWindow }) => {
   const history = createHashHistory();
   const userInfo = userCounterModel();
-  useEffect(() => {
-    loginInit();
-  }, []);
+  // useEffect(() => {
+  //   loginInit();
+  // }, []);
 
   openWindow = () => {
     window.open(URL_ACCOUNT + "/auth/github");
