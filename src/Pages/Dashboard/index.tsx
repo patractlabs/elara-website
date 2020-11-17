@@ -57,8 +57,11 @@ const Dashboard: React.FC = (props) => {
                 <img data-id="1" src={imgList[0]} alt="" />
                 <p data-id="1">Polkadot</p>
               </Link>
+              <div className="nameLength">
+                {counter.nameList.Polkadot}
+              </div>
             </li>
-            {/* <li
+            <li
               data-id="2"
               onClick={getID}
               className={introduceNum === 2 ? "siderUlActive" : ""}
@@ -73,6 +76,9 @@ const Dashboard: React.FC = (props) => {
                 <img data-id="2" src={imgList[1]} alt="" />
                 <p data-id="2">Kusama</p>
               </Link>
+              <div className="nameLength">
+                {counter.nameList.Kusama}
+              </div>
             </li>
             <li
               data-id="3"
@@ -89,7 +95,10 @@ const Dashboard: React.FC = (props) => {
                 <img data-id="3" src={imgList[2]} alt="" />
                 <p data-id="3">Jupiter</p>
               </Link>
-            </li> */}
+              <div className="nameLength">
+                {counter.nameList.Jupiter}
+              </div>
+            </li>
           </ul>
         </Sider>
         <Layout className="site-layout">

@@ -41,6 +41,7 @@ const Console: React.FC<childProps> = () => {
     setLoading(true);
   }, [counter.name]);
 
+
   const projectsHttp = () => {
     projects()
       .then((res) => {
@@ -48,12 +49,31 @@ const Console: React.FC<childProps> = () => {
           return;
         }
         const datalist: any[] = [];
+        let Polkadot:number = 0;
+        let Kusama:number = 0;
+        let Jupiter:number = 0;
         let resData = res?.data;
         resData.forEach((val: any, index: any) => {
           if (val.chain.includes(counter.name)) {
             datalist.push(val);
           }
         });
+
+        resData.forEach((val: any, index: any) => {
+          if (val.chain.includes('Polkadot')) {
+            Polkadot++
+          }else if(val.chain.includes('Kusama')){
+            Kusama++
+          }
+          else if(val.chain.includes('Jupiter')){
+            Jupiter++
+          }
+        });
+        counter.setNameLength({
+          Polkadot:Polkadot,
+          Kusama:Kusama,
+          Jupiter:Jupiter
+        })
         setData(datalist);
         setLoading(false)
       })
