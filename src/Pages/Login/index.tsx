@@ -12,7 +12,7 @@ import Footer from "../Footer/index";
 import "./index.css";
 
 const imgList = [require("../assets/Github.svg")];
-let off = 0
+let off = true
 
 interface prposChild {
   openWindow: Function;
@@ -29,10 +29,14 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
     window.open(URL_ACCOUNT + "/auth/github");
 
     window.onmessage=function(ev: { data: any; }) {
-      const data = ev.data;
+      if(off){
+        const data = ev.data;
         console.log(ev.data, "进来了吗");
         localStorage.setItem("token", "123456");
         loginInit();
+        off = false
+      }
+      
      }
 
     //接受登陆传回来的值
