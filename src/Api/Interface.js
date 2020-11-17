@@ -2,8 +2,6 @@ import {httpPost,httpGet} from './http'
 import {URL_ACCOUNT,URL_STAT} from '@/Config/origin'
 
 
-console.log(URL_ACCOUNT+'/stat/chain')
-
 /**
  * 获取首页列表
  */
@@ -75,7 +73,7 @@ const project =(data)=> {
  */
 const weekDetails =(id)=>{
   return new Promise((resolve, reject) => {
-    httpGet(URL_ACCOUNT + '/stat/week/'+id)
+    httpGet('/easydoc' +'/p/88409737/INA1Adqh')
       .then(res => {
         resolve (res);
       })
@@ -90,7 +88,7 @@ const weekDetails =(id)=>{
  */
 const projectDetails =(id)=>{
   return new Promise((resolve, reject) => {
-    httpGet(URL_ACCOUNT + '/project/'+id)
+    httpGet('/easydoc' +'/p/88409737/xKEzQCsU')
       .then(res => {
         resolve (res);
       })
@@ -105,7 +103,7 @@ const projectDetails =(id)=>{
  */
 const projectDayDetails =(id)=>{
   return new Promise((resolve, reject) => {
-    httpGet(URL_ACCOUNT + '/stat/day/'+id)
+    httpGet('/easydoc' +'/p/88409737/ZEMb7CVj')
       .then(res => {
         resolve (res);
       })

@@ -3,7 +3,7 @@ import { message, Spin } from "antd";
 import echarts from "echarts";
 import CountUp from "react-countup";
 
-import { bytesToSize } from "../../utils/index";
+import { bytesToSize ,combineObjectInList} from "../../utils/index";
 import { WSS_ENDPOINTS_URL, ENDPOINTS_URL } from "../../Config/origin";
 
 import {
@@ -53,13 +53,15 @@ const Details: React.FC<childProps> = (props) => {
           message.error(res?.msg);
           return;
         }
+        setLoading(false);
         const dataDateList: any[] = [];
         const datalist: any[] = [];
         const dataBandwidth: any[] = [];
-        const TopData: any[] = [];
+        let TopData: any[] = [];
+        const TopDataTEST: any[] = [];
         let resData = res?.data;
         let count = 0;
-        //给七天数据赋值
+        // 给七天数据赋值
         for (const key in resData) {
           if (Object.prototype.hasOwnProperty.call(resData, key)) {
             const element = resData[key];
@@ -73,33 +75,17 @@ const Details: React.FC<childProps> = (props) => {
 
             //处理top数据，累计加加
             for (const keys in element.method) {
-              if (Object.prototype.hasOwnProperty.call(element.method, keys)) {
-                const el = element.method[keys];
-
-                if (keys !== "") {
-                  if (count === 1) {
-                    TopData.push({
-                      value: Number(el),
-                      name: keys,
-                    });
-                  } else {
-                    TopData.forEach((els) => {
-                      if (els.name.includes(keys)) {
-                        els.value = els.value + Number(el);
-                      } else {
-                        TopData.push({
-                          value: Number(els),
-                          name: keys,
-                        });
-                      }
-                    });
-                  }
-                }
-              }
+              const el = element.method[keys];
+              TopDataTEST.push({
+                value: Number(el),
+                name: keys,
+            
+              });
             }
           }
         }
-        // 设置值七天相关
+        TopData =  combineObjectInList(TopDataTEST,'name',['value'])
+        // // 设置值七天相关
         setProjectWeekDate(dataDateList);
         setWeekRequestData(datalist);
         setWeekBandwidthData(dataBandwidth);
@@ -302,14 +288,14 @@ const Details: React.FC<childProps> = (props) => {
           data:
             weekTopData.length < 1
               ? [
-                  {
-                    name: "null",
-                    value: 0,
-                    itemStyle: {
-                      color: "#39CA9F",
-                    },
+                {
+                  name: "null",
+                  value: 0,
+                  itemStyle: {
+                    color: "#39CA9F",
                   },
-                ]
+                },
+              ]
               : weekTopData,
           emphasis: {
             itemStyle: {

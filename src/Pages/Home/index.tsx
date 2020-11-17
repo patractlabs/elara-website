@@ -166,21 +166,21 @@ const Home: React.FC<props> = ({ data }) => {
           </li>
           <li>
             <img src={homeFonterImg[1]} alt="" />
-            <a href="github:https://github.com/patractlabs/elara">Github</a>
+            <a href="https://github.com/patractlabs/elara">Github</a>
           </li>
           <li>
             <img src={homeFonterImg[2]} alt="" />
 
-            <a href="twitter:https://twitter.com/patractlabs">Twitter</a>
+            <a href="https://twitter.com/patractlabs">Twitter</a>
           </li>
           <li>
             <img src={homeFonterImg[3]} alt="" />
 
-            <a href="medium:https://medium.com/@patractlabs">Medium</a>
+            <a href="https://medium.com/@patractlabs">Medium</a>
           </li>
           <li>
             <img src={homeFonterImg[4]} alt="" />
-            <a href="element:https://app.element.io/#/room/#PatractLabsDev:matrix.org">
+            <a href="https://app.element.io/#/room/#PatractLabsDev:matrix.org">
               Element
             </a>
           </li>

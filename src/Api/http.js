@@ -8,7 +8,7 @@ import axios from 'axios'
 const service = axios.create({
   // baseURL,
   timeout: 15000,
-  withCredentials: true,
+  withCredentials: false,
 })
 
 service.interceptors.request.use(
