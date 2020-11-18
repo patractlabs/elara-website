@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Spin, message } from "antd";
-import useCounterModel from "../Hox/Sidebar";
+import { useTranslation } from "react-i18next";
 
+import useCounterModel from "../Hox/Sidebar";
 import { projects, project } from "../../Api/Interface";
 import { time, statusActive } from "../../utils/index";
 
@@ -31,6 +32,7 @@ const imgList = [
 
 const Console: React.FC<childProps> = () => {
   const counter = useCounterModel();
+  const { t,i18n } = useTranslation();
   const [offMask, setOffMask] = useState<boolean>(false);
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -85,7 +87,7 @@ const Console: React.FC<childProps> = () => {
   //关闭弹窗并且发送请求
   const closeMask = (code: any) => {
     if (code.hel == "ok" && code.val === "") {
-      message.error("请输入正确项目名称");
+      message.error(i18n.language=='en'?'Please enter the correct project name':'请输入正确项目名称');
       return
     } else if (code.off && code.val !== "") {
       const projectNewData = {
@@ -106,7 +108,7 @@ const Console: React.FC<childProps> = () => {
           setLoading(false)
           return;
         }
-        message.success("创建成功");
+        message.success(i18n.language=='en'?'Created successfully':'创建成功');
         projectsHttp();
       })
       .catch((err) => {
@@ -142,7 +144,7 @@ const Console: React.FC<childProps> = () => {
           }}
         >
           <img src={imgList[0]} alt="" />
-          新建项目
+          {t('listPage.CEEATENEW')}
         </div>
       </div>
       {data.length < 1 ? (
@@ -155,9 +157,9 @@ const Console: React.FC<childProps> = () => {
               }}
             >
               <img src={imgList[0]} alt="" />
-              新建项目
+              {t('listPage.CEEATENEW')}
             </div>
-            <p>快来创建你的第一个 {counter.name} 项目吧。</p>
+            <p>{t('listPage.onProject')} {counter.name} {t('listPage.Project')}</p>
           </div>
         </Spin>
       ) : (
@@ -179,14 +181,14 @@ const Console: React.FC<childProps> = () => {
                   <div className="dataList_liDiv">
                     <p>
                       <img src={imgList[1]} alt="" />
-                      <span>项目名称</span>
+                      <span>{t('listPage.Name')}</span>
                     </p>
                     <p>{el.name}</p>
                   </div>
                   <div className="dataList_liDiv">
                     <p>
                       <img src={imgList[2]} alt="" />
-                      <span>创建时间</span>
+                      <span>{t('listPage.CreationTime')}</span>
                     </p>
                     <p>{time(el.createtime)}</p>
                   </div>
@@ -196,7 +198,7 @@ const Console: React.FC<childProps> = () => {
                         src={el.status === "Active" ? imgList[7] : imgList[3]}
                         alt=""
                       />
-                      <span>状态</span>
+                      <span>{t('listPage.CreationTime')}</span>
                     </p>
                     <p className={el.status === "Active" ? "actsGren" : ""}>
                       {statusActive(el.status)}

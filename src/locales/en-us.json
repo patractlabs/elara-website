@@ -1,0 +1,69 @@
+{
+    "home": "Home",
+    "serve": "Product",
+    "contactUs": "Contract",
+    "Documentation": "Docs",
+    "bannerTitle1": "Access to Polkadot ecological development applications at any time",
+    "bannerTitle2": "Elara provides a one-stop block chain API component, instant access to Polkadot/Kusama/ Jupiter...",
+    "bannerBtn": "Get started for free",
+    "Cumulative": "Total requests",
+    "Product": "Product advantages",
+    "Easy": "Easy to use",
+    "NoNeed": "No need to wait for synchronization, no complicated settings. Just introduce Elara, you can use the JSON-RPC interface based on",
+    "NoNeed1": "HTTPS and WebSocket to access the Polkadot network",
+    "Stable": "Stable and highly available",
+    "ElaraHandles": "Elara handles all network changes and upgrades, focusing on providing highly available and stable ",
+    "ElaraHandles1": "services, simplifying application infrastructure, and allowing developers to focus on building upper-level applications",
+    "Rich": "Rich multi-chain support",
+    "Ourhighly": "Our highly scalable infrastructure ensures rapid access to the Polkadot parachain, ",
+    "Ourhighly1": "allowing developers' applications to quickly deploy new networks",
+    "Customer": "Customer Service",
+    "WeProvide": "We provide support for developers at any time. If the amount of application ",
+    "WeProvide1": "requests exceeds the account free quota, you can contact us to provide customized solutions",
+
+    "service": "service",
+    "Every": "Every ecological developer can use it for free",
+    "AllNetworks": "All networks in the",
+    "AllNetworks1": "Polkadot ecosystem",
+    "1000000requests": "1,000,000",
+    "1000000requests1": "requests/project/day",
+    "10projects": "10 projects",
+    "Direct":"Direct customer support",
+    "NeedMore": "Need more services?",
+    "YouCan": "You can contact us through the following channels, we will provide you with customized solutions",
+
+    "listPage":{
+        "Name":"Name",
+        "CreationTime":"Creation time",
+        "Status":"Status",
+        "Active":"Active",
+        "Stop":"Stop",
+        "CEEATENEW":"Ceeate new project",
+        "projectName":"project name",
+        "PleaseProjectName":"Please enter the project name",
+        "FormatError":"Format error, normal format: English upper and lower case letters, length 4-32",
+        "onProject":"Create your first one",
+        "Project":"Project."
+    },
+
+    "Details":{
+        "Today":"Today's requests",
+        "TodayBandwidth":"Today's bandwidth",
+        "WeekRequests":"Weekly requests statistics",
+        "WeekBandwidth":"Weekly bandwidth statistics",
+        "TopCall":"Top call method statistics",
+        "CreationTime":"Creation time",
+        "Status":"Status"
+    },
+
+    "user":{
+        "Level":"Level",
+        "Projects":"Projects",
+        "Personal":"Personal development",
+        "Logout":"Logout"
+    },
+
+    "sign":{
+        "Sign":"Sign in with"
+    }
+}

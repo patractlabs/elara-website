@@ -12,25 +12,25 @@ module.exports = function(app) {
   //   })
   // );
 
-  // app.use(
-  //   '/accountApi',
-  //   proxy.createProxyMiddleware({
-  //     target: 'https://test-elara.patract.io',
-  //     changeOrigin: true,
-  //     pathRewrite: {
-  //       '^/accountApi': ''
-  //     }
-  //   })
-  // );
-
   app.use(
-    '/easydoc',
+    '/accountApi',
     proxy.createProxyMiddleware({
-      target: 'https://easydoc.xyz/mock/jQBwURUE',
+      target: 'https://test-elara.patract.io',
       changeOrigin: true,
       pathRewrite: {
-        '^/easydoc': ''
+        '^/accountApi': ''
       }
     })
   );
+
+  // app.use(
+  //   '/easydoc',
+  //   proxy.createProxyMiddleware({
+  //     target: 'https://easydoc.xyz/mock/jQBwURUE',
+  //     changeOrigin: true,
+  //     pathRewrite: {
+  //       '^/easydoc': ''
+  //     }
+  //   })
+  // );
 };

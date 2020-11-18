@@ -1,0 +1,72 @@
+{
+    "home":"首页",
+    "serve":"服务",
+    "contactUs":"联系我们",
+    "Documentation":"API 文档",
+    
+    "bannerTitle1":"随时接入 Polkadot 生态开发应用",
+    "bannerTitle2":"Elara 提供一站式区块链API组件，即时接入 Polkadot Kusama Jupiter...",
+    "bannerBtn":"开始免费使用",
+    "Cumulative":"累计请求数",
+
+    "Product": "产品优势",
+    "Easy":"简单易用",
+    "NoNeed":"无需等待同步，无需复杂设置．只需引入 Elara，即可使用基于",
+    "NoNeed1":"HTTPS 和 WebSocket 的 JSON-RPC 接口接入 Polkadot网络",
+    "Stable":"稳定高可用",
+    "ElaraHandles":"Elara 处理所有网络变更和升级，专注于提供高可用稳定的服务，简",
+    "ElaraHandles1":"化应用基础架构，让开发者专注于构建上层应用",
+    "Rich":"丰富的多链支持",
+    "Ourhighly":"我们高度可扩展的基础架构确保对 Polkadot 平行链可以快速接入，",
+    "Ourhighly1":"让开发者的应用快速布局新网络",
+    "Customer":"客户服务",
+    "WeProvide":"我们随时为开发者提供支持．如果应用请求量超过了账户免费额度，",
+    "WeProvide1":"可以联系我们提供定制化方案",
+
+    "service": "服务",
+    "Every": "每位生态开发者都可以免费使用",
+    "AllNetworks": "Polkadot 生态的",
+    "AllNetworks1": "所有网络",
+    "1000000requests": "1,000,000",
+    "1000000requests1": "个请求/项目/天",
+    "10projects": "10 个项目",
+    "Direct":"直接客户支持",
+    "NeedMore": "需要更多的服务？",
+    "YouCan": "您可以通过以下渠道联系我们，我们将为您提供定制方案",
+
+    "listPage":{
+        "Name":"项目名称",
+        "CreationTime":"创建时间",
+        "Status":"状态",
+        "Active":"运行中",
+        "Stop":"暂停",
+        "CEEATENEW":"新建项目",
+        "projectName":"项目名称",
+        "PleaseProjectName":"请输入项目名称",
+        "FormatError":"格式错误，正常格式：英文大小写字母，长度4-32",
+        "onProject":"快来创建你的第一个",
+        "Project":"项目吧."
+    },
+
+    "Details":{
+        "Today":"今日请求数",
+        "TodayBandwidth":"今日带宽",
+        "WeekRequests":"周请求数统计",
+        "WeekBandwidth":"周带宽统计",
+        "TopCall":"top调用方法统计",
+        "CreationTime":"创建时间",
+        "Status":"状态"
+    },
+
+    "user":{
+        "Level":"帐号级别",
+        "Projects":"项目总数",
+        "Personal":"个人开发",
+        "Logout":"退出账户"
+    },
+
+    "sign":{
+        "Sign":"第三方登录"
+    }
+    
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Modal, Input } from "antd";
+import { useTranslation } from "react-i18next";
 
 import "./index.css";
 
@@ -10,6 +11,7 @@ interface chilrenProps {
 }
 
 const Popup: React.FC<chilrenProps> = ({ onCancel, msg, changeOff }) => {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(msg);
   const [inputVal, setInputVal] = useState("");
   const [inputTitle, setInputTitle] = useState(false);
@@ -33,7 +35,7 @@ const Popup: React.FC<chilrenProps> = ({ onCancel, msg, changeOff }) => {
   return (
     <div>
       <Modal
-        title="新建项目"
+        title={t('listPage.CEEATENEW')}
         visible={visible}
         closable={false}
         onOk={() => {
@@ -52,16 +54,16 @@ const Popup: React.FC<chilrenProps> = ({ onCancel, msg, changeOff }) => {
           });
         }}
       >
-        <p className="popupPP">项目名称</p>
+        <p className="popupPP">{t('listPage.projectName')}</p>
         <Input
-          placeholder="请输入项目名称"
+          placeholder={t('listPage.PleaseProjectName')}
           value={inputVal}
           onChange={(e) => {
             getInputVal(e);
           }}
         />
         <p style={{ display: inputTitle ? "block" : "none", color: "#ff4d4f" }}>
-          格式错误，正常格式：英文大小写字母，长度4-32
+        {t('listPage.FormatError')}
         </p>
       </Modal>
     </div>

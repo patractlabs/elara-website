@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useTranslation} from 'react-i18next'
+import { Menu, Dropdown, Avatar, message } from "antd";
+import { DownOutlined, UserOutlined } from "@ant-design/icons";
+
 import { login, logout } from "../../Api/Interface";
 import userCounterModel from "../Hox/User";
 import homeHeight from "../Hox/Home";
-import { Menu, Dropdown, Avatar, message } from "antd";
-import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
 import { delCookie } from "../../utils/index";
 
@@ -23,6 +25,7 @@ const imglist = [
 const Header: React.FC = () => {
   const userInfo = userCounterModel();
   const HomeHFun = homeHeight();
+  const { t ,i18n} = useTranslation()
 
   useEffect(() => {
     login()
@@ -76,11 +79,11 @@ const Header: React.FC = () => {
   const menu = (
     <Menu>
       <Menu.Item className="menuTitle">
-        <p>账号级别</p>
-        <h3>个人开发</h3>
+        <p>{t("user.Level")}</p>
+        <h3>{t("user.Personal")}</h3>
       </Menu.Item>
       <Menu.Item>
-        <p>项目总数</p>
+        <p>{t("user.Projects")}</p>
         <h3>
           {userInfo.Infos.ext.projects}/{userInfo.Infos.vip == 0 ? "20" : "100"}
         </h3>
@@ -88,7 +91,7 @@ const Header: React.FC = () => {
       <Menu.Item>
         <div className="signOut" onClick={logoutFun}>
           <img src={imglist[1].img} alt="" />
-          <span>退出账户</span>
+          <span>{t("user.Logout")}</span>
         </div>
       </Menu.Item>
     </Menu>
@@ -103,6 +106,8 @@ const Header: React.FC = () => {
           }} data-id="1" src={imglist[0].img} alt="" />
         </Link>
 
+        <button onClick={()=>i18n.changeLanguage(i18n.language==='en'?'zh':'en')}>{i18n.language=='en'?'zh':'en'}</button>
+
         <ul className="Head_autoUl">
           <li
             onClick={(e) => {
@@ -110,7 +115,7 @@ const Header: React.FC = () => {
             }}
           >
             <Link data-id="1" to="/">
-              首页
+              {t('home')}
             </Link>
           </li>
           <li
@@ -119,7 +124,7 @@ const Header: React.FC = () => {
             }}
           >
             <Link data-id="2" to="/">
-              服务
+            {t('serve')}
             </Link>
           </li>
           <li
@@ -128,7 +133,7 @@ const Header: React.FC = () => {
             }}
           >
             <Link data-id="3" to="/">
-              联系我们
+            {t('contactUs')}
             </Link>
           </li>
           <li
@@ -136,10 +141,8 @@ const Header: React.FC = () => {
               message.warning("敬请期待～");
             }}
           >
-            API文档
-            {/* <Link data-id="3" to="/">
-              联系我们
-            </Link> */}
+            {t('Documentation')}
+          
           </li>
 
           {userInfo.login ? (

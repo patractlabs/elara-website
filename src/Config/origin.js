@@ -17,8 +17,8 @@ if (process.env.NODE_ENV === 'development') {
 } else if (process.env.NODE_ENV === 'production') {
   URL_ACCOUNT = 'https://elara.patract.io'
 
-  ENDPOINTS_URL = "https://api.elara.patract.io/"
-  WSS_ENDPOINTS_URL = "wss://api.elara.patract.io/"
+  ENDPOINTS_URL = "https://api.elara.patract.io"
+  WSS_ENDPOINTS_URL = "wss://api.elara.patract.io"
 }
 
 export {

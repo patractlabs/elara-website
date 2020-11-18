@@ -3,6 +3,7 @@ import { getArticleList } from "../../Api/Interface";
 import { createHashHistory } from "history"; // 如果是history路由
 
 import CountUp from "react-countup";
+import { useTranslation } from "react-i18next";
 
 import homeHeight from "../Hox/Home";
 import Footer from "../Footer/index";
@@ -45,6 +46,7 @@ const Home: React.FC<props> = ({ data }) => {
   const [total, settotal] = useState(0);
   const history = createHashHistory();
   const HomeHeight = homeHeight();
+  const { t } = useTranslation();
 
   useEffect(() => {
     document.documentElement.scrollTop = HomeHeight.homeHeght;
@@ -72,9 +74,9 @@ const Home: React.FC<props> = ({ data }) => {
   return (
     <div className="Home" id="Home">
       <div className="Home_bannre animated fadeInLeft">
-        <h3>随时接入 Polkadot 生态开发应用</h3>
+        <h3>{t("bannerTitle1")}</h3>
         <h5>
-          Elara 提供一站式区块链API组件，即时接入 Polkadot\ Kusama\ Jupiter...
+        {t("bannerTitle2")}
         </h5>
         <div
           className="Home_btn"
@@ -82,9 +84,9 @@ const Home: React.FC<props> = ({ data }) => {
             history.push("/dashboard/console");
           }}
         >
-          开始免费使用
+          {t("bannerBtn")}
         </div>
-        <h6>累计请求数</h6>
+        <h6>{t("Cumulative")}</h6>
 
         <h2>
           <CountUp end={total} suffix="" {...countUpProps}></CountUp>
@@ -92,58 +94,58 @@ const Home: React.FC<props> = ({ data }) => {
       </div>
 
       <div className="product animated fadeInRight">
-        <h3 className="product_title">产品优势</h3>
+        <h3 className="product_title">{t("Product")}</h3>
         <ul className="product_ul">
           <li>
             <img src={imgList[0]} alt="" />
-            <h4>简单易用</h4>
-            <p>无需等待同步，无需复杂设置．只需引入 Elara，即可使用基于 </p>
-            <p>HTTPS 和 WebSocket 的 JSON-RPC 接口接入 Polkadot网络</p>
+            <h4>{t("Easy")}</h4>
+            <p>{t("NoNeed")} </p>
+            <p>{t("NoNeed1")}</p>
           </li>
           <li>
             <img src={imgList[1]} alt="" />
-            <h4>稳定高可用</h4>
-            <p>Elara 处理所有网络变更和升级，专注于提供高可用稳定的服务，简</p>
-            <p>化应用基础架构，让开发者专注于构建上层应用</p>
+            <h4>{t("Stable")}</h4>
+            <p>{t("ElaraHandles")}</p>
+            <p>{t("ElaraHandles1")}</p>
           </li>
           <li>
             <img src={imgList[2]} alt="" />
-            <h4>丰富的多链支持</h4>
-            <p>我们高度可扩展的基础架构确保对 Polkadot 平行链可以快速接入，</p>
-            <p>让开发者的应用快速布局新网络</p>
+            <h4>{t("Rich")}</h4>
+            <p>{t("Ourhighly")}</p>
+            <p>{t("Ourhighly1")}</p>
           </li>
           <li>
             <img src={imgList[3]} alt="" />
-            <h4>客户服务</h4>
-            <p>我们随时为开发者提供支持．如果应用请求量超过了账户免费额度，</p>
-            <p>可以联系我们提供定制化方案</p>
+            <h4>{t("Customer")}</h4>
+            <p>{t("WeProvide")}</p>
+            <p>{t("WeProvide1")}</p>
           </li>
         </ul>
       </div>
 
       <div className="service">
-        <h2>服务</h2>
-        <h3>每位生态开发者都可以免费使用</h3>
+        <h2>{t("服务")}</h2>
+        <h3>{t("Every")}</h3>
         <ul className="service_ul">
           <li>
             <img src={imgList[4]} alt="" />
-            <p>Polkadot 生态的</p>
-            <p>所有网络</p>
+            <p>{t("AllNetworks")}</p>
+            <p>{t("AllNetworks1")}</p>
           </li>
           <li>
             <img src={imgList[5]} alt="" />
             <p>
-              1,000,000 个 <br />
-              请求/项目/天
+            <p>{t("1000000requests")}</p>
+            <p>{t("1000000requests1")}</p>
             </p>
           </li>
           <li>
             <img src={imgList[6]} alt="" />
-            <p>10 个项目</p>
+            <p>{t("10projects")}</p>
           </li>
           <li>
             <img src={imgList[7]} alt="" />
-            <p>直接客户支持</p>
+            <p>{t("Direct")}</p>
           </li>
         </ul>
         <div
@@ -152,13 +154,13 @@ const Home: React.FC<props> = ({ data }) => {
             history.push("/dashboard/console");
           }}
         >
-          开始免费使用
+          {t("bannerBtn")}
         </div>
       </div>
 
       <div className="HomeFooter">
-        <h4>需要更多的服务？</h4>
-        <p>您可以通过以下渠道联系我们，我们将为您提供定制方案</p>
+        <h4>{t("NeedMore")}</h4>
+        <p>{t("YouCan")}</p>
         <ul>
           <li>
             <img src={homeFonterImg[0]} alt="" />

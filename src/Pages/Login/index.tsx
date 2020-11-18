@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { login } from "../../Api/Interface";
 import userCounterModel from "../Hox/User";
+import { useTranslation} from 'react-i18next'
 import { createHashHistory } from "history"; // 如果是history路由
 import {URL_ACCOUNT} from '../../Config/origin'
 
@@ -21,6 +22,7 @@ interface prposChild {
 const Login: React.FC<prposChild> = ({ openWindow }) => {
   const history = createHashHistory();
   const userInfo = userCounterModel();
+  const { t } = useTranslation();
   // useEffect(() => {
   //   loginInit();
   // }, []);
@@ -76,7 +78,7 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
   return (
     <div className="login animated fadeInLeft">
       <div className="loginMain" style={{ height: PageH(128) }}>
-        <h2>第三方登录</h2>
+        <h2>{t("sign.sign")}</h2>
         <div
           className="loginBtn"
           onClick={() => {

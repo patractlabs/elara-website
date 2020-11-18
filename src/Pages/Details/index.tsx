@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { message, Spin } from "antd";
 import echarts from "echarts";
-import CountUp from "react-countup";
+import { useTranslation} from "react-i18next";
 
 import { bytesToSize ,combineObjectInList} from "../../utils/index";
 import { WSS_ENDPOINTS_URL, ENDPOINTS_URL } from "../../Config/origin";
@@ -29,6 +29,7 @@ const countUpProps = {
 };
 
 const Details: React.FC<childProps> = (props) => {
+  const { t,i18n } = useTranslation();
   const [projectdata, setProjectdata] = useState<any>({});
   const [projectDaydata, setProjectDaydata] = useState<any>({
     request: 0,
@@ -129,7 +130,7 @@ const Details: React.FC<childProps> = (props) => {
     getWeekDetails();
     getProjectDetails();
     getProjectDayDetails();
-  }, []);
+  }, [i18n.language]);
 
   useEffect(() => {
     init();
@@ -155,7 +156,7 @@ const Details: React.FC<childProps> = (props) => {
       );
     chartInstance.setOption({
       title: {
-        text: "七日请求数统计",
+        text: i18n.language==='en'?'Weekly requests statistics':'周请求数统计',
       },
       color: ["#ACC5BD "],
       tooltip: {
@@ -187,7 +188,7 @@ const Details: React.FC<childProps> = (props) => {
       ],
       series: [
         {
-          name: "直接访问",
+          name: i18n.language==='en'?'Direct access':'直接访问',
           type: "bar",
           barWidth: "60%",
           label: {
@@ -211,7 +212,7 @@ const Details: React.FC<childProps> = (props) => {
       );
     chartInstanceLeft.setOption({
       title: {
-        text: "七日消耗带宽统计 (B)",
+        text: i18n.language==='en'?'Weekly bandwidth statistics (B)':'周带宽统计 (B)',
       },
       color: ["#ACC5BD "],
       tooltip: {
@@ -243,7 +244,7 @@ const Details: React.FC<childProps> = (props) => {
       ],
       series: [
         {
-          name: "消耗带宽",
+          name: i18n.language==='en'?'Bandwidth consumption':'消耗带宽',
           type: "bar",
           barWidth: "60%",
           label: {
@@ -267,21 +268,16 @@ const Details: React.FC<childProps> = (props) => {
       );
     chartInstanceRight.setOption({
       title: {
-        text: "top调用方法统计",
+        text: i18n.language==='en'?'Top call method statistics':'top调用方法统计',
         left: "center",
       },
       tooltip: {
         trigger: "item",
         formatter: "{a} <br/>{b} : {c} ({d}%)",
       },
-      // legend: {
-      //   orient: "vertical",
-      //   left: "left",
-      //   data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎"],
-      // },
       series: [
         {
-          name: "数据统计",
+          name: i18n.language==='en'?'data statistics':'数据统计',
           type: "pie",
           radius: "55%",
           center: ["50%", "60%"],
@@ -320,17 +316,17 @@ const Details: React.FC<childProps> = (props) => {
       <Spin spinning={loading}>
         <ul className="Details_listT" id="Details_listT">
           <li>
-            <p>创建时间</p>
+            <p>{t('Details.CreationTime')}</p>
             <p>{time(projectdata.createtime)}</p>
           </li>
           <li>
-            <p>状态</p>
+            <p>{t('Details.Status')}</p>
             <p className="Details_listTColro">
               {statusActive(projectdata.status)}
             </p>
           </li>
           <li>
-            <p>今日请求数</p>
+            <p>{t('Details.Today')}</p>
             <p className="Details_listTColro">
               {/* <CountUp
                 end={Number(projectDaydata.request)}
@@ -341,7 +337,7 @@ const Details: React.FC<childProps> = (props) => {
             </p>
           </li>
           <li>
-            <p>今日消耗带宽</p>
+            <p>{t('Details.TodayBandwidth')}</p>
             <p className="Details_listTColro">
               {/* <CountUp
                 end={ bytesToSize(Number(projectDaydata.bandwidth)) }

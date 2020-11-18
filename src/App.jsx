@@ -4,6 +4,7 @@ import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { message } from "antd";
 // import { BrowserRouter } from "react-router-dom";
 // import { renderRoutes } from "react-router-config";
+import  "./i18n";
 
 import userCounterModel from "./Pages/Hox/User";
 
