@@ -181,7 +181,7 @@ const Header: React.FC = () => {
           ) : (
               <li className="Head_autoUl_BUtton">
                 <NavLink className="header-link" to="/login" exact>
-                  登陆
+                  {t('sign.login')}
               </NavLink>
               </li>
             )}
