@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { useTranslation} from 'react-i18next'
+import { useTranslation } from "react-i18next";
 import { Menu, Dropdown, Avatar, message } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
@@ -25,7 +25,7 @@ const imglist = [
 const Header: React.FC = () => {
   const userInfo = userCounterModel();
   const HomeHFun = homeHeight();
-  const { t ,i18n} = useTranslation()
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     login()
@@ -43,7 +43,7 @@ const Header: React.FC = () => {
       .catch((err) => {
         console.log("err", err);
       });
-    return () => { };
+    return () => {};
   }, []);
 
   const logoutFun = () => {
@@ -61,7 +61,7 @@ const Header: React.FC = () => {
       .catch((err) => {
         console.log("err", err);
       });
-    return () => { };
+    return () => {};
   };
 
   const setHomeHight = (e: any) => {
@@ -97,16 +97,34 @@ const Header: React.FC = () => {
     </Menu>
   );
 
+  const languageMenu = (
+    <Menu>
+      <Menu.Item>
+        <p onClick={() => i18n.changeLanguage("en")} className="changeLanguage">
+          English
+        </p>
+      </Menu.Item>
+      <Menu.Item>
+        <p onClick={() => i18n.changeLanguage("zh")} className="changeLanguage">
+          中文
+        </p>
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <div className="Head_main animated fadeInDown">
       <div className="Head_auto">
         <Link to="/">
-          <img onClick={()=>{
-            HomeHFun.HomeH(0)
-          }} data-id="1" src={imglist[0].img} alt="" />
+          <img
+            onClick={() => {
+              HomeHFun.HomeH(0);
+            }}
+            data-id="1"
+            src={imglist[0].img}
+            alt=""
+          />
         </Link>
-
-        <button onClick={()=>i18n.changeLanguage(i18n.language==='en'?'zh':'en')}>{i18n.language=='en'?'zh':'en'}</button>
 
         <ul className="Head_autoUl">
           <li
@@ -115,7 +133,7 @@ const Header: React.FC = () => {
             }}
           >
             <Link data-id="1" to="/">
-              {t('home')}
+              {t("home")}
             </Link>
           </li>
           <li
@@ -124,7 +142,7 @@ const Header: React.FC = () => {
             }}
           >
             <Link data-id="2" to="/">
-            {t('serve')}
+              {t("serve")}
             </Link>
           </li>
           <li
@@ -133,16 +151,30 @@ const Header: React.FC = () => {
             }}
           >
             <Link data-id="3" to="/">
-            {t('contactUs')}
+              {t("contactUs")}
             </Link>
           </li>
           <li
             onClick={(e) => {
-              message.warning(i18n.language==='en'?'Coming soon～':'敬请期待～');
+              message.warning(
+                i18n.language === "en" ? "Coming soon～" : "敬请期待～"
+              );
             }}
           >
-            {t('Documentation')}
-          
+            {t("Documentation")}
+          </li>
+          <li>
+            <Dropdown overlay={languageMenu}>
+              <a className="PHover">
+                {i18n.language === "en" ? "English " : "中文 "}
+                <DownOutlined
+                  style={{
+                    display: "inline-block",
+                    color: " #fff",
+                  }}
+                />
+              </a>
+            </Dropdown>
           </li>
 
           {userInfo.login ? (
@@ -179,12 +211,12 @@ const Header: React.FC = () => {
               </Dropdown>
             </li>
           ) : (
-              <li className="Head_autoUl_BUtton">
-                <NavLink className="header-link" to="/login" exact>
-                  {t('sign.login')}
+            <li className="Head_autoUl_BUtton">
+              <NavLink className="header-link" to="/login" exact>
+                {t("sign.login")}
               </NavLink>
-              </li>
-            )}
+            </li>
+          )}
         </ul>
       </div>
     </div>

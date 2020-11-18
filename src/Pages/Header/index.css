@@ -19,7 +19,7 @@
 }
 
 .Head_autoUl {
-    width:800px;
+    width:900px;
     height: 100%;
     float: right;
     display: flex;
@@ -78,6 +78,11 @@
     color: #39CA9F;
     line-height: 16px;
     margin: 10px 0;
+}
+
+.PHover {
+    display: inline-block;
+    width: 100%;
 }
 
 .signOut {

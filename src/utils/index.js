@@ -9,11 +9,11 @@ const time = (vla) => {
   return YY + MM + DD + " " + hh + mm + ss;
 }
 
-const statusActive = (val) => {
+const statusActive = (val,language) => {
   if (val === 'Active') {
-    return "运行中"
+    return language === 'en'?"Active":'运行中'
   }
-  return "暂停"
+  return language === 'en'?"Stop":'暂停'
 }
 
 const getCookie = (name) => {

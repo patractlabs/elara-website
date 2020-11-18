@@ -87,7 +87,7 @@ const Console: React.FC<childProps> = () => {
   //关闭弹窗并且发送请求
   const closeMask = (code: any) => {
     if (code.hel == "ok" && code.val === "") {
-      message.error(i18n.language=='en'?'Please enter the correct project name':'请输入正确项目名称');
+      message.error(i18n.language==='en'?'Please enter the correct project name':'请输入正确项目名称');
       return
     } else if (code.off && code.val !== "") {
       const projectNewData = {
@@ -201,7 +201,7 @@ const Console: React.FC<childProps> = () => {
                       <span>{t('listPage.CreationTime')}</span>
                     </p>
                     <p className={el.status === "Active" ? "actsGren" : ""}>
-                      {statusActive(el.status)}
+                      {statusActive(el.status,i18n.language)}
                     </p>
                   </div>
                   {/* <div className="dataList_liDiv">

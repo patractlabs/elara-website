@@ -19,15 +19,6 @@ interface childProps {
   location: any;
 }
 
-const countUpProps = {
-  star: 0,
-  duration: 2.75,
-  decimals: 0,
-  useEasing: true,
-  useGrouping: true,
-  separator: ",",
-};
-
 const Details: React.FC<childProps> = (props) => {
   const { t,i18n } = useTranslation();
   const [projectdata, setProjectdata] = useState<any>({});
@@ -322,28 +313,18 @@ const Details: React.FC<childProps> = (props) => {
           <li>
             <p>{t('Details.Status')}</p>
             <p className="Details_listTColro">
-              {statusActive(projectdata.status)}
+              {statusActive(projectdata.status,i18n.language)}
             </p>
           </li>
           <li>
             <p>{t('Details.Today')}</p>
             <p className="Details_listTColro">
-              {/* <CountUp
-                end={Number(projectDaydata.request)}
-                suffix=""
-                {...countUpProps}
-              ></CountUp> */}
               {Number(projectDaydata.request)}
             </p>
           </li>
           <li>
             <p>{t('Details.TodayBandwidth')}</p>
             <p className="Details_listTColro">
-              {/* <CountUp
-                end={ bytesToSize(Number(projectDaydata.bandwidth)) }
-                suffix="B"
-                {...countUpProps}
-              ></CountUp> */}
               {bytesToSize(Number(projectDaydata.bandwidth))}
             </p>
           </li>
