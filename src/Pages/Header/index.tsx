@@ -138,7 +138,7 @@ const Header: React.FC = () => {
           </li>
           <li
             onClick={(e) => {
-              message.warning("敬请期待～");
+              message.warning(i18n.language==='en'?'Coming soon～':'敬请期待～');
             }}
           >
             {t('Documentation')}
