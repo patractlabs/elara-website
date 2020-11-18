@@ -124,7 +124,7 @@ const Home: React.FC<props> = ({ data }) => {
       </div>
 
       <div className="service">
-        <h2>{t("服务")}</h2>
+        <h2>{t("service")}</h2>
         <h3>{t("Every")}</h3>
         <ul className="service_ul">
           <li>

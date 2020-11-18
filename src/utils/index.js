@@ -9,11 +9,11 @@ const time = (vla) => {
   return YY + MM + DD + " " + hh + mm + ss;
 }
 
-const statusActive = (val,language) => {
+const statusActive = (val, language) => {
   if (val === 'Active') {
-    return language === 'en'?"Active":'运行中'
+    return language === 'en' ? "Active" : '运行中'
   }
-  return language === 'en'?"Stop":'暂停'
+  return language === 'en' ? "Stop" : '暂停'
 }
 
 const getCookie = (name) => {
@@ -55,10 +55,10 @@ let combineObjectInList = (arr, item, list) => { //数组去除重复，item为�
   for (let k in obj) {
     a.push(obj[k]);
   }
-  return a;
+  return a.sort(sortId);
 
 }
-let copyObj = function (obj) { //obj arr 对象的克隆（区分于指针赋值）
+const copyObj = (obj) => { //obj arr 对象的克隆（区分于指针赋值）
   if (obj.constructor == Array) {
     let a = [];
     for (let i in obj) {
@@ -73,6 +73,10 @@ let copyObj = function (obj) { //obj arr 对象的克隆（区分于指针赋值
     return o;
   }
 
+}
+
+const sortId = (a, b) => {
+  return b.value - a.value
 }
 
 

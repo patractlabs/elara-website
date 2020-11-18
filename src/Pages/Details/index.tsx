@@ -76,12 +76,11 @@ const Details: React.FC<childProps> = (props) => {
           }
         }
         TopData =  combineObjectInList(TopDataTEST,'name',['value'])
-        console.log(TopData)
         // // 设置值七天相关
         setProjectWeekDate(dataDateList);
         setWeekRequestData(datalist);
         setWeekBandwidthData(dataBandwidth);
-        setWeekTopData(TopData);
+        setWeekTopData(TopData.slice(0,21));
         setLoading(false);
       })
       .catch((err) => {
