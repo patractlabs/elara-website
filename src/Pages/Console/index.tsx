@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Spin, message } from "antd";
+import { Link, Prompt } from "react-router-dom";
+import { Spin, message, Empty } from "antd";
 import { useTranslation } from "react-i18next";
 
 import useCounterModel from "../Hox/Sidebar";
@@ -16,6 +16,7 @@ interface childProps {
   // mas: number;
   location: any;
   arr: any;
+  message:any
   // closeMask: () => any;
 }
 
@@ -32,7 +33,7 @@ const imgList = [
 
 const Console: React.FC<childProps> = () => {
   const counter = useCounterModel();
-  const { t,i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [offMask, setOffMask] = useState<boolean>(false);
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -43,7 +44,6 @@ const Console: React.FC<childProps> = () => {
     setLoading(true);
   }, [counter.name]);
 
-
   const projectsHttp = () => {
     projects()
       .then((res) => {
@@ -51,9 +51,9 @@ const Console: React.FC<childProps> = () => {
           return;
         }
         const datalist: any[] = [];
-        let Polkadot:number = 0;
-        let Kusama:number = 0;
-        let Jupiter:number = 0;
+        let Polkadot: number = 0;
+        let Kusama: number = 0;
+        let Jupiter: number = 0;
         let resData = res?.data;
         resData.forEach((val: any, index: any) => {
           if (val.chain.includes(counter.name)) {
@@ -62,22 +62,21 @@ const Console: React.FC<childProps> = () => {
         });
 
         resData.forEach((val: any, index: any) => {
-          if (val.chain.includes('Polkadot')) {
-            Polkadot++
-          }else if(val.chain.includes('Kusama')){
-            Kusama++
-          }
-          else if(val.chain.includes('Jupiter')){
-            Jupiter++
+          if (val.chain.includes("Polkadot")) {
+            Polkadot++;
+          } else if (val.chain.includes("Kusama")) {
+            Kusama++;
+          } else if (val.chain.includes("Jupiter")) {
+            Jupiter++;
           }
         });
         counter.setNameLength({
-          Polkadot:Polkadot,
-          Kusama:Kusama,
-          Jupiter:Jupiter
-        })
+          Polkadot: Polkadot,
+          Kusama: Kusama,
+          Jupiter: Jupiter,
+        });
         setData(datalist);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         console.log("err", err);
@@ -87,14 +86,18 @@ const Console: React.FC<childProps> = () => {
   //关闭弹窗并且发送请求
   const closeMask = (code: any) => {
     if (code.hel == "ok" && code.val === "") {
-      message.error(i18n.language==='en'?'Please enter the correct project name':'请输入正确项目名称');
-      return
+      message.error(
+        i18n.language === "en"
+          ? "Please enter the correct project name"
+          : "请输入正确项目名称"
+      );
+      return;
     } else if (code.off && code.val !== "") {
       const projectNewData = {
         chain: counter.name,
         name: code.val,
       };
-      setLoading(true)
+      setLoading(true);
       projectNew(projectNewData);
     }
     setOffMask(false);
@@ -105,10 +108,12 @@ const Console: React.FC<childProps> = () => {
       .then((res) => {
         if (res?.code !== 0) {
           message.error(res?.msg);
-          setLoading(false)
+          setLoading(false);
           return;
         }
-        message.success(i18n.language=='en'?'Created successfully':'创建成功');
+        message.success(
+          i18n.language == "en" ? "Created successfully" : "创建成功"
+        );
         projectsHttp();
       })
       .catch((err) => {
@@ -130,6 +135,14 @@ const Console: React.FC<childProps> = () => {
         msg={offMask}
       />
 
+      <Prompt
+        when={true}
+        message={() => {
+          counter.decrement(1)
+          return true
+        }}
+      />
+
       <div className="console_header">
         {/* <Spin tip="Loading..." /> */}
         <h3 className="console_h3">{counter.name} Projects</h3>
@@ -144,79 +157,86 @@ const Console: React.FC<childProps> = () => {
           }}
         >
           <img src={imgList[0]} alt="" />
-          {t('listPage.CEEATENEW')}
+          {t("listPage.CEEATENEW")}
         </div>
       </div>
       {data.length < 1 ? (
         <Spin spinning={loading}>
-          <div className="console_newBuild">
-            <div
-              className="console_newBuildBtn"
-              onClick={() => {
-                setOffMask(true);
-              }}
-            >
-              <img src={imgList[0]} alt="" />
-              {t('listPage.CEEATENEW')}
+          {counter.name === "Polkadot" ? (
+            <div className="console_newBuild">
+              <div
+                className="console_newBuildBtn"
+                onClick={() => {
+                  setOffMask(true);
+                }}
+              >
+                <img src={imgList[0]} alt="" />
+                {t("listPage.CEEATENEW")}
+              </div>
+              <p>
+                {t("listPage.onProject")} {counter.name} {t("listPage.Project")}
+              </p>
             </div>
-            <p>{t('listPage.onProject')} {counter.name} {t('listPage.Project')}</p>
-          </div>
+          ) : (
+            <div className="console_newBuild">
+              <Empty description={false} />
+              <p>coming soon</p>
+            </div>
+          )}
         </Spin>
       ) : (
         <Spin spinning={loading}>
-          <ul className="dataList" >
-            {data.map((el: any,key:number) => {
+          <ul className="dataList">
+            {data.map((el: any, key: number) => {
               return (
                 <Link
-                      to={{
-                        pathname: `/dashboard/details`,
-                        state: { id: el.id },
-                      }}
-                      key={key}
-                      onClick={()=>{
-                        window.sessionStorage.setItem('id',el.id)
-                      }}
-                    >
-                <li className="dataList_li" >
-                  <div className="dataList_liDiv">
-                    <p>
-                      <img src={imgList[1]} alt="" />
-                      <span>{t('listPage.Name')}</span>
-                    </p>
-                    <p>{el.name}</p>
-                  </div>
-                  <div className="dataList_liDiv">
-                    <p>
-                      <img src={imgList[2]} alt="" />
-                      <span>{t('listPage.CreationTime')}</span>
-                    </p>
-                    <p>{time(el.createtime)}</p>
-                  </div>
-                  <div className="dataList_liDiv">
-                    <p>
-                      <img
-                        src={el.status === "Active" ? imgList[7] : imgList[3]}
-                        alt=""
-                      />
-                      <span>{t('listPage.Status')}</span>
-                    </p>
-                    <p className={el.status === "Active" ? "actsGren" : ""}>
-                      {statusActive(el.status,i18n.language)}
-                    </p>
-                  </div>
-                  {/* <div className="dataList_liDiv">
+                  to={{
+                    pathname: `/dashboard/details`,
+                    state: { id: el.id },
+                  }}
+                  key={key}
+                  onClick={() => {
+                    window.sessionStorage.setItem("id", el.id);
+                  }}
+                >
+                  <li className="dataList_li">
+                    <div className="dataList_liDiv">
+                      <p>
+                        <img src={imgList[1]} alt="" />
+                        <span>{t("listPage.Name")}</span>
+                      </p>
+                      <p>{el.name}</p>
+                    </div>
+                    <div className="dataList_liDiv">
+                      <p>
+                        <img src={imgList[2]} alt="" />
+                        <span>{t("listPage.CreationTime")}</span>
+                      </p>
+                      <p>{time(el.createtime)}</p>
+                    </div>
+                    <div className="dataList_liDiv">
+                      <p>
+                        <img
+                          src={el.status === "Active" ? imgList[7] : imgList[3]}
+                          alt=""
+                        />
+                        <span>{t("listPage.Status")}</span>
+                      </p>
+                      <p className={el.status === "Active" ? "actsGren" : ""}>
+                        {statusActive(el.status, i18n.language)}
+                      </p>
+                    </div>
+                    {/* <div className="dataList_liDiv">
                   <p>
                     <img src={imgList[5]} alt="" />
                     <span>今日请求数</span>
                   </p>
                   <p>888</p>
                 </div> */}
-                  <div className="dataList_liDiv">
-                
+                    <div className="dataList_liDiv">
                       <img src={imgList[6]} className="dataListArrow" alt="" />
-                    
-                  </div>
-                </li>
+                    </div>
+                  </li>
                 </Link>
               );
             })}

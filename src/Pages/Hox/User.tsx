@@ -10,7 +10,7 @@ if (cookie.includes("sid")) {
 function useCounter() {
   const [login, setLogin] = useState(cookieOff);
   const [Infos, setInfos] = useState({
-    uid: 0,
+    username: 0,
     vip: 0,
     ext: {
       projects: 0,

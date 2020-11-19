@@ -9,7 +9,7 @@ function useCounter() {
     Kusama:0,
     Jupiter:0
   });
-  const decrement = (code: any) => setName(sidebarName[code - 1]);
+  const decrement = (code: number) => setName(sidebarName[code - 1]);
   const setNameLength = (code: any) => setNameList(code);
 
   return {

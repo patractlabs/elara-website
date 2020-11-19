@@ -80,7 +80,7 @@ const Dashboard: React.FC = (props) => {
                 {counter.nameList.Kusama}
               </div>
             </li>
-            <li
+            {/* <li
               data-id="3"
               onClick={getID}
               className={introduceNum === 3 ? "siderUlActive" : ""}
@@ -98,7 +98,7 @@ const Dashboard: React.FC = (props) => {
               <div className="nameLength">
                 {counter.nameList.Jupiter}
               </div>
-            </li>
+            </li> */}
           </ul>
         </Sider>
         <Layout className="site-layout">

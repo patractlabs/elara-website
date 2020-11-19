@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useTranslation } from 'react-i18next'
+import { useTranslation} from 'react-i18next'
 import { createHashHistory } from "history"; // 如果是history路由
 import { Prompt } from 'react-router-dom'
 
 import { login } from "../../Api/Interface";
 import userCounterModel from "../Hox/User";
 
-import { URL_ACCOUNT } from '../../Config/origin'
+import {URL_ACCOUNT} from '../../Config/origin'
 import PageH from "../../utils/pageHeight";
 
 import Footer from "../Footer/index";
@@ -16,15 +16,14 @@ import "./index.css";
 const imgList = [require("../assets/Github.svg")];
 let off = true
 
-// interface prposChild {
-//   openWindow: Function;
-//   Prompt:any
-// }
+interface prposChild {
+  openWindow: Function;
+
+}
 
 
-
-// const Login: React.FC<prposChild> = ({ openWindow, Prompt}) => {
-const Login = () => {
+const Login: React.FC<prposChild> = ({ openWindow}) => {
+ 
   const history = createHashHistory();
   const userInfo = userCounterModel();
   const { t } = useTranslation();
@@ -32,38 +31,25 @@ const Login = () => {
     loginInit();
   }, []);
 
-  const confirmToSave = (location) => {
-    console.log('准备离开了吗')
-    off = true
-    return false
-  }
+  // const  confirmToSave = (locaion) {
+  //   console.log('准备离开了吗')
+  //    return false
+  //  }
 
-  const openWindow = () => {
+   openWindow = () => {
     window.open(URL_ACCOUNT + "/auth/github");
 
-    window.onmessage = function (ev) {
-      if (off) {
+    window.onmessage=function(ev: { data: any; }) {
+      if(off){
         const data = ev.data;
         console.log(ev.data, "进来了吗");
         localStorage.setItem("token", "123456");
         loginInit();
         off = false
       }
+      
+     }
 
-    }
-
-    //接受登陆传回来的值
-    // window.addEventListener(
-    //   "message",
-    //   (ev) => {
-    //     // if (ev.source !== window.parent) {return;}
-    //     const data = ev.data;
-    //     console.log(ev.data, "进来了吗");
-    //     localStorage.setItem("token", "123456");
-    //     loginInit();
-    //   },
-    //   false
-    // );
   };
 
   function loginInit() {
@@ -90,8 +76,9 @@ const Login = () => {
     <div className="login animated fadeInLeft">
       <Prompt
         when={true}
-        message={(location) => {
-          confirmToSave(location)
+        message={() => {
+          off = true
+          return true
         }}
       />
       <div className="loginMain" style={{ height: PageH(128) }}>

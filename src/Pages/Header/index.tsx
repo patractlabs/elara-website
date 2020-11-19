@@ -195,7 +195,7 @@ const Header: React.FC = () => {
                     exact
                   >
                     <span style={{ marginRight: "10px" }}>
-                      {userInfo.Infos.uid}
+                      {userInfo.Infos.username}
                     </span>
                   </NavLink>
 
