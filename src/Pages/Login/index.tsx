@@ -78,7 +78,7 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
   return (
     <div className="login animated fadeInLeft">
       <div className="loginMain" style={{ height: PageH(128) }}>
-        <h2>{t("sign.sign")}</h2>
+        <h2>{t("sign.Sign")}</h2>
         <div
           className="loginBtn"
           onClick={() => {

@@ -198,7 +198,7 @@ const Console: React.FC<childProps> = () => {
                         src={el.status === "Active" ? imgList[7] : imgList[3]}
                         alt=""
                       />
-                      <span>{t('listPage.CreationTime')}</span>
+                      <span>{t('listPage.Status')}</span>
                     </p>
                     <p className={el.status === "Active" ? "actsGren" : ""}>
                       {statusActive(el.status,i18n.language)}
