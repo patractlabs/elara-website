@@ -1,32 +1,36 @@
 {
     "home": "Home",
-    "serve": "Product",
+    "serve": "Services",
     "contactUs": "Contract",
-    "Documentation": "Docs",
-    "bannerTitle1": "Access to Polkadot ecological development applications at any time",
-    "bannerTitle2": "Elara provides a one-stop block chain API component, instant access to Polkadot/Kusama/ Jupiter...",
-    "bannerBtn": "Get started for free",
-    "Cumulative": "Total Requests",
-    "Product": "Product Advantages",
-    "Easy": "Easy To Use",
-    "NoNeed": "No need to wait for synchronization, no complicated settings. Just introduce Elara, ",
-    "NoNeed1": "you can use the JSON-RPC interface based on HTTPS and WebSocket to access the Polkadot network",
-    "Stable": "Stable And Highly Available",
-    "ElaraHandles": "Elara handles all network changes and upgrades, focusing on providing highly available and stable ",
-    "ElaraHandles1": "services, simplifying application infrastructure, and allowing developers to focus on building upper-level applications",
-    "Rich": "Rich Multi-Chain Support",
-    "Ourhighly": "Our highly scalable infrastructure ensures rapid access to the Polkadot parachain, ",
-    "Ourhighly1": "allowing developers' applications to quickly deploy new networks",
-    "Customer": "Customer Service",
-    "WeProvide": "We provide support for developers at any time. If the amount of application ",
-    "WeProvide1": "requests exceeds the account free quota, you can contact us to provide customized solutions",
+    "Documentation": "API Docs",
 
-    "service": "Service",
-    "Every": "Every ecological developer can use it for free",
+    "bannerTitle1": "Public API Access Services to Polkadot Ecosystem",
+    "bannerTitle2": "Elara provides Polkadot developers with free, instant and scalable blockchain API access services, including Polkadot, Kusama, etc.",
+    "bannerBtn": "Start For Free",
+    "Cumulative": "Total Requests",
+
+    "Product": "Service Advantages",
+    "Easy": "Easy To Use",
+    "NoNeed": "Developers can directly use our JSON-RPC interface based on HTTPS and WebSocket to",
+    "NoNeed1": " access the Polkadot network without synchronizing blocks and complex settings.",
+
+    "Stable": "Stable and Reliable",
+    "ElaraHandles": "Elara will handle all network changes and upgrades, dedicated in providing high stability and high ",
+    "ElaraHandles1": "availability services. This allows developers to simplify application infrastructure and focus on building upper-level applications",
+    "Rich": "Multi-chain Support",
+    "Ourhighly": "Our highly scalable infrastructure ensures rapid access to all relay chains, parachains, and independent chains  ",
+    "Ourhighly1": "based on Substrate in the Polkadot ecosystem, allowing developers to quickly deploy their applications to new networks",
+
+    "Customer": "Customer Service",
+    "WeProvide": "f the amount of application requests exceeds the account free quota,",
+    "WeProvide1": "developers can contact us at any time to provide customized solutions。",
+
+    "service": "Free Services",
+    "Every": "All networks in the Polkadot ecosystem",
     "AllNetworks": "All networks in the",
     "AllNetworks1": "Polkadot ecosystem",
-    "1000000requests": "1,000,000",
-    "1000000requests1": "requests/project/day",
+    "1000000requests": "1,000,000 requests for",
+    "1000000requests1": "every project every day",
     "10projects": "10 projects",
     "Direct":"Direct customer support",
     "NeedMore": "Need more services?",
@@ -38,8 +42,8 @@
         "Status":"Status",
         "Active":"Active",
         "Stop":"Stop",
-        "CEEATENEW":"Ceeate new project",
-        "projectName":"project name",
+        "CEEATENEW":"Ceeate New Project",
+        "projectName":"Project Name",
         "PleaseProjectName":"Please enter the project name",
         "FormatError":"Format error, normal format: English upper and lower case letters, length 4-32",
         "onProject":"Create your first one",
@@ -47,12 +51,12 @@
     },
 
     "Details":{
-        "Today":"Today's requests",
-        "TodayBandwidth":"Today's bandwidth",
+        "Today":"Requests Today",
+        "TodayBandwidth":"Bandwidth Today",
         "WeekRequests":"Weekly requests statistics",
         "WeekBandwidth":"Weekly bandwidth statistics",
         "TopCall":"Top call method statistics",
-        "CreationTime":"Creation time",
+        "CreationTime":"Creation Time",
         "Status":"Status"
     },
 
@@ -64,7 +68,7 @@
     },
 
     "sign":{
-        "Sign":"Sign in with",
+        "Sign":"Sign in with Github Account",
         "login":"login"
     }
 }

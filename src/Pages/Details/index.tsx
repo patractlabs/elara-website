@@ -178,7 +178,7 @@ const Details: React.FC<childProps> = (props) => {
       ],
       series: [
         {
-          name: i18n.language==='en'?'Direct access':'直接访问',
+          name: i18n.language==='en'?'Direct Access':'直接访问',
           type: "bar",
           barWidth: "60%",
           label: {
@@ -202,7 +202,7 @@ const Details: React.FC<childProps> = (props) => {
       );
     chartInstanceLeft.setOption({
       title: {
-        text: i18n.language==='en'?'Weekly bandwidth statistics (B)':'周带宽统计 (B)',
+        text: i18n.language==='en'?'Weekly Requests Statistics (B)':'周带宽统计 (B)',
       },
       color: ["#ACC5BD "],
       tooltip: {
@@ -234,7 +234,7 @@ const Details: React.FC<childProps> = (props) => {
       ],
       series: [
         {
-          name: i18n.language==='en'?'Bandwidth consumption':'消耗带宽',
+          name: i18n.language==='en'?'Bandwidth Consumption':'消耗带宽',
           type: "bar",
           barWidth: "60%",
           label: {
@@ -258,7 +258,7 @@ const Details: React.FC<childProps> = (props) => {
       );
     chartInstanceRight.setOption({
       title: {
-        text: i18n.language==='en'?'Top call method statistics':'top调用方法统计',
+        text: i18n.language==='en'?'Top Call Method Statistics':'Top调用方法统计',
         left: "center",
       },
       tooltip: {
@@ -267,7 +267,7 @@ const Details: React.FC<childProps> = (props) => {
       },
       series: [
         {
-          name: i18n.language==='en'?'data statistics':'数据统计',
+          name: i18n.language==='en'?'Data Statistics':'数据统计',
           type: "pie",
           radius: "55%",
           center: ["50%", "60%"],
