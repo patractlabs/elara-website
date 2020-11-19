@@ -146,7 +146,7 @@ const Details: React.FC<childProps> = (props) => {
       );
     chartInstance.setOption({
       title: {
-        text: i18n.language==='en'?'Weekly requests statistics':'周请求数统计',
+        text: i18n.language==='en'?'Weekly Requests Statistics':'周请求数统计',
       },
       color: ["#ACC5BD "],
       tooltip: {
