@@ -275,7 +275,7 @@ const Details: React.FC<childProps> = (props) => {
             weekTopData.length < 1
               ? [
                 {
-                  name: "null",
+                  name: "Null",
                   value: 0,
                   itemStyle: {
                     color: "#39CA9F",
