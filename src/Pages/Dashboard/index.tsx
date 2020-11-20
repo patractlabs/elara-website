@@ -45,7 +45,7 @@ const Dashboard: React.FC = (props) => {
             <li
               data-id="1"
               onClick={getID}
-              className={introduceNum === 1 ? "siderUlActive" : ""}
+              className={counter.name === "Polkadot" ? "siderUlActive" : ""}
             >
               <Link
                 to={{
@@ -64,7 +64,7 @@ const Dashboard: React.FC = (props) => {
             <li
               data-id="2"
               onClick={getID}
-              className={introduceNum === 2 ? "siderUlActive" : ""}
+              className={counter.name === "Kusama" ? "siderUlActive" : ""}
             >
               <Link
                 to={{
@@ -83,7 +83,7 @@ const Dashboard: React.FC = (props) => {
             {/* <li
               data-id="3"
               onClick={getID}
-              className={introduceNum === 3 ? "siderUlActive" : ""}
+              className={counter.name === "Jupiter" ? "siderUlActive" : ""}
             >
               <Link
                 to={{
