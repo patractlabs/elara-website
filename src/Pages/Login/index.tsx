@@ -46,6 +46,9 @@ const Login: React.FC<prposChild> = ({ openWindow}) => {
         localStorage.setItem("token", "123456");
         loginInit();
         off = false
+        setTimeout(() => {
+          off = true
+        }, 5000);
       }
       
      }
