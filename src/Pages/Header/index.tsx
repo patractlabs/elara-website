@@ -85,7 +85,7 @@ const Header: React.FC = () => {
       <Menu.Item>
         <p>{t("user.Projects")}</p>
         <h3>
-          {userInfo.Infos.ext.projects}/{userInfo.Infos.vip == 0 ? "10" : "100"}
+          {userInfo.Infos.ext.projects}/{userInfo.Infos.vip === 0 ? "10" : "100"}
         </h3>
       </Menu.Item>
       <Menu.Item>
