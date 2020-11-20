@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useTranslation} from 'react-i18next'
+import { useTranslation } from "react-i18next";
 import { createHashHistory } from "history"; // 如果是history路由
-import { Prompt } from 'react-router-dom'
+import { Prompt } from "react-router-dom";
 
 import { login } from "../../Api/Interface";
 import userCounterModel from "../Hox/User";
 
-import {URL_ACCOUNT} from '../../Config/origin'
+import { URL_ACCOUNT } from "../../Config/origin";
 import PageH from "../../utils/pageHeight";
 
 import Footer from "../Footer/index";
@@ -14,16 +14,17 @@ import Footer from "../Footer/index";
 import "./index.css";
 
 const imgList = [require("../assets/Github.svg")];
-let off = true
+let off = true;
 
 interface prposChild {
   openWindow: Function;
 }
 
-const Login: React.FC<prposChild> = ({ openWindow}) => {
+const Login: React.FC<prposChild> = ({ openWindow }) => {
   const history = createHashHistory();
   const userInfo = userCounterModel();
   const { t } = useTranslation();
+
   useEffect(() => {
     loginInit();
   }, []);
@@ -33,44 +34,49 @@ const Login: React.FC<prposChild> = ({ openWindow}) => {
   //    return false
   //  }
 
-   openWindow = () => {
+  openWindow = () => {
     window.open(URL_ACCOUNT + "/auth/github");
 
-    // window.addEventListener('onmessage',(ev:any)=>{
-    //   if(off){
+    window.addEventListener(
+      "message",
+      (ev) => {
+        // if (ev.source !== window.parent) {return;}
+        const data = ev.data;
+        console.log(ev.data, "进来了吗");
+        localStorage.setItem("token", "123456");
+        loginInit();
+
+        window.removeEventListener(
+          "onmessage",
+          () => {
+            console.log("取消监听");
+          },
+          false
+        );
+      },
+      false
+    );
+
+    // window.onmessage = function (ev: { data: any }) {
+    //   if (off) {
     //     const data = ev.data;
     //     console.log(ev.data);
     //     localStorage.setItem("token", "123456");
     //     loginInit();
-    //     off = false
-    //     setTimeout(() => {
-    //       off = true
-    //     }, 60000);
+    //     off = false;
+    //     // setTimeout(() => {
+    //     //   off = true;
+    //     // }, 60000);
 
-    //     window.removeEventListener("onmessage",()=>{
-    //       console.log('取消监听')
-    //     },false)
+    //     window.removeEventListener(
+    //       "onmessage",
+    //       () => {
+    //         console.log("取消监听");
+    //       },
+    //       false
+    //     );
     //   }
-    // },false)
-
-    window.onmessage=function(ev: { data: any; }) {
-      if(off){
-        const data = ev.data;
-        console.log(ev.data);
-        localStorage.setItem("token", "123456");
-        loginInit();
-        off = false
-        setTimeout(() => {
-          off = true
-        }, 60000);
-
-        window.removeEventListener("onmessage",()=>{
-          console.log('取消监听')
-        },false)
-      }
-      
-     }
-
+    // };
   };
 
   function loginInit() {
@@ -86,6 +92,7 @@ const Login: React.FC<prposChild> = ({ openWindow}) => {
 
         let data = res?.data;
         localStorage.setItem("user", JSON.stringify(data));
+
         history.push("/dashboard/console");
       })
       .catch((err) => {
@@ -98,8 +105,8 @@ const Login: React.FC<prposChild> = ({ openWindow}) => {
       <Prompt
         when={true}
         message={() => {
-          off = true
-          return true
+          off = true;
+          return true;
         }}
       />
       <div className="loginMain" style={{ height: PageH(128) }}>
