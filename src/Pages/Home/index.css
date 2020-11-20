@@ -33,7 +33,7 @@
   background: #39CA9F;
   border-radius: 24px;
   margin: 50px auto;
-  font-size: 14px;
+  font-size: 18px;
   color: #232323;
   text-align: center;
   line-height: 48px;
@@ -148,6 +148,7 @@
 .service_btn {
   width: 168px;
   height: 48px;
+  font-size: 18px;
   background: #39CA9F;
   border-radius: 24px;
   margin: 100px auto;
