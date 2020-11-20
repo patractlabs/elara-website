@@ -14,7 +14,7 @@ import Footer from "../Footer/index";
 import "./index.css";
 
 const imgList = [require("../assets/Github.svg")];
-let off = true;
+// let off = true;
 
 interface prposChild {
   openWindow: Function;
@@ -37,36 +37,14 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
   openWindow = () => {
     window.open(URL_ACCOUNT + "/auth/github");
 
-    window.addEventListener(
-      "message",
-      (ev) => {
-        // if (ev.source !== window.parent) {return;}
-        const data = ev.data;
-        console.log(ev.data, "进来了吗");
-        localStorage.setItem("token", "123456");
-        loginInit();
-
-        window.removeEventListener(
-          "onmessage",
-          () => {
-            console.log("取消监听");
-          },
-          false
-        );
-      },
-      false
-    );
-
-    // window.onmessage = function (ev: { data: any }) {
-    //   if (off) {
+    // window.addEventListener(
+    //   "message",
+    //   (ev) => {
+    //     // if (ev.source !== window.parent) {return;}
     //     const data = ev.data;
-    //     console.log(ev.data);
+    //     console.log(ev.data, "进来了吗");
     //     localStorage.setItem("token", "123456");
     //     loginInit();
-    //     off = false;
-    //     // setTimeout(() => {
-    //     //   off = true;
-    //     // }, 60000);
 
     //     window.removeEventListener(
     //       "onmessage",
@@ -75,8 +53,26 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
     //       },
     //       false
     //     );
-    //   }
-    // };
+    //   },
+    //   false
+    // );
+
+    window.onmessage = function (ev: { data: any }) {
+      if (userInfo.leave) {
+        const data = ev.data;
+        console.log(ev.data);
+        localStorage.setItem("token", "123456");
+        loginInit();
+        userInfo.UserLoginleave(false)
+        window.removeEventListener(
+          "onmessage",
+          () => {
+            console.log("取消监听");
+          },
+          false
+        );
+      }
+    };
   };
 
   function loginInit() {
@@ -105,7 +101,8 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
       <Prompt
         when={true}
         message={() => {
-          off = true;
+          // off = true;
+          userInfo.UserLoginleave(true)
           return true;
         }}
       />

@@ -9,6 +9,7 @@ if (cookie.includes("sid")) {
 
 function useCounter() {
   const [login, setLogin] = useState(cookieOff);
+  const [leave, setLeave] = useState(true);
   const [Infos, setInfos] = useState({
     username: 0,
     vip: 0,
@@ -18,14 +19,17 @@ function useCounter() {
   });
   const userOff = (code: boolean) => setLogin(code);
   const UserInfos = (info: any) => setInfos(info);
+  const UserLoginleave = (info: boolean) => setLeave(info);
 
   // console.log(cookits.includes("sid"), "document.cookie");
 
   return {
     login,
     Infos,
+    leave,
     userOff,
     UserInfos,
+    UserLoginleave
   };
 }
 
