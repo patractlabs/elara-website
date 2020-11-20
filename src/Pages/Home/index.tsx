@@ -100,25 +100,21 @@ const Home: React.FC<props> = ({ data }) => {
             <img src={imgList[0]} alt="" />
             <h4>{t("Easy")}</h4>
             <p>{t("NoNeed")} </p>
-            <p>{t("NoNeed1")}</p>
           </li>
           <li>
             <img src={imgList[1]} alt="" />
             <h4>{t("Stable")}</h4>
             <p>{t("ElaraHandles")}</p>
-            <p>{t("ElaraHandles1")}</p>
           </li>
           <li>
             <img src={imgList[2]} alt="" />
             <h4>{t("Rich")}</h4>
             <p>{t("Ourhighly")}</p>
-            <p>{t("Ourhighly1")}</p>
           </li>
           <li>
             <img src={imgList[3]} alt="" />
             <h4>{t("Customer")}</h4>
             <p>{t("WeProvide")}</p>
-            <p>{t("WeProvide1")}</p>
           </li>
         </ul>
       </div>

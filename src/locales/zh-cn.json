@@ -11,17 +11,15 @@
 
     "Product": "产品优势",
     "Easy":"简单易用",
-    "NoNeed":"开发者无需同步区块和复杂设置，就可以直接使用我们基于",
-    "NoNeed1":"HTTPS和WebSocket的JSON-RPC接口接入Polkadot网络 ",
+    "NoNeed":"开发者无需同步区块和复杂设置，就可以直接使用我们基于HTTPS和WebSocket的JSON-RPC接口接入Polkadot网络",
     "Stable":"稳定可靠",
-    "ElaraHandles":"Elara会处理所有网络变更和升级，致力于提供高稳定性和高可用性",
-    "ElaraHandles1":"的服务。这让开发者可以简化应用基础架构，专注于构建上层应用",
+    "ElaraHandles":"Elara会处理所有网络变更和升级，致力于提供高稳定性和高可用性的服务。这让开发者可以简化应用基础架构，专注于构建上层应用",
+  
     "Rich":"多链支持",
-    "Ourhighly":"我们高度可扩展的基础架构确保可以快速接入Polkadot生态的所有中继链、",
-    "Ourhighly1":"平行链和基于Substrate的独立链等，让开发者的应用可以快速布局到新网络",
+    "Ourhighly":"我们高度可扩展的基础架构确保可以快速接入Polkadot生态的所有中继链、平行链和基于Substrate的独立链等，让开发者的应用可以快速布局到新网络",
+  
     "Customer":"客户服务",
-    "WeProvide":"如果应用请求量超过了账户免费额度，",
-    "WeProvide1":"开发者可以随时联系我们提供定制化方案",
+    "WeProvide":"如果应用请求量超过了账户免费额度，开发者可以随时联系我们提供定制化方案",
 
     "service": "免费服务",
     "Every": "波卡生态所有网络",
