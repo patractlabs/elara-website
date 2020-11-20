@@ -65,9 +65,52 @@ Webpack alias `@` 映射到项目根目录下的 `src` 目录
 
 同时配置 **jsconfig.json** ，在 VSCode 内点击导入路径跳转到对应文件
 
+
+### 国际化/多语言
+
+`react-i18next` 配置：**src/i18n.js**
+
+**组件函数外翻译：**
+
+```js
+import i18n from '@/i18n'
+
+function eventHandler() {
+  // 注意不要在文件顶级（函数外）中调用翻译，因为执行的时候翻译文件正在网络中加载，此时调用翻译结果是空字符串
+  i18.t('xxx')
+}
+```
+
+**组件函数内翻译：**
+
+#### Using the hook
+
+```react
+ the hook
+import { useTranslation } from 'react-i18next';
+
+function MyComponent () {
+  const { t, i18n } = useTranslation();
+  return <h1>{t('Welcome to React')}</h1>
+}
+```
+
+#### Using the Trans component
+
+```react
+import { Trans } from 'react-i18next'
+
+export default function MyComponent () {
+  return <Trans><H1>Welcome to React</H1></Trans>
+}
+
+// the translation in this case should be
+"<0>Welcome to React</0>": "<0>Welcome to React and react-i18next</0>"
+```
+
 ## Plans
 
-- [ ] 性能监控
+- [X] 性能监控
 - [ ] Bundless Dev （Snowpack、Vite）
 - [ ] RxJS
 - [ ] BFF
