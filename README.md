@@ -3,7 +3,7 @@
 ## 技术栈
 
 - JavaScript
-- React + TypeScript + Axios + Echarts + Hox + Andt
+- React + TypeScript + Axios + Echarts + Hox + Andt + react-i18next
 - TailwindCSS + CSS Modules + Scss
 
 
