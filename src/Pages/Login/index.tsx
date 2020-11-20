@@ -18,12 +18,9 @@ let off = true
 
 interface prposChild {
   openWindow: Function;
-
 }
 
-
 const Login: React.FC<prposChild> = ({ openWindow}) => {
- 
   const history = createHashHistory();
   const userInfo = userCounterModel();
   const { t } = useTranslation();
@@ -42,13 +39,13 @@ const Login: React.FC<prposChild> = ({ openWindow}) => {
     window.onmessage=function(ev: { data: any; }) {
       if(off){
         const data = ev.data;
-        console.log(ev.data, "进来了吗");
+        console.log(ev.data);
         localStorage.setItem("token", "123456");
         loginInit();
         off = false
         setTimeout(() => {
           off = true
-        }, 5000);
+        }, 60000);
       }
       
      }
