@@ -80,12 +80,12 @@ const Header: React.FC = () => {
     <Menu>
       <Menu.Item className="menuTitle">
         <p>{t("user.Level")}</p>
-        <h3>{t("user.Personal")}</h3>
+        <h3>{userInfo.Infos.vip == 0 ? t("user.Personal") : t("user.team")}</h3>
       </Menu.Item>
       <Menu.Item>
         <p>{t("user.Projects")}</p>
         <h3>
-          {userInfo.Infos.ext.projects}/{userInfo.Infos.vip === 0 ? "10" : "100"}
+          {userInfo.Infos.ext.projects}/{userInfo.Infos.vip == 0 ? "10" : "100"}
         </h3>
       </Menu.Item>
       <Menu.Item>

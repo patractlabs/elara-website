@@ -64,7 +64,8 @@
         "Level":"Level",
         "Projects":"Projects",
         "Personal":"Personal",
-        "Logout":"Logout"
+        "Logout":"Logout",
+        "team":"team"
     },
 
     "sign":{

@@ -62,7 +62,8 @@
         "Level":"帐号级别",
         "Projects":"项目总数",
         "Personal":"个人开发",
-        "Logout":"退出账户"
+        "Logout":"退出账户",
+        "team":"团队开发"
     },
 
     "sign":{
