@@ -134,10 +134,10 @@ const Home: React.FC<props> = ({ data }) => {
           </li>
           <li>
             <img src={imgList[5]} alt="" />
-            <p>
+            <div>
             <p>{t("1000000requests")}</p>
             <p>{t("1000000requests1")}</p>
-            </p>
+            </div>
           </li>
           <li>
             <img src={imgList[6]} alt="" />
