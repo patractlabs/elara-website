@@ -164,8 +164,10 @@
 
 .HomeFooter {
   width: 100%;
-  height: 368px;
-  background: url(../assets/homeFooter.png) #232324 no-repeat center;
+  /* height: 368px; */
+  height: 200px;
+  /* background: url(../assets/homeFooter.png) #232324 no-repeat center; */
+  background: #232324;
   overflow: hidden;
 }
 
@@ -185,7 +187,8 @@
 .HomeFooter ul {
   width: 50%;
   height: 50px;
-  margin: 50px auto;
+  /* margin: 50px auto; */
+  margin: 100px auto;
   display: flex;
 }
 

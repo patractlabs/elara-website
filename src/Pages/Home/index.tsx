@@ -159,8 +159,8 @@ const Home: React.FC<props> = ({ data }) => {
       </div>
 
       <div className="HomeFooter">
-        <h4>{t("NeedMore")}</h4>
-        <p>{t("YouCan")}</p>
+        {/* <h4>{t("NeedMore")}</h4>
+        <p>{t("YouCan")}</p> */}
         <ul>
           <li>
             <img src={homeFonterImg[0]} alt="" />
