@@ -153,3 +153,7 @@ body {
 .ant-layout.ant-layout-has-sider>.ant-layout-content {
 	overflow-x: hidden;
 }
+
+.ant-spin-dot-item{
+	background: #39CA9F;
+}
