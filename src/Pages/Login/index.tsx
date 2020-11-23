@@ -14,7 +14,7 @@ import Footer from "../Footer/index";
 import "./index.css";
 
 const imgList = [require("../assets/Github.svg")];
-// let off = true;
+let off = true;
 
 interface prposChild {
   openWindow: Function;
@@ -58,19 +58,20 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
     // );
 
     window.onmessage = function (ev: { data: any }) {
-      if (userInfo.leave) {
+      if (off) {
         const data = ev.data;
         console.log(ev.data);
         localStorage.setItem("token", "123456");
         loginInit();
-        userInfo.UserLoginleave(false)
-        window.removeEventListener(
-          "onmessage",
-          () => {
-            console.log("取消监听");
-          },
-          false
-        );
+        // userInfo.UserLoginleave(false)
+        off=false
+        // window.removeEventListener(
+        //   "onmessage",
+        //   () => {
+        //     console.log("取消监听");
+        //   },
+        //   false
+        // );
       }
     };
   };
@@ -101,8 +102,8 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
       <Prompt
         when={true}
         message={() => {
-          // off = true;
-          userInfo.UserLoginleave(true)
+          off = true;
+          // userInfo.UserLoginleave(true)
           return true;
         }}
       />
