@@ -56,6 +56,7 @@ const Header: React.FC = () => {
 
           //清除cookie
           delCookie();
+          window.location.reload()
         }
       })
       .catch((err) => {
