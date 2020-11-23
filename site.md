@@ -2,13 +2,13 @@
 
 首页 // Home
 
-服务 // Services
+服务 // Service
 
 联系我们 // Contract
 
 API文档  // API Docs
 
-波卡生态的公共API接入服务 // Public API Access Services to Polkadot Ecosystem
+波卡生态的公共API接入服务 // Public API Access Service to Polkadot Ecosystem
 
 Elara向波卡开发者提供免费、即时和可扩展的区块链API接入服务，包括Polkadot、Kusama等 // Elara provides Polkadot developers with free, instant and scalable blockchain API access services, including Polkadot, Kusama, etc.
 
@@ -27,7 +27,7 @@ Elara会处理所有网络变更和升级，致力于提供高稳定性和高可
 多链支持 // Multi-chain Support
 我们高度可扩展的基础架构确保可以快速接入Polkadot生态的所有中继链、平行链和基于Substrate的独立链等，让开发者的应用可以快速布局到新网络 // Our highly scalable infrastructure ensures rapid access to all relay chains, parachains, and independent chains based on Substrate in the Polkadot ecosystem, allowing developers to quickly deploy their applications to new networks
 
-客户服务 // Customer Service
+专项服务 // Special Service
 如果应用请求量超过了账户免费额度，开发者可以随时联系我们提供定制化方案 // If the amount of application requests exceeds the account free quota, developers can contact us at any time to provide customized solutions。
 
 免费服务 //Free Services
