@@ -26,6 +26,7 @@
 
 - `npm i`
 - `npm start`
+- `npm build_test`
 - `npm build`
 
 ## 开发
