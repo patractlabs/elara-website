@@ -53,8 +53,8 @@ const Header: React.FC = () => {
           return;
         } else {
           //清除cookie
-          delCookie();
           window.location.reload()
+          delCookie();
           userInfo.userOff(false);
         }
       })

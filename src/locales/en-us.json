@@ -39,7 +39,7 @@
         "Status":"Status",
         "Active":"Active",
         "Stop":"Stop",
-        "CEEATENEW":"Ceeate New Project",
+        "CEEATENEW":"Create New Project",
         "projectName":"Project Name",
         "PleaseProjectName":"Please enter the project name",
         "FormatError":"Format error, normal format: English upper and lower case letters, length 4-32",
