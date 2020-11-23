@@ -52,11 +52,10 @@ const Header: React.FC = () => {
         if (res?.code !== 0) {
           return;
         } else {
-          userInfo.userOff(false);
-
           //清除cookie
           delCookie();
           window.location.reload()
+          userInfo.userOff(false);
         }
       })
       .catch((err) => {
