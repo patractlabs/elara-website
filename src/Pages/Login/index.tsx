@@ -27,6 +27,17 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
 
   useEffect(() => {
     loginInit();
+
+    const repeater = setInterval(async () => {
+        const result = await loginInit();
+        if(result === true) {
+          clearInterval(repeater)
+        }
+    }, 2000);
+
+    return () => {
+      clearInterval(repeater)
+    }
   }, []);
 
   // const  confirmToSave = (locaion) {
@@ -62,9 +73,11 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
         const data = ev.data;
         console.log(ev.data);
         localStorage.setItem("token", "123456");
+
         loginInit();
+
         // userInfo.UserLoginleave(false)
-        off=false
+        off = false;
         // window.removeEventListener(
         //   "onmessage",
         //   () => {
@@ -76,21 +89,23 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
     };
   };
 
-  function loginInit() {
-    login()
+  async function loginInit() {
+    return login()
       .then((res) => {
         if (res?.code !== 0) {
           userInfo.userOff(false);
           console.log("失败");
-          return;
+          return false;
         }
         userInfo.userOff(true);
         userInfo.UserInfos(res?.data);
-
+        
         let data = res?.data;
         localStorage.setItem("user", JSON.stringify(data));
 
         history.push("/dashboard/console");
+
+        return true;
       })
       .catch((err) => {
         console.log("err", err);
