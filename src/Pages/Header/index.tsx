@@ -156,9 +156,9 @@ const Header: React.FC = () => {
           </li>
           <li
           >
-              <Link  to="https://docs.elara.patract.io/">
+              <a  target="_blank" href="https://docs.elara.patract.io/" rel="">
               {t("Documentation")}
-            </Link>
+            </a>
             
           </li>
           <li>
