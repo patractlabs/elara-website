@@ -155,13 +155,11 @@ const Header: React.FC = () => {
             </Link>
           </li>
           <li
-            onClick={(e) => {
-              message.warning(
-                i18n.language === "en" ? "Coming soon～" : "敬请期待～"
-              );
-            }}
           >
-            {t("Documentation")}
+              <Link  to="https://docs.elara.patract.io/">
+              {t("Documentation")}
+            </Link>
+            
           </li>
           <li>
             <Dropdown overlay={languageMenu}>
