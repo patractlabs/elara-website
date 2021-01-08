@@ -114,7 +114,7 @@ const projectDayDetails =(id)=>{
 }
 
 /**
- * 退出登陆
+ * 退出登录
  */
 const logout =()=>{
   return new Promise((resolve, reject) => {
