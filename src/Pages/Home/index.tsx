@@ -62,7 +62,7 @@ const Home: React.FC<props> = ({ data }) => {
         let data = res?.data;
         let total = 0;
         for (const key in data) {
-          total = Number(data[key]);
+          total += Number(data[key]);
         }
         settotal(total);
       })
