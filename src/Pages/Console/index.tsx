@@ -31,6 +31,9 @@ const imgList = [
     require("../assets/active.svg"),
 ];
 
+const eqChain=(c1:any,c2:any)=>{
+    return c1.toLowerCase() == c2.toLowerCase() ?true:false;
+}
 const Console: React.FC<childProps> = () => {
     const counter = useCounterModel();
     const { t, i18n } = useTranslation();
@@ -57,19 +60,19 @@ const Console: React.FC<childProps> = () => {
                 let Rococo: number = 0;
                 let resData = res?.data;
                 resData.forEach((val: any, index: any) => {
-                    if (val.chain.includes(counter.name)) {
+                    if (eqChain(val.chain,counter.name)) {
                         datalist.push(val);
                     }
                 });
 
                 resData.forEach((val: any, index: any) => {
-                    if (val.chain.includes("Polkadot")) {
+                    if (eqChain(val.chain,"Polkadot")) {
                         Polkadot++;
-                    } else if (val.chain.includes("Kusama")) {
+                    } else if (eqChain(val.chain,"Kusama")) {
                         Kusama++;
-                    } else if (val.chain.includes("Jupiter")) {
+                    } else if (eqChain(val.chain,"Jupiter")) {
                         Jupiter++;
-                    }else if (val.chain.toLowerCase()=="rococo") {
+                    }else if (eqChain(val.chain,"Rococo")) {
                         Rococo++;
                     }
                 });
