@@ -166,7 +166,7 @@ const Console: React.FC<childProps> = () => {
             </div>
             {data.length < 1 ? (
                 <Spin spinning={loading}>
-                    {counter.name === "Polkadot" ? (
+                    {/*counter.name === "Polkadot" ?*/ (
                         <div className="console_newBuild">
                             <div
                                 className="console_newBuildBtn"
@@ -181,12 +181,12 @@ const Console: React.FC<childProps> = () => {
                                 {t("listPage.onProject")} {counter.name} {t("listPage.Project")}
                             </p>
                         </div>
-                    ) : (
+                    )/* : (
                             <div className="console_newBuild">
                                 <Empty description={false} />
                                 <p>coming soon</p>
                             </div>
-                        )}
+                    )*/}
                 </Spin>
             ) : (
                     <Spin spinning={loading}>
