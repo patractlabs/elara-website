@@ -58,6 +58,16 @@ const Console: React.FC<childProps> = () => {
                 let Kusama: number = 0;
                 let Jupiter: number = 0;
                 let Rococo: number = 0;
+                let Darwinia:number=0;
+                let Dock:number=0;
+                let Edgeware:number=0;
+                let Kulupu:number=0;
+                let Nodle:number=0;
+                let Plasm:number=0;
+                let Stafi:number=0;
+                let Mandala:number=0;
+                
+
                 let resData = res?.data;
                 resData.forEach((val: any, index: any) => {
                     if (eqChain(val.chain,counter.name)) {
@@ -75,12 +85,44 @@ const Console: React.FC<childProps> = () => {
                     }else if (eqChain(val.chain,"Rococo")) {
                         Rococo++;
                     }
+                    else if (eqChain(val.chain,"Darwinia")) {
+                        Darwinia++;
+                    }
+                    else if (eqChain(val.chain,"Dock")) {
+                        Dock++;
+                    }
+                    else if (eqChain(val.chain,"Edgeware")) {
+                        Edgeware++;
+                    }
+                    else if (eqChain(val.chain,"Kulupu")) {
+                        Kulupu++;
+                    }
+                    else if (eqChain(val.chain,"Nodle")) {
+                        Nodle++;
+                    }
+                    else if (eqChain(val.chain,"Plasm")) {
+                        Plasm++;
+                    }
+                    else if (eqChain(val.chain,"Stafi")) {
+                        Stafi++;
+                    }
+                    else if (eqChain(val.chain,"Mandala")) {
+                        Mandala++;
+                    }
                 });
                 counter.setNameLength({
                     Polkadot: Polkadot,
                     Kusama: Kusama,
                     Jupiter: Jupiter,
-                    Rococo:Rococo
+                    Rococo:Rococo,
+                    Darwinia:Darwinia,
+                    Dock:Dock,
+                    Edgeware:Edgeware,
+                    Kulupu:Kulupu,
+                    Nodle:Nodle,
+                    Plasm:Plasm,
+                    Stafi:Stafi,
+                    Mandala:Mandala
                 });
                 setData(datalist);
                 setLoading(false);

@@ -22,6 +22,14 @@ const imgList = [
   require("../assets/Kusama.svg"),
   require("../assets/Jupiter.svg"),
   require("../assets/Rococo.svg"),
+  require("../assets/Darwinia.png"),
+  require("../assets/Dock.svg"),
+  require("../assets/Edgeware.svg"),
+  require("../assets/Kulupu.svg"),
+  require("../assets/Nodle.svg"),
+  require("../assets/Plasm.png"),   
+  require("../assets/Stafi.png"),  
+  require("../assets/Mandala.svg"), 
 ];
 
 export const CountContext = createContext(1);
@@ -117,6 +125,158 @@ const Dashboard: React.FC = (props) => {
               </Link>
               <div className="nameLength">
                 {counter.nameList.Rococo}
+              </div>
+            </li> }
+            { <li
+              data-id="5"
+              onClick={getID}
+              className={counter.name === "Darwinia" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="5"
+              >
+                <img data-id="5" src={imgList[4]} alt="" />
+                <p data-id="5">Darwinia</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.Darwinia}
+              </div>
+            </li> }
+            { <li
+              data-id="6"
+              onClick={getID}
+              className={counter.name === "Dock" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="6"
+              >
+                <img data-id="6" src={imgList[5]} alt="" />
+                <p data-id="6">Dock</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.Dock}
+              </div>
+            </li> }
+            { <li
+              data-id="7"
+              onClick={getID}
+              className={counter.name === "Edgeware" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="7"
+              >
+                <img data-id="7" src={imgList[6]} alt="" />
+                <p data-id="7">Edgeware</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.Edgeware}
+              </div>
+            </li> }
+            { <li
+              data-id="8"
+              onClick={getID}
+              className={counter.name === "Kulupu" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="8"
+              >
+                <img data-id="8" src={imgList[7]} alt="" />
+                <p data-id="8">Kulupu</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.Kulupu}
+              </div>
+            </li> }
+            { <li
+              data-id="9"
+              onClick={getID}
+              className={counter.name === "Nodle" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="9"
+              >
+                <img data-id="9" src={imgList[8]} alt="" />
+                <p data-id="9">Nodle</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.Nodle}
+              </div>
+            </li> }
+            { <li
+              data-id="10"
+              onClick={getID}
+              className={counter.name === "Plasm" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="10"
+              >
+                <img data-id="10" src={imgList[9]} alt="" />
+                <p data-id="10">Plasm</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.Plasm}
+              </div>
+            </li> }
+            { <li
+              data-id="11"
+              onClick={getID}
+              className={counter.name === "Stafi" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="11"
+              >
+                <img data-id="11" src={imgList[10]} alt="" />
+                <p data-id="11">Stafi</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.Stafi}
+              </div>
+            </li> }
+            { <li
+              data-id="12"
+              onClick={getID}
+              className={counter.name === "Mandala" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="12"
+              >
+                <img data-id="12" src={imgList[11]} alt="" />
+                <p data-id="12">Mandala</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.Mandala}
               </div>
             </li> }
           </ul>
