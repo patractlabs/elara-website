@@ -21,6 +21,7 @@ const imgList = [
   require("../assets/Polkadot.svg"),
   require("../assets/Kusama.svg"),
   require("../assets/Jupiter.svg"),
+  require("../assets/Rococo.svg"),
 ];
 
 export const CountContext = createContext(1);
@@ -80,7 +81,7 @@ const Dashboard: React.FC = (props) => {
                 {counter.nameList.Kusama}
               </div>
             </li>
-            {/* <li
+            { <li
               data-id="3"
               onClick={getID}
               className={counter.name === "Jupiter" ? "siderUlActive" : ""}
@@ -98,7 +99,26 @@ const Dashboard: React.FC = (props) => {
               <div className="nameLength">
                 {counter.nameList.Jupiter}
               </div>
-            </li> */}
+            </li> }
+            { <li
+              data-id="4"
+              onClick={getID}
+              className={counter.name === "Rococo" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="4"
+              >
+                <img data-id="4" src={imgList[3]} alt="" />
+                <p data-id="4">Rococo</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.Rococo}
+              </div>
+            </li> }
           </ul>
         </Sider>
         <Layout className="site-layout">
