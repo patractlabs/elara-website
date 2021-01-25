@@ -66,7 +66,6 @@ const Console: React.FC<childProps> = () => {
                 let Plasm:number=0;
                 let Stafi:number=0;
                 let Mandala:number=0;
-                
 
                 let resData = res?.data;
                 resData.forEach((val: any, index: any) => {
@@ -187,7 +186,6 @@ const Console: React.FC<childProps> = () => {
             <Prompt
                 when={true}
                 message={() => {
-                    counter.decrement(1)
                     return true
                 }}
             />
