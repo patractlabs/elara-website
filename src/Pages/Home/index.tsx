@@ -178,7 +178,7 @@ const Home: React.FC<props> = ({ data }) => {
           </li>
           <li>
             <img src={homeFonterImg[4]} alt="" />
-            <a target="_blank" href="https://app.element.io/#/room/#PatractLabsDev:matrix.org">
+            <a target="_blank" href="https://app.element.io/#/room/!sezLvdnMOcNSSAKcZg:matrix.org">
               Element
             </a>
           </li>
