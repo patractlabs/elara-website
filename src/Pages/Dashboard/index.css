@@ -6,7 +6,8 @@
 
 .siderUl {
   width: 100%;
-  height: 300px;
+  height: 100%;
+  overflow: scroll;
 }
 
 .siderUl li {
@@ -43,6 +44,7 @@
 }
 
 .siderUl li img {
+  max-width: 40px;
   margin: 20px 0 10px 0;
 }
 

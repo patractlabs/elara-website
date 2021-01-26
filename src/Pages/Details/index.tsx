@@ -95,6 +95,7 @@ const Details: React.FC<childProps> = (props) => {
           message.error(res?.msg);
           return;
         }
+        res.data.chain=res.data.chain.toLowerCase();
         setProjectdata(res.data);
       })
       .catch((err) => {
