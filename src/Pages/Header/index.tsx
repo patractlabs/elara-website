@@ -79,18 +79,18 @@ const Header: React.FC = () => {
   const menu = (
     <Menu>
       <Menu.Item className="menuTitle" >
-          <a href="/dashboard/console">
+          <Link to="/dashboard/console">
         <p>{t("user.Level")}</p>
         <h3>{userInfo.Infos.vip == 0 ? t("user.Personal") : t("user.team")}</h3>
-        </a>
+        </Link>
       </Menu.Item>
       <Menu.Item>
-      <a href="/dashboard/console">
+      <Link to="/dashboard/console">
         <p>{t("user.Projects")}</p>
         <h3>
           {userInfo.Infos.ext.projects}/{userInfo.Infos.vip == 0 ? "20" : "100"}
         </h3>
-        </a>
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <div className="signOut" onClick={logoutFun}>
