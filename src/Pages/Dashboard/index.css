@@ -34,7 +34,6 @@
 .siderUl li a {
   display: inline-block;
   width: 100%;
-  height: 100px;
   cursor: pointer;
   text-align: center;
 }
