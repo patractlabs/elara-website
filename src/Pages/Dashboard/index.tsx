@@ -30,6 +30,7 @@ const imgList = [
   require("../assets/Plasm.png"),   
   require("../assets/Stafi.png"),  
   require("../assets/Mandala.svg"), 
+  require("../assets/ChainX.png"), 
 ];
 
 export const CountContext = createContext(1);
@@ -277,6 +278,25 @@ const Dashboard: React.FC = (props) => {
               </Link>
               <div className="nameLength">
                 {counter.nameList.Mandala}
+              </div>
+            </li> }
+            { <li
+              data-id="13"
+              onClick={getID}
+              className={counter.name === "ChainX" ? "siderUlActive" : ""}
+            >
+              <Link
+                to={{
+                  pathname: `/dashboard/console`,
+                  state: { name: 2 },
+                }}
+                data-id="13"
+              >
+                <img data-id="13" src={imgList[12]} alt="" />
+                <p data-id="13">ChainX</p>
+              </Link>
+              <div className="nameLength">
+                {counter.nameList.ChainX}
               </div>
             </li> }
           </ul>

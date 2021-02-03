@@ -17,7 +17,8 @@ function useCounter() {
     Nodle:0,
     Plasm:0,
     Stafi:0,
-    Mandala:0
+    Mandala:0,
+    ChainX:0
   });
   const decrement = (code: number) => setName(sidebarName[code - 1]);
   const setNameLength = (code: any) => setNameList(code);

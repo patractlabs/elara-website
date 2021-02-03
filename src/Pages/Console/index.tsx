@@ -66,6 +66,7 @@ const Console: React.FC<childProps> = () => {
                 let Plasm:number=0;
                 let Stafi:number=0;
                 let Mandala:number=0;
+                let ChainX:number=0;
 
                 let resData = res?.data;
                 resData.forEach((val: any, index: any) => {
@@ -108,6 +109,9 @@ const Console: React.FC<childProps> = () => {
                     else if (eqChain(val.chain,"Mandala")) {
                         Mandala++;
                     }
+                    else if (eqChain(val.chain,"ChainX")) {
+                        ChainX++;
+                    }
                 });
                 counter.setNameLength({
                     Polkadot: Polkadot,
@@ -121,7 +125,8 @@ const Console: React.FC<childProps> = () => {
                     Nodle:Nodle,
                     Plasm:Plasm,
                     Stafi:Stafi,
-                    Mandala:Mandala
+                    Mandala:Mandala,
+                    ChainX:ChainX
                 });
                 setData(datalist);
                 setLoading(false);
