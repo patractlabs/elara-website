@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { createModel } from "hox";
 
-
 function useCounter() {
   const sidebarName = ["Polkadot", "Kusama", "Jupiter","Rococo","Darwinia","Dock","Edgeware","Kulupu","Nodle","Plasm","Stafi","Mandala","ChainX"];
   const [name, setName] = useState("Polkadot");

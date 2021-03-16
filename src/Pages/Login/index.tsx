@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { createHashHistory } from "history"; // 如果是history路由
 import { Prompt } from "react-router-dom";
 
-import { login } from "../../Api/Interface";
+import { apiLogin } from "../../core/data/api";
 import userCounterModel from "../Hox/User";
 
-import { URL_ACCOUNT } from "../../Config/origin";
+import { URL_ACCOUNT } from "../../config/origin";
 import PageH from "../../utils/pageHeight";
-
 import Footer from "../Footer/index";
 
 import "./index.css";
+import { APIError, APIErrorType } from '../../core/types/classes/error';
 
-const imgList = [require("../assets/Github.svg")];
+const imgList = [require("../../assets/Github.svg")];
 let off = true;
 
 interface prposChild {
@@ -70,7 +70,7 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
 
     window.onmessage = function (ev: { data: any }) {
       if (off) {
-        const data = ev.data;
+        // const data = ev.data;
         console.log(ev.data);
         localStorage.setItem("token", "123456");
 
@@ -90,25 +90,22 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
   };
 
   async function loginInit() {
-    return login()
-      .then((res) => {
-        if (res?.code !== 0) {
-          userInfo.userOff(false);
-          console.log("失败");
-          return false;
-        }
+    return apiLogin()
+      .then(user => {
         userInfo.userOff(true);
-        userInfo.UserInfos(res?.data);
+        userInfo.UserInfos(user);
         
-        let data = res?.data;
-        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("user", JSON.stringify(user));
 
         history.push("/dashboard/console");
 
         return true;
       })
-      .catch((err) => {
-        console.log("err", err);
+      .catch((err: APIError) => {
+        if (err.type === APIErrorType.business) {
+          userInfo.userOff(false);
+          return false;
+        }
       });
   }
 

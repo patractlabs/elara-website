@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Input } from "antd";
 import { useTranslation } from "react-i18next";
 
@@ -10,7 +10,7 @@ interface chilrenProps {
   msg: boolean;
 }
 
-const Popup: React.FC<chilrenProps> = ({ onCancel, msg, changeOff }) => {
+const Popup: React.FC<chilrenProps> = ({ msg, changeOff }) => {
   const { t } = useTranslation();
   const [visible, setVisible] = useState(msg);
   const [inputVal, setInputVal] = useState("");

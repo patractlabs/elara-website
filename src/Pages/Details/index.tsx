@@ -4,16 +4,17 @@ import echarts from "echarts";
 import { useTranslation} from "react-i18next";
 
 import { bytesToSize ,combineObjectInList} from "../../utils/index";
-import { WSS_ENDPOINTS_URL, ENDPOINTS_URL } from "../../Config/origin";
+import { WSS_ENDPOINTS_URL, ENDPOINTS_URL } from "../../config/origin";
 
 import {
-  weekDetails,
-  projectDetails,
-  projectDayDetails,
-} from "../../Api/Interface";
+  apiGetWeekDetails,
+  apiGetProjectDetail,
+  apiGetDayDetail,
+} from "../../core/data/api";
 import { time, statusActive } from "../../utils/index";
 
 import "./index.css";
+import { APIError, APIErrorType } from '../../core/types/classes/error';
 
 interface childProps {
   location: any;
@@ -39,31 +40,25 @@ const Details: React.FC<childProps> = (props) => {
   const id = location.state?.id || window.sessionStorage.getItem("id");
 
   const getWeekDetails = () => {
-    weekDetails(id)
-      .then((res) => {
-        if (res?.code !== 0) {
-          message.error(res?.msg);
-          return;
-        }
-        setLoading(false);
+    apiGetWeekDetails(id)
+      .then(statWeek => {
         const dataDateList: any[] = [];
         const datalist: any[] = [];
         const dataBandwidth: any[] = [];
         let TopData: any[] = [];
         const TopDataTEST: any[] = [];
-        let resData = res?.data;
-        let count = 0;
+        // let count = 0;
         // 给七天数据赋值
-        for (const key in resData) {
-          if (Object.prototype.hasOwnProperty.call(resData, key)) {
-            const element = resData[key];
+        for (const key in statWeek) {
+          if (Object.prototype.hasOwnProperty.call(statWeek, key)) {
+            const element = statWeek[key];
             dataDateList.push(key.substr(4, 2) + "-" + key.substr(6, 8));
             datalist.push(element.request);
             dataBandwidth.push(element.bandwidth);
 
-            if (Object.keys(element.method).length !== 0) {
-              count++;
-            }
+            // if (Object.keys(element.method).length !== 0) {
+            //   count ++;
+            // }
 
             //处理top数据，累计加加
             for (const keys in element.method) {
@@ -83,37 +78,33 @@ const Details: React.FC<childProps> = (props) => {
         setWeekTopData(TopData.slice(0,21));
         setLoading(false);
       })
-      .catch((err) => {
-        console.log("err", err);
+      .catch((err: APIError) => {
+        setLoading(false);
+        (err.type === APIErrorType.business)
+          && message.error(err.msg);
       });
   };
 
   const getProjectDetails = () => {
-    projectDetails(id)
-      .then((res) => {
-        if (res?.code !== 0) {
-          message.error(res?.msg);
-          return;
-        }
-        res.data.chain=res.data.chain.toLowerCase();
-        setProjectdata(res.data);
+    apiGetProjectDetail(id)
+      .then(project => {
+        project.chain = project.chain.toLowerCase();
+        setProjectdata(project);
       })
-      .catch((err) => {
+      .catch((err: APIError) => {
         console.log("err", err);
+        (err.type === APIErrorType.business)
+          && message.error(err.msg);
       });
   };
 
   const getProjectDayDetails = () => {
-    projectDayDetails(id)
-      .then((res) => {
-        if (res?.code !== 0) {
-          message.error(res?.msg);
-          return;
-        }
-        setProjectDaydata(res.data);
-      })
-      .catch((err) => {
+    apiGetDayDetail(id)
+      .then(statDay => setProjectDaydata(statDay))
+      .catch((err: APIError) => {
         console.log("err", err);
+        (err.type === APIErrorType.business)
+          && message.error(err.msg);
       });
   };
 

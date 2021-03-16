@@ -1,38 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { Link, Prompt } from "react-router-dom";
-import { Spin, message, Empty } from "antd";
+import { Spin, message, } from "antd";
 import { useTranslation } from "react-i18next";
 
 import useCounterModel from "../Hox/Sidebar";
-import { projects, project } from "../../Api/Interface";
+import { apiGetProjectList, apiCreateProject } from "../../core/data/api";
 import { time, statusActive } from "../../utils/index";
 
 import Popup from "../Popup";
-
+import Img1 from '../../assets/newbuild.svg';
+import Img2 from '../../assets/data1.svg';
+import Img3 from '../../assets/data2.svg';
+import Img4 from '../../assets/data3.svg';
+import Img5 from '../../assets/data4.svg';
+import Img6 from '../../assets/data5.svg';
+import Img7 from '../../assets/console_arrow.svg';
+import Img8 from '../../assets/active.svg';
 import "./index.css";
+import { APIError, APIErrorType } from '../../core/types/classes/error';
 
 interface childProps {
-    // changeShow: Function;
-    // mas: number;
     location: any;
     arr: any;
     message: any
-    // closeMask: () => any;
 }
 
 const imgList = [
-    require("../assets/newbuild.svg"),
-    require("../assets/data1.svg"),
-    require("../assets/data2.svg"),
-    require("../assets/data3.svg"),
-    require("../assets/data4.svg"),
-    require("../assets/data5.svg"),
-    require("../assets/console_arrow.svg"),
-    require("../assets/active.svg"),
+  Img1,
+  Img2,
+  Img3,
+  Img4,
+  Img5,
+  Img6,
+  Img7,
+  Img8,
 ];
 
-const eqChain=(c1:any,c2:any)=>{
-    return c1.toLowerCase() == c2.toLowerCase() ?true:false;
+const eqChain=(c1: string, c2: string) => {
+  return c1.toLowerCase() === c2.toLowerCase();
 }
 const Console: React.FC<childProps> = () => {
     const counter = useCounterModel();
@@ -48,11 +53,8 @@ const Console: React.FC<childProps> = () => {
     }, [counter.name]);
 
     const projectsHttp = () => {
-        projects()
-            .then((res) => {
-                if (res?.code !== 0) {
-                    return;
-                }
+        apiGetProjectList()
+            .then(projects => {
                 const datalist: any[] = [];
                 let Polkadot: number = 0;
                 let Kusama: number = 0;
@@ -68,51 +70,51 @@ const Console: React.FC<childProps> = () => {
                 let Mandala:number=0;
                 let ChainX:number=0;
 
-                let resData = res?.data;
-                resData.forEach((val: any, index: any) => {
-                    if (eqChain(val.chain,counter.name)) {
-                        datalist.push(val);
+                projects.forEach(project => {
+                    if (eqChain(project.chain, counter.name)) {
+                        datalist.push(project);
                     }
                 });
 
-                resData.forEach((val: any, index: any) => {
-                    if (eqChain(val.chain,"Polkadot")) {
+                projects.forEach((project) => {
+                    if (eqChain(project.chain, "Polkadot")) {
                         Polkadot++;
-                    } else if (eqChain(val.chain,"Kusama")) {
+                    } else if (eqChain(project.chain, "Kusama")) {
                         Kusama++;
-                    } else if (eqChain(val.chain,"Jupiter")) {
+                    } else if (eqChain(project.chain, "Jupiter")) {
                         Jupiter++;
-                    }else if (eqChain(val.chain,"Rococo")) {
+                    }else if (eqChain(project.chain, "Rococo")) {
                         Rococo++;
                     }
-                    else if (eqChain(val.chain,"Darwinia")) {
+                    else if (eqChain(project.chain, "Darwinia")) {
                         Darwinia++;
                     }
-                    else if (eqChain(val.chain,"Dock")) {
+                    else if (eqChain(project.chain, "Dock")) {
                         Dock++;
                     }
-                    else if (eqChain(val.chain,"Edgeware")) {
+                    else if (eqChain(project.chain, "Edgeware")) {
                         Edgeware++;
                     }
-                    else if (eqChain(val.chain,"Kulupu")) {
+                    else if (eqChain(project.chain, "Kulupu")) {
                         Kulupu++;
                     }
-                    else if (eqChain(val.chain,"Nodle")) {
+                    else if (eqChain(project.chain, "Nodle")) {
                         Nodle++;
                     }
-                    else if (eqChain(val.chain,"Plasm")) {
+                    else if (eqChain(project.chain, "Plasm")) {
                         Plasm++;
                     }
-                    else if (eqChain(val.chain,"Stafi")) {
+                    else if (eqChain(project.chain, "Stafi")) {
                         Stafi++;
                     }
-                    else if (eqChain(val.chain,"Mandala")) {
+                    else if (eqChain(project.chain, "Mandala")) {
                         Mandala++;
                     }
-                    else if (eqChain(val.chain,"ChainX")) {
+                    else if (eqChain(project.chain, "ChainX")) {
                         ChainX++;
                     }
                 });
+
                 counter.setNameLength({
                     Polkadot: Polkadot,
                     Kusama: Kusama,
@@ -133,12 +135,13 @@ const Console: React.FC<childProps> = () => {
             })
             .catch((err) => {
                 console.log("err", err);
+                setLoading(false);
             });
     };
 
     //关闭弹窗并且发送请求
     const closeMask = (code: any) => {
-        if (code.hel == "ok" && code.val === "") {
+        if (code.hel === "ok" && code.val === "") {
             message.error(
                 i18n.language === "en"
                     ? "Please enter the correct project name"
@@ -157,20 +160,17 @@ const Console: React.FC<childProps> = () => {
     };
 
     const projectNew = (val: any) => {
-        project(val)
-            .then((res) => {
-                if (res?.code !== 0) {
-                    message.error(res?.msg);
-                    setLoading(false);
-                    return;
-                }
-                message.success(
-                    i18n.language == "en" ? "Created successfully" : "创建成功"
-                );
+        console.log('create pro', val);
+        apiCreateProject(val)
+            .then(() => {
+                message.success(t('tip.created'));
                 projectsHttp();
             })
-            .catch((err) => {
+            .catch((err: APIError) => {
                 console.log("err", err);
+                setLoading(false);
+                (err.type === APIErrorType.business)
+                  && message.error(err.msg);
             });
     };
 

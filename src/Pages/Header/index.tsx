@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Menu, Dropdown, Avatar, message } from "antd";
+import { Menu, Dropdown, Avatar } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
-import { login, logout } from "../../Api/Interface";
+import { apiLogin, apiLogout } from "../../core/data/api";
 import userCounterModel from "../Hox/User";
 import homeHeight from "../Hox/Home";
 
 import { delCookie } from "../../utils/index";
+import logo from '../../assets/logo.svg';
+import signOut from '../../assets/signOut.svg';
 
 import "./index.css";
+import { APIError, APIErrorType } from '../../core/types/classes/error';
 
 const imglist = [
   {
-    img: require("../assets/logo.svg"),
+    img: logo,
     name: "logo",
   },
   {
-    img: require("../assets/signOut.svg"),
+    img: signOut,
   },
 ];
 
@@ -28,35 +31,28 @@ const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    login()
-      .then((res) => {
-        if (res?.code !== 0) {
-          userInfo.userOff(false);
-          return;
-        }
+    apiLogin()
+      .then(user => {
         userInfo.userOff(true);
-        userInfo.UserInfos(res?.data);
+        userInfo.UserInfos(user);
 
-        let data = res?.data;
-        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("user", JSON.stringify(user));
       })
-      .catch((err) => {
-        console.log("err", err);
+      .catch((err: APIError) => {
+        if (err.type === APIErrorType.business) {
+          userInfo.userOff(false);
+        }
       });
     return () => {};
   }, []);
 
   const logoutFun = () => {
-    logout()
-      .then((res) => {
-        if (res?.code !== 0) {
-          return;
-        } else {
-          //清除cookie
-          window.location.reload()
-          delCookie();
-          userInfo.userOff(false);
-        }
+    apiLogout()
+      .then(() => {
+        //清除cookie
+        window.location.reload()
+        delCookie();
+        userInfo.userOff(false);
       })
       .catch((err) => {
         console.log("err", err);
@@ -76,20 +72,20 @@ const Header: React.FC = () => {
     }
   };
 
-  const menu = (
+  const UserMenu = (
     <Menu>
       <Menu.Item className="menuTitle" >
-          <Link to="/dashboard/console">
-        <p>{t("user.Level")}</p>
-        <h3>{userInfo.Infos.vip == 0 ? t("user.Personal") : t("user.team")}</h3>
+        <Link to="/dashboard/console">
+          <p>{t("user.Level")}</p>
+          <h3>{!userInfo.Infos.vip ? t("user.Personal") : t("user.team")}</h3>
         </Link>
       </Menu.Item>
       <Menu.Item>
-      <Link to="/dashboard/console">
-        <p>{t("user.Projects")}</p>
-        <h3>
-          {userInfo.Infos.ext.projects}/{userInfo.Infos.vip == 0 ? "20" : "100"}
-        </h3>
+        <Link to="/dashboard/console">
+          <p>{t("user.Projects")}</p>
+          <h3>
+            {userInfo.Infos.ext.projects}/{!userInfo.Infos.vip ? "20" : "100"}
+          </h3>
         </Link>
       </Menu.Item>
       <Menu.Item>
@@ -101,7 +97,7 @@ const Header: React.FC = () => {
     </Menu>
   );
 
-  const languageMenu = (
+  const LanguageMenu = (
     <Menu>
       <Menu.Item>
         <p onClick={() => i18n.changeLanguage("en")} className="changeLanguage">
@@ -119,7 +115,7 @@ const Header: React.FC = () => {
   return (
     <div className="Head_main animated fadeInDown">
       <div className="Head_auto">
-        <Link to="/">
+        <Link to="/" style={{ float: 'left' }}>
           <img
             onClick={() => {
               HomeHFun.HomeH(0);
@@ -129,8 +125,7 @@ const Header: React.FC = () => {
             alt=""
           />
         </Link>
-
-        <ul className="Head_autoUl">
+        <ul className="Head_tabs_Ul">
           <li
             onClick={(e) => {
               setHomeHight(e);
@@ -158,15 +153,56 @@ const Header: React.FC = () => {
               {t("contactUs")}
             </Link>
           </li>
-          <li
-          >
-              <a  target="_blank" href="https://docs.elara.patract.io/" rel="">
+          <li>
+            <a target="_blank" rel="noreferrer" href="https://docs.elara.patract.io/">
               {t("Documentation")}
             </a>
-            
           </li>
-          <li>
-            <Dropdown overlay={languageMenu}>
+        </ul>
+        <ul className="Head_right_Ul">
+          {
+            userInfo.login ?
+              <li className="user_dropdwon">
+                <Dropdown overlay={UserMenu}>
+                  <div
+                    className="ant-dropdown-link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <Avatar
+                      style={{ backgroundColor: "#39CA9F", marginRight: "10px" }}
+                      icon={<UserOutlined />}
+                    />
+
+                    <NavLink
+                      className="header-link"
+                      to="/dashboard/console"
+                      exact
+                    >
+                      <span style={{ marginRight: "10px" }}>
+                        {userInfo.Infos.username}
+                      </span>
+                    </NavLink>
+
+                    <DownOutlined
+                      style={{
+                        display: "inline-block",
+                        color: " #39CA9F",
+                        // fontSize: "15px",
+                        // margin: "16px 0 10px 0",
+                      }}
+                    />
+                  </div>
+                </Dropdown>
+              </li>
+                :
+              <li className="user_login">
+                <NavLink className="header-link" to="/login" exact>
+                  {t("sign.login")}
+                </NavLink>
+              </li>
+          }
+           <li>
+            <Dropdown overlay={LanguageMenu}>
               <a className="PHover">
                 {i18n.language === "en" ? "English " : "中文 "}
                 <DownOutlined
@@ -178,47 +214,6 @@ const Header: React.FC = () => {
               </a>
             </Dropdown>
           </li>
-
-          {userInfo.login ? (
-            <li className="Head_autoUl_User">
-              <Dropdown overlay={menu}>
-                <div
-                  className="ant-dropdown-link"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <Avatar
-                    style={{ backgroundColor: "#39CA9F", marginRight: "10px" }}
-                    icon={<UserOutlined />}
-                  />
-
-                  <NavLink
-                    className="header-link"
-                    to="/dashboard/console"
-                    exact
-                  >
-                    <span style={{ marginRight: "10px" }}>
-                      {userInfo.Infos.username}
-                    </span>
-                  </NavLink>
-
-                  <DownOutlined
-                    style={{
-                      display: "inline-block",
-                      color: " #39CA9F",
-                      // fontSize: "15px",
-                      // margin: "16px 0 10px 0",
-                    }}
-                  />
-                </div>
-              </Dropdown>
-            </li>
-          ) : (
-            <li className="Head_autoUl_BUtton">
-              <NavLink className="header-link" to="/login" exact>
-                {t("sign.login")}
-              </NavLink>
-            </li>
-          )}
         </ul>
       </div>
     </div>

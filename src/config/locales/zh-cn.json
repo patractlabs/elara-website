@@ -1,0 +1,75 @@
+{
+    "home":"首页",
+    "serve":"服务",
+    "contactUs":"联系我们",
+    "Documentation":"API 文档",
+    
+    "bannerTitle1":"波卡生态的公共API接入服务",
+    "bannerTitle2":"Elara向波卡开发者提供免费、即时和可扩展的区块链API接入服务，包括Polkadot、Kusama等",
+    "bannerBtn":"开始免费使用",
+    "Cumulative":"累计请求数",
+
+    "Product": "服务优势",
+    "Easy":"简单易用",
+    "NoNeed":"开发者无需同步区块和复杂设置，就可以直接使用我们基于HTTPS和WebSocket的JSON-RPC接口接入Polkadot网络",
+    "Stable":"稳定可靠",
+    "ElaraHandles":"Elara会处理所有网络变更和升级，致力于提供高稳定性和高可用性的服务。这让开发者可以简化应用基础架构，专注于构建上层应用",
+  
+    "Rich":"多链支持",
+    "Ourhighly":"我们高度可扩展的基础架构确保可以快速接入Polkadot生态的所有中继链、平行链和基于Substrate的独立链等，让开发者的应用可以快速布局到新网络",
+  
+    "Customer":"专项服务",
+    "WeProvide":"如果应用请求量超过了账户免费额度，开发者可以随时联系我们提供定制化方案",
+
+    "service": "免费服务",
+    "AllNetworks": "波卡生态所有网络",
+    "AllNetworks1": "",
+    "1000000requests": "每个账户每天 ",
+    "1000000requests1": "1,000,000 次请求 ",
+    "10projects": "10 个项目",
+    "Direct":"直接客户支持",
+    "NeedMore": "需要更多的服务？",
+    "YouCan": "您可以通过以下渠道联系我们，我们将为您提供定制方案",
+
+    "listPage":{
+        "Name":"项目名称",
+        "CreationTime":"创建时间",
+        "Status":"状态",
+        "Active":"运行中",
+        "Stop":"暂停",
+        "CEEATENEW":"新建项目",
+        "projectName":"项目名称",
+        "PleaseProjectName":"请输入项目名称",
+        "FormatError":"格式错误，正常格式：英文大小写字母，长度4-32",
+        "onProject":"快来创建你的第一个",
+        "Project":"项目吧."
+    },
+
+    "Details":{
+        "Today":"今日请求数",
+        "TodayBandwidth":"今日带宽",
+        "WeekRequests":"周请求数统计",
+        "WeekBandwidth":"周带宽统计",
+        "TopCall":"top调用方法统计",
+        "CreationTime":"创建时间",
+        "Status":"状态"
+    },
+
+    "user":{
+        "Level":"帐号级别",
+        "Projects":"项目总数",
+        "Personal":"个人开发",
+        "Logout":"退出账户",
+        "team":"团队开发"
+    },
+
+    "sign":{
+        "Sign":"Github账户登录",
+        "login":"登录"
+    },
+
+    "tip": {
+      "fail": "操作失败",
+      "created": "创建成功"
+    }
+}

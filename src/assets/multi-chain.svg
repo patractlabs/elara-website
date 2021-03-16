@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>多链支持</title>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#00A3FF" offset="0%"></stop>
+            <stop stop-color="#00DD60" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Elara-Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Elara切图" transform="translate(-487.000000, -187.000000)" fill="url(#linearGradient-1)">
+            <g id="多链支持" transform="translate(487.000000, 187.000000)">
+                <path d="M60,39.75 L60,42.75 L42.75,42.75 L42.75,60 L39.75,60 L39.75,39.75 L60,39.75 Z M28.5,30 C29.3284271,30 30,30.6715729 30,31.5 L30,58.5 C30,59.3284271 29.3284271,60 28.5,60 L1.5,60 C0.671572875,60 0,59.3284271 0,58.5 L0,31.5 C0,30.6715729 0.671572875,30 1.5,30 L28.5,30 Z M27,33 L3,33 L3,57 L27,57 L27,33 Z M58.5,0 C59.3284271,0 60,0.671572875 60,1.5 L60,28.5 C60,29.3284271 59.3284271,30 58.5,30 L31.5,30 C30.6715729,30 30,29.3284271 30,28.5 L30,1.5 C30,0.671572875 30.6715729,0 31.5,0 L58.5,0 Z M57,3 L33,3 L33,27 L57,27 L57,3 Z M20.25,0 L20.25,20.25 L0,20.25 L0,17.25 L17.25,17.25 L17.25,0 L20.25,0 Z" id="丰富的多链支持"></path>
+            </g>
+        </g>
+    </g>
+</svg>

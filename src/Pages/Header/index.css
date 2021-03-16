@@ -1,106 +1,118 @@
 .Head_main {
-    width: 100%;
-    height: 68px;
-    background-color: #232323;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1;
+  width: 100%;
+  height: 60px;
+  background-color: #1D2B56;
+  box-shadow: 0px 2px 10px 1px #0E1D56;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
 }
 
 .Head_auto {
-    width: 92%;
-    height: 100%;
-    margin: 0 auto;
+  width: 92%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .Head_auto img {
-    margin-top: 16px;
-    width: 110px;
+  margin-top: 16px;
+  width: 110px;
 }
 
-.Head_autoUl {
-    width:900px;
-    height: 100%;
-    float: right;
-    display: flex;
+.Head_tabs_Ul {
+  float: left;
+  width: 40%;
+  height: 100%;
+  display: flex;
 }
 
-.Head_autoUl li {
-    flex: 1;
-    text-align: center;
-    line-height: 68px;
-    font-size: 16px;
-    color: #BABABA;
-    cursor: pointer;
+.Head_tabs_Ul li {
+  flex: 1;
+  text-align: center;
+  line-height: 60px;
+  font-size: 16px;
+  color: #BABABA;
+  cursor: pointer;
 }
 
-.Head_autoUl li a {
-    color: #BABABA;
+.Head_tabs_Ul li a {
+  color: #BABABA;
+  font-size: 14px;
 }
 
-.Head_autoUl li a:hover {
-    color: #fff;
+.Head_tabs_Ul li a:hover {
+  color: #fff;
 }
 
-.Head_autoUl_BUtton {
-    border: 1px solid #BABABA;
-    border-radius: 18px;
-    width: 100%;
-    height: 50%;
-    margin-top: 18px;
-    line-height: 30px !important;
+.Head_right_Ul {
+  float: right;
+  height: 60px;
+  display: inline-flex;
+}
+.user_login {
+  text-align: center;
+  border: 1px solid #FFFFFF;
+  border-radius: 2px;
+  width: 100px;
+  height: 50%;
+  margin-top: 15px;
+  line-height: 28px !important;
 }
 
-.Head_autoUl .Head_autoUl_BUtton a :hover {
-    color: #fff;
+.Head_right_Ul li a {
+  color: #BABABA;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: #BABABA;
 }
 
-.Head_autoUl_BUtton a {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    color: #BABABA;
+.Head_right_Ul li a:hover {
+  color: #fff;
 }
 
 .menuTitle {
-    width: 172px;
+  width: 172px;
 }
 
 .menuTitle p {
-    font-size: 12px;
-    color: #232323;
-    line-height: 12px;
-    margin-top: 10px;
+  font-size: 12px;
+  color: #232323;
+  line-height: 12px;
+  margin-top: 10px;
 }
 
 .menuTitle h3 {
-    font-size: 16px;
-    color: #39CA9F;
-    line-height: 16px;
-    margin: 10px 0;
+  font-size: 16px;
+  color: #39CA9F;
+  line-height: 16px;
+  margin: 10px 0;
 }
 
 .PHover {
-    display: inline-block;
-    width: 100%;
+  display: inline-block;
+  margin-left: 16px;
+  width: 100%;
+  line-height: 60px !important;
 }
 
 .signOut {
-    width: 100%;
-    height: 56px;
-    padding-top: 20px;
-    box-sizing: border-box;
-    border-top: 1px solid #DFDFDF;
+  width: 100%;
+  height: 56px;
+  padding-top: 20px;
+  box-sizing: border-box;
+  border-top: 1px solid #DFDFDF;
 }
 
 .signOut span {
-    display: inline-block;
-    margin-left: 10px;
+  display: inline-block;
+  margin-left: 10px;
 }
 
-/* .Head_autoUl_User {
-    width: 118px;
+.user_dropdwon {
+    width: 100px;
     height: 36px;
     background: #39CA9F;
     border-radius: 18px;
@@ -108,13 +120,13 @@
     line-height: 34px !important;
 }
 
-.Head_autoUl_User a {
+.user_dropdwon a {
     display: inline-block;
     width: 100%;
     height: 100%;
     color: #000 !important;
-} */
+}
 
-/* .Head_autoUl_User :hover a {
+/* .user_dropdwon :hover a {
     color: #fff !important;
 } */

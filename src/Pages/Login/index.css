@@ -1,14 +1,14 @@
 .login {
   width: 100%;
   height: auto;
-  padding-top: 68px;
+  padding-top: 60px;
   overflow: hidden;
 }
 
 .loginMain {
   width: 100%;
   overflow: hidden;
-  background: url(../assets/loginBg.png) bottom no-repeat;
+  background: url(../../assets/loginBg.png) bottom no-repeat;
 }
 
 .loginMain h2 {

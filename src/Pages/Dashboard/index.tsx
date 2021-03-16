@@ -7,6 +7,19 @@ import PageH from "../../utils/pageHeight";
 
 import Console from "../Console";
 import Details from "../Details";
+import img1 from '../../assets/Polkadot.svg';
+import img2 from '../../assets/Kusama.svg';
+import img3 from '../../assets/Jupiter.svg';
+import img4 from '../../assets/Rococo.svg';
+import img5 from '../../assets/Darwinia.png';
+import img6 from '../../assets/Dock.svg';
+import img7 from '../../assets/Edgeware.svg';
+import img8 from '../../assets/Kulupu.svg';
+import img9 from '../../assets/Nodle.svg';
+import img10 from '../../assets/Plasm.png';
+import img11 from '../../assets/Stafi.png';
+import img12 from '../../assets/Mandala.svg';
+import img13 from '../../assets/ChainX.png';
 
 import "./index.css";
 
@@ -18,24 +31,24 @@ const { Sider, Content } = Layout;
 // }
 
 const imgList = [
-  require("../assets/Polkadot.svg"),
-  require("../assets/Kusama.svg"),
-  require("../assets/Jupiter.svg"),
-  require("../assets/Rococo.svg"),
-  require("../assets/Darwinia.png"),
-  require("../assets/Dock.svg"),
-  require("../assets/Edgeware.svg"),
-  require("../assets/Kulupu.svg"),
-  require("../assets/Nodle.svg"),
-  require("../assets/Plasm.png"),   
-  require("../assets/Stafi.png"),  
-  require("../assets/Mandala.svg"), 
-  require("../assets/ChainX.png"), 
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+  img9,
+  img10,
+  img11,
+  img12,
+  img13,
 ];
 
 export const CountContext = createContext(1);
 
-const Dashboard: React.FC = (props) => {
+const Dashboard: React.FC = () => {
   const [introduceNum, setIntroduceNum] = useState(1);
   const counter = useCounterModel();
 
