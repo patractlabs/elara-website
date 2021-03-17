@@ -3,6 +3,7 @@
     "serve": "Services",
     "contactUs": "Contact",
     "Documentation": "API Docs",
+    "patract hub": "Patract Hub",
 
     "bannerTitle1": "Public API Access Services to Polkadot Ecosystem",
     "bannerTitle2": "Elara provides Polkadot developers with free, instant and scalable blockchain API access services, including Polkadot, Kusama, etc.",
@@ -65,8 +66,9 @@
     },
 
     "sign":{
-        "Sign":"Sign in with Github Account",
-        "login":"login"
+        "Sign": "Sign in with Github Account",
+        "login": "login",
+        "signin": "Sign in"
     },
 
     "tip": {

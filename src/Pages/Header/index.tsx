@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Menu, Dropdown, Avatar } from "antd";
+import { Menu, Dropdown, Avatar, Modal } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
 import { apiLogin, apiLogout } from "../../core/data/api";
@@ -14,6 +14,7 @@ import signOut from '../../assets/signOut.svg';
 
 import "./index.css";
 import { APIError, APIErrorType } from '../../core/types/classes/error';
+import { LoginModal } from '../LoginModal';
 
 const imglist = [
   {
@@ -111,6 +112,7 @@ const Header: React.FC = () => {
       </Menu.Item>
     </Menu>
   );
+  const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
 
   return (
     <div className="Head_main animated fadeInDown">
@@ -158,6 +160,11 @@ const Header: React.FC = () => {
               {t("Documentation")}
             </a>
           </li>
+          <li>
+            <a target="_blank" rel="noreferrer" href="https://patract.io/">
+              {t("patract hub")}
+            </a>
+          </li>
         </ul>
         <ul className="Head_right_Ul">
           {
@@ -196,9 +203,11 @@ const Header: React.FC = () => {
               </li>
                 :
               <li className="user_login">
-                <NavLink className="header-link" to="/login" exact>
+                {/* <NavLink className="header-link" to="/login" exact>
                   {t("sign.login")}
-                </NavLink>
+                </NavLink> */}
+                <div className="login_btn" onClick={ () => setLoginModalVisible(true) }>{t("sign.login")}</div>
+                <LoginModal isLoginModalVisible={isLoginModalVisible} onLoginModalClose={() => setLoginModalVisible(false)} />
               </li>
           }
            <li>

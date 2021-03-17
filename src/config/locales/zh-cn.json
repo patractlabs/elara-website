@@ -65,7 +65,8 @@
 
     "sign":{
         "Sign":"Github账户登录",
-        "login":"登录"
+        "login":"登录",
+        "signin": "登录"
     },
 
     "tip": {

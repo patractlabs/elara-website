@@ -8,7 +8,7 @@
 
 
 ## 项目结构
-主入口是Home路由，有登陆权限，登陆访问第三方Githup登陆
+主入口是Home路由，有登陆权限，登陆访问第三方Github登陆
 
 ## 部署环境、CI、CD
 
@@ -36,7 +36,7 @@
 
 在 setupProxy 中默认配置的 API 请求代理（测试环境）：
 
-```json
+```js
 app.use(
     '/accountApi',
     proxy.createProxyMiddleware({

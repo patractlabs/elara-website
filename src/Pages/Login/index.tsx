@@ -48,26 +48,6 @@ const Login: React.FC<prposChild> = ({ openWindow }) => {
   openWindow = () => {
     window.open(URL_ACCOUNT + "/auth/github");
 
-    // window.addEventListener(
-    //   "message",
-    //   (ev) => {
-    //     // if (ev.source !== window.parent) {return;}
-    //     const data = ev.data;
-    //     console.log(ev.data, "进来了吗");
-    //     localStorage.setItem("token", "123456");
-    //     loginInit();
-
-    //     window.removeEventListener(
-    //       "onmessage",
-    //       () => {
-    //         console.log("取消监听");
-    //       },
-    //       false
-    //     );
-    //   },
-    //   false
-    // );
-
     window.onmessage = function (ev: { data: any }) {
       if (off) {
         // const data = ev.data;
