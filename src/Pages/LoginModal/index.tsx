@@ -39,6 +39,8 @@ export const LoginModal: React.FC<{ isLoginModalVisible: boolean; onLoginModalCl
     window.open(`${URL_ACCOUNT}/auth/github`);
 
     window.onmessage = function (ev: { data: any }) {
+      console.log('ev', ev);
+      
       if (off) {
         console.log('message', ev.data);
         localStorage.setItem("token", "123456");
