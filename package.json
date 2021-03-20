@@ -36,6 +36,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "pre-release": "set NODE_ENV=test && react-app-rewired build",
     "test": "react-app-rewired test"
   },
   "eslintConfig": {
