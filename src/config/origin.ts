@@ -15,10 +15,14 @@ if (process.env.NODE_ENV === 'development') {
   ENDPOINTS_URL = "https://test-api.elara.patract.io"
   WSS_ENDPOINTS_URL = "wss://test-api.elara.patract.io"
 } else if (process.env.NODE_ENV === 'production') {
-  URL_ACCOUNT = 'https://elara.patract.io'
+  URL_ACCOUNT = 'https://test-elara.patract.io'
 
-  ENDPOINTS_URL = "https://api.elara.patract.io"
-  WSS_ENDPOINTS_URL = "wss://api.elara.patract.io"
+  ENDPOINTS_URL = "https://test-api.elara.patract.io"
+  WSS_ENDPOINTS_URL = "wss://test-api.elara.patract.io"
+  // URL_ACCOUNT = 'https://elara.patract.io'
+
+  // ENDPOINTS_URL = "https://api.elara.patract.io"
+  // WSS_ENDPOINTS_URL = "wss://api.elara.patract.io"
 }
 
 export {
