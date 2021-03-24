@@ -93,5 +93,3 @@ export const LoginModal: React.FC<{ isLoginModalVisible: boolean; onLoginModalCl
     </Modal>
   );
 };
-
-

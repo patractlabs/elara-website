@@ -8,7 +8,6 @@ import useRouter from "./core/hooks/useRouter";
 
 import Home from "./pages/Home";
 import Header from "./pages/Header";
-import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import PageLoading from './pages/PageLoading'
 
@@ -49,7 +48,6 @@ const App: FC = (): ReactElement => {
 
           <Suspense fallback={<PageLoading />}>
             <Route path="/" exact component={Home}></Route>
-            <Route path="/login" component={Login}></Route>
             <AuthRoute path="/dashboard" component={Dashboard} />
           </Suspense>
           {/* <Route path="/dashboard" component={Dashboard}></Route> */}
