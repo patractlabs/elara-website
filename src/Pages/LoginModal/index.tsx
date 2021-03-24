@@ -37,7 +37,7 @@ export const LoginModal: React.FC<{ isLoginModalVisible: boolean; onLoginModalCl
 
   const openWindow = () => {
     window.open(`${URL_ACCOUNT}/auth/github`);
-
+    console.log('open window', `${URL_ACCOUNT}/auth/github`);
     window.onmessage = function (ev: { data: any }) {
       console.log('ev', ev);
       
