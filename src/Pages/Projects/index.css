@@ -1,0 +1,22 @@
+.projects-main {
+  padding: 0px ;
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.projects {
+  margin-right: 25px;
+  width: 74.4%;
+  height: 336px;
+  background: #FFFFFF;
+  box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
+  border-radius: 4px;
+  border: 1px solid #E0E0E0;
+}
+.user-aside {
+  width: 12.4%;
+  height: 1000px;
+  background: #FFFFFF;
+  box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
+  border: 1px solid #F5F5F5;
+}

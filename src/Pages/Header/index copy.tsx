@@ -115,61 +115,92 @@ const Header: React.FC = () => {
   const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
 
   return (
-    <div className="head-main animated fadeInDown">
-      <div className="head-auto">
-        <Link to="/" style={{ display: 'flex', height: '100%', alignItems: 'center' }}>
+    <div className="Head_main animated fadeInDown">
+      <div className="Head_auto">
+        <Link to="/" style={{ float: 'left' }}>
           <img
             onClick={() => {
               HomeHFun.HomeH(0);
             }}
             data-id="1"
             src={imglist[0].img}
-            className="logo"
             alt=""
           />
         </Link>
-        <div className="head-content">
-          <ul className="head-tabs">
-            <li>
-              <a href="#">
-                {t("home")}
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                {t("serve")}
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                {t("contactUs")}
-              </a>
-            </li>
-            <li>
-              <a target="_blank" rel="noreferrer" href="https://docs.elara.patract.io/">
-                {t("Documentation")}
-              </a>
-            </li>
-            <li>
-              <a target="_blank" rel="noreferrer" href="https://patract.io/">
-                {t("patract hub")}
-              </a>
-            </li>
-          </ul>
-          <ul className="head-right">
+        <ul className="Head_tabs_Ul">
+          <li
+            onClick={(e) => {
+              setHomeHight(e);
+            }}
+          >
+            <Link data-id="1" to="/">
+              {t("home")}
+            </Link>
+          </li>
+          <li
+            onClick={(e) => {
+              setHomeHight(e);
+            }}
+          >
+            <Link data-id="2" to="/">
+              {t("serve")}
+            </Link>
+          </li>
+          <li
+            onClick={(e) => {
+              setHomeHight(e);
+            }}
+          >
+            <Link data-id="3" to="/">
+              {t("contactUs")}
+            </Link>
+          </li>
+          <li>
+            <a target="_blank" rel="noreferrer" href="https://docs.elara.patract.io/">
+              {t("Documentation")}
+            </a>
+          </li>
+          <li>
+            <a target="_blank" rel="noreferrer" href="https://patract.io/">
+              {t("patract hub")}
+            </a>
+          </li>
+        </ul>
+        <ul className="Head_right_Ul">
           {
             userInfo.login ?
-              <Dropdown overlay={UserMenu}>
-                <a className="PHover">
-                  { userInfo.Infos.username }
-                  <DownOutlined
-                    style={{
-                      display: "inline-block",
-                      color: " #fff",
-                    }}
-                  />
-                </a>
-              </Dropdown> 
+              <li className="user_dropdwon">
+                <Dropdown overlay={UserMenu}>
+                  <div
+                    className="ant-dropdown-link"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <Avatar
+                      style={{ backgroundColor: "#39CA9F", marginRight: "10px" }}
+                      icon={<UserOutlined />}
+                    />
+
+                    <NavLink
+                      className="header-link"
+                      to="/dashboard/console"
+                      exact
+                    >
+                      <span style={{ marginRight: "10px" }}>
+                        {userInfo.Infos.username}
+                      </span>
+                    </NavLink>
+
+                    <DownOutlined
+                      style={{
+                        display: "inline-block",
+                        color: " #39CA9F",
+                        // fontSize: "15px",
+                        // margin: "16px 0 10px 0",
+                      }}
+                    />
+                  </div>
+                </Dropdown>
+              </li>
                 :
               <li className="user_login">
                 {/* <NavLink className="header-link" to="/login" exact>
@@ -193,7 +224,6 @@ const Header: React.FC = () => {
             </Dropdown>
           </li>
         </ul>
-        </div>
       </div>
     </div>
   );
