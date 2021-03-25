@@ -66,65 +66,6 @@
 .login_btn:hover {
   opacity: 0.9;
 }
-.login-modal {
-  border-radius: 8px 8px 0px 0px;
-}
-
-.login-modal-title {
-  text-align: center;
-  height: 100px;
-  padding: 25px 0px;
-  position: relative;
-  background: linear-gradient(135deg, #2B2A55 0%, #301D56 100%);
-  box-shadow: 0px 1px 10px -3px #00223C;
-  border-radius: 8px 8px 0px 0px;
-}
-.login-modal-title-img {
-  height: 50px;
-}
-.login-modal-close {
-  cursor: pointer;
-  position: absolute;
-  left: 410px;
-  top: 6px;
-}
-.login-modal-body {
-  background-color: white;
-  height: 300px;
-  border-radius: 0px 0px 8px 8px;
-}
-.login-text {
-  font-size: 16px;
-  height: 66px;
-  line-height: 22px;
-  text-align: center;
-  padding: 24px 0px 20px 0px;
-  color: #000;
-}
-.login-github {
-  text-align: center;
-}
-.login-modal-btn {
-  width: 140px;
-  height: 40px;
-  background-color: #FA6400;
-  border-radius: 2px;
-  box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.17);
-  margin: 32px auto 0px auto;
-  text-align: center;
-  line-height: 40px;
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
-  user-select: none;
-}
-.login-modal-btn:hover {
-  opacity: 0.9;
-}
-.login-modal-btn:active {
-  opacity: 0.7;
-}
 
 .menuTitle {
   width: 172px;
@@ -157,13 +98,3 @@
     color: #fff !important;
 } */
 
-.login-modal-wrap .ant-modal-content {
-  /* border-radius: 8px; */
-  background-color: rgba(0, 0, 0, 0);
-}
-.login-modal-wrap .ant-modal-body {
-  /* border-radius: 8px; */
-  background-color: rgba(0, 0, 0, 0);
-  padding: 0px;
-  height: 380px;
-}

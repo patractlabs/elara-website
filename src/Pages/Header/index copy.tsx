@@ -8,13 +8,13 @@ import { apiLogin, apiLogout } from "../../core/data/api";
 import userCounterModel from "../Hox/User";
 import homeHeight from "../Hox/Home";
 
-import { delCookie } from "../../utils/index";
+import { delCookie } from "../../shared/utils/index";
 import logo from '../../assets/logo.svg';
 import signOut from '../../assets/signOut.svg';
 
 import "./index.css";
 import { APIError, APIErrorType } from '../../core/types/classes/error';
-import { LoginModal } from '../LoginModal';
+import { LoginModal } from './LoginModal';
 
 const imglist = [
   {
@@ -207,7 +207,7 @@ const Header: React.FC = () => {
                   {t("sign.login")}
                 </NavLink> */}
                 <div className="login_btn" onClick={ () => setLoginModalVisible(true) }>{t("sign.login")}</div>
-                <LoginModal isLoginModalVisible={isLoginModalVisible} onLoginModalClose={() => setLoginModalVisible(false)} />
+                <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
               </li>
           }
            <li>

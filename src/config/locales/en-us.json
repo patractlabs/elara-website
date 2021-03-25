@@ -27,7 +27,7 @@
     "AllNetworks": "All networks in the",
     "AllNetworks1": "Polkadot ecosystem",
     "1000000requests": "1,000,000 requests for",
-    "1000000requests1": "every project every day",
+    "1000000requests1": "every account every day",
     "10projects": "10 projects",
     "Direct":"Direct customer support",
     "NeedMore": "Need more services?",
@@ -35,16 +35,20 @@
 
     "listPage":{
         "Name":"Name",
-        "CreationTime":"Creation time",
+        "Creation Time":"Creation time",
         "Status":"Status",
         "Active":"Active",
         "Stop":"Stop",
-        "CEEATENEW":"Create New Project",
+        "Create Project":"Create Project",
         "projectName":"Project Name",
         "PleaseProjectName":"Please enter the project name",
         "FormatError":"Format error, normal format: English upper and lower case letters, length 4-32",
         "onProject":"Create your first one",
-        "Project":"Project."
+        "Project":"Project.",
+        "Operation": "Operation",
+        "op-view": "view",
+        "op-stop": "stop",
+        "op-start": "start"
     },
 
     "Details":{
@@ -53,7 +57,7 @@
         "WeekRequests":"Weekly requests statistics",
         "WeekBandwidth":"Weekly bandwidth statistics",
         "TopCall":"Top call method statistics",
-        "CreationTime":"Creation Time",
+        "Creation Time":"Creation Time",
         "Status":"Status"
     },
 
@@ -74,5 +78,10 @@
     "tip": {
       "fail": "Failed",
       "created": "Created successfully"
+    },
+
+    "modal": {
+      "cancel": "Cancel",
+      "ok": "OK"
     }
 }

@@ -1,7 +1,6 @@
 .dashboard {
   padding-top: 60px;
   background: #EFF2F5;
-  position: relative;
 }
 .sider {
   min-width: 150px;
@@ -48,5 +47,4 @@
 .content {
   padding-left: 10.4%;
   padding-top: 54px;
-  height: 2000px;
 }

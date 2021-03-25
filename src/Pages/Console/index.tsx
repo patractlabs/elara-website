@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import useCounterModel from "../Hox/Sidebar";
 import { apiGetProjectList, apiCreateProject } from "../../core/data/api";
-import { time, statusActive } from "../../utils/index";
+import { time, statusActive } from "../../shared/utils/index";
 
 import Popup from "../Popup";
 import Img1 from '../../assets/newbuild.svg';
@@ -209,7 +209,7 @@ const Console: React.FC<childProps> = () => {
                     }}
                 >
                     <img src={imgList[0]} alt="" />
-                    {t("listPage.CEEATENEW")}
+                    {t("listPage.Create Project")}
                 </div>
             </div>
             {data.length < 1 ? (
@@ -223,7 +223,7 @@ const Console: React.FC<childProps> = () => {
                                 }}
                             >
                                 <img src={imgList[0]} alt="" />
-                                {t("listPage.CEEATENEW")}
+                                {t("listPage.Create Project")}
                             </div>
                             <p>
                                 {t("listPage.onProject")} {counter.name} {t("listPage.Project")}
@@ -262,7 +262,7 @@ const Console: React.FC<childProps> = () => {
                                             <div className="dataList_liDiv">
                                                 <p>
                                                     <img src={imgList[2]} alt="" />
-                                                    <span>{t("listPage.CreationTime")}</span>
+                                                    <span>{t("listPage.Creation Time")}</span>
                                                 </p>
                                                 <p>{time(el.createtime)}</p>
                                             </div>

@@ -5,8 +5,8 @@
   justify-content: center;
 }
 .projects {
-  margin-right: 25px;
-  width: 74.4%;
+  padding: 20px 17px;
+  width: 86.8%;
   height: 336px;
   background: #FFFFFF;
   box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
@@ -15,7 +15,6 @@
 }
 .user-aside {
   width: 12.4%;
-  height: 1000px;
   background: #FFFFFF;
   box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
   border: 1px solid #F5F5F5;

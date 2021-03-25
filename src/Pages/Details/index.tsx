@@ -3,7 +3,7 @@ import { message, Spin } from "antd";
 import echarts from "echarts";
 import { useTranslation} from "react-i18next";
 
-import { bytesToSize ,combineObjectInList} from "../../utils/index";
+import { bytesToSize ,combineObjectInList} from "../../shared/utils/index";
 import { WSS_ENDPOINTS_URL, ENDPOINTS_URL } from "../../config/origin";
 
 import {
@@ -11,7 +11,7 @@ import {
   apiGetProjectDetail,
   apiGetDayDetail,
 } from "../../core/data/api";
-import { time, statusActive } from "../../utils/index";
+import { time, statusActive } from "../../shared/utils/index";
 
 import "./index.css";
 import { APIError, APIErrorType } from '../../core/types/classes/error';
@@ -298,7 +298,7 @@ const Details: React.FC<childProps> = (props) => {
       <Spin spinning={loading}>
         <ul className="Details_listT" id="Details_listT">
           <li>
-            <p>{t('Details.CreationTime')}</p>
+            <p>{t('Details.Creation Time')}</p>
             <p>{time(projectdata.createtime)}</p>
           </li>
           <li>

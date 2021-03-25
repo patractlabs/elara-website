@@ -1,0 +1,9 @@
+.plain-modal-wrap .ant-modal-content {
+  /* border-radius: 8px; */
+  background-color: rgba(0, 0, 0, 0);
+}
+.plain-modal-wrap .ant-modal-body {
+  /* border-radius: 8px; */
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0px;
+}

@@ -32,17 +32,21 @@
     "YouCan": "您可以通过以下渠道联系我们，我们将为您提供定制方案",
 
     "listPage":{
-        "Name":"项目名称",
-        "CreationTime":"创建时间",
-        "Status":"状态",
-        "Active":"运行中",
-        "Stop":"暂停",
-        "CEEATENEW":"新建项目",
-        "projectName":"项目名称",
-        "PleaseProjectName":"请输入项目名称",
-        "FormatError":"格式错误，正常格式：英文大小写字母，长度4-32",
-        "onProject":"快来创建你的第一个",
-        "Project":"项目吧."
+      "Name":"项目名称",
+      "Creation Time":"创建时间",
+      "Status":"状态",
+      "Active":"运行中",
+      "Stop":"暂停",
+      "Create Project":"新建项目",
+      "projectName":"项目名称",
+      "PleaseProjectName":"请输入项目名称",
+      "FormatError":"格式错误，正常格式：英文大小写字母，长度4-32",
+      "onProject":"快来创建你的第一个",
+      "Project":"项目吧.",
+      "Operation": "操作",
+      "op-view": "查看",
+      "op-stop": "停止",
+      "op-start": "启动"
     },
 
     "Details":{
@@ -51,7 +55,7 @@
         "WeekRequests":"周请求数统计",
         "WeekBandwidth":"周带宽统计",
         "TopCall":"top调用方法统计",
-        "CreationTime":"创建时间",
+        "Creation Time":"创建时间",
         "Status":"状态"
     },
 
@@ -72,5 +76,10 @@
     "tip": {
       "fail": "操作失败",
       "created": "创建成功"
+    },
+
+    "modal": {
+      "cancel": "取消",
+      "ok": "确定"
     }
 }

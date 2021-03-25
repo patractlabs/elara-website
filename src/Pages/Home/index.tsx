@@ -96,7 +96,7 @@ const Home: React.FC<props> = ({ data }) => {
         <div
           className="service_btn"
           onClick={() => {
-            history.push("/dashboard/console");
+            history.push("/dashboard/projects");
           }}
         >
           {t("bannerBtn")}
@@ -180,7 +180,7 @@ const Home: React.FC<props> = ({ data }) => {
         <div
           className="service_btn service_btn_service"
           onClick={() => {
-            history.push("/dashboard/console");
+            history.push("/dashboard/projects");
           }}
         >
           {t("bannerBtn")}

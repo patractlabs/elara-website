@@ -3,7 +3,7 @@ import { Col, Layout, Row } from "antd";
 import useCounterModel from "../Hox/Sidebar";
 import { Switch, Route, Link } from "react-router-dom";
 
-import PageH from "../../utils/pageHeight";
+import PageH from "../../shared/utils/pageHeight";
 
 import Projects from "../Projects";
 import Details from "../Details";
@@ -118,7 +118,7 @@ const Dashboard: React.FC = () => {
         <ul className="project-list">
           {
             nodes.map(node => 
-              <li className="project-item">
+              <li key={node.name} className="project-item">
                 <img src={ node.img } alt="" />
                 <span>{ node.name }</span>
                 <div className="project-counts">3</div>
@@ -128,7 +128,7 @@ const Dashboard: React.FC = () => {
         </ul>
       </div>
       <div className="content">
-        <Route path="/dashboard/console" component={Projects}></Route>
+        <Route path="/dashboard/projects" component={Projects}></Route>
 
       </div>
       

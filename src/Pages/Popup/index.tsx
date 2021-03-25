@@ -35,7 +35,7 @@ const Popup: React.FC<chilrenProps> = ({ msg, changeOff }) => {
   return (
     <div>
       <Modal
-        title={t('listPage.CEEATENEW')}
+        title={t('listPage.Create Project')}
         visible={visible}
         closable={false}
         onOk={() => {
