@@ -1,103 +1,26 @@
-.Details {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
+.project-detail {
+  margin: 0px auto;
+  width: 86.8%;
 }
-
-.Details_listT {
-  width: 100%;
-  height: 130px;
-  border-bottom: 1px solid #000;
-  display: flex;
-}
-
-
-#Details_listT {
-  height: 100px;
-}
-
-.Details_listT li {
-  text-align: left;
-  font-size: 16px;
-  color: #232323;
-  line-height: 30px;
-  flex: 1;
-}
-
-.Details_listT li p {
-  margin-top: 10px;
-}
-
-.Details_listTColro {
-  font-size: 24px;
-  color: #39CA9F;
-}
-
-#weekEchart {
-  width: 100%;
-  margin: 50px 0;
-  padding: 40px 20px;
-  box-sizing: border-box;
+.project-card {
+  height: 336px;
   background: #FFFFFF;
-  border: 1px solid #DFDFDF;
-  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
   border-radius: 4px;
-  overflow: hidden;
+  border: 1px solid #E0E0E0;
+  padding: 23px 24px;
 }
-
-.weekEchart {
-  width: 90%;
-  height: 424px;
+.card-h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #454458;
 }
-
-/* #weekEchart {
-  width: 100%;
-  overflow: hidden;
+.project-status {
+  margin-bottom: 20px;
 }
-
-.weekEchart {
-  width: 100%;
-  margin: 50px 0;
-  padding: 40px 20px;
-  box-sizing: border-box;
-  background: #FFFFFF;
-  border: 1px solid #DFDFDF;
-  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
-  border-radius: 4px;
-  height: 424px;
-} */
-
-.Sehide {
-  visibility: hidden;
+.project-30days-request {
+  margin-bottom: 16px;
 }
-
-
-.echartMain {
-  height: 418px;
-  background: #FFFFFF;
-  border: 1px solid #DFDFDF;
-  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
-  border-radius: 4px;
-  margin: 50px 0;
-  padding: 40px 20px;
-  box-sizing: border-box;
-}
-
-.echartMainLeft {
-  width: 58%;
-  height: 100%;
-  float: left;
-}
-
-.echartMainRight {
-  width: 36%;
-  height: 100%;
-  float: right;
-}
-
-
-.dMTop {
-  margin-top: 0 !important;
-  line-height: 18px;
-  font-size: 14px;
+.project-30days-bandwidth {
+  margin-bottom: 9px;
 }

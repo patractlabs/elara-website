@@ -75,19 +75,17 @@ const Projects: React.FC<childProps> = () => {
   }, [setProjects]);
 
   return (
-    <div className="projects-main">
-      <div className="projects">
-        <button className="modal-button modal-button-active" onClick={ () => setCreateIsModalVisible(true) }>
-          <img src={AddProject} alt="" style={{ marginRight: '5px' }} />
-          { t('listPage.Create Project') }
-        </button>
-        <Table
-          style={{ marginTop: '12px' }}
-          columns={columns}
-          dataSource={projects}
-          rowKey={record => record.id}
-        />
-      </div>
+    <div className="projects">
+      <button className="modal-button modal-button-active" onClick={ () => setCreateIsModalVisible(true) }>
+        <img src={AddProject} alt="" style={{ marginRight: '5px' }} />
+        { t('listPage.Create Project') }
+      </button>
+      <Table
+        style={{ marginTop: '12px' }}
+        columns={columns}
+        dataSource={projects}
+        rowKey={record => record.id}
+      />
       <CreateProjectModel isModalVisible={isCreateModalVisible} onModalClose={ () => setCreateIsModalVisible(false) } />
     </div>
   );

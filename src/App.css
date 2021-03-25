@@ -168,6 +168,12 @@ input, button {
   padding: 6px 21px;
   border-radius: 2px;
 }
+.modal-button:hover {
+  opacity: 0.9;
+}
+.modal-button:active {
+  opacity: 0.7;
+}
 .modal-button-default {
   min-width: 88px;
   border: 1px solid #299767;

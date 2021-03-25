@@ -128,15 +128,14 @@ const Dashboard: React.FC = () => {
         </ul>
       </div>
       <div className="content">
+      <Switch>
         <Route path="/dashboard/projects" component={Projects}></Route>
+        <Route path="/dashboard/details" component={Details}></Route>
+      </Switch>
 
       </div>
       
     </div>
-          /* <Switch>
-            <Route path="/dashboard/console" component={Console}></Route>
-            <Route path="/dashboard/details" component={Details}></Route>
-          </Switch> */
   );
 };
 

@@ -1,10 +1,5 @@
-.projects-main {
-  padding: 0px ;
-  margin: 0px auto;
-  display: flex;
-  justify-content: center;
-}
 .projects {
+  margin: 0px auto;
   padding: 20px 17px;
   width: 86.8%;
   height: 336px;
