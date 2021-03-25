@@ -3,38 +3,38 @@ import { useTranslation } from 'react-i18next';
 import { apiLogin } from '../../../core/data/api';
 import { APIError, APIErrorType } from '../../../core/types/classes/error';
 import { createHashHistory } from "history";
-import userCounterModel from "../../Hox/User";
 import { URL_ACCOUNT } from '../../../config/origin';
 import ElaraLogin from '../../../assets/elara-login.webp';
 import GithubLogo from '../../../assets/github-logo.svg';
 import CloseIcon from '../../../assets/close.svg';
 import './index.css';
 import { createPlainModal } from '../../../shared/components/plain-modal';
+import { useApi } from '../../../core/hooks/useApi';
 
 let off = true;
 
 const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> = ({ isModalVisible, onModalClose }) => {
   const history = createHashHistory();
-  const userInfo = userCounterModel();
+  const { setUser, setIsLoggged } = useApi();
   const { t } = useTranslation();
 
   const loginInit = useCallback(() => {
     console.log('loginit');
      
     return apiLogin()
-      .then(user => {
-        console.log('apilogin', user);
+      .then(_user => {
+        console.log('apilogin', _user);
 
-        userInfo.userOff(true);
-        userInfo.UserInfos(user);
-        localStorage.setItem("user", JSON.stringify(user));
+        setIsLoggged(true);
+        setUser(_user);
+        localStorage.setItem("user", JSON.stringify(_user));
         history.push("/dashboard/projects");
         return true;
       })
       .catch((err: APIError) => {
         console.log('apilogin err', err);
         if (err.type === APIErrorType.business) {
-          userInfo.userOff(false);
+          setIsLoggged(false);
           return false;
         }
       });

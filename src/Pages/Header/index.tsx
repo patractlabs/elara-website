@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Menu, Dropdown, Avatar, Modal } from "antd";
-import { DownOutlined, UserOutlined } from "@ant-design/icons";
+import { Menu, Dropdown } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 
 import { apiLogin, apiLogout } from "../../core/data/api";
-import userCounterModel from "../Hox/User";
-import homeHeight from "../Hox/Home";
 
 import { delCookie } from "../../shared/utils/index";
 import logo from '../../assets/logo.svg';
@@ -15,6 +13,7 @@ import signOut from '../../assets/signOut.svg';
 import "./index.css";
 import { APIError, APIErrorType } from '../../core/types/classes/error';
 import { LoginModal } from './LoginModal';
+import { useApi } from '../../core/hooks/useApi';
 
 const imglist = [
   {
@@ -27,21 +26,21 @@ const imglist = [
 ];
 
 const Header: React.FC = () => {
-  const userInfo = userCounterModel();
-  const HomeHFun = homeHeight();
   const { t, i18n } = useTranslation();
+  const { user, setUser, isLogged, setIsLoggged } = useApi();
 
   useEffect(() => {
     apiLogin()
-      .then(user => {
-        userInfo.userOff(true);
-        userInfo.UserInfos(user);
+      .then(_user => {
+        
+        setIsLoggged(true);
+        setUser(_user);
 
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(_user));
       })
       .catch((err: APIError) => {
         if (err.type === APIErrorType.business) {
-          userInfo.userOff(false);
+          setIsLoggged(false);
         }
       });
     return () => {};
@@ -53,7 +52,7 @@ const Header: React.FC = () => {
         //清除cookie
         window.location.reload()
         delCookie();
-        userInfo.userOff(false);
+        setIsLoggged(false);
       })
       .catch((err) => {
         console.log("err", err);
@@ -65,11 +64,11 @@ const Header: React.FC = () => {
     e.preventDefault();
     e.stopPropagation();
     if (Number(e.target.dataset.id) === 1) {
-      HomeHFun.HomeH(0);
+      // HomeHFun.HomeH(0);
     } else if (Number(e.target.dataset.id) === 2) {
-      HomeHFun.HomeH(1680);
+      // HomeHFun.HomeH(1680);
     } else {
-      HomeHFun.HomeH(2100);
+      // HomeHFun.HomeH(2100);
     }
   };
 
@@ -78,14 +77,14 @@ const Header: React.FC = () => {
       <Menu.Item className="menuTitle" >
         <Link to="/dashboard/projects">
           <p>{t("user.Level")}</p>
-          <h3>{!userInfo.Infos.vip ? t("user.Personal") : t("user.team")}</h3>
+          <h3>{!user.vip ? t("user.Personal") : t("user.team")}</h3>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link to="/dashboard/projects">
           <p>{t("user.Projects")}</p>
           <h3>
-            {userInfo.Infos.ext.projects}/{!userInfo.Infos.vip ? "20" : "100"}
+            {user.ext.projects}/{!user.vip ? "20" : "100"}
           </h3>
         </Link>
       </Menu.Item>
@@ -120,7 +119,7 @@ const Header: React.FC = () => {
         <Link to="/" style={{ display: 'flex', height: '100%', alignItems: 'center' }}>
           <img
             onClick={() => {
-              HomeHFun.HomeH(0);
+              // HomeHFun.HomeH(0);
             }}
             data-id="1"
             src={imglist[0].img}
@@ -158,10 +157,10 @@ const Header: React.FC = () => {
           </ul>
           <ul className="head-right">
           {
-            userInfo.login ?
+            isLogged ?
               <Dropdown overlay={UserMenu}>
                 <a className="PHover">
-                  { userInfo.Infos.username }
+                  { user.username }
                   <DownOutlined
                     style={{
                       display: "inline-block",

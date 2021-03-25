@@ -6,7 +6,6 @@
     "antd": "^4.13.1",
     "axios": "^0.21.1",
     "echarts": "^4.9.0",
-    "hox": "^1.1.1",
     "i18next": "^19.8.3",
     "i18next-browser-languagedetector": "^6.0.1",
     "react": "^17.0.1",

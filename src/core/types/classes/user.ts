@@ -8,3 +8,11 @@ export class User {
     projects: number;
   };
 }
+
+export interface UserInfo {
+  username: number;
+  vip: number;
+  ext: {
+    projects: number;
+  };
+}

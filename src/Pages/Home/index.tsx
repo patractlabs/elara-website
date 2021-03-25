@@ -5,7 +5,6 @@ import { createHashHistory } from "history"; // 如果是history路由
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 
-import homeHeight from "../Hox/Home";
 import Footer from "../Footer/index";
 import img1 from '../../assets/cp1.svg';
 import img2 from '../../assets/cp2.svg';
@@ -62,12 +61,12 @@ const countUpProps = {
 const Home: React.FC<props> = ({ data }) => {
   const [total, settotal] = useState(0);
   const history = createHashHistory();
-  const HomeHeight = homeHeight();
+  // const HomeHeight = homeHeight();
   const { t, i18n } = useTranslation();
 
-  useEffect(() => {
-    document.documentElement.scrollTop = HomeHeight.homeHeght;
-  }, [HomeHeight.homeHeght]);
+  // useEffect(() => {
+  //   document.documentElement.scrollTop = HomeHeight.homeHeght;
+  // }, [HomeHeight.homeHeght]);
 
   useEffect(() => {
     apiGetChainStats()

@@ -5,8 +5,8 @@ import { Menu, Dropdown, Avatar, Modal } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
 import { apiLogin, apiLogout } from "../../core/data/api";
-import userCounterModel from "../Hox/User";
-import homeHeight from "../Hox/Home";
+// import userCounterModel from "../Hox/User";
+// import homeHeight from "../Hox/Home";
 
 import { delCookie } from "../../shared/utils/index";
 import logo from '../../assets/logo.svg';
@@ -27,73 +27,73 @@ const imglist = [
 ];
 
 const Header: React.FC = () => {
-  const userInfo = userCounterModel();
-  const HomeHFun = homeHeight();
+  // const userInfo = userCounterModel();
+  // const HomeHFun = homeHeight();
   const { t, i18n } = useTranslation();
 
-  useEffect(() => {
-    apiLogin()
-      .then(user => {
-        userInfo.userOff(true);
-        userInfo.UserInfos(user);
+  // useEffect(() => {
+  //   apiLogin()
+  //     .then(user => {
+  //       userInfo.userOff(true);
+  //       userInfo.UserInfos(user);
 
-        localStorage.setItem("user", JSON.stringify(user));
-      })
-      .catch((err: APIError) => {
-        if (err.type === APIErrorType.business) {
-          userInfo.userOff(false);
-        }
-      });
-    return () => {};
-  }, []);
+  //       localStorage.setItem("user", JSON.stringify(user));
+  //     })
+  //     .catch((err: APIError) => {
+  //       if (err.type === APIErrorType.business) {
+  //         userInfo.userOff(false);
+  //       }
+  //     });
+  //   return () => {};
+  // }, []);
 
-  const logoutFun = () => {
-    apiLogout()
-      .then(() => {
-        //清除cookie
-        window.location.reload()
-        delCookie();
-        userInfo.userOff(false);
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-    return () => {};
-  };
+  // const logoutFun = () => {
+  //   apiLogout()
+  //     .then(() => {
+  //       //清除cookie
+  //       window.location.reload()
+  //       delCookie();
+  //       userInfo.userOff(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log("err", err);
+  //     });
+  //   return () => {};
+  // };
 
-  const setHomeHight = (e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (Number(e.target.dataset.id) === 1) {
-      HomeHFun.HomeH(0);
-    } else if (Number(e.target.dataset.id) === 2) {
-      HomeHFun.HomeH(1680);
-    } else {
-      HomeHFun.HomeH(2100);
-    }
-  };
+  // const setHomeHight = (e: any) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   if (Number(e.target.dataset.id) === 1) {
+  //     HomeHFun.HomeH(0);
+  //   } else if (Number(e.target.dataset.id) === 2) {
+  //     HomeHFun.HomeH(1680);
+  //   } else {
+  //     HomeHFun.HomeH(2100);
+  //   }
+  // };
 
   const UserMenu = (
     <Menu>
       <Menu.Item className="menuTitle" >
         <Link to="/dashboard/console">
           <p>{t("user.Level")}</p>
-          <h3>{!userInfo.Infos.vip ? t("user.Personal") : t("user.team")}</h3>
+          {/* <h3>{!userInfo.Infos.vip ? t("user.Personal") : t("user.team")}</h3> */}
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link to="/dashboard/console">
           <p>{t("user.Projects")}</p>
           <h3>
-            {userInfo.Infos.ext.projects}/{!userInfo.Infos.vip ? "20" : "100"}
+            {/* {userInfo.Infos.ext.projects}/{!userInfo.Infos.vip ? "20" : "100"} */}
           </h3>
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <div className="signOut" onClick={logoutFun}>
+        {/* <div className="signOut" onClick={logoutFun}>
           <img src={imglist[1].img} alt="" />
           <span>{t("user.Logout")}</span>
-        </div>
+        </div> */}
       </Menu.Item>
     </Menu>
   );
@@ -120,7 +120,7 @@ const Header: React.FC = () => {
         <Link to="/" style={{ float: 'left' }}>
           <img
             onClick={() => {
-              HomeHFun.HomeH(0);
+              // HomeHFun.HomeH(0);
             }}
             data-id="1"
             src={imglist[0].img}
@@ -130,7 +130,7 @@ const Header: React.FC = () => {
         <ul className="Head_tabs_Ul">
           <li
             onClick={(e) => {
-              setHomeHight(e);
+              // setHomeHight(e);
             }}
           >
             <Link data-id="1" to="/">
@@ -139,7 +139,7 @@ const Header: React.FC = () => {
           </li>
           <li
             onClick={(e) => {
-              setHomeHight(e);
+              // setHomeHight(e);
             }}
           >
             <Link data-id="2" to="/">
@@ -148,7 +148,7 @@ const Header: React.FC = () => {
           </li>
           <li
             onClick={(e) => {
-              setHomeHight(e);
+              // setHomeHight(e);
             }}
           >
             <Link data-id="3" to="/">
@@ -166,64 +166,7 @@ const Header: React.FC = () => {
             </a>
           </li>
         </ul>
-        <ul className="Head_right_Ul">
-          {
-            userInfo.login ?
-              <li className="user_dropdwon">
-                <Dropdown overlay={UserMenu}>
-                  <div
-                    className="ant-dropdown-link"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <Avatar
-                      style={{ backgroundColor: "#39CA9F", marginRight: "10px" }}
-                      icon={<UserOutlined />}
-                    />
 
-                    <NavLink
-                      className="header-link"
-                      to="/dashboard/console"
-                      exact
-                    >
-                      <span style={{ marginRight: "10px" }}>
-                        {userInfo.Infos.username}
-                      </span>
-                    </NavLink>
-
-                    <DownOutlined
-                      style={{
-                        display: "inline-block",
-                        color: " #39CA9F",
-                        // fontSize: "15px",
-                        // margin: "16px 0 10px 0",
-                      }}
-                    />
-                  </div>
-                </Dropdown>
-              </li>
-                :
-              <li className="user_login">
-                {/* <NavLink className="header-link" to="/login" exact>
-                  {t("sign.login")}
-                </NavLink> */}
-                <div className="login_btn" onClick={ () => setLoginModalVisible(true) }>{t("sign.login")}</div>
-                <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
-              </li>
-          }
-           <li>
-            <Dropdown overlay={LanguageMenu}>
-              <a className="PHover">
-                {i18n.language === "en" ? "English " : "中文 "}
-                <DownOutlined
-                  style={{
-                    display: "inline-block",
-                    color: " #fff",
-                  }}
-                />
-              </a>
-            </Dropdown>
-          </li>
-        </ul>
       </div>
     </div>
   );
