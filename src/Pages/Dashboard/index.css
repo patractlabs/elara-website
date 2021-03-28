@@ -12,15 +12,17 @@
   top: 0px;
   bottom: 0px;
   width: 10.4%;
-  background-color: white;
   box-shadow: 4px 8px 15px 0px rgba(149, 156, 182, 0.15);
+  background-color: white;
+}
+.sider .project-list {
+  background-color: white;
 }
 .sider .project-item {
   cursor: pointer;
   font-size: 12px;
   height: 43px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0px 14px 0px 20px;
 }
@@ -33,6 +35,13 @@
   height: 25px;
   width: 25px;
   margin-right: 16.7%;
+}
+
+.project-item-main {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+
 }
 .project-counts {
   margin-left: 5px;
@@ -51,5 +60,5 @@
   padding-left: 10.4%;
   padding-top: 30px;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }

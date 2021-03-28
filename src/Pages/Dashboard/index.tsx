@@ -16,6 +16,9 @@ import img10 from '../../assets/Plasm.png';
 import img11 from '../../assets/Stafi.png';
 import img12 from '../../assets/Mandala.svg';
 import img13 from '../../assets/ChainX.png';
+import { apiGetProjectList } from '../../core/data/api';
+import { Project } from '../../core/types/classes/project';
+import { ChainName } from '../../core/enum';
 
 export const CountContext = createContext(1);
 
@@ -25,74 +28,94 @@ interface Chain {
   count: number;
 } 
 
-const initialChains: Chain[] = [
-  {
-    name: 'Polkadot',
-    img: img1,
-    count: 0,
-  },
-  {
-    name: 'Kusama',
-    img: img2,
-    count: 0,
-  },
-  {
-    name: 'Jupiter',
-    img: img3,
-    count: 0,
-  },
-  {
-    name: 'Rococo',
-    img: img4,
-    count: 0,
-  },
-  {
-    name: 'Darwinia',
-    img: img5,
-    count: 0,
-  },
-  {
-    name: 'Dock',
-    img: img6,
-    count: 0,
-  },
-  {
-    name: 'Edgeware',
-    img: img7,
-    count: 0,
-  },
-  {
-    name: 'Kulupu',
-    img: img8,
-    count: 0,
-  },
-  {
-    name: 'Nodle',
-    img: img9,
-    count: 0,
-  },
-  {
-    name: 'Plasm',
-    img: img10,
-    count: 0,
-  },
-  {
-    name: 'Stafi',
-    img: img11,
-    count: 0,
-  },
-  {
-    name: 'Mandala',
-    img: img12,
-    count: 0,
-  },
+const chainNames = [
+  ChainName.Polkadot,
+  ChainName.Kusama,
+  ChainName.Jupiter,
+  ChainName.Rococo,
+  ChainName.Darwinia,
+  ChainName.Dock,
+  ChainName.Edgeware,
+  ChainName.Kulupu,
+  ChainName.Nodle,
+  ChainName.Plasm,
+  ChainName.Stafi,
+  ChainName.Mandala,
 ];
 
+const getChains = (projects: Project[] = []): Chain[] => {
+  const chainsMap: {
+    [key: string]: { img: any, count: number }
+  } = {
+    Polkadot: {
+      img: img1,
+      count: 0,
+    },
+    Kusama: {
+      img: img2,
+      count: 0,
+    },
+    Jupiter: {
+      img: img3,
+      count: 0,
+    },
+    Rococo: {
+      img: img4,
+      count: 0,
+    },
+    Darwinia: {
+      img: img5,
+      count: 0,
+    },
+    Dock: {
+      img: img6,
+      count: 0,
+    },
+    Edgeware: {
+      img: img7,
+      count: 0,
+    },
+    Kulupu: {
+      img: img8,
+      count: 0,
+    },
+    Nodle: {
+      img: img9,
+      count: 0,
+    },
+    Plasm: {
+      img: img10,
+      count: 0,
+    },
+    Stafi: {
+      img: img11,
+      count: 0,
+    },
+    Mandala: {
+      img: img12,
+      count: 0,
+    },
+  };
+
+  projects.forEach(project => chainsMap[project.chain].count ++);
+
+  const chains: Chain[] = [];
+  chainNames.forEach(chainName => chains.push({
+    name: chainName,
+    ...chainsMap[chainName],
+  }));
+
+  return chains;
+};
+
 const Dashboard: React.FC = () => {
-  const [ chains, setChains ] = useState<Chain[]>(initialChains);
+  const [ chains, setChains ] = useState<Chain[]>(getChains());
 
   useEffect(() => {
-    
+    apiGetProjectList().then(projects => {
+      console.log(projects, 'projects');
+      setChains(getChains(projects));
+    }, () => {});
   }, []);
 
   return (
@@ -104,8 +127,12 @@ const Dashboard: React.FC = () => {
             chains.map(chain => 
               <li key={chain.name} className="project-item">
                 <img src={ chain.img } alt="" />
-                <span>{ chain.name }</span>
-                <div className="project-counts">{ chain.count }</div>
+                <div className="project-item-main">
+                  <span>{ chain.name }</span>
+                  {
+                    !!chain.count && <div className="project-counts">{ chain.count }</div>
+                  }
+                </div>
               </li>
             )
           }

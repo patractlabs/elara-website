@@ -62,7 +62,6 @@ const Projects: React.FC<childProps> = () => {
   useEffect(() => {
     apiGetProjectList().then(
       _projects => {
-        console.log(_projects, 'projects');
         setProjects(
           _projects.filter(project => project.chain === 'Polkadot')
             .map(project => ({...project, operations: [Operation.view, Operation.stop]}))

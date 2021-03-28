@@ -19,12 +19,9 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
   const { t } = useTranslation();
 
   const loginInit = useCallback(() => {
-    console.log('loginit');
      
     return apiLogin()
       .then(_user => {
-        console.log('apilogin', _user);
-
         setIsLoggged(true);
         setUser(_user);
         localStorage.setItem("user", JSON.stringify(_user));
@@ -32,7 +29,6 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
         return true;
       })
       .catch((err: APIError) => {
-        console.log('apilogin err', err);
         if (err.type === APIErrorType.business) {
           setIsLoggged(false);
           return false;
