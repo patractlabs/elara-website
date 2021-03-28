@@ -1,6 +1,8 @@
+import { ProjectStatus } from '../../enum';
+
 export class Project {
   id: string;
-  status: string;
+  status: ProjectStatus;
   chain: string;
   name: string;
   uid: string;

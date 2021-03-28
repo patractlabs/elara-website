@@ -8,7 +8,7 @@ interface IProps {
 }
 
 export const createPlainModal = (ChildComponent: FC<any>, width = 520) => {
-  const WrappedComponent: FC<IProps> = (props: IProps): ReactElement => {
+  const WrappedComponent: FC<any> = (props: any): ReactElement => {
   
   return (
       <Modal
@@ -19,7 +19,7 @@ export const createPlainModal = (ChildComponent: FC<any>, width = 520) => {
         onCancel={ props.onModalClose }
         footer={null}
         title={null}>
-          <ChildComponent onModalClose={props.onModalClose} />
+          <ChildComponent {...props} />
       </Modal>
     );
   }

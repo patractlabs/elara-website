@@ -17,3 +17,8 @@ export enum ChainName {
   Stafi = 'Stafi',
   Mandala = 'Mandala',
 }
+
+export enum ProjectStatus {
+  Active = 'Active',
+  Stop = 'Stop',
+}

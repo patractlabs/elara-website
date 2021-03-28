@@ -1,6 +1,6 @@
 import "./index.css";
 import React, { useState, createContext, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import Projects from "../Projects";
 import Details from "../Details";
 import img1 from '../../assets/Polkadot.svg';
@@ -100,23 +100,32 @@ const getChains = (projects: Project[] = []): Chain[] => {
   projects.forEach(project => chainsMap[project.chain].count ++);
 
   const chains: Chain[] = [];
-  chainNames.forEach(chainName => chains.push({
-    name: chainName,
-    ...chainsMap[chainName],
-  }));
+  chainNames
+    .filter(chainName => !!chainsMap[chainName].count)
+    .forEach(chainName => chains.push({
+      name: chainName,
+      ...chainsMap[chainName],
+    }));
+  chainNames
+    .filter(chainName => !chainsMap[chainName].count)
+    .forEach(chainName => chains.push({
+      name: chainName,
+      ...chainsMap[chainName],
+    }));
 
   return chains;
 };
 
 const Dashboard: React.FC = () => {
   const [ chains, setChains ] = useState<Chain[]>(getChains());
+  const history = useHistory();
 
   useEffect(() => {
     apiGetProjectList().then(projects => {
       console.log(projects, 'projects');
       setChains(getChains(projects));
     }, () => {});
-  }, []);
+  }, [setChains]);
 
   return (
     // animated fadeInLeft
@@ -125,7 +134,7 @@ const Dashboard: React.FC = () => {
         <ul className="project-list">
           {
             chains.map(chain => 
-              <li key={chain.name} className="project-item">
+              <li key={chain.name} className="project-item" onClick={ () => history.push(`/dashboard/projects/${chain.name}`) }>
                 <img src={ chain.img } alt="" />
                 <div className="project-item-main">
                   <span>{ chain.name }</span>
@@ -140,8 +149,8 @@ const Dashboard: React.FC = () => {
       </div>
       <div className="content">
         <Switch>
-          <Route path="/dashboard/projects" component={Projects}></Route>
-          <Route path="/dashboard/details" component={Details}></Route>
+          <Route path="/dashboard/projects/:chain" component={Projects}></Route>
+          <Route path="/dashboard/details/:id" component={Details}></Route>
         </Switch>
       </div>
     </div>
