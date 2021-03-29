@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>状态 copy备份</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.266667 0 0 0 0 0.843137 0 0 0 0 0.713725 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Elara-Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="中文/英文备份" transform="translate(-928.000000, -219.000000)">
+            <g id="状态-copy备份" transform="translate(240.000000, 114.000000)" filter="url(#filter-1)">
+                <g transform="translate(688.000000, 105.000000)">
+                    <path d="M6,0 C9.3137085,0 12,2.6862915 12,6 C12,9.3137085 9.3137085,12 6,12 C2.6862915,12 0,9.3137085 0,6 C0,2.6862915 2.6862915,0 6,0 Z M6,3.42857143 C5.08131705,3.42857143 4.23241899,3.91868293 3.77307751,4.71428571 C3.31373603,5.50988848 3.31373603,6.49011152 3.77307751,7.28571429 C4.23241899,8.08131707 5.08131705,8.57142857 6,8.57142857 C7.42016077,8.57142857 8.57142853,7.42016077 8.57142853,6 C8.57142853,4.57983923 7.42016077,3.42857143 6,3.42857143 Z" id="形状" fill="#808080" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
