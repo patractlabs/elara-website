@@ -37,7 +37,6 @@ const Header: React.FC = () => {
   useEffect(() => {
     apiLogin()
       .then(_user => {
-        console.log('user', _user)
         setIsLoggged(true);
         setUser(_user);
 

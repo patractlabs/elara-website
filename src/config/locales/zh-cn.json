@@ -35,8 +35,8 @@
     "Name":"项目名称",
     "Creation Time":"创建时间",
     "Status":"状态",
-    "Active":"运行中",
-    "Stop":"暂停",
+    "Status-Active":"运行中",
+    "Status-Stop":"暂停",
     "Create Project":"新建项目",
     "projectName":"项目名称",
     "PleaseProjectName":"请输入项目名称",
@@ -46,11 +46,12 @@
     "Operation": "操作",
     "op-view": "查看",
     "op-stop": "停止",
-    "op-start": "启动"
+    "op-start": "启动",
+    "op-delete": "删除"
   },
 
   "Details":{
-    "Today":"今日请求数",
+    "Requests Today":"今日请求数",
     "TodayBandwidth":"今日带宽",
     "WeekRequests":"周请求数统计",
     "WeekBandwidth":"周带宽统计",

@@ -1,4 +1,4 @@
-const time = (val: string) => {
+const formatTime = (val: string) => {
   let date = new Date(Number(val) * 1000);
   let YY = date.getFullYear() + '-';
   let MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
@@ -105,7 +105,7 @@ const sortId = (a: any, b: any) => {
 // console.log(o)
 
 export {
-  time,
+  formatTime,
   delCookie,
   getCookie,
   bytesToSize,

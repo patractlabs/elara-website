@@ -11,20 +11,16 @@ import { useHistory, useParams } from 'react-router-dom';
 import NameSVG from '../../assets/name.svg';
 import ActiveStatusSVG from '../../assets/active-status.svg';
 import DeactiveStatusSVG from '../../assets/deactive-status.svg';
-import StatusSVG from '../../assets/deactive-status.svg';
+import StatusSVG from '../../assets/status.svg';
 import OperatSVG from '../../assets/operat.svg';
 import TimeSVG from '../../assets/time.svg';
-import { ProjectStatus } from '../../core/enum';
+import { ProjectStatus, Operation } from '../../core/enum';
+import { formatTime } from '../../shared/utils';
 
 interface childProps {
     location: any;
     arr: any;
     message: any
-}
-enum Operation {
-  view = 'op-view',
-  stop = 'op-stop',
-  start = 'op-start',
 }
 
 class ViewProject extends Project {
@@ -36,6 +32,11 @@ const Projects: React.FC<childProps> = () => {
   const [ isCreateModalVisible, setCreateIsModalVisible ] = useState<boolean>(false);
   const [ updateSignal, setUpdateSiganl ] = useState(0);
   const [ projects, setProjects ] = useState<ViewProject[]>([]);
+
+  const deleteProject = () => {};
+  const stopProject = () => {};
+  const startProject = () => {};
+
   const columns = [
     {
       title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
@@ -54,7 +55,7 @@ const Projects: React.FC<childProps> = () => {
       </div>,
       dataIndex: 'createtime',
       key: 'creation time',
-      render: (text: string) => <span className="td-span">{text}</span>,
+      render: (text: string) => <span className="td-span-default">{formatTime(text)}</span>,
       width: 150,
     },
     {
@@ -72,18 +73,59 @@ const Projects: React.FC<childProps> = () => {
               :
               <img src={DeactiveStatusSVG} alt="" style={{ marginRight: '8px' }}/>
           }
-          <span className="td-span">{text === ProjectStatus.Active ? t('listPage.Active') : t('listPage.Stop')}</span>
+          {
+            text === ProjectStatus.Active ?
+              <span className="td-span-active">{ t('listPage.Status-Active')}</span>
+              :
+              <span className="td-span-default">{ t('listPage.Status-Stop')}</span>
+          }
         </div>,
       width: 150,
     },
     {
-      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
         <img src={OperatSVG} alt="" style={{ marginRight: '8px' }}/>
         <span>{t('listPage.Operation')}</span>
       </div>,
       dataIndex: 'operations',
       key: 'operations',
-      render: (ops: Operation[], item: Project) => <div style={{ textAlign: 'right' }}>{ ops.map(op => <span onClick={ () => history.push(`/dashboard/details/${item.id}`) } key={op} style={{ textDecoration: 'underline' , color: '#2EA772', margin: '0px 5px', cursor: 'pointer' }}>{t(`listPage.${op}`)}</span>) }</div>,
+      render: (ops: Operation[], item: Project) =>
+        <div style={{ textAlign: 'left' }}>
+          {
+            ops.map((op: Operation) => {
+              switch (op) {
+                case Operation.view:
+                  return <span
+                    onClick={() => history.push(`/dashboard/details/${item.chain}/${item.id}`)}
+                    key={op}
+                    className="td-op">
+                      {t(`listPage.${op}`)}
+                  </span>
+                case Operation.delete:
+                  return <span
+                    onClick={deleteProject}
+                    key={op}
+                    className="td-op">
+                      {t(`listPage.${op}`)}
+                  </span>
+                case Operation.start:
+                  return <span
+                    onClick={startProject}
+                    key={op}
+                    className="td-op">
+                      {t(`listPage.${op}`)}
+                  </span>
+                case Operation.stop:
+                  return <span
+                    onClick={stopProject}
+                    key={op}
+                    className="td-op">
+                      {t(`listPage.${op}`)}
+                  </span>
+              }
+            })
+          }
+        </div>,
       width: 60,
     },
   ];
@@ -95,7 +137,16 @@ const Projects: React.FC<childProps> = () => {
       (_projects = []) => {
         setProjects(
           _projects.filter(project => project.chain === params.chain)
-            .map(project => ({...project, operations: [Operation.view]}))
+            .map(project =>
+              ({
+                ...project,
+                operations: [
+                  project.status === ProjectStatus.Active ? Operation.stop : Operation.start,
+                  Operation.view,
+                  Operation.delete,
+                ]
+              })
+            )
         )
       },
       (e: APIError) => {

@@ -37,8 +37,8 @@
         "Name":"Name",
         "Creation Time":"Creation time",
         "Status":"Status",
-        "Active":"Active",
-        "Stop":"Stop",
+        "Status-Active":"Active",
+        "Status-Stop":"Stop",
         "Create Project":"Create Project",
         "projectName":"Project Name",
         "PleaseProjectName":"Please enter the project name",
@@ -47,12 +47,13 @@
         "Project":"Project.",
         "Operation": "Operation",
         "op-view": "view",
-        "op-stop": "stop",
-        "op-start": "start"
+        "op-stop": "Stop",
+        "op-start": "Start",
+        "op-delete": "Delete"
     },
 
     "Details":{
-        "Today":"Requests Today",
+        "Requests Today":"Requests Today",
         "TodayBandwidth":"Bandwidth Today",
         "WeekRequests":"Weekly requests statistics",
         "WeekBandwidth":"Weekly bandwidth statistics",

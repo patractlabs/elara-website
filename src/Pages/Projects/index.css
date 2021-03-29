@@ -8,10 +8,24 @@
   border-radius: 4px;
   border: 1px solid #E0E0E0;
 }
-.td-span {
+.td-span-default {
   font-size: 12px;
   font-weight: 400;
   color: #666666;
+}
+.td-span-active {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000000;
+}
+.td-op {
+  text-decoration: underline;
+  color: #2EA772;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.td-op:last-child {
+  margin-right: 0px;
 }
 .user-aside {
   width: 12.4%;

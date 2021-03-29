@@ -1,7 +1,7 @@
 import { User } from './../types/classes/user';
 import { ProjectCreatDto } from './../types/dto/project-create';
 import { Project } from '../types/classes/project';
-import { httpPost, httpGet } from './http'
+import { httpPost, httpGet, httpPut } from './http'
 import { URL_ACCOUNT } from '../../config/origin';
 import { ChainStats, StatDay } from '../types/classes/stat';
 import { StatMonth, StatWeek } from '../types/classes/stat-week';
@@ -37,6 +37,18 @@ export const apiGetProjectDetail =
   async (id: string) => await httpGet<Project>(`${URL_ACCOUNT}/project/${id}`);
 
 /**
+ * 
+ */
+export const apiStopProject =
+ async (id: string) => await httpPut<boolean>(`${URL_ACCOUNT}/project/${id}`);
+
+/**
+ * 
+ */
+export const apiDeleteProject =
+  async (id: string) => await httpDel<boolean>(`${URL_ACCOUNT}/project/${id}`);
+
+/**
  * 获取首页列表
  */
 export const apiGetChainStats =
@@ -60,3 +72,7 @@ export const apiGetMonthDetails =
  */
 export const apiGetDayDetail =
   async (id: string) => await httpGet<StatDay>(`${URL_ACCOUNT}/stat/day/${id}`);
+
+function httpDel<T>(arg0: string) {
+  throw new Error('Function not implemented.');
+}

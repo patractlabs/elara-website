@@ -127,9 +127,7 @@ const Dashboard: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const paths = location.pathname.split('/');
-    const chainName = paths[paths.length - 1];
-    if (chainName === 'projects') {
+    if (location.pathname === '/dashboard/projects/' || location.pathname === '/dashboard/projects') {
       history.push(`/dashboard/projects/${ChainName.Polkadot}`);
     }
   }, [location.pathname, history]);
@@ -140,8 +138,13 @@ const Dashboard: React.FC = () => {
 
   const choosedChain = useMemo(() => {
     const paths = location.pathname.split('/');
-    const chainName = paths[paths.length - 1];
-    return (chainName && chainName !== 'projects') ? chainName : ChainName.Polkadot;
+    let chainName: string = ChainName.Polkadot;
+    if (location.pathname.startsWith('/dashboard/details') && paths[3]) {
+      chainName = paths[3];
+    } else if (location.pathname.startsWith('/dashboard/projects') && paths[3]) {
+      chainName = paths[3];
+    }
+    return chainName;
   }, [location.pathname]);
   
   return (
@@ -167,7 +170,7 @@ const Dashboard: React.FC = () => {
       <div className="content">
         <Switch>
           <Route path="/dashboard/projects/:chain" component={Projects}></Route>
-          <Route path="/dashboard/details/:id" component={Details}></Route>
+          <Route path="/dashboard/details/:chain/:projectId" component={Details}></Route>
         </Switch>
       </div>
     </div>
