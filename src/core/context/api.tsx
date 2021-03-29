@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useHomeHeight } from '../hooks/useHomeHeight';
 import { useUser } from '../hooks/useUser';
 import { ApiContext } from './api-context';
 
@@ -9,5 +10,6 @@ interface Props {
 
 export const ApiProvider = React.memo(({ children }: Props): React.ReactElement<Props> =>  {
   const user = useUser();
-  return <ApiContext.Provider value={ user } >{children}</ApiContext.Provider>;
+  const homeHeight = useHomeHeight();
+  return <ApiContext.Provider value={{ ...user, homeHeight }} >{children}</ApiContext.Provider>;
 });

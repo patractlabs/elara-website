@@ -7,7 +7,7 @@ if (document.cookie.includes("sid")) {
   _isLogged = true;
 }
 
-export const useUser = (): ApiProps => {
+export const useUser = () => {
   const [isLogged, setIsLoggged] = useState<boolean>(_isLogged);
   const [ userInfo, setUserInfo ] = useState<User>({
     uid: '',

@@ -3,30 +3,28 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-
 import { apiLogin, apiLogout } from "../../core/data/api";
-
 import { delCookie } from "../../shared/utils/index";
 import logo from '../../assets/logo.svg';
 import signOut from '../../assets/quit.svg';
-
 import "./index.css";
 import { APIError, APIErrorType } from '../../core/types/classes/error';
 import { LoginModal } from './LoginModal';
 import { useApi } from '../../core/hooks/useApi';
+import { useHomeHeight } from '../../core/hooks/useHomeHeight';
 
-const imglist = [
-  {
-    img: logo,
-  },
-  {
-    img: signOut,
-  },
-];
+const imglist = [ logo, signOut ];
+
+enum ScrollTarget {
+  Home = 'Home',
+  Service = 'Service',
+  Contact = 'Contact',
+}
 
 const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { user, setUser, isLogged, setIsLoggged } = useApi();
+  const { homeHeight } = useApi();
 
   useEffect(() => {
     apiLogin()
@@ -45,10 +43,9 @@ const Header: React.FC = () => {
     return () => {};
   }, []);
 
-  const logoutFun = () => {
+  const logout = () => {
     apiLogout()
       .then(() => {
-        //清除cookie
         window.location.reload()
         delCookie();
         setIsLoggged(false);
@@ -59,15 +56,22 @@ const Header: React.FC = () => {
     return () => {};
   };
 
-  const setHomeHight = (e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (Number(e.target.dataset.id) === 1) {
-      // HomeHFun.HomeH(0);
-    } else if (Number(e.target.dataset.id) === 2) {
-      // HomeHFun.HomeH(1680);
-    } else {
-      // HomeHFun.HomeH(2100);
+  const scrollTo = (target: ScrollTarget) => {
+    switch (target) {
+      case ScrollTarget.Home:
+        homeHeight.setHeight(0);
+        // window.scrollTo({ top: 0 });
+        break;
+      case ScrollTarget.Service:
+        const serviceDiv = document.getElementById('home-service');
+        homeHeight.setHeight(serviceDiv?.offsetTop || 1248);
+        // window.scrollTo({ top: serviceDiv?.offsetTop || 1248 });
+        break;
+      case ScrollTarget.Contact:
+        const footerDiv = document.getElementById('home-footer');
+        homeHeight.setHeight(footerDiv?.offsetTop || 1836);
+        // window.scrollTo({ top: footerDiv?.offsetTop || 1836 });
+        break;
     }
   };
 
@@ -89,8 +93,8 @@ const Header: React.FC = () => {
       </li>
       <li className="menu-split"></li>
       <li className="user-menu-logout">
-        <div className="sign-out" onClick={logoutFun}>
-          <img src={imglist[1].img} alt="" />
+        <div className="sign-out" onClick={logout}>
+          <img src={imglist[1]} alt="" />
           <span>{t("user.Logout")}</span>
         </div>
       </li>
@@ -118,11 +122,8 @@ const Header: React.FC = () => {
       <div className="head-auto">
         <Link to="/" style={{ display: 'flex', height: '100%', alignItems: 'center', marginRight: '5px' }}>
           <img
-            onClick={() => {
-              // HomeHFun.HomeH(0);
-            }}
-            data-id="1"
-            src={imglist[0].img}
+            onClick={() => scrollTo(ScrollTarget.Home)}
+            src={imglist[0]}
             className="logo"
             alt=""
           />
@@ -130,21 +131,21 @@ const Header: React.FC = () => {
         <div className="head-content">
           <ul className="head-tabs">
             <li>
-              <a href="#">
+              <Link to="/" onClick={() => scrollTo(ScrollTarget.Home)}>
                 {t("home")}
-              </a>
+              </Link>
               <div className="tab-title-bottom"></div>
             </li>
             <li>
-              <a href="#">
+              <Link to="/" onClick={() => scrollTo(ScrollTarget.Service)}>
                 {t("serve")}
-              </a>
+              </Link>
               <div className="tab-title-bottom"></div>
             </li>
             <li>
-              <a href="#">
+              <Link to="/" onClick={() => scrollTo(ScrollTarget.Contact)}>
                 {t("contactUs")}
-              </a>
+              </Link>
               <div className="tab-title-bottom"></div>
             </li>
             <li>

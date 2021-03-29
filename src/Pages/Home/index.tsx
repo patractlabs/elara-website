@@ -25,6 +25,8 @@ import img16 from '../../assets/service-advantage.svg';
 import img17 from '../../assets/service-advantage-zh.svg';
 import "./index.css";
 import { Language } from '../../core/enum';
+import { useHomeHeight } from '../../core/hooks/useHomeHeight';
+import { useApi } from '../../core/hooks/useApi';
 
 const imgList = [
   img1,
@@ -61,6 +63,7 @@ const countUpProps = {
 const Home: React.FC<props> = ({ data }) => {
   const [total, settotal] = useState(0);
   const history = createHashHistory();
+  const { homeHeight } = useApi();
   // const HomeHeight = homeHeight();
   const { t, i18n } = useTranslation();
 
@@ -68,6 +71,10 @@ const Home: React.FC<props> = ({ data }) => {
   //   document.documentElement.scrollTop = HomeHeight.homeHeght;
   // }, [HomeHeight.homeHeght]);
 
+  useEffect(() => {
+    console.log('height', homeHeight.height)
+    window.scrollTo({ top: homeHeight.height });
+  }, [homeHeight.height]);
   useEffect(() => {
     apiGetChainStats()
       .then(chainStatus => {
@@ -146,7 +153,7 @@ const Home: React.FC<props> = ({ data }) => {
         </div>
       </div>
 
-      <div className="service">
+      <div className="service" id="home-service">
         <div className="title_holder">
           {
             i18n.language === Language.en ?
@@ -186,7 +193,7 @@ const Home: React.FC<props> = ({ data }) => {
         </div>
       </div>
 
-      <div className="HomeFooter">
+      <div className="HomeFooter" id="home-footer">
         <ul>
           <li>
             <img src={homeFonterImg[0]} alt="" />
