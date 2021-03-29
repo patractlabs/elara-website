@@ -16,6 +16,7 @@ export enum ChainName {
   Plasm = 'Plasm',
   Stafi = 'Stafi',
   Mandala = 'Mandala',
+  ChainX = 'ChainX',
 }
 
 export enum ProjectStatus {

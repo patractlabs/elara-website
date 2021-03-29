@@ -2,15 +2,31 @@
   margin: 0px auto;
   padding: 20px 17px;
   width: 86.8%;
-  height: 336px;
+  min-height: 336px;
   background: #FFFFFF;
   box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
   border-radius: 4px;
   border: 1px solid #E0E0E0;
+}
+.td-span {
+  font-size: 12px;
+  font-weight: 400;
+  color: #666666;
 }
 .user-aside {
   width: 12.4%;
   background: #FFFFFF;
   box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
   border: 1px solid #F5F5F5;
+}
+thead[class="ant-table-thead"] tr{
+  height: 30px !important;
+  background: #F4F4F4 !important;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05), 0px 1px 0px 0px rgba(0, 0, 0, 0.09), 0px -1px 0px 0px rgba(0, 0, 0, 0.05) !important;
+}
+thead[class="ant-table-thead"] th{
+  height: 30px;
+}
+tbody[class="ant-table-tbody"] tr:last-child {
+  border: 0px solid white;
 }

@@ -11,7 +11,6 @@ import "./index.css";
 import { APIError, APIErrorType } from '../../core/types/classes/error';
 import { LoginModal } from './LoginModal';
 import { useApi } from '../../core/hooks/useApi';
-import { useHomeHeight } from '../../core/hooks/useHomeHeight';
 
 const imglist = [ logo, signOut ];
 
@@ -20,8 +19,17 @@ enum ScrollTarget {
   Service = 'Service',
   Contact = 'Contact',
 }
+enum MouseOn {
+  Home = 'Home',
+  Service = 'Service',
+  Contact = 'Contact',
+  APIDoc = 'APIDoc',
+  Hub = 'Hub',
+  Null = 'Null'
+}
 
 const Header: React.FC = () => {
+  const [ mouseOn, setMouseOn ] = useState<MouseOn>(MouseOn.Null);
   const { t, i18n } = useTranslation();
   const { user, setUser, isLogged, setIsLoggged } = useApi();
   const { homeHeight } = useApi();
@@ -29,7 +37,7 @@ const Header: React.FC = () => {
   useEffect(() => {
     apiLogin()
       .then(_user => {
-        
+        console.log('user', _user)
         setIsLoggged(true);
         setUser(_user);
 
@@ -60,17 +68,14 @@ const Header: React.FC = () => {
     switch (target) {
       case ScrollTarget.Home:
         homeHeight.setHeight(0);
-        // window.scrollTo({ top: 0 });
         break;
       case ScrollTarget.Service:
         const serviceDiv = document.getElementById('home-service');
         homeHeight.setHeight(serviceDiv?.offsetTop || 1248);
-        // window.scrollTo({ top: serviceDiv?.offsetTop || 1248 });
         break;
       case ScrollTarget.Contact:
         const footerDiv = document.getElementById('home-footer');
         homeHeight.setHeight(footerDiv?.offsetTop || 1836);
-        // window.scrollTo({ top: footerDiv?.offsetTop || 1836 });
         break;
     }
   };
@@ -131,34 +136,49 @@ const Header: React.FC = () => {
         <div className="head-content">
           <ul className="head-tabs">
             <li>
-              <Link to="/" onClick={() => scrollTo(ScrollTarget.Home)}>
+              <Link to="/" onClick={() => scrollTo(ScrollTarget.Home)} onMouseOver={() => setMouseOn(MouseOn.Home)} onMouseOut={() => setMouseOn(MouseOn.Null)}>
                 {t("home")}
               </Link>
-              <div className="tab-title-bottom"></div>
+              {
+                mouseOn === MouseOn.Home && 
+                  <div className="tab-title-bottom"></div>
+              }
             </li>
             <li>
-              <Link to="/" onClick={() => scrollTo(ScrollTarget.Service)}>
+              <Link to="/" onClick={() => scrollTo(ScrollTarget.Service)} onMouseOver={() => setMouseOn(MouseOn.Service)} onMouseOut={() => setMouseOn(MouseOn.Null)}>
                 {t("serve")}
               </Link>
-              <div className="tab-title-bottom"></div>
+              {
+                mouseOn === MouseOn.Service && 
+                  <div className="tab-title-bottom"></div>
+              }
             </li>
             <li>
-              <Link to="/" onClick={() => scrollTo(ScrollTarget.Contact)}>
+              <Link to="/" onClick={() => scrollTo(ScrollTarget.Contact)} onMouseOver={() => setMouseOn(MouseOn.Contact)} onMouseOut={() => setMouseOn(MouseOn.Null)}>
                 {t("contactUs")}
               </Link>
-              <div className="tab-title-bottom"></div>
+              {
+                mouseOn === MouseOn.Contact && 
+                  <div className="tab-title-bottom"></div>
+              }
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="https://docs.elara.patract.io/">
+              <a target="_blank" rel="noreferrer" href="https://docs.elara.patract.io/" onMouseOver={() => setMouseOn(MouseOn.APIDoc)} onMouseOut={() => setMouseOn(MouseOn.Null)}>
                 {t("Documentation")}
               </a>
-              <div className="tab-title-bottom"></div>
+              {
+                mouseOn === MouseOn.APIDoc && 
+                  <div className="tab-title-bottom"></div>
+              }
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="https://patract.io/">
+              <a target="_blank" rel="noreferrer" href="https://patract.io/" onMouseOver={() => setMouseOn(MouseOn.Hub)} onMouseOut={() => setMouseOn(MouseOn.Null)}>
                 {t("patract hub")}
               </a>
-              <div className="tab-title-bottom"></div>
+              {
+                mouseOn === MouseOn.Hub && 
+                  <div className="tab-title-bottom"></div>
+              }
             </li>
           </ul>
           <ul className="head-right">

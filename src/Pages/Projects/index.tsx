@@ -2,13 +2,19 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import { Table, } from "antd";
 import { useTranslation } from "react-i18next";
-
 import { apiGetProjectList } from "../../core/data/api";
 import { APIError } from '../../core/types/classes/error';
 import AddProject from '../../assets/add-project.svg';
 import { Project } from '../../core/types/classes/project';
 import { CreateProjectModel } from './create-modal';
 import { useHistory, useParams } from 'react-router-dom';
+import NameSVG from '../../assets/name.svg';
+import ActiveStatusSVG from '../../assets/active-status.svg';
+import DeactiveStatusSVG from '../../assets/deactive-status.svg';
+import StatusSVG from '../../assets/deactive-status.svg';
+import OperatSVG from '../../assets/operat.svg';
+import TimeSVG from '../../assets/time.svg';
+import { ProjectStatus } from '../../core/enum';
 
 interface childProps {
     location: any;
@@ -32,32 +38,53 @@ const Projects: React.FC<childProps> = () => {
   const [ projects, setProjects ] = useState<ViewProject[]>([]);
   const columns = [
     {
-      title: t('listPage.projectName'),
+      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+        <img src={NameSVG} alt="" style={{ marginRight: '8px' }}/>
+        <span>{t('listPage.projectName')}</span>
+      </div>,
       dataIndex: 'name',
       key: 'name',
-      render: (text: string) => <a>{text}</a>,
+      render: (text: string) => <span className="td-span">{text}</span>,
       width: 150,
     },
     {
-      title: t('listPage.Creation Time'),
+      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+        <img src={TimeSVG} alt="" style={{ marginRight: '8px' }}/>
+        <span>{t('listPage.Creation Time')}</span>
+      </div>,
       dataIndex: 'createtime',
       key: 'creation time',
-      render: (text: string) => <a>{text}</a>,
+      render: (text: string) => <span className="td-span">{text}</span>,
       width: 150,
     },
     {
-      title: t('listPage.Status'),
+      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+        <img src={StatusSVG} alt="" style={{ marginRight: '8px' }}/>
+        <span>{t('listPage.Status')}</span>
+      </div>,
       dataIndex: 'status',
       key: 'status',
-      render: (text: string) => <a>{text}</a>,
+      render: (text: ProjectStatus) =>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+          {
+            text === ProjectStatus.Active ? 
+              <img src={ActiveStatusSVG} alt="" style={{ marginRight: '8px' }}/>
+              :
+              <img src={DeactiveStatusSVG} alt="" style={{ marginRight: '8px' }}/>
+          }
+          <span className="td-span">{text === ProjectStatus.Active ? t('listPage.Active') : t('listPage.Stop')}</span>
+        </div>,
       width: 150,
     },
     {
-      title: t('listPage.Operation'),
+      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+        <img src={OperatSVG} alt="" style={{ marginRight: '8px' }}/>
+        <span>{t('listPage.Operation')}</span>
+      </div>,
       dataIndex: 'operations',
       key: 'operations',
-      render: (ops: Operation[], item: Project) => <div>{ ops.map(op => <span onClick={ () => history.push(`/dashboard/details/${item.id}`) } key={op} style={{ textDecoration: 'underline' , color: '#2EA772', margin: '0px 5px' }}>{t(`listPage.${op}`)}</span>) }</div>,
-      width: 150,
+      render: (ops: Operation[], item: Project) => <div style={{ textAlign: 'right' }}>{ ops.map(op => <span onClick={ () => history.push(`/dashboard/details/${item.id}`) } key={op} style={{ textDecoration: 'underline' , color: '#2EA772', margin: '0px 5px', cursor: 'pointer' }}>{t(`listPage.${op}`)}</span>) }</div>,
+      width: 60,
     },
   ];
   const params = useParams<{ chain: string }>();
@@ -84,6 +111,7 @@ const Projects: React.FC<childProps> = () => {
         { t('listPage.Create Project') }
       </button>
       <Table
+        size="small"
         pagination={false}
         style={{ marginTop: '12px' }}
         columns={columns}

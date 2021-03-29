@@ -24,7 +24,7 @@ service.interceptors.request.use(
       err: err,
       msg: i18n.t('tip.fail'),
     };
-    Promise.reject(apiErr);
+    return Promise.reject(apiErr);
   },
 )
 service.interceptors.response.use(
@@ -46,7 +46,7 @@ service.interceptors.response.use(
       err,
       msg: i18n.t('tip.fail'),
     };
-    Promise.reject(apiError);
+    return Promise.reject(apiError);
   },
 )
 

@@ -16,7 +16,6 @@ const _CreateProjectModel: FC<{
   const [ isValid, setIsValid ] = useState<boolean>(true);
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const { t } = useTranslation();
-  console.log('chain', chain);
   const createProject = () => {
     setIsLoading(true);
     apiCreateProject({
@@ -28,10 +27,7 @@ const _CreateProjectModel: FC<{
         message.success(t('tip.created'));
       },
       () => message.error(t('tip.fail')),
-    ).finally(() => {
-      console.log('finally');
-      setIsLoading(false);
-    });
+    ).finally(() => setIsLoading(false)) ;
   };
   const onInputChange = (name: string) => {
     let reg = /[a-zA-Z]{4,32}/;

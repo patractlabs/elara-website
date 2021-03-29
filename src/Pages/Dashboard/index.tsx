@@ -1,6 +1,6 @@
 import "./index.css";
-import React, { useState, createContext, useEffect } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import React, { useState, createContext, useEffect, useMemo } from "react";
+import { Switch, Route, useHistory, useParams, useLocation } from "react-router-dom";
 import Projects from "../Projects";
 import Details from "../Details";
 import img1 from '../../assets/Polkadot.svg';
@@ -41,6 +41,7 @@ const chainNames = [
   ChainName.Plasm,
   ChainName.Stafi,
   ChainName.Mandala,
+  ChainName.ChainX,
 ];
 
 const getChains = (projects: Project[] = []): Chain[] => {
@@ -95,6 +96,10 @@ const getChains = (projects: Project[] = []): Chain[] => {
       img: img12,
       count: 0,
     },
+    ChainX: {
+      img: img13,
+      count: 0,
+    },
   };
 
   projects.forEach(project => chainsMap[project.chain].count ++);
@@ -117,16 +122,28 @@ const getChains = (projects: Project[] = []): Chain[] => {
 };
 
 const Dashboard: React.FC = () => {
-  const [ chains, setChains ] = useState<Chain[]>(getChains());
+  const [ chains, setChains ] = useState<Chain[]>([]);
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
-    apiGetProjectList().then(projects => {
-      console.log(projects, 'projects');
-      setChains(getChains(projects));
-    }, () => {});
+    const paths = location.pathname.split('/');
+    const chainName = paths[paths.length - 1];
+    if (chainName === 'projects') {
+      history.push(`/dashboard/projects/${ChainName.Polkadot}`);
+    }
+  }, [location.pathname, history]);
+
+  useEffect(() => {
+    apiGetProjectList().then(projects => setChains(getChains(projects)), () => {});
   }, [setChains]);
 
+  const choosedChain = useMemo(() => {
+    const paths = location.pathname.split('/');
+    const chainName = paths[paths.length - 1];
+    return (chainName && chainName !== 'projects') ? chainName : ChainName.Polkadot;
+  }, [location.pathname]);
+  
   return (
     // animated fadeInLeft
     <div className="dashboard">
@@ -134,7 +151,7 @@ const Dashboard: React.FC = () => {
         <ul className="project-list">
           {
             chains.map(chain => 
-              <li key={chain.name} className="project-item" onClick={ () => history.push(`/dashboard/projects/${chain.name}`) }>
+              <li key={chain.name} className={ choosedChain === chain.name ? 'project-item project-item-active' : 'project-item' } onClick={ () => history.push(`/dashboard/projects/${chain.name}`) }>
                 <img src={ chain.img } alt="" />
                 <div className="project-item-main">
                   <span>{ chain.name }</span>

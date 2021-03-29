@@ -1,5 +1,3 @@
-import { ProjectStatus } from '../../core/enum';
-
 const time = (val: string) => {
   let date = new Date(Number(val) * 1000);
   let YY = date.getFullYear() + '-';
@@ -9,13 +7,6 @@ const time = (val: string) => {
   let mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
   let ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
   return YY + MM + DD + " " + hh + mm + ss;
-}
-
-const statusActive = (val: ProjectStatus, language: string) => {
-  if (val === ProjectStatus.Active) {
-    return language === 'en' ? ProjectStatus.Active : '运行中'
-  }
-  return language === 'en' ? ProjectStatus.Stop : '暂停'
 }
 
 const getCookie = (name: string) => {
@@ -115,7 +106,6 @@ const sortId = (a: any, b: any) => {
 
 export {
   time,
-  statusActive,
   delCookie,
   getCookie,
   bytesToSize,

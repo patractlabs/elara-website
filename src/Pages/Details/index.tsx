@@ -37,7 +37,7 @@ const sumUpMethodCalls = (statMonth: StatMonth) => {
 };
 const Details: React.FC = () => {
   const { t } = useTranslation();
-  const [ project, setProject ] = useState<ProjectDetail>({} as any);
+  const [ projects, setProjects ] = useState<ProjectDetail[]>([]);
   const params = useParams<{ id: string }>();
   const requestEchart = useRef(null);
   const bandwidthEchart = useRef(null);
@@ -47,14 +47,22 @@ const Details: React.FC = () => {
     const projectPromise = apiGetProjectDetail(params.id);
     const dayDetailPromise = apiGetDayDetail(params.id);
     Promise.all([projectPromise, dayDetailPromise]).then(([project, dayDetail]) => {
-      setProject({
+      console.log({
         createtime: project.createtime,
         request: dayDetail.request,
         bandwidth: dayDetail.bandwidth,
         status: project.status,
         pid: project.id,
         psecret: project.secret,
-      });
+      })
+      setProjects([{
+        createtime: project.createtime,
+        request: dayDetail.request,
+        bandwidth: dayDetail.bandwidth,
+        status: project.status,
+        pid: project.id,
+        psecret: project.secret,
+      }]);
     }, () => {}).finally();
   }, []);
   const requestOption: any = {
@@ -97,7 +105,6 @@ const Details: React.FC = () => {
     },
     series: [
       {
-        name: '访问来源',
         type: 'pie',
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
@@ -116,18 +123,25 @@ const Details: React.FC = () => {
         data: [],
       }
     ]
-  }; 
+  };
+
   useEffect(() => {
     apiGetMonthDetails(params.id).then(statMonth => {
       const keys = Object.keys(statMonth);
+      
       requestOption.xAxis.data = keys;
-      // option.series[0].data = keys.map(key => statMonth[key].request);
-      requestOption.series[0].data = [11, 12, 14, 10, 4, 21, 3, 11, 10, 20, 1, 2, 4, 10, 4, 11, 3, 11, 10, 20, 11, 2, 4, 10, 4, 111, 3, 11, 10, 20];
-      requestOption.series[1].data = [11, 12, 14, 10, 4, 21, 3, 11, 10, 20, 1, 2, 4, 10, 4, 11, 3, 11, 10, 20, 11, 2, 4, 10, 4, 111, 3, 11, 10, 20];
+      requestOption.series[0].data = keys.map(key => statMonth[key].request);
+      requestOption.series[1].data = keys.map(key => statMonth[key].request);
+
       bandwidthOption.xAxis.data = keys
-      bandwidthOption.series[0].data = [11, 12, 14, 10, 4, 21, 3, 11, 10, 20, 1, 2, 4, 10, 4, 11, 3, 11, 10, 20, 11, 2, 4, 10, 4, 111, 3, 11, 10, 20];
+      bandwidthOption.series[0].data = keys.map(key => statMonth[key].bandwidth);
 
       methodsCallOption.series[0].data = sumUpMethodCalls(statMonth);
+      methodsCallOption.series[0].data = !methodsCallOption.series[0].data.length ?
+        [
+          { name: 'Null', value: 0 }
+        ]
+        : methodsCallOption.series[0].data;
 
       const chart = echarts.init(
         (requestEchart.current as unknown) as HTMLDivElement
@@ -175,7 +189,7 @@ const Details: React.FC = () => {
               width: 150,
             },
           ]}
-          dataSource={[project]}
+          dataSource={projects}
           rowKey={record => record.pid}>
         </Table>
         <Table
@@ -203,7 +217,7 @@ const Details: React.FC = () => {
               width: 150,
             }
           ]}
-          dataSource={[project]}
+          dataSource={projects}
           rowKey={record => record.pid}>
         </Table>
       </div>

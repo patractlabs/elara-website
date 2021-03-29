@@ -9,7 +9,7 @@ if (document.cookie.includes("sid")) {
 
 export const useUser = () => {
   const [isLogged, setIsLoggged] = useState<boolean>(_isLogged);
-  const [ userInfo, setUserInfo ] = useState<User>({
+  const [ user, setUser ] = useState<User>({
     uid: '',
     username: '',
     vip: '',
@@ -23,7 +23,7 @@ export const useUser = () => {
   return {
     isLogged,
     setIsLoggged,
-    user: userInfo,
-    setUser: setUserInfo,
+    user,
+    setUser,
   };
 }

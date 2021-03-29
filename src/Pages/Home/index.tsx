@@ -72,7 +72,6 @@ const Home: React.FC<props> = ({ data }) => {
   // }, [HomeHeight.homeHeght]);
 
   useEffect(() => {
-    console.log('height', homeHeight.height)
     window.scrollTo({ top: homeHeight.height });
   }, [homeHeight.height]);
   useEffect(() => {
