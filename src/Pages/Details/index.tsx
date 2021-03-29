@@ -1,14 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  apiGetWeekDetails,
   apiGetProjectDetail,
   apiGetDayDetail,
   apiGetMonthDetails,
 } from "../../core/data/api";
 import * as echarts from 'echarts';
 import "./index.css";
-import { APIError, APIErrorType } from '../../core/types/classes/error';
-import { Project } from '../../core/types/classes/project';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ProjectStatus } from '../../core/enum';

@@ -29,6 +29,13 @@
   height: 100%;
   display: inline-flex;
 }
+.tab-title-bottom {
+  height: 5px;
+  border-radius: 3px;
+  background-color: #FA6400;
+  position: relative;
+  top: -16px;
+}
 
 .head-tabs li {
   line-height: 60px;
@@ -40,6 +47,7 @@
 .head-tabs li a {
   color: white;
   font-size: 14px;
+  padding: 0px 5px;
 }
 
 .head-tabs li a:hover {
@@ -67,28 +75,47 @@
   opacity: 0.9;
 }
 
-.menuTitle {
-  width: 172px;
+.user-menu {
+  background: #FFFFFF;
+  box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
+  border: 1px solid #F5F5F5;
+  padding: 12px 16px;
+  width: 159px;
 }
-
-.menuTitle p {
+.user-menu-project-counts {
+  margin-top: 16px;
+}
+.user-menu p {
+  font-weight: 400;
+  color: #999999;
   font-size: 12px;
-  color: #232323;
-  line-height: 12px;
-  margin-top: 10px;
+  margin-bottom: 8px;
 }
 
-.menuTitle h3 {
-  font-size: 16px;
-  color: #39CA9F;
-  line-height: 16px;
-  margin: 10px 0;
+.user-menu h3 {
+  font-size: 14px;
+  color: #000000;
+}
+.user-menu .menu-split {
+  margin: 16px 0px 12px 0px;
+  height: 1px;
+  background-color: #E7E7E7;
+}
+.user-menu-logout .sign-out {
+  color: #FA6400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-menu-logout .sign-out img {
+  margin-right: 8px;
 }
 
 .PHover {
+  cursor: pointer;
   color: #FFFFFF;
   display: inline-block;
-  margin-left: 16px;
   width: 100%;
   line-height: 60px !important;
 }

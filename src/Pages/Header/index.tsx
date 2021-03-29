@@ -8,7 +8,7 @@ import { apiLogin, apiLogout } from "../../core/data/api";
 
 import { delCookie } from "../../shared/utils/index";
 import logo from '../../assets/logo.svg';
-import signOut from '../../assets/signOut.svg';
+import signOut from '../../assets/quit.svg';
 
 import "./index.css";
 import { APIError, APIErrorType } from '../../core/types/classes/error';
@@ -18,7 +18,6 @@ import { useApi } from '../../core/hooks/useApi';
 const imglist = [
   {
     img: logo,
-    name: "logo",
   },
   {
     img: signOut,
@@ -73,28 +72,29 @@ const Header: React.FC = () => {
   };
 
   const UserMenu = (
-    <Menu>
-      <Menu.Item className="menuTitle" >
+    <ul className="user-menu">
+      <li className="">
         <Link to="/dashboard/projects">
           <p>{t("user.Level")}</p>
           <h3>{!user.vip ? t("user.Personal") : t("user.team")}</h3>
         </Link>
-      </Menu.Item>
-      <Menu.Item>
+      </li>
+      <li className="user-menu-project-counts">
         <Link to="/dashboard/projects">
           <p>{t("user.Projects")}</p>
           <h3>
             {user.ext.projects}/{!user.vip ? "20" : "100"}
           </h3>
-        </Link>
-      </Menu.Item>
-      <Menu.Item>
-        <div className="signOut" onClick={logoutFun}>
+        </Link> 
+      </li>
+      <li className="menu-split"></li>
+      <li className="user-menu-logout">
+        <div className="sign-out" onClick={logoutFun}>
           <img src={imglist[1].img} alt="" />
           <span>{t("user.Logout")}</span>
         </div>
-      </Menu.Item>
-    </Menu>
+      </li>
+    </ul>
   );
 
   const LanguageMenu = (
@@ -116,7 +116,7 @@ const Header: React.FC = () => {
   return (
     <div className="head-main animated fadeInDown">
       <div className="head-auto">
-        <Link to="/" style={{ display: 'flex', height: '100%', alignItems: 'center' }}>
+        <Link to="/" style={{ display: 'flex', height: '100%', alignItems: 'center', marginRight: '5px' }}>
           <img
             onClick={() => {
               // HomeHFun.HomeH(0);
@@ -133,62 +133,70 @@ const Header: React.FC = () => {
               <a href="#">
                 {t("home")}
               </a>
+              <div className="tab-title-bottom"></div>
             </li>
             <li>
               <a href="#">
                 {t("serve")}
               </a>
+              <div className="tab-title-bottom"></div>
             </li>
             <li>
               <a href="#">
                 {t("contactUs")}
               </a>
+              <div className="tab-title-bottom"></div>
             </li>
             <li>
               <a target="_blank" rel="noreferrer" href="https://docs.elara.patract.io/">
                 {t("Documentation")}
               </a>
+              <div className="tab-title-bottom"></div>
             </li>
             <li>
               <a target="_blank" rel="noreferrer" href="https://patract.io/">
                 {t("patract hub")}
               </a>
+              <div className="tab-title-bottom"></div>
             </li>
           </ul>
           <ul className="head-right">
           {
             isLogged ?
-              <Dropdown overlay={UserMenu}>
-                <a className="PHover">
-                  { user.username }
-                  <DownOutlined
-                    style={{
-                      display: "inline-block",
-                      color: " #fff",
-                    }}
-                  />
-                </a>
-              </Dropdown> 
+              <li>
+                <Dropdown overlay={UserMenu}>
+                  <span className="PHover">
+                    <span style={{ marginRight: '8px' }}>
+                      { user.username }
+                    </span>
+                    <DownOutlined
+                      style={{
+                        display: "inline-block",
+                        color: " #fff",
+                      }}
+                    />
+                  </span>
+                </Dropdown> 
+              </li>
                 :
               <li className="user_login">
-                {/* <NavLink className="header-link" to="/login" exact>
-                  {t("sign.login")}
-                </NavLink> */}
                 <div className="login_btn" onClick={ () => setLoginModalVisible(true) }>{t("sign.login")}</div>
                 <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
               </li>
           }
            <li>
             <Dropdown overlay={LanguageMenu}>
-              <a className="PHover">
-                {i18n.language === "en" ? "English " : "中文 "}
+              <span className="PHover" style={{ marginLeft: '25px' }}>
+                <span style={{ marginRight: '8px' }}>
+                  {i18n.language === "en" ? "English " : "中文 "}
+                </span>
                 <DownOutlined
                   style={{
                     display: "inline-block",
                     color: " #fff",
                   }}
                 />
-              </a>
+              </span>
             </Dropdown>
           </li>
         </ul>
