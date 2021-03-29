@@ -3,8 +3,9 @@ import {
   apiGetWeekDetails,
   apiGetProjectDetail,
   apiGetDayDetail,
+  apiGetMonthDetails,
 } from "../../core/data/api";
-
+import * as echarts from 'echarts';
 import "./index.css";
 import { APIError, APIErrorType } from '../../core/types/classes/error';
 import { Project } from '../../core/types/classes/project';
@@ -12,6 +13,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ProjectStatus } from '../../core/enum';
 import { Table } from 'antd';
+import { StatMonth } from '../../core/types/classes/stat-week';
 
 interface IProps {
   projectId: string;
@@ -25,14 +27,24 @@ interface ProjectDetail {
   pid: string;
   psecret: string;
 }
-
+const sumUpMethodCalls = (statMonth: StatMonth) => {
+  const sumUp: { [key: string]: number } = {};
+  Object.keys(statMonth).forEach(day => {
+    const dayMethod = statMonth[day].method;
+    Object.keys(dayMethod).forEach(method => sumUp[method] = sumUp[method] ? sumUp[method] + dayMethod[method] : dayMethod[method]);
+  });
+  return Object.keys(sumUp).map(method => ({
+    name: method,
+    value: sumUp[method],
+  }));
+};
 const Details: React.FC = () => {
-  const { t,i18n } = useTranslation();
+  const { t } = useTranslation();
   const [ project, setProject ] = useState<ProjectDetail>({} as any);
   const params = useParams<{ id: string }>();
   const requestEchart = useRef(null);
   const bandwidthEchart = useRef(null);
-  let chartInstance = null;
+  const methodsCallEchart = useRef(null);
   
   useEffect(() => {
     const projectPromise = apiGetProjectDetail(params.id);
@@ -48,17 +60,95 @@ const Details: React.FC = () => {
       });
     }, () => {}).finally();
   }, []);
-
+  const requestOption: any = {
+    xAxis: {
+      type: 'category',
+      data: [],
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        data: [],
+        type: 'line',
+      },
+      {
+        data: [],
+        type: 'bar',
+      },
+    ],
+  };
+  const bandwidthOption: any = {
+    xAxis: {
+      type: 'category',
+      data: [],
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        data: [],
+        type: 'line',
+      }
+    ],
+  };
+  const methodsCallOption: any = {
+    tooltip: {
+      trigger: 'item',
+    },
+    series: [
+      {
+        name: '访问来源',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: 'center'
+        },
+        emphasis: {
+          label: {
+            show: false
+          }
+        },
+        labelLine: {
+          show: false,
+        },
+        data: [],
+      }
+    ]
+  }; 
   useEffect(() => {
-    const myChart = echarts.getInstanceByDom(
-      (requestEchart.current as unknown) as HTMLDivElement
-    );
-    if (myChart) chartInstance = myChart;
-    else
-      chartInstance = echarts.init(
+    apiGetMonthDetails(params.id).then(statMonth => {
+      const keys = Object.keys(statMonth);
+      requestOption.xAxis.data = keys;
+      // option.series[0].data = keys.map(key => statMonth[key].request);
+      requestOption.series[0].data = [11, 12, 14, 10, 4, 21, 3, 11, 10, 20, 1, 2, 4, 10, 4, 11, 3, 11, 10, 20, 11, 2, 4, 10, 4, 111, 3, 11, 10, 20];
+      requestOption.series[1].data = [11, 12, 14, 10, 4, 21, 3, 11, 10, 20, 1, 2, 4, 10, 4, 11, 3, 11, 10, 20, 11, 2, 4, 10, 4, 111, 3, 11, 10, 20];
+      bandwidthOption.xAxis.data = keys
+      bandwidthOption.series[0].data = [11, 12, 14, 10, 4, 21, 3, 11, 10, 20, 1, 2, 4, 10, 4, 11, 3, 11, 10, 20, 11, 2, 4, 10, 4, 111, 3, 11, 10, 20];
+
+      methodsCallOption.series[0].data = sumUpMethodCalls(statMonth);
+
+      const chart = echarts.init(
         (requestEchart.current as unknown) as HTMLDivElement
       );
-  }, [project]);
+      chart.setOption(requestOption as any);
+
+      const bandwindthChart = echarts.init(
+        (bandwidthEchart.current as unknown) as HTMLDivElement
+      );
+      bandwindthChart.setOption(bandwidthOption as any);
+
+      const methodsCallChart = echarts.init(
+        (methodsCallEchart.current as unknown) as HTMLDivElement
+      );
+      methodsCallChart.setOption(methodsCallOption as any);
+      console.log('request option', requestOption, 'bandwidth option', bandwidthOption, 'methods call', methodsCallOption);
+    });
+  }, []);
 
   return (
     <div className="project-detail">
@@ -123,13 +213,21 @@ const Details: React.FC = () => {
       <div className="project-card project-30days-request">
         <h2 className="card-h2">{t('Details.30days-request-counts')}</h2>
         <div>
-          <div className="requestEchart" ref={requestEchart} />
+          <div ref={requestEchart} style={{ width: '100%', height: '355px' }}/>
         </div>
       </div>
       <div className="project-card project-30days-bandwidth">
-        <h2 className="card-h2">{t('Details.30days-bandwidth')}</h2>
-        <div>
-          <div className="bandwidthEchart" ref={bandwidthEchart} />
+        <div className="bandwidth">
+          <h2 className="card-h2">{t('Details.30days-bandwidth')}</h2>
+          <div>
+            <div ref={bandwidthEchart} style={{ width: '100%', height: '355px' }} />
+          </div> 
+        </div>
+        <div className="methods-call">
+          <h2 className="card-h2 methods-call-h2">{t('Details.30days-callmethods')}</h2>
+          <div style={{ display: 'flex', justifyContent: 'center', }}>
+            <div ref={methodsCallEchart} style={{ width: '100%', height: '355px' }} />
+          </div>
         </div>
       </div>
     </div>

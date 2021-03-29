@@ -19,7 +19,7 @@ export class StatDay {
   request: number;
   updatetime: number;
   method: {
-    [ key: string ]: string;
+    [ key: string ]: number;
   };
   bandwidth: number;
   code: {

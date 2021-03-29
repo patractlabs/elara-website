@@ -60,7 +60,8 @@
         "Creation Time":"Creation Time",
         "Status":"Status",
         "30days-request-counts": "Last 30 Days Requests Statistics",
-        "30days-bandwidth": "Last 30 Days Bandwidth Statistics"
+        "30days-bandwidth": "Last 30 Days Bandwidth Statistics",
+        "30days-callmethods": "Last 30 Days Call Method Statistics"
     },
 
     "user":{

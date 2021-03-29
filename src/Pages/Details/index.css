@@ -15,12 +15,24 @@
   font-weight: 400;
   color: #454458;
 }
+.methods-call-h2 {
+  text-align: center;
+}
 .project-status {
   margin-bottom: 20px;
 }
 .project-30days-request {
+  height: 428px;
   margin-bottom: 16px;
 }
 .project-30days-bandwidth {
   margin-bottom: 9px;
+  height: 428px;
+  display: flex;
+}
+.project-30days-bandwidth .bandwidth {
+  width: 62%;
+}
+.methods-call {
+  flex: 1;
 }

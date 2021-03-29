@@ -4,7 +4,7 @@ import { Project } from '../types/classes/project';
 import { httpPost, httpGet } from './http'
 import { URL_ACCOUNT } from '../../config/origin';
 import { ChainStats, StatDay } from '../types/classes/stat';
-import { StatWeek } from '../types/classes/stat-week';
+import { StatMonth, StatWeek } from '../types/classes/stat-week';
 
 /**
  * 登陆
@@ -47,6 +47,13 @@ export const apiGetChainStats =
  */
 export const apiGetWeekDetails =
   async (id: string) => await httpGet<StatWeek>(`${URL_ACCOUNT}/stat/week/${id}`);
+
+
+/**
+ * 控制台详情30天数据
+ */
+export const apiGetMonthDetails =
+  async (id: string) => await httpGet<StatMonth>(`${URL_ACCOUNT}/stat/month/${id}`);
 
 /**
  * 控制台详情项目当天统计数据

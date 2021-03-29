@@ -58,7 +58,8 @@
     "Creation Time":"创建时间",
     "Status":"状态",
     "30days-request-counts": "30天请求数统计",
-    "30days-bandwidth": "30天带宽统计"
+    "30days-bandwidth": "30天带宽统计",
+    "30days-callmethods": "30天调用方法统计"
   },
 
   "user":{
