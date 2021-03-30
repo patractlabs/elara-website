@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./index.css";
 import { Table, } from "antd";
 import { useTranslation } from "react-i18next";
@@ -15,20 +15,22 @@ import OperatSVG from '../../assets/operat.svg';
 import TimeSVG from '../../assets/time.svg';
 import { ProjectStatus } from '../../core/enum';
 import { formatTime } from '../../shared/utils';
+import { useApi } from '../../core/hooks/useApi';
 
-interface childProps {
-    location: any;
-    arr: any;
-    message: any
-}
-
-const Projects: React.FC<childProps> = () => {
+const Projects: React.FC = () => {
   const { t } = useTranslation();
   const [ isCreateModalVisible, setCreateIsModalVisible ] = useState<boolean>(false);
   const [ updateSignal, setUpdateSiganl ] = useState(0);
   const [ projects, setProjects ] = useState<Project[]>([]);
   const params = useParams<{ chain: string }>();
   const history = useHistory();
+  const { updateProjectCountsSignal, setUpdateProjectCountsSignal } = useApi();
+
+  const onProjectCreated = useCallback(() => {
+    setUpdateSiganl(updateSignal + 1);
+    setCreateIsModalVisible(false);
+    setUpdateProjectCountsSignal(updateProjectCountsSignal + 1);
+  }, [updateSignal]);
 
   useEffect(() => {
     apiGetProjectList().then(
@@ -46,6 +48,7 @@ const Projects: React.FC<childProps> = () => {
         <img src={AddProject} alt="" style={{ marginRight: '5px' }} />
         { t('listPage.Create Project') }
       </button>
+
       <Table
         locale={{emptyText: t('No Data')}}
         size="small"
@@ -107,7 +110,7 @@ const Projects: React.FC<childProps> = () => {
               </div>,
             dataIndex: 'operations',
             key: 'operations',
-            render: (project: Project) =>
+            render: (_ = undefined, project: Project) =>
               <span
                 onClick={() => history.push(`/dashboard/details/${project.chain}/${project.id}`)}
                 className="td-op"
@@ -120,7 +123,12 @@ const Projects: React.FC<childProps> = () => {
         dataSource={projects}
         rowKey={record => record.id}
       />
-      <CreateProjectModel chain={params.chain} isModalVisible={isCreateModalVisible} onModalClose={ () => { setUpdateSiganl(updateSignal + 1); setCreateIsModalVisible(false);} } />
+
+      <CreateProjectModel
+        chain={params.chain}
+        isModalVisible={isCreateModalVisible}
+        onModalClose={ onProjectCreated }
+      />
     </div>
   );
 };

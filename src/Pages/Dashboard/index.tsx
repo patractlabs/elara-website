@@ -19,6 +19,7 @@ import img13 from '../../assets/ChainX.png';
 import { apiGetProjectList } from '../../core/data/api';
 import { Project } from '../../core/types/classes/project';
 import { ChainName } from '../../core/enum';
+import { useApi } from '../../core/hooks/useApi';
 
 interface Chain {
   name: string;
@@ -123,6 +124,7 @@ const Dashboard: React.FC = () => {
   const [ chains, setChains ] = useState<Chain[]>([]);
   const history = useHistory();
   const location = useLocation();
+  const { updateProjectCountsSignal } = useApi();
 
   /** redirect to default chain's projects */
   useEffect(() => {
@@ -133,7 +135,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     apiGetProjectList().then(projects => setChains(getChains(projects)), () => {});
-  }, [setChains]);
+  }, [setChains, updateProjectCountsSignal]);
 
   const choosedChain = useMemo(() => {
     const paths = location.pathname.split('/');
