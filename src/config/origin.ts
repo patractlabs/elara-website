@@ -9,7 +9,7 @@ if (process.env.REACT_APP_NODE_ENV === 'development') {
 
   ENDPOINTS_URL = "https://test-api.elara.patract.io"
   WSS_ENDPOINTS_URL = "wss://test-api.elara.patract.io"
-} else if (process.env.REACT_APP_NODE_ENV === 'test') {
+} else if (process.env.REACT_APP_NODE_ENV === 'pre-production') {
   URL_ACCOUNT = 'https://test-elara.patract.io'
 
   ENDPOINTS_URL = "https://test-api.elara.patract.io"

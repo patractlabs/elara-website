@@ -37,8 +37,8 @@
   "scripts": {
     "start": "cross-env REACT_APP_NODE_ENV=development react-app-rewired start",
     "build": "cross-env REACT_APP_NODE_ENV=production react-app-rewired build",
-    "build:pre": "cross-env REACT_APP_NODE_ENV=test react-app-rewired build",
-    "test": "react-app-rewired test"
+    "build:pre": "cross-env REACT_APP_NODE_ENV=pre-production react-app-rewired build",
+    "test": "cross-env REACT_APP_NODE_ENV=test react-app-rewired test"
   },
   "eslintConfig": {
     "extends": [
