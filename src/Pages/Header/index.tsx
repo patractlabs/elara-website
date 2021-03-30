@@ -34,12 +34,9 @@ const Header: React.FC = () => {
   const logout = () => {
     apiLogout()
       .then(() => {
+        homeHeight.setHeight(0);
         delCookie();
         setIsLoggged(false);
-        window.location.reload()
-      })
-      .catch((err) => {
-        console.log("err", err);
       });
     return () => {};
   };
