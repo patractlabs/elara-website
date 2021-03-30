@@ -1,14 +1,11 @@
 import React, { FC, ReactElement, Suspense } from "react";
-import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import  "./i18n";
-
 import useRouter from "./core/hooks/useRouter";
-
 import Home from "./pages/Home";
 import Header from "./pages/Header";
 import Dashboard from "./pages/Dashboard";
 import PageLoading from './pages/PageLoading'
-
 import "./App.css";
 import { ApiProvider } from './core/context/api';
 import { useApi } from './core/hooks/useApi';
@@ -37,7 +34,7 @@ const App: FC = (): ReactElement => {
   return (
     <ApiProvider>
       <div>
-        <HashRouter>
+        <BrowserRouter>
           <Header />
           <Switch>
             <Suspense fallback={<PageLoading />}>
@@ -45,7 +42,7 @@ const App: FC = (): ReactElement => {
               <AuthRoute path="/dashboard" component={Dashboard} />
             </Suspense>
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
       </div>
     </ApiProvider>
   );
