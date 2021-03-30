@@ -37,6 +37,7 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
 
   const openWindow = () => {
     window.open(`${LOGIN_DOMAIN}/auth/github`);
+
     console.log('open window', `${LOGIN_DOMAIN}/auth/github`);
     window.onmessage = function (ev: { data: any }) {
       if (off) {
