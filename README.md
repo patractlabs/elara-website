@@ -117,8 +117,8 @@ export default function MyComponent () {
 - [ ] BFF
 
 ## github认证过程
-1. window.open(test.elara.patract.io/auth/github)
-2. node进程重定向到  
+1. window.open(test-elara.patract.io/auth/github)
+2. node进程重定向到
   https://github.com/login/oauth/authorize
   response_type=code  
   redirect_uri=https://test-elara.patract.io/auth/github/callback  
