@@ -1,5 +1,0 @@
-{
-  "redirects": [
-    { "source": "/auth/github", "destination": "https://testa-elara.patract.io" }
-  ]
-}
