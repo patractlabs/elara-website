@@ -1,7 +1,7 @@
 import { User } from './../types/classes/user';
 import { ProjectCreatDto } from './../types/dto/project-create';
 import { Project } from '../types/classes/project';
-import { httpPost, httpGet, httpPut } from './http'
+import { httpPost, httpGet } from './http'
 import { URL_ACCOUNT } from '../../config/origin';
 import { ChainStats, StatDay } from '../types/classes/stat';
 import { StatMonth, StatWeek } from '../types/classes/stat-week';
