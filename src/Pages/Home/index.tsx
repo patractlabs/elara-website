@@ -27,6 +27,7 @@ import "./index.css";
 import { Language } from '../../core/enum';
 import { useHomeHeight } from '../../core/hooks/useHomeHeight';
 import { useApi } from '../../core/hooks/useApi';
+import { LoginModal } from '../Header/LoginModal';
 
 const imgList = [
   img1,
@@ -61,15 +62,24 @@ const countUpProps = {
 };
 
 const Home: React.FC<props> = ({ data }) => {
+  const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
   const [total, settotal] = useState(0);
   const history = createHashHistory();
   const { homeHeight } = useApi();
   // const HomeHeight = homeHeight();
   const { t, i18n } = useTranslation();
+  const { isLogged } = useApi();
 
   // useEffect(() => {
   //   document.documentElement.scrollTop = HomeHeight.homeHeght;
   // }, [HomeHeight.homeHeght]);
+
+  const gotoDashboard = () => {
+    if (!isLogged) {
+      return setLoginModalVisible(true);
+    }
+    history.push("/dashboard/projects");
+  };
 
   useEffect(() => {
     window.scrollTo({ top: homeHeight.height });
@@ -100,9 +110,7 @@ const Home: React.FC<props> = ({ data }) => {
         <h5 className="banner_title2"> {t("bannerTitle2")} </h5>
         <div
           className="service_btn"
-          onClick={() => {
-            history.push("/dashboard/projects");
-          }}
+          onClick={gotoDashboard}
         >
           {t("bannerBtn")}
         </div>
@@ -184,9 +192,7 @@ const Home: React.FC<props> = ({ data }) => {
         </div>
         <div
           className="service_btn service_btn_service"
-          onClick={() => {
-            history.push("/dashboard/projects");
-          }}
+          onClick={gotoDashboard}
         >
           {t("bannerBtn")}
         </div>
@@ -220,6 +226,7 @@ const Home: React.FC<props> = ({ data }) => {
           </li>
         </ul>
         <Footer />
+        <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
       </div>
     </div>
   );
