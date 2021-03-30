@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { apiGetChainStats } from "../../core/data/api";
 import { createHashHistory } from "history"; // 如果是history路由
-
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-
 import Footer from "../Footer/index";
 import img1 from '../../assets/cp1.svg';
 import img2 from '../../assets/cp2.svg';
@@ -27,10 +25,6 @@ import "./index.css";
 import { Language } from '../../core/enum';
 import { useApi } from '../../core/hooks/useApi';
 import { LoginModal } from '../Header/LoginModal';
-
-interface props {
-  data: { [key: string]: any };
-}
 
 const imgList = [
   img1,
@@ -60,7 +54,7 @@ const countUpProps = {
   separator: ",",
 };
 
-const Home: React.FC<props> = ({ data }) => {
+const Home: React.FC = () => {
   const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
   const [ total, setTotal ] = useState(0);
   const history = createHashHistory();

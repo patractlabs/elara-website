@@ -39,8 +39,6 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
     window.open(`${URL_ACCOUNT}/auth/github`);
     console.log('open window', `${URL_ACCOUNT}/auth/github`);
     window.onmessage = function (ev: { data: any }) {
-      console.log('ev', ev);
-      
       if (off) {
         console.log('message', ev.data);
         loginInit();
