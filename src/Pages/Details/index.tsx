@@ -18,7 +18,7 @@ import RequestCountsSVG from '../../assets/request-counts.svg';
 import BandwidthSVG from '../../assets/bandwidth.svg';
 import CopySVG from '../../assets/copy.svg';
 import StatusSVG from '../../assets/status.svg';
-import { formatTime } from '../../shared/utils';
+import { formatSize, formatTime } from '../../shared/utils';
 import { ENDPOINTS_URL, WSS_ENDPOINTS_URL } from '../../config/origin';
 import copy from 'copy-to-clipboard';
 
@@ -85,6 +85,7 @@ const bandwidthOption: any = {
   },
   yAxis: {
     type: 'value',
+    axisLabel:{ formatter: '{value} MB'}
   },
   series: [
     {
@@ -162,7 +163,7 @@ const Details: React.FC = () => {
       requestOption.series[1].data = keys.map(key => statMonth[key].request);
 
       bandwidthOption.xAxis.data = keys
-      bandwidthOption.series[0].data = keys.map(key => statMonth[key].bandwidth);
+      bandwidthOption.series[0].data = keys.map(key => statMonth[key].bandwidth / 1024 / 1024);
 
       methodsCallOption.series[0].data = sumUpMethodCalls(statMonth);
       methodsCallOption.series[0].data = !methodsCallOption.series[0].data.length ?
@@ -174,17 +175,18 @@ const Details: React.FC = () => {
       const chart = echarts.init(
         (requestEchart.current as unknown) as HTMLDivElement
       );
-      chart.setOption(requestOption as any);
+      chart.setOption(requestOption);
 
       const bandwindthChart = echarts.init(
         (bandwidthEchart.current as unknown) as HTMLDivElement
       );
-      bandwindthChart.setOption(bandwidthOption as any);
+      bandwindthChart.setOption(bandwidthOption);
 
       const methodsCallChart = echarts.init(
         (methodsCallEchart.current as unknown) as HTMLDivElement
       );
-      methodsCallChart.setOption(methodsCallOption as any);
+      methodsCallChart.setOption(methodsCallOption);
+      console.log('init charts');
     });
   }, [params.projectId]);
 
@@ -227,7 +229,7 @@ const Details: React.FC = () => {
               </div>,
               dataIndex: 'bandwidth',
               key: 'bandwidth',
-              render: (text: string) => <span className="td-span-active">{text}B</span>,
+              render: (text: number) => <span className="td-span-active">{formatSize(text)}</span>,
               width: 150,
             },
             {
@@ -276,16 +278,16 @@ const Details: React.FC = () => {
               <img className="copy-img" onClick={ () => copy(project?.psecret || '')} src={CopySVG} alt=""/>
             </div>
             <div className="third-column">
-              <span>{ `${ENDPOINTS_URL}/${project?.chain}/${project?.pid}` }</span>
-              <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain}/${project?.pid}`)} src={CopySVG} alt=""/>
+              <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
+              <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
             </div>
           </div>
           <div className="mock-row">
             <div className="first-column"></div>
             <div className="second-column"></div>
             <div className="third-column">
-              <span>{ `${WSS_ENDPOINTS_URL}/${project?.chain}/${project?.pid}` }</span>
-              <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain}/${project?.pid}`)} src={CopySVG} alt=""/>
+              <span>{ `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
+              <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
             </div>
           </div>
         </div>
