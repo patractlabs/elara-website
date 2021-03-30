@@ -1,6 +1,6 @@
 import "./index.css";
-import React, { useState, createContext, useEffect, useMemo } from "react";
-import { Switch, Route, useHistory, useParams, useLocation } from "react-router-dom";
+import React, { useState, useEffect, useMemo } from "react";
+import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import Projects from "../Projects";
 import Details from "../Details";
 import img1 from '../../assets/Polkadot.svg';
@@ -20,13 +20,11 @@ import { apiGetProjectList } from '../../core/data/api';
 import { Project } from '../../core/types/classes/project';
 import { ChainName } from '../../core/enum';
 
-export const CountContext = createContext(1);
-
 interface Chain {
   name: string;
   img: any;
   count: number;
-} 
+}
 
 const chainNames = [
   ChainName.Polkadot,
@@ -126,6 +124,7 @@ const Dashboard: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
 
+  /** redirect to default chain's projects */
   useEffect(() => {
     if (location.pathname === '/dashboard/projects/' || location.pathname === '/dashboard/projects') {
       history.push(`/dashboard/projects/${ChainName.Polkadot}`);
@@ -154,13 +153,15 @@ const Dashboard: React.FC = () => {
         <ul className="project-list">
           {
             chains.map(chain => 
-              <li key={chain.name} className={ choosedChain === chain.name ? 'project-item project-item-active' : 'project-item' } onClick={ () => history.push(`/dashboard/projects/${chain.name}`) }>
+              <li
+                key={chain.name}
+                className={ choosedChain === chain.name ? 'project-item project-item-active' : 'project-item' }
+                onClick={ () => history.push(`/dashboard/projects/${chain.name}`) }
+              >
                 <img src={ chain.img } alt="" />
                 <div className="project-item-main">
                   <span>{ chain.name }</span>
-                  {
-                    !!chain.count && <div className="project-counts">{ chain.count }</div>
-                  }
+                  { !!chain.count && <div className="project-counts">{ chain.count }</div> }
                 </div>
               </li>
             )

@@ -3,14 +3,7 @@ import axios, { AxiosResponse } from 'axios'
 import i18n from '../../i18n';
 import { APIError, APIErrorType } from '../types/classes/error';
 
-// import { Modal } from 'antd'
-
-// const baseURL =
-//     process.env.NODE_ENV === 'development' ? 'http://3.15.85.91:18066' : 'https://pro-live.wink.org'
-
-// 创建axios实例
 const service = axios.create({
-  // baseURL,
   timeout: 15000,
   withCredentials: false,
 })
@@ -80,6 +73,16 @@ export function httpPut<T>(
   return service.put(
     url,
     data,
+    { headers },
+  ) as Promise<T>;
+}
+
+export function httpDel<T>(
+  url: string,
+  headers: any = {},
+) {
+  return service.delete(
+    url,
     { headers },
   ) as Promise<T>;
 }

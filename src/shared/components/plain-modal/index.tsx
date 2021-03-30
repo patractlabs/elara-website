@@ -2,11 +2,6 @@ import React, { FC, ReactElement } from "react";
 import { Modal } from 'antd';
 import './index.css';
 
-interface IProps {
-  isModalVisible: boolean;
-  onModalClose(): void;
-}
-
 export const createPlainModal = (ChildComponent: FC<any>, width = 520) => {
   const WrappedComponent: FC<any> = (props: any): ReactElement => {
   

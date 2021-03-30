@@ -1,9 +1,8 @@
 .project-detail {
   margin: 0px auto;
-  width: 86.8%;
+  width: 93%;
 }
 .project-card {
-  height: 336px;
   background: #FFFFFF;
   box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
   border-radius: 4px;
@@ -35,4 +34,45 @@
 }
 .methods-call {
   flex: 1;
+}
+.th-default {
+  color: #666666;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mock-th {
+  color: #666666;
+  line-height: 40px;
+  height: 40px;
+  background: rgb(250, 250, 250);
+  box-shadow: 0px 2px 4px 0px rgb(0 0 0 / 5%), 0px 1px 0px 0px rgb(0 0 0 / 9%), 0px -1px 0px 0px rgb(0 0 0 / 5%);
+  padding-left: 28px;
+}
+.mock-row {
+  border-bottom: 1px solid #EAEBF0;
+  display: flex;
+  height: 39px;
+  align-items: center;
+  padding: 0px 28px;
+}
+.active-row {
+  color: #38CA9E;
+}
+.first-column {
+  min-width: 300px;
+  flex: 2;
+  margin-right: 10px;
+}
+.second-column {
+  width: 100px;
+}
+.third-column {
+  flex: 3;
+  min-width: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+.copy-img {
+  cursor: pointer;
 }

@@ -14,10 +14,13 @@ import { StatMonth } from '../../core/types/classes/stat-week';
 import TimeSVG from '../../assets/time.svg';
 import ActiveStatusSVG from '../../assets/active-status.svg';
 import DeactiveStatusSVG from '../../assets/deactive-status.svg';
-import OperatSVG from '../../assets/operat.svg';
+import RequestCountsSVG from '../../assets/request-counts.svg';
+import BandwidthSVG from '../../assets/bandwidth.svg';
+import CopySVG from '../../assets/copy.svg';
 import StatusSVG from '../../assets/status.svg';
 import { formatTime } from '../../shared/utils';
-import { Project } from '../../core/types/classes/project';
+import { ENDPOINTS_URL, WSS_ENDPOINTS_URL } from '../../config/origin';
+import copy from 'copy-to-clipboard';
 
 interface ProjectDetail {
   createtime: string;
@@ -26,22 +29,109 @@ interface ProjectDetail {
   status: ProjectStatus;
   pid: string;
   psecret: string;
-  operations: Operation[];
+  operations?: Operation[];
+  chain: string;
 }
+
 const sumUpMethodCalls = (statMonth: StatMonth) => {
   const sumUp: { [key: string]: number } = {};
   Object.keys(statMonth).forEach(day => {
     const dayMethod = statMonth[day].method;
-    Object.keys(dayMethod).forEach(method => sumUp[method] = sumUp[method] ? sumUp[method] + dayMethod[method] : dayMethod[method]);
+    Object.keys(dayMethod).forEach(
+      method => sumUp[method] = sumUp[method] ? sumUp[method] + dayMethod[method] : dayMethod[method]
+    );
   });
   return Object.keys(sumUp).map(method => ({
     name: method,
     value: sumUp[method],
   }));
 };
+
+const requestOption: any = {
+  xAxis: {
+    type: 'category',
+    data: [],
+  },
+  yAxis: {
+    type: 'value',
+  },
+  series: [
+    {
+      data: [],
+      type: 'line',
+      symbol: 'circle',
+      lineStyle: {
+        width: 2,
+        color: '#23B899'
+      },
+      itemStyle: {
+        color: '#23B899',
+      }
+    },
+    {
+      data: [],
+      type: 'bar',
+      itemStyle: {
+        color: 'rgb(243, 243, 251)'
+      }
+    },
+  ],
+};
+
+const bandwidthOption: any = {
+  xAxis: {
+    type: 'category',
+    data: [],
+  },
+  yAxis: {
+    type: 'value',
+  },
+  series: [
+    {
+      data: [],
+      type: 'line',
+      symbolSize: 0,
+      lineStyle: {
+        color: '#333FFF'
+      }
+    }
+  ],
+};
+
+const methodsCallOption: any = {
+  tooltip: {
+    trigger: 'item',
+  },
+  legend: {
+    orient: 'horizontal',
+    left: 'center',
+    top: 'bottom',
+  },
+  series: [
+    {
+      type: 'pie',
+      radius: ['40%', '70%'],
+      avoidLabelOverlap: false,
+      label: {
+        show: false,
+        position: 'center'
+      },
+      emphasis: {
+        label: {
+          show: false
+        }
+      },
+      labelLine: {
+        show: false,
+      },
+      data: [],
+    }
+  ]
+};
+
 const Details: React.FC = () => {
   const { t } = useTranslation();
-  const [ projects, setProjects ] = useState<ProjectDetail[]>([]);
+  const [ project, setProject ] = useState<ProjectDetail>();
   const params = useParams<{ projectId: string; chain: string }>();
   const requestEchart = useRef(null);
   const bandwidthEchart = useRef(null);
@@ -51,82 +141,17 @@ const Details: React.FC = () => {
     const projectPromise = apiGetProjectDetail(params.projectId);
     const dayDetailPromise = apiGetDayDetail(params.projectId);
     Promise.all([projectPromise, dayDetailPromise]).then(([project, dayDetail]) => {
-      setProjects([{
+      setProject({
         createtime: project.createtime,
         request: dayDetail.request,
         bandwidth: dayDetail.bandwidth,
         status: project.status,
         pid: project.id,
         psecret: project.secret,
-        operations: [
-          project.status === ProjectStatus.Active ? Operation.stop : Operation.start,
-          Operation.delete,
-        ],
-      }]);
-    }, () => {}).finally();
-  }, []);
-  const requestOption: any = {
-    xAxis: {
-      type: 'category',
-      data: [],
-    },
-    yAxis: {
-      type: 'value',
-    },
-    series: [
-      {
-        data: [],
-        type: 'line',
-      },
-      {
-        data: [],
-        type: 'bar',
-      },
-    ],
-  };
-  const bandwidthOption: any = {
-    xAxis: {
-      type: 'category',
-      data: [],
-    },
-    yAxis: {
-      type: 'value',
-    },
-    series: [
-      {
-        data: [],
-        type: 'line',
-      }
-    ],
-  };
-  const methodsCallOption: any = {
-    tooltip: {
-      trigger: 'item',
-    },
-    series: [
-      {
-        type: 'pie',
-        radius: ['40%', '70%'],
-        avoidLabelOverlap: false,
-        label: {
-          show: false,
-          position: 'center'
-        },
-        emphasis: {
-          label: {
-            show: false
-          }
-        },
-        labelLine: {
-          show: false,
-        },
-        data: [],
-      }
-    ]
-  };
-  const deleteProject = () => {};
-  const stopProject = () => {};
-  const startProject = () => {};
+        chain: project.chain,
+      });
+    });
+  }, [setProject, params.projectId]);
 
   useEffect(() => {
     apiGetMonthDetails(params.projectId).then(statMonth => {
@@ -161,19 +186,20 @@ const Details: React.FC = () => {
       );
       methodsCallChart.setOption(methodsCallOption as any);
     });
-  }, []);
+  }, [params.projectId]);
 
   return (
     <div className="project-detail">
       <div className="project-card project-status">
         <Table
+          locale={{emptyText: t('No Data')}}
           style={{ marginBottom: '24px' }}
           size="small"
           pagination={false}
           columns={[
             {
               title:
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+                <div className="th-default">
                   <img src={TimeSVG} alt="" style={{ marginRight: '8px' }}/>
                   <span>{t('listPage.Creation Time')}</span>
                 </div>,
@@ -183,14 +209,22 @@ const Details: React.FC = () => {
               width: 150,
             },
             {
-              title: t('Details.Requests Today'),
+              title:
+                <div className="th-default">
+                  <img src={RequestCountsSVG} alt="" style={{ marginRight: '8px' }}/>
+                  <span>{t('Details.Requests Today')}</span>
+                </div>,
               dataIndex: 'request',
               key: 'request',
               render: (text: string) => <span className="td-span-active">{text}</span>,
               width: 150,
             },
             {
-              title: t('Details.TodayBandwidth'),
+              title: 
+              <div className="th-default">
+                <img src={BandwidthSVG} alt="" style={{ marginRight: '8px' }}/>
+                <span>{t('Details.TodayBandwidth')}</span>
+              </div>,
               dataIndex: 'bandwidth',
               key: 'bandwidth',
               render: (text: string) => <span className="td-span-active">{text}B</span>,
@@ -198,7 +232,7 @@ const Details: React.FC = () => {
             },
             {
               title:
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+              <div className="th-default">
                 <img src={StatusSVG} alt="" style={{ marginRight: '8px' }}/>
                 <span>{t('Details.Status')}</span>
               </div>,
@@ -221,86 +255,49 @@ const Details: React.FC = () => {
                 </div>,
               width: 150,
             },
-            {
-              title:
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                <img src={OperatSVG} alt="" style={{ marginRight: '8px' }}/>
-                <span>{t('listPage.Operation')}</span>
-              </div>,
-              dataIndex: 'operations',
-              key: 'operations',
-              render: (ops: Operation[]) =>
-                <div style={{ textAlign: 'left' }}>
-                  {
-                    ops.map((op: Operation) => {
-                      switch (op) {
-                        case Operation.delete:
-                          return <span
-                            onClick={deleteProject}
-                            key={op}
-                            className="td-op">
-                              {t(`listPage.${op}`)}
-                          </span>
-                        case Operation.start:
-                          return <span
-                            onClick={startProject}
-                            key={op}
-                            className="td-op">
-                              {t(`listPage.${op}`)}
-                          </span>
-                        case Operation.stop:
-                          return <span
-                            onClick={stopProject}
-                            key={op}
-                            className="td-op">
-                              {t(`listPage.${op}`)}
-                          </span>
-                      }
-                    })
-                  }
-                  </div>,
-              width: 100,
-            },
           ]}
-          dataSource={projects}
+          dataSource={project ? [project] : []}
           rowKey={record => record.pid}>
         </Table>
-        <Table
-          size="small"
-          pagination={false}
-          columns={[
-            {
-              title: 'PID',
-              dataIndex: 'pid',
-              key: 'pid',
-              render: (text: string) => <span className="td-span-default">{text}</span>,
-              width: 150,
-            },
-            {
-              title: 'PSECRET',
-              dataIndex: 'psecret',
-              key: 'psecret',
-              render: (text: string) => <span className="td-span-default">{text}</span>,
-              width: 150,
-            },
-            {
-              title: 'ENDPOINTS',
-              dataIndex: 'endpin',
-              key: 'psecret',
-              render: (text: string) => <span className="td-span-default">{text}</span>,
-              width: 150,
-            }
-          ]}
-          dataSource={projects}
-          rowKey={record => record.pid}>
-        </Table>
+        <div>
+          <div className="mock-th">
+            <span>API</span>
+          </div>
+          <div className="mock-row active-row">
+            <div className="first-column">PID</div>
+            <div className="second-column">PSECRET</div>
+            <div className="third-column">ENDPOINTS</div>
+          </div>
+          <div className="mock-row">
+            <div className="first-column">
+              <span>{ project?.pid }</span>
+            </div>
+            <div className="second-column">
+              <img className="copy-img" onClick={ () => copy(project?.psecret || '')} src={CopySVG} alt=""/>
+            </div>
+            <div className="third-column">
+              <span>{ `${ENDPOINTS_URL}/${project?.chain}/${project?.pid}` }</span>
+              <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain}/${project?.pid}`)} src={CopySVG} alt=""/>
+            </div>
+          </div>
+          <div className="mock-row">
+            <div className="first-column"></div>
+            <div className="second-column"></div>
+            <div className="third-column">
+              <span>{ `${WSS_ENDPOINTS_URL}/${project?.chain}/${project?.pid}` }</span>
+              <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain}/${project?.pid}`)} src={CopySVG} alt=""/>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div className="project-card project-30days-request">
         <h2 className="card-h2">{t('Details.30days-request-counts')}</h2>
         <div>
           <div ref={requestEchart} style={{ width: '100%', height: '355px' }}/>
         </div>
       </div>
+
       <div className="project-card project-30days-bandwidth">
         <div className="bandwidth">
           <h2 className="card-h2">{t('Details.30days-bandwidth')}</h2>
@@ -315,6 +312,7 @@ const Details: React.FC = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };

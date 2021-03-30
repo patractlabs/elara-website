@@ -25,9 +25,12 @@ import img16 from '../../assets/service-advantage.svg';
 import img17 from '../../assets/service-advantage-zh.svg';
 import "./index.css";
 import { Language } from '../../core/enum';
-import { useHomeHeight } from '../../core/hooks/useHomeHeight';
 import { useApi } from '../../core/hooks/useApi';
 import { LoginModal } from '../Header/LoginModal';
+
+interface props {
+  data: { [key: string]: any };
+}
 
 const imgList = [
   img1,
@@ -48,10 +51,6 @@ const homeFonterImg = [
   img13,
 ];
 
-interface props {
-  data: { [key: string]: any };
-}
-
 const countUpProps = {
   star: 0,
   duration: 2.75,
@@ -63,16 +62,10 @@ const countUpProps = {
 
 const Home: React.FC<props> = ({ data }) => {
   const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
-  const [total, settotal] = useState(0);
+  const [ total, setTotal ] = useState(0);
   const history = createHashHistory();
-  const { homeHeight } = useApi();
-  // const HomeHeight = homeHeight();
+  const { isLogged, homeHeight } = useApi();
   const { t, i18n } = useTranslation();
-  const { isLogged } = useApi();
-
-  // useEffect(() => {
-  //   document.documentElement.scrollTop = HomeHeight.homeHeght;
-  // }, [HomeHeight.homeHeght]);
 
   const gotoDashboard = () => {
     if (!isLogged) {
@@ -84,17 +77,12 @@ const Home: React.FC<props> = ({ data }) => {
   useEffect(() => {
     window.scrollTo({ top: homeHeight.height });
   }, [homeHeight.height]);
+
   useEffect(() => {
     apiGetChainStats()
       .then(chainStatus => {
-        let total = 0;
-        for (const key in chainStatus) {
-          total += Number(chainStatus[key]);
-        }
-        settotal(total);
-      })
-      .catch((err) => {
-        console.log("err", err);
+        const _total = Object.keys(chainStatus).reduce((sum, current) => sum + Number(chainStatus[current]), 0)
+        setTotal(_total);
       });
   }, []);
 
@@ -132,7 +120,6 @@ const Home: React.FC<props> = ({ data }) => {
               :
               <img src={img17} alt="" />
           }
-          {/* <div className="area_title">{t("Product")}</div> */}
         </div>
         <div className="product_ul_holder">
           <ul className="product_ul">
@@ -168,7 +155,6 @@ const Home: React.FC<props> = ({ data }) => {
               :
               <img src={img15} alt="" />
           }
-          {/* <div className="area_title">{t("service")}</div> */}
         </div>
         <div className="service_ul_holder">
           <ul className="service_ul">

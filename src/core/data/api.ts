@@ -37,18 +37,6 @@ export const apiGetProjectDetail =
   async (id: string) => await httpGet<Project>(`${URL_ACCOUNT}/project/${id}`);
 
 /**
- * 
- */
-export const apiStopProject =
- async (id: string) => await httpPut<boolean>(`${URL_ACCOUNT}/project/${id}`);
-
-/**
- * 
- */
-export const apiDeleteProject =
-  async (id: string) => await httpDel<boolean>(`${URL_ACCOUNT}/project/${id}`);
-
-/**
  * 获取首页列表
  */
 export const apiGetChainStats =
@@ -73,6 +61,3 @@ export const apiGetMonthDetails =
 export const apiGetDayDetail =
   async (id: string) => await httpGet<StatDay>(`${URL_ACCOUNT}/stat/day/${id}`);
 
-function httpDel<T>(arg0: string) {
-  throw new Error('Function not implemented.');
-}

@@ -1,5 +1,4 @@
 import { User } from './../types/classes/user';
-import { ApiProps } from './../types/classes/api';
 import { useState } from "react";
 
 let _isLogged = false;

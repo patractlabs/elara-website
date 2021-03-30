@@ -1,10 +1,9 @@
 import { useMemo } from 'react'
-import { useParams, useLocation, useHistory, useRouteMatch } from 'react-router-dom'
+import { useLocation, useHistory, useRouteMatch } from 'react-router-dom'
 // import qs from 'qs'
 
 // https://usehooks.com/useRouter/
 export default function useRouter() {
-  const params = useParams()
   const location = useLocation()
   const history = useHistory()
   const match = useRouteMatch()
@@ -30,6 +29,6 @@ export default function useRouter() {
       location,
       history,
     }),
-    [params, match, location, history],
+    [match, location, history],
   )
 }

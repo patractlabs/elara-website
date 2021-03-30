@@ -18,9 +18,8 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
   const { setUser, setIsLoggged } = useApi();
   const { t } = useTranslation();
 
-  const loginInit = useCallback(() => {
-     
-    return apiLogin()
+  const loginInit = useCallback(() =>
+    apiLogin()
       .then(_user => {
         setIsLoggged(true);
         setUser(_user);
@@ -33,8 +32,22 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
           setIsLoggged(false);
           return false;
         }
-      });
-  }, []);
+      }
+  ), [setIsLoggged, setUser, history]);
+
+  const openWindow = () => {
+    window.open(`${URL_ACCOUNT}/auth/github`);
+    console.log('open window', `${URL_ACCOUNT}/auth/github`);
+    window.onmessage = function (ev: { data: any }) {
+      console.log('ev', ev);
+      
+      if (off) {
+        console.log('message', ev.data);
+        loginInit();
+        off = false;
+      }
+    };
+  };
 
   useEffect(() => {
     if (!isModalVisible) {
@@ -53,20 +66,6 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
       clearInterval(repeater)
     }
   }, [isModalVisible, loginInit]);
-
-  const openWindow = () => {
-    window.open(`${URL_ACCOUNT}/auth/github`);
-    console.log('open window', `${URL_ACCOUNT}/auth/github`);
-    window.onmessage = function (ev: { data: any }) {
-      console.log('ev', ev);
-      
-      if (off) {
-        console.log('message', ev.data);
-        loginInit();
-        off = false;
-      }
-    };
-  };
 
   return (
     <div className="login-modal">

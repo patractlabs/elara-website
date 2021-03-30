@@ -39,7 +39,7 @@ const Projects: React.FC<childProps> = () => {
 
   const columns = [
     {
-      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+      title: <div className="th-default">
         <img src={NameSVG} alt="" style={{ marginRight: '8px' }}/>
         <span>{t('listPage.projectName')}</span>
       </div>,
@@ -49,7 +49,7 @@ const Projects: React.FC<childProps> = () => {
       width: 150,
     },
     {
-      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+      title: <div className="th-default">
         <img src={TimeSVG} alt="" style={{ marginRight: '8px' }}/>
         <span>{t('listPage.Creation Time')}</span>
       </div>,
@@ -59,7 +59,7 @@ const Projects: React.FC<childProps> = () => {
       width: 150,
     },
     {
-      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+      title: <div className="th-default">
         <img src={StatusSVG} alt="" style={{ marginRight: '8px' }}/>
         <span>{t('listPage.Status')}</span>
       </div>,
@@ -83,7 +83,7 @@ const Projects: React.FC<childProps> = () => {
       width: 150,
     },
     {
-      title: <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+      title: <div className="th-default">
         <img src={OperatSVG} alt="" style={{ marginRight: '8px' }}/>
         <span>{t('listPage.Operation')}</span>
       </div>,
@@ -92,6 +92,7 @@ const Projects: React.FC<childProps> = () => {
       render: (ops: Operation[], item: Project) =>
         <div style={{ textAlign: 'left' }}>
           {
+            // eslint-disable-next-line array-callback-return
             ops.map((op: Operation) => {
               switch (op) {
                 case Operation.view:
@@ -141,9 +142,9 @@ const Projects: React.FC<childProps> = () => {
               ({
                 ...project,
                 operations: [
-                  project.status === ProjectStatus.Active ? Operation.stop : Operation.start,
+                  // project.status === ProjectStatus.Active ? Operation.stop : Operation.start,
                   Operation.view,
-                  Operation.delete,
+                  // Operation.delete,
                 ]
               })
             )
@@ -162,6 +163,7 @@ const Projects: React.FC<childProps> = () => {
         { t('listPage.Create Project') }
       </button>
       <Table
+        locale={{emptyText: t('No Data')}}
         size="small"
         pagination={false}
         style={{ marginTop: '12px' }}

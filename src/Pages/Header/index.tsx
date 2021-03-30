@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./index.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Menu, Dropdown } from "antd";
@@ -7,12 +8,8 @@ import { apiLogin, apiLogout } from "../../core/data/api";
 import { delCookie } from "../../shared/utils/index";
 import logo from '../../assets/logo.svg';
 import signOut from '../../assets/quit.svg';
-import "./index.css";
-import { APIError, APIErrorType } from '../../core/types/classes/error';
 import { LoginModal } from './LoginModal';
 import { useApi } from '../../core/hooks/useApi';
-
-const imglist = [ logo, signOut ];
 
 enum ScrollTarget {
   Home = 'Home',
@@ -31,31 +28,15 @@ enum MouseOn {
 const Header: React.FC = () => {
   const [ mouseOn, setMouseOn ] = useState<MouseOn>(MouseOn.Null);
   const { t, i18n } = useTranslation();
-  const { user, setUser, isLogged, setIsLoggged } = useApi();
-  const { homeHeight } = useApi();
-
-  useEffect(() => {
-    apiLogin()
-      .then(_user => {
-        setIsLoggged(true);
-        setUser(_user);
-
-        localStorage.setItem("user", JSON.stringify(_user));
-      })
-      .catch((err: APIError) => {
-        if (err.type === APIErrorType.business) {
-          setIsLoggged(false);
-        }
-      });
-    return () => {};
-  }, []);
+  const { homeHeight, user, setUser, isLogged, setIsLoggged } = useApi();
+  const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
 
   const logout = () => {
     apiLogout()
       .then(() => {
-        window.location.reload()
         delCookie();
         setIsLoggged(false);
+        window.location.reload()
       })
       .catch((err) => {
         console.log("err", err);
@@ -98,7 +79,7 @@ const Header: React.FC = () => {
       <li className="menu-split"></li>
       <li className="user-menu-logout">
         <div className="sign-out" onClick={logout}>
-          <img src={imglist[1]} alt="" />
+          <img src={signOut} alt="" />
           <span>{t("user.Logout")}</span>
         </div>
       </li>
@@ -119,7 +100,18 @@ const Header: React.FC = () => {
       </Menu.Item>
     </Menu>
   );
-  const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
+
+  useEffect(() => {
+    apiLogin()
+      .then(_user => {
+        setUser(_user);
+        setIsLoggged(true);
+        localStorage.setItem("user", JSON.stringify(_user));
+      })
+      .catch(() => {
+        setIsLoggged(false);
+      });
+  }, [setIsLoggged, setUser]);
 
   return (
     <div className="head-main animated fadeInDown">
@@ -127,7 +119,7 @@ const Header: React.FC = () => {
         <Link to="/" style={{ display: 'flex', height: '100%', alignItems: 'center', marginRight: '5px' }}>
           <img
             onClick={() => scrollTo(ScrollTarget.Home)}
-            src={imglist[0]}
+            src={logo}
             className="logo"
             alt=""
           />
@@ -167,15 +159,6 @@ const Header: React.FC = () => {
               </a>
               {
                 mouseOn === MouseOn.APIDoc && 
-                  <div className="tab-title-bottom"></div>
-              }
-            </li>
-            <li>
-              <a target="_blank" rel="noreferrer" href="https://patract.io/" onMouseOver={() => setMouseOn(MouseOn.Hub)} onMouseOut={() => setMouseOn(MouseOn.Null)}>
-                {t("patract hub")}
-              </a>
-              {
-                mouseOn === MouseOn.Hub && 
                   <div className="tab-title-bottom"></div>
               }
             </li>
