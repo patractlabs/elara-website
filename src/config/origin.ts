@@ -10,8 +10,8 @@ if (process.env.REACT_APP_NODE_ENV === 'development') {
   ENDPOINTS_URL = "https://test-api.elara.patract.io";
   WSS_ENDPOINTS_URL = "wss://test-api.elara.patract.io";
 } else if (process.env.REACT_APP_NODE_ENV === 'pre-production') {
-  LOGIN_DOMAIN = 'https://test-elara.patract.io';
-  // LOGIN_DOMAIN = 'https://elara-website-git-xyl-dev-patract.vercel.app';
+  // LOGIN_DOMAIN = 'https://test-elara.patract.io';
+  LOGIN_DOMAIN = 'https://elara-website-git-xyl-dev-patract.vercel.app';
   API_DOMAIN = 'https://test-elara.patract.io';
 
   ENDPOINTS_URL = "https://test-api.elara.patract.io";

@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/auth/github", "destination": "https://test-elara.patract.io/auth/github" }
+  ]
+}
