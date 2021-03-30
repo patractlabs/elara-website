@@ -2,61 +2,61 @@ import { User } from './../types/classes/user';
 import { ProjectCreatDto } from './../types/dto/project-create';
 import { Project } from '../types/classes/project';
 import { httpPost, httpGet } from './http'
-import { URL_ACCOUNT } from '../../config/origin';
+import { API_DOMAIN } from '../../config/origin';
 import { ChainStats, StatDay, StatMonth, StatWeek } from '../types/classes/stat';
 
 /**
  * 登陆
  */
 export const apiLogin =
-  async () => await httpGet<User>(`${URL_ACCOUNT}/auth/login`);
+  async () => await httpGet<User>(`${API_DOMAIN}/auth/login`);
 
 /**
  * 退出登录
  */
 export const apiLogout =
-  async () => await httpGet<undefined>(`${URL_ACCOUNT}/auth/logout`);
+  async () => await httpGet<undefined>(`${API_DOMAIN}/auth/logout`);
 
 /**
  * 新建数据
  */
 export const apiCreateProject =
-  async (data: ProjectCreatDto) => await httpPost<Project>(`${URL_ACCOUNT}/project/create`, data);
+  async (data: ProjectCreatDto) => await httpPost<Project>(`${API_DOMAIN}/project/create`, data);
 
 /**
  * 控制台获取数据
  */
 export const apiGetProjectList =
-  async () => await httpGet<Project[]>(`${URL_ACCOUNT}/project/list`);
+  async () => await httpGet<Project[]>(`${API_DOMAIN}/project/list`);
 
 /**
  * 控制台项目详情
  */
 export const apiGetProjectDetail =
-  async (id: string) => await httpGet<Project>(`${URL_ACCOUNT}/project/${id}`);
+  async (id: string) => await httpGet<Project>(`${API_DOMAIN}/project/${id}`);
 
 /**
  * 获取首页列表
  */
 export const apiGetChainStats =
-  async () => await httpGet<ChainStats>(`${URL_ACCOUNT}/stat/chain`);
+  async () => await httpGet<ChainStats>(`${API_DOMAIN}/stat/chain`);
 
 /**
  * 控制台详情七天数据
  */
 export const apiGetWeekDetails =
-  async (id: string) => await httpGet<StatWeek>(`${URL_ACCOUNT}/stat/week/${id}`);
+  async (id: string) => await httpGet<StatWeek>(`${API_DOMAIN}/stat/week/${id}`);
 
 
 /**
  * 控制台详情30天数据
  */
 export const apiGetMonthDetails =
-  async (id: string) => await httpGet<StatMonth>(`${URL_ACCOUNT}/stat/month/${id}`);
+  async (id: string) => await httpGet<StatMonth>(`${API_DOMAIN}/stat/month/${id}`);
 
 /**
  * 控制台详情项目当天统计数据
  */
 export const apiGetDayDetail =
-  async (id: string) => await httpGet<StatDay>(`${URL_ACCOUNT}/stat/day/${id}`);
+  async (id: string) => await httpGet<StatDay>(`${API_DOMAIN}/stat/day/${id}`);
 
