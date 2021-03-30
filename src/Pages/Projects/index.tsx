@@ -30,7 +30,7 @@ const Projects: React.FC = () => {
     setUpdateSiganl(updateSignal + 1);
     setCreateIsModalVisible(false);
     setUpdateProjectCountsSignal(updateProjectCountsSignal + 1);
-  }, [updateSignal]);
+  }, [updateSignal, updateProjectCountsSignal, setUpdateProjectCountsSignal]);
 
   useEffect(() => {
     apiGetProjectList().then(

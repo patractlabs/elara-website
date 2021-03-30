@@ -8,9 +8,9 @@ import * as echarts from 'echarts';
 import "./index.css";
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ProjectStatus, Operation } from '../../core/enum';
+import { ProjectStatus } from '../../core/enum';
 import { Table } from 'antd';
-import { StatMonth } from '../../core/types/classes/stat-week';
+import { StatMonth } from '../../core/types/classes/stat';
 import TimeSVG from '../../assets/time.svg';
 import ActiveStatusSVG from '../../assets/active-status.svg';
 import DeactiveStatusSVG from '../../assets/deactive-status.svg';
@@ -29,7 +29,6 @@ interface ProjectDetail {
   status: ProjectStatus;
   pid: string;
   psecret: string;
-  operations?: Operation[];
   chain: string;
 }
 
@@ -134,9 +133,9 @@ const Details: React.FC = () => {
   const { t } = useTranslation();
   const [ project, setProject ] = useState<ProjectDetail>();
   const params = useParams<{ projectId: string; chain: string }>();
-  const requestEchart = useRef(null);
-  const bandwidthEchart = useRef(null);
-  const methodsCallEchart = useRef(null);
+  const requestEchart = useRef<HTMLDivElement>(null);
+  const bandwidthEchart = useRef<HTMLDivElement>(null);
+  const methodsCallEchart = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     const projectPromise = apiGetProjectDetail(params.projectId);
@@ -172,19 +171,13 @@ const Details: React.FC = () => {
         ]
         : methodsCallOption.series[0].data;
 
-      const chart = echarts.init(
-        (requestEchart.current as unknown) as HTMLDivElement
-      );
+      const chart = echarts.init(requestEchart.current!);
       chart.setOption(requestOption);
 
-      const bandwindthChart = echarts.init(
-        (bandwidthEchart.current as unknown) as HTMLDivElement
-      );
+      const bandwindthChart = echarts.init(bandwidthEchart.current!);
       bandwindthChart.setOption(bandwidthOption);
 
-      const methodsCallChart = echarts.init(
-        (methodsCallEchart.current as unknown) as HTMLDivElement
-      );
+      const methodsCallChart = echarts.init(methodsCallEchart.current!);
       methodsCallChart.setOption(methodsCallOption);
       console.log('init charts');
     });

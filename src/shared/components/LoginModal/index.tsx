@@ -8,7 +8,7 @@ import ElaraLogin from '../../../assets/elara-login.webp';
 import GithubLogo from '../../../assets/github-logo.svg';
 import CloseIcon from '../../../assets/close.svg';
 import './index.css';
-import { createPlainModal } from '../../../shared/components/plain-modal';
+import { createPlainModal } from '../plain-modal';
 import { useApi } from '../../../core/hooks/useApi';
 
 let off = true;

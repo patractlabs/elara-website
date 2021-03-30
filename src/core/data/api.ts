@@ -3,8 +3,7 @@ import { ProjectCreatDto } from './../types/dto/project-create';
 import { Project } from '../types/classes/project';
 import { httpPost, httpGet } from './http'
 import { URL_ACCOUNT } from '../../config/origin';
-import { ChainStats, StatDay } from '../types/classes/stat';
-import { StatMonth, StatWeek } from '../types/classes/stat-week';
+import { ChainStats, StatDay, StatMonth, StatWeek } from '../types/classes/stat';
 
 /**
  * 登陆

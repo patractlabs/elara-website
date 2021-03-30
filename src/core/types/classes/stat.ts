@@ -1,18 +1,5 @@
 export class ChainStats {
   [ key: string ]: string;
-  // polkadot: string;
-  // kusama: string;
-  // jupiter: string;
-  // rococo: string;
-  // darwinia: string;
-  // dock: string;
-  // edgeware: string;
-  // kulupu: string;
-  // nodle: string;
-  // plasm: string;
-  // stafi: string;
-  // mandala: string;
-  // chainx: string;
 }
 
 export class StatDay {
@@ -34,3 +21,9 @@ export class StatDay {
   timeout: number;
   delay: number;
 }
+
+export class StatWeek {
+  [ key: string ]: StatDay;
+}
+
+export class StatMonth extends StatWeek {}

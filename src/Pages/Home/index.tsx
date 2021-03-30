@@ -24,7 +24,7 @@ import img17 from '../../assets/service-advantage-zh.svg';
 import "./index.css";
 import { Language } from '../../core/enum';
 import { useApi } from '../../core/hooks/useApi';
-import { LoginModal } from '../Header/LoginModal';
+import { LoginModal } from '../../shared/components/LoginModal';
 
 const imgList = [
   img1,

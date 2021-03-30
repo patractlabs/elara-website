@@ -24,7 +24,7 @@ const getCookie = (name: string) => {
   if (arr) {
     return (arr[2]);
   }
-  return null;
+  return '';
 }
 
 const delCookie = () => {

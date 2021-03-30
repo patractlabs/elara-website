@@ -23,10 +23,3 @@ export enum ProjectStatus {
   Active = 'Active',
   Stop = 'Stop',
 }
-
-export enum Operation {
-  view = 'op-view',
-  stop = 'op-stop',
-  start = 'op-start',
-  delete = 'op-delete',
-}

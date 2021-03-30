@@ -8,8 +8,9 @@ import { apiLogin, apiLogout } from "../../core/data/api";
 import { delCookie } from "../../shared/utils/index";
 import logo from '../../assets/logo.svg';
 import signOut from '../../assets/quit.svg';
-import { LoginModal } from './LoginModal';
+import { LoginModal } from '../../shared/components/LoginModal';
 import { useApi } from '../../core/hooks/useApi';
+import { Language } from '../../core/enum';
 
 enum ScrollTarget {
   Home = 'Home',
@@ -86,12 +87,12 @@ const Header: React.FC = () => {
   const LanguageMenu = (
     <Menu>
       <Menu.Item>
-        <p onClick={() => i18n.changeLanguage("en")} className="changeLanguage">
+        <p onClick={() => i18n.changeLanguage(Language.en)} className="changeLanguage">
           English
         </p>
       </Menu.Item>
       <Menu.Item>
-        <p onClick={() => i18n.changeLanguage("zh")} className="changeLanguage">
+        <p onClick={() => i18n.changeLanguage(Language.zh)} className="changeLanguage">
           中文
         </p>
       </Menu.Item>
@@ -188,7 +189,7 @@ const Header: React.FC = () => {
             <Dropdown overlay={LanguageMenu}>
               <span className="PHover" style={{ marginLeft: '25px' }}>
                 <span style={{ marginRight: '8px' }}>
-                  {i18n.language === "en" ? "English " : "中文 "}
+                  {i18n.language === Language.en ? "English " : "中文 "}
                 </span>
                 <DownOutlined
                   style={{
