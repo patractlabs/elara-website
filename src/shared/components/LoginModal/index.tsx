@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { apiLogin } from '../../../core/data/api';
-import { APIError, APIErrorType } from '../../../core/types/classes/error';
-import { createHashHistory } from "history";
+import { APIError } from '../../../core/types/classes/error';
 import { LOGIN_DOMAIN } from '../../../config/origin';
 import ElaraLogin from '../../../assets/elara-login.webp';
 import GithubLogo from '../../../assets/github-logo.svg';
@@ -10,11 +9,12 @@ import CloseIcon from '../../../assets/close.svg';
 import './index.css';
 import { createPlainModal } from '../plain-modal';
 import { useApi } from '../../../core/hooks/useApi';
+import { useHistory } from 'react-router';
 
 let off = true;
 
 const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> = ({ isModalVisible, onModalClose }) => {
-  const history = createHashHistory();
+  const history = useHistory();
   const { setUser, setIsLoggged } = useApi();
   const { t } = useTranslation();
 
@@ -28,10 +28,8 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
         return true;
       })
       .catch((err: APIError) => {
-        if (err.type === APIErrorType.business) {
-          setIsLoggged(false);
-          return false;
-        }
+        setIsLoggged(false);
+        return false;
       }
   ), [setIsLoggged, setUser, history]);
 
