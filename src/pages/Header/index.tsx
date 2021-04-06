@@ -162,18 +162,32 @@ const Header: React.FC = () => {
             </li>
           </ul>
           <ul className="head-right">
+          <li>
+            <Dropdown overlay={LanguageMenu}>
+              <span>
+                <span style={{ marginRight: '8px', cursor: 'pointer' }}>
+                  {i18n.language === Language.en ? "English " : "中文 "}
+                </span>
+                <DownOutlined
+                  style={{
+                    display: "inline-block",
+                    color: "#2A292B",
+                  }}
+                />
+              </span>
+            </Dropdown>
+          </li>
           {
             isLogged ?
               <li>
                 <Dropdown overlay={UserMenu}>
-                  <span className="PHover">
+                  <span>
                     <span style={{ marginRight: '8px' }}>
                       { user.username }
                     </span>
                     <DownOutlined
                       style={{
                         display: "inline-block",
-                        color: " #fff",
                       }}
                     />
                   </span>
@@ -185,21 +199,6 @@ const Header: React.FC = () => {
                 <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
               </li>
           }
-           <li>
-            <Dropdown overlay={LanguageMenu}>
-              <span className="PHover" style={{ marginLeft: '25px' }}>
-                <span style={{ marginRight: '8px' }}>
-                  {i18n.language === Language.en ? "English " : "中文 "}
-                </span>
-                <DownOutlined
-                  style={{
-                    display: "inline-block",
-                    color: " #fff",
-                  }}
-                />
-              </span>
-            </Dropdown>
-          </li>
         </ul>
         </div>
       </div>

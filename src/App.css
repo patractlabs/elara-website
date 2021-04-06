@@ -145,8 +145,8 @@ table {
 
 html,
 body {
-	min-width: 1200px;
-  background: #EFF2F5;
+	/* min-width: 1200px; */
+  /* background: #EFF2F5; */
 }
 
 .ant-layout.ant-layout-has-sider>.ant-layout,

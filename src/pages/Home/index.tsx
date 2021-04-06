@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { apiGetChainStats } from "../../core/data/api";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import Footer from "../Footer/index";
 import img1 from '../../assets/cp1.svg';
 import img2 from '../../assets/cp2.svg';
 import img3 from '../../assets/cp3.svg';
@@ -11,20 +10,21 @@ import img5 from '../../assets/all-network.svg';
 import img6 from '../../assets/request.svg';
 import img7 from '../../assets/projects.svg';
 import img8 from '../../assets/sv4.svg';
-import img9 from '../../assets/Email.svg';
-import img10 from '../../assets/Github.svg';
-import img11 from '../../assets/Twitter.svg';
-import img12 from '../../assets/Medium.svg';
-import img13 from '../../assets/Element.svg';
-import img14 from '../../assets/free-service.svg';
-import img15 from '../../assets/free-service-zh.svg';
-import img16 from '../../assets/service-advantage.svg';
-import img17 from '../../assets/service-advantage-zh.svg';
+import FooterLogo from '../../assets/footer-logo.svg';
+import WechatSvg from '../../assets/wechat.svg';
+import TwitterSvg from '../../assets/twitter.svg';
+import MediumSvg from '../../assets/medium.svg';
+import TelegramSvg from '../../assets/telegram.svg';
+import DiscordSvg from '../../assets/discord.svg';
+import YoutubeSvg from '../../assets/youtube.svg';
+import ElementSvg from '../../assets/ele.svg';
+import GithubSvg from '../../assets/github.svg';
 import "./index.css";
 import { Language } from '../../core/enum';
 import { useApi } from '../../core/hooks/useApi';
 import { LoginModal } from '../../shared/components/LoginModal';
 import { useHistory } from 'react-router';
+import { Button, Carousel, Input } from 'antd';
 
 const imgList = [
   img1,
@@ -37,14 +37,6 @@ const imgList = [
   img8,
 ];
 
-const homeFonterImg = [
-  img9,
-  img10,
-  img11,
-  img12,
-  img13,
-];
-
 const countUpProps = {
   star: 0,
   duration: 2.75,
@@ -53,7 +45,6 @@ const countUpProps = {
   useGrouping: true,
   separator: ",",
 };
-
 const Home: React.FC = () => {
   const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
   const [ total, setTotal ] = useState(0);
@@ -85,131 +76,203 @@ const Home: React.FC = () => {
   return (
     <div className="Home" id="Home">
       <div className="Home_banner animated fadeInLeft">
-        {
-          i18n.language === Language.zh ?
-            <h3 className="banner_title1">波卡生态的<span >公共API接入服务</span></h3>
-            :
-            <h3 className="banner_title1"><span>Public API Access Service for</span><br/>Polkadot Ecosystem</h3>
-        }
-        <h5 className="banner_title2"> {t("bannerTitle2")} </h5>
-        <div
-          className="service_btn"
-          onClick={gotoDashboard}
-        >
-          {t("bannerBtn")}
+        <div className="banner-img banner-img1 animated fadeInRight"></div>
+        <div className="banner-title-holder">
+          {
+            i18n.language === Language.zh ?
+              <h3 className="banner_title1">波卡生态的公共API接入服务</h3>
+              :
+              <h3 className="banner_title1"><span>Public API Access Service for</span><br/>Polkadot Ecosystem</h3>
+          }
+          <h5 className="banner_title2"> {t("bannerTitle2")} </h5>
         </div>
-        <div className="countup-wrap">
-          <div className="countup">
-            <div className="countup-title">{t("Cumulative")}</div>
-            <div className="countup-counts">
-              <CountUp end={total} suffix="" {...countUpProps}></CountUp>
-            </div>
+        <div className="banner-img banner-img2 animated fadeInLeft"></div>
+
+        <div className="banner-center-holder">
+          <span className="countup-title">
+            {t('Cumulative')}
+          </span>
+          <span className="countup">
+            <CountUp end={total} suffix="" {...countUpProps}></CountUp>
+          </span>
+          <div className="active-btn" onClick={gotoDashboard}>
+            {t("bannerBtn")}
           </div>
         </div>
       </div>
 
-      <div className="product animated fadeInRight">
-        <div className="title_holder">
-          {
-            i18n.language === Language.en ?
-              <img src={img16} alt="" />
-              :
-              <img src={img17} alt="" />
-          }
+      <div className="advantage-holder animated fadeInRight">
+        <div className="advantage-row">
+          <div className="advantage">
+            <img src={imgList[0]} alt="" />
+            <h4>{t("Easy")}</h4>
+            <p>{t("NoNeed")} </p>
+          </div>
+          <div className="advantage">
+            <img src={imgList[1]} alt="" />
+            <h4>{t("Stable")}</h4>
+            <p>{t("ElaraHandles")}</p>
+          </div>
         </div>
-        <div className="product_ul_holder">
-          <ul className="product_ul">
-            <li>
-              <img src={imgList[0]} alt="" />
-              <h4>{t("Easy")}</h4>
-              <p>{t("NoNeed")} </p>
-            </li>
-            <li>
-              <img src={imgList[1]} alt="" />
-              <h4>{t("Stable")}</h4>
-              <p>{t("ElaraHandles")}</p>
-            </li>
-            <li>
-              <img src={imgList[2]} alt="" />
-              <h4>{t("Rich")}</h4>
-              <p>{t("Ourhighly")}</p>
-            </li>
-            <li>
-              <img src={imgList[3]} alt="" />
-              <h4>{t("Customer")}</h4>
-              <p>{t("WeProvide")}</p>
-            </li>
-          </ul>
+        <div className="advantage-row">
+          <div className="advantage">
+            <img src={imgList[2]} alt="" />
+            <h4>{t("Rich")}</h4>
+            <p>{t("Ourhighly")}</p>
+          </div>
+          <div className="advantage">
+            <img src={imgList[3]} alt="" />
+            <h4>{t("Customer")}</h4>
+            <p>{t("WeProvide")}</p>
+          </div>
         </div>
       </div>
 
-      <div className="service" id="home-service">
-        <div className="title_holder">
-          {
-            i18n.language === Language.en ?
-              <img src={img14} alt="" />
-              :
-              <img src={img15} alt="" />
-          }
-        </div>
-        <div className="service_ul_holder">
-          <ul className="service_ul">
-            <li>
-              <img src={imgList[4]} alt="" />
-              <p>{t("AllNetworks")}</p>
-              <p>{t("AllNetworks1")}</p>
-            </li>
-            <li>
-              <img src={imgList[5]} alt="" />
+
+      <div className="product">
+        <h2>
+          我们为您提供
+        </h2>
+        <div className="product-main">
+          <div className="product-left"></div>
+          <div style={{ position: 'absolute', left: '240px', right: '240px', height: '327px' }}>
+            <Carousel autoplay>
               <div>
-              <p>{t("1000000requests")}</p>
-              <p>{t("1000000requests1")}</p>
+                <div className="autoplay-content">
+                  <div className="all-chain">
+                    波卡所有生态网络
+                  </div>
+                </div>
               </div>
-            </li>
-            <li>
-              <img src={imgList[6]} alt="" />
-              <p>{t("10projects")}</p>
-            </li>
-          </ul>
+              <div>
+                <div className="autoplay-content">
+                  <p className="product-tip">{t("1000000requests")}</p>
+                  <p className="product-text">1000000</p>
+                  <p className="product-tip">{t("1000000requests1")}</p>
+                </div>
+              </div>
+              <div>
+                <div className="autoplay-content">
+                  <p className="product-text">10 个免费项目</p>
+                </div>
+              </div>
+            </Carousel>
+          </div>
+          <div className="product-right"></div>
         </div>
-        <div
-          className="service_btn service_btn_service"
-          onClick={gotoDashboard}
-        >
-          {t("bannerBtn")}
-        </div>
+        <div onClick={gotoDashboard} className="black-btn">{t('bannerBtn')}</div>
       </div>
 
-      <div className="HomeFooter" id="home-footer">
-        <ul>
-          <li>
-            <img src={homeFonterImg[0]} alt="" />
-            <a href="mailto:hi@patractlabs.com">Email</a>
-          </li>
-          <li>
-            <img src={homeFonterImg[1]} alt="" />
-            <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/elara">Github</a>
-          </li>
-          <li>
-            <img src={homeFonterImg[2]} alt="" />
-
-            <a target="_blank" rel="noreferrer" href="https://twitter.com/patractlabs">Twitter</a>
-          </li>
-          <li>
-            <img src={homeFonterImg[3]} alt="" />
-
-            <a target="_blank" rel="noreferrer" href="https://medium.com/@patractlabs">Medium</a>
-          </li>
-          <li>
-            <img src={homeFonterImg[4]} alt="" />
-            <a target="_blank" rel="noreferrer" href="https://app.element.io/#/room/!sezLvdnMOcNSSAKcZg:matrix.org">
-              Element
-            </a>
-          </li>
-        </ul>
-        <Footer />
-        <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
-      </div>
+      <footer className="home-footer" id="home-footer">
+        <div className="footer-content">
+          <h2 className="footer-sites-title">
+            波卡生态的公共API接入服务
+          </h2>
+          <div className="footer-content-main">
+            <div className="footer-sites-holder">
+               <ul className="site-list">
+                <li className="site">
+                  <a href="">Jupiter</a>
+                </li>
+                <li className="site">
+                  <a href="">Ask!</a>
+                </li>
+                <li className="site">
+                  <a href="">Metis</a>
+                </li>
+                <li className="site">
+                  <a href="">Redspot</a>
+                </li>
+                <li className="site">
+                  <a href="">Europa</a>
+                </li>
+                <li className="site">
+                  <a href="">zkMega</a>
+                </li>
+              </ul>
+              <ul className="site-list">
+                <li className="site">
+                  <a href="">Himalia</a>
+                </li>
+                <li className="site">
+                  <a href="">Elara</a>
+                </li>
+                <li className="site">
+                  <a href="">Leda</a>
+                </li>
+                <li className="site">
+                  <a href="">Carpo</a>
+                </li>
+                <li className="site">
+                  <a href="">PatraStore</a>
+                </li>
+                <li className="site">
+                  <a href="">PatraScan</a>
+                </li>
+              </ul>
+            </div>
+            <div className="contact">
+              <h2>联系和订阅</h2>
+              <div>
+                <Input style={{ height: '48px', width: '300px', marginRight: '10px' }} />
+                <Button style={{ color: 'white', backgroundColor: '#14B071', height: '48px', width: '120px' }}>Subscribe</Button>
+              </div>
+              <ul className="contact-list">
+                <li>
+                  <a href="mailto:hi@patractlabs.com">
+                    <img src={WechatSvg} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" href="https://twitter.com/patractlabs">
+                    <img src={TwitterSvg} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" href="https://medium.com/@patractlabs">
+                    <img src={MediumSvg} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" href="https://t.me/patract">
+                    <img src={TelegramSvg} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" href="https://discord.gg/wJ8TnTfjcq">
+                    <img src={DiscordSvg} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCnvwkuLKx6k56M5rErH9AoQ">
+                    <img src={YoutubeSvg} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" href="https://app.element.io/#/room/#PatractLabsDev:matrix.org">
+                    <img src={ElementSvg} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/elara">
+                    <img src={GithubSvg} alt="" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="footer-info">
+          <div>
+            <img src={FooterLogo} alt="" />
+          </div>
+          <div className="info-row">
+            <p className="copyright">© 2021 Patract Labs Co., Limited, All Rights Reserved.</p>
+            <p className="email">hi@patract.io</p>
+          </div>
+        </div>
+      </footer>
+      <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
     </div>
   );
 };

@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>丰富的多链支持</title>
+    <title>编组 16</title>
+    <defs>
+        <linearGradient x1="90.9354199%" y1="0%" x2="9.06458006%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#1AB174" offset="0%"></stop>
+            <stop stop-color="#118A68" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="104.496594%" y1="31.5688776%" x2="0%" y2="68.4311224%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="34.7800238%" x2="100%" y2="65.2199762%" id="linearGradient-4">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="35.5029586%" x2="-8.82416178%" y2="67.6797899%" id="linearGradient-5">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-10.7033325%" y1="25.7498306%" x2="100%" y2="68.4311224%" id="linearGradient-6">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-7">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
     <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Linkweb3-首页" transform="translate(-290.000000, -1217.000000)" fill="#39CA9F">
-            <g id="丰富的多链支持" transform="translate(290.000000, 1217.000000)">
-                <path d="M80,53 L80,57 L57,57 L57,80 L53,80 L53,53 L80,53 Z M38,40 C39.1045695,40 40,40.8954305 40,42 L40,78 C40,79.1045695 39.1045695,80 38,80 L2,80 C0.8954305,80 0,79.1045695 0,78 L0,42 C0,40.8954305 0.8954305,40 2,40 L38,40 Z M36,44 L4,44 L4,76 L36,76 L36,44 Z M78,0 C79.1045695,0 80,0.8954305 80,2 L80,38 C80,39.1045695 79.1045695,40 78,40 L42,40 C40.8954305,40 40,39.1045695 40,38 L40,2 C40,0.8954305 40.8954305,0 42,0 L78,0 Z M76,4 L44,4 L44,36 L76,36 L76,4 Z M27,0 L27,27 L0,27 L0,23 L23,23 L23,0 L27,0 Z"></path>
+        <g id="Elara中文" transform="translate(-320.000000, -1070.000000)">
+            <g id="编组-16" transform="translate(320.000000, 1070.000000)">
+                <rect id="矩形" x="0" y="0" width="80" height="80"></rect>
+                <g id="编组-15" transform="translate(4.000000, 0.000000)">
+                    <path d="M40.0682178,1.07179677 L67.9317722,16.8890723 C70.5092179,18.3522082 72.0685261,21.0822549 71.9976848,24.0076977 L71.2054825,56.7222636 C71.1372981,59.5379874 69.5682244,62.1110125 67.0743251,63.4966882 L40.002973,78.5382392 C37.518921,79.9184435 34.481079,79.9184435 31.997027,78.5382392 L4.92567491,63.4966882 C2.43177561,62.1110125 0.862701885,59.5379874 0.794517492,56.7222636 L0.00231522654,24.0076977 C-0.0685260756,21.0822549 1.49078212,18.3522082 4.06822781,16.8890723 L31.9317822,1.07179677 C34.4492041,-0.35726559 37.5507959,-0.35726559 40.0682178,1.07179677 Z" id="多边形" fill="url(#linearGradient-1)"></path>
+                    <line x1="36.3963346" y1="10.2623957" x2="36.3963346" y2="41.2623957" id="路径-8" stroke="url(#linearGradient-2)" opacity="0.5"></line>
+                    <line x1="63.8963346" y1="24.2623957" x2="36.3963346" y2="41.2623957" id="路径-8" stroke="url(#linearGradient-3)" opacity="0.5"></line>
+                    <line x1="64.8963346" y1="57.2623957" x2="36.3963346" y2="41.2623957" id="路径-8" stroke="url(#linearGradient-4)" opacity="0.5"></line>
+                    <line x1="10.8963346" y1="55.2623957" x2="36.3963346" y2="41.2623957" id="路径-8" stroke="url(#linearGradient-5)" opacity="0.5"></line>
+                    <line x1="8.89633458" y1="24.2623957" x2="36.3963346" y2="41.2623957" id="路径-8" stroke="url(#linearGradient-6)" opacity="0.5"></line>
+                    <line x1="36.3963346" y1="68.2623957" x2="36.3963346" y2="41.2623957" id="路径-8" stroke="url(#linearGradient-7)" opacity="0.5"></line>
+                    <polygon id="多边形备份" fill="#FFFFFF" transform="translate(8.396335, 23.762396) rotate(45.000000) translate(-8.396335, -23.762396) " points="8.39633458 18.7623957 13.3963346 23.7623957 8.39633458 28.7623957 3.39633458 23.7623957"></polygon>
+                    <polygon id="多边形备份-4" fill="#FFFFFF" transform="translate(8.396335, 56.762396) rotate(45.000000) translate(-8.396335, -56.762396) " points="8.39633458 51.7623957 13.3963346 56.7623957 8.39633458 61.7623957 3.39633458 56.7623957"></polygon>
+                    <polygon id="多边形备份-2" fill="#FFFFFF" transform="translate(36.396335, 9.762396) rotate(45.000000) translate(-36.396335, -9.762396) " points="36.3963346 4.76239569 41.3963346 9.76239569 36.3963346 14.7623957 31.3963346 9.76239569"></polygon>
+                    <polygon id="多边形备份-6" fill="#FFFFFF" transform="translate(36.396335, 69.762396) rotate(45.000000) translate(-36.396335, -69.762396) " points="36.3963346 64.7623957 41.3963346 69.7623957 36.3963346 74.7623957 31.3963346 69.7623957"></polygon>
+                    <polygon id="多边形备份-3" fill="#FFFFFF" transform="translate(64.396335, 23.762396) rotate(45.000000) translate(-64.396335, -23.762396) " points="64.3963346 18.7623957 69.3963346 23.7623957 64.3963346 28.7623957 59.3963346 23.7623957"></polygon>
+                    <polygon id="多边形备份-5" fill="#FFFFFF" transform="translate(64.396335, 56.762396) rotate(45.000000) translate(-64.396335, -56.762396) " points="64.3963346 51.7623957 69.3963346 56.7623957 64.3963346 61.7623957 59.3963346 56.7623957"></polygon>
+                </g>
+                <polyline id="路径-7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="31.5083358 40.5 37.5489037 46 49 33"></polyline>
             </g>
         </g>
     </g>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1280px" height="424px" viewBox="0 0 1280 424" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>椭圆形</title>
+    <defs>
+        <linearGradient x1="129.41065%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#70EBA3" offset="0%"></stop>
+            <stop stop-color="#F97FB4" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-10.2%" y="-54.5%" width="120.3%" height="209.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="40" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.159999996">
+        <g id="Elara中文" transform="translate(0.000000, -78.000000)" fill="url(#linearGradient-1)">
+            <path d="M653.398636,390.707503 C834.641653,390.707503 1066.1027,411.615621 1176.7051,390.707503 C1269.45719,373.173781 1226.99571,207.58002 1156.66068,191.272463 C1047.26905,165.909422 856.223923,191.272463 653.398636,191.272463 C452.822085,191.272463 228.968472,175.34545 119.259064,200.232862 C46.6988777,216.693029 50.0234264,269.066039 50.0234264,290.989983 C50.0234264,346.062449 320.163709,390.707503 653.398636,390.707503 Z" id="椭圆形" filter="url(#filter-2)"></path>
+        </g>
+    </g>
+</svg>
