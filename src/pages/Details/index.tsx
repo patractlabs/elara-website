@@ -140,7 +140,7 @@ const Details: React.FC = () => {
   useEffect(() => {
     const projectPromise = apiGetProjectDetail(params.projectId);
     const dayDetailPromise = apiGetDayDetail(params.projectId);
-    Promise.all([projectPromise, dayDetailPromise]).then(([project, dayDetail]) => {
+    Promise.all([projectPromise, dayDetailPromise]).then(([project, dayDetail]) =>
       setProject({
         createtime: project.createtime,
         request: dayDetail.request,
@@ -149,8 +149,8 @@ const Details: React.FC = () => {
         pid: project.id,
         psecret: project.secret,
         chain: project.chain,
-      });
-    });
+      })
+    );
   }, [setProject, params.projectId]);
 
   useEffect(() => {

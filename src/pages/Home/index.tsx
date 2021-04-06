@@ -74,10 +74,12 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     apiGetChainStats()
-      .then(chainStatus => {
-        const _total = Object.keys(chainStatus).reduce((sum, current) => sum + Number(chainStatus[current]), 0)
-        setTotal(_total);
-      });
+      .then(chainStatus =>
+        setTotal(
+          Object.keys(chainStatus)
+            .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
+        )
+      );
   }, []);
 
   return (

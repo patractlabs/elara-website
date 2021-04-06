@@ -34,11 +34,11 @@ const Projects: React.FC = () => {
 
   useEffect(() => {
     apiGetProjectList().then(
-      _projects => {
+      _projects =>
         setProjects(
           _projects.filter(project => project.chain === params.chain)
-        )
-      }
+        ),
+      () => setProjects([]),
     );
   }, [params.chain, updateSignal]);
 

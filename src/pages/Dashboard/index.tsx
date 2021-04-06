@@ -134,7 +134,7 @@ const Dashboard: React.FC = () => {
   }, [location.pathname, history]);
 
   useEffect(() => {
-    apiGetProjectList().then(projects => setChains(getChains(projects)), () => {});
+    apiGetProjectList().then(projects => setChains(getChains(projects)), () => setChains([]));
   }, [setChains, updateProjectCountsSignal]);
 
   const choosedChain = useMemo(() => {
