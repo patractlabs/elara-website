@@ -53,6 +53,7 @@
 
 .banner_title1 {
   padding-top: 122px;
+  line-height: 72px;
   font-size: 50px;
   color: black;
   letter-spacing: 0.38px;
@@ -61,7 +62,7 @@
 .banner_title2 {
   padding: 0px 140px;
   margin-top: 24px;
-  line-height: 25px;
+  line-height: 28px;
   font-size: 18px;
   color: black;
   text-align: center;
@@ -111,6 +112,10 @@
   width: 400px;
   /* flex: 1; */
   text-align: center;
+}
+.advantage p {
+  line-height: 22px;
+  letter-spacing: 0.32px;
 }
 .advantage img {
   width: 80px;
