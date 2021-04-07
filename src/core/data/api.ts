@@ -4,6 +4,7 @@ import { Project } from '../types/classes/project';
 import { httpPost, httpGet } from './http'
 import { API_DOMAIN } from '../../config/origin';
 import { ChainStats, StatDay, StatMonth, StatWeek } from '../types/classes/stat';
+import axios from 'axios';
 
 /**
  * 登陆
@@ -60,3 +61,21 @@ export const apiGetMonthDetails =
 export const apiGetDayDetail =
   async (id: string) => await httpGet<StatDay>(`${API_DOMAIN}/stat/day/${id}`);
 
+
+/**
+ * 订阅邮箱
+ */
+export const apiSubscribe =
+  async ({
+    email,
+    emailType = 'subscribe',
+  }: {
+    email: string;
+    emailType?: string;
+  }) => {
+    const service = axios.create({
+      timeout: 15000,
+      withCredentials: false,
+    })
+    await service.post<void>('https://blog.patract.io/members/api/send-magic-link/', { email, emailType });
+  }

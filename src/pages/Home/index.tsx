@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { apiGetChainStats } from "../../core/data/api";
+import React, { ReactElement, useEffect, useMemo, useState } from "react";
+import { apiGetChainStats, apiSubscribe } from "../../core/data/api";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import img1 from '../../assets/easy-use.webp';
@@ -11,20 +11,35 @@ import img6 from '../../assets/request.svg';
 import img7 from '../../assets/projects.svg';
 import img8 from '../../assets/sv4.svg';
 import FooterLogo from '../../assets/footer-logo.svg';
-import WechatSvg from '../../assets/wechat.svg';
-import TwitterSvg from '../../assets/twitter.svg';
-import MediumSvg from '../../assets/medium.svg';
-import TelegramSvg from '../../assets/telegram.svg';
-import DiscordSvg from '../../assets/discord.svg';
-import YoutubeSvg from '../../assets/youtube.svg';
-import ElementSvg from '../../assets/ele.svg';
-import GithubSvg from '../../assets/github.svg';
+import { WechatSvg } from '../../shared/components/svg/Wechat';
+import { TwitterSvg } from '../../shared/components/svg/Twitter';
+import { MediumSvg } from '../../shared/components/svg/Medium';
+import { TelegramSvg } from '../../shared/components/svg/Telegram';
+import { DiscordSvg } from '../../shared/components/svg/Discord';
+import { YoutubeSvg } from '../../shared/components/svg/Youtube';
+import { ElementSvg } from '../../shared/components/svg/Element';
+import { GithubSvg } from '../../shared/components/svg/Github';
 import "./index.css";
 import { Language } from '../../core/enum';
 import { useApi } from '../../core/hooks/useApi';
 import { LoginModal } from '../../shared/components/LoginModal';
 import { useHistory } from 'react-router';
-import { Button, Carousel, Input } from 'antd';
+import { message, Button, Carousel, Input } from 'antd';
+
+const green = '#14B071';
+const defaultGray = '#2A292B';
+
+enum IconLink {
+  Wechat = 'Wechat',
+  Twitter = 'Twitter',
+  Medium = 'Medium',
+  Telegram = 'Telegram',
+  Discord = 'Discord',
+  Youtube = 'Youtube',
+  Element = 'Element',
+  Github = 'Github',
+  Null = 'Null',
+}
 
 const imgList = [
   img1,
@@ -45,9 +60,13 @@ const countUpProps = {
   useGrouping: true,
   separator: ",",
 };
-const Home: React.FC = () => {
+const Home: React.FC = (): ReactElement => {
   const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
   const [ total, setTotal ] = useState(0);
+  const [ loaded, setLoaded ] = useState<boolean>(false);
+  const [ subLoading, setSubLoading ] = useState<boolean>(false);
+  const [ email, setEmail ] = useState<string>('');
+  const [ iconLinkHoverAt, setIconLinkHoverAt ] = useState<IconLink>(IconLink.Null);
   const history = useHistory();
   const { isLogged, homeHeight } = useApi();
   const { t, i18n } = useTranslation();
@@ -59,11 +78,25 @@ const Home: React.FC = () => {
     history.push("/dashboard/projects");
   };
 
+  const onSubscribe = () => {
+    setSubLoading(true);
+    apiSubscribe({ email }).then(
+      () => message.success(t('tip.Subscribe Successfully')),
+      () => message.error(t('tip.Subscribe Failed')),
+    ).finally(() => setSubLoading(false));
+  };
+
+  const disabled = useMemo(() => {
+    const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return !email || !reg.test(email);
+  }, [email]);
+
   useEffect(() => {
     window.scrollTo({ top: homeHeight.height });
   }, [homeHeight.height]);
 
   useEffect(() => {
+    window.addEventListener('load', () => { console.log('load'); setLoaded(true) }, false);
     apiGetChainStats()
       .then(chainStatus =>
         setTotal(
@@ -76,7 +109,7 @@ const Home: React.FC = () => {
   return (
     <div className="Home" id="Home">
       <div className="Home_banner animated fadeInLeft">
-        <div className="banner-img banner-img1"></div>
+        <div className={ loaded ? 'banner-img banner-img1 banner-img1-animation' : 'banner-img banner-img1' } ></div>
         <div className="banner-title-holder">
           {
             i18n.language === Language.zh ?
@@ -86,7 +119,7 @@ const Home: React.FC = () => {
           }
           <h5 className="banner_title2"> {t("bannerTitle2")} </h5>
         </div>
-        <div className="banner-img banner-img2"></div>
+        <div className={ loaded ? 'banner-img banner-img2 banner-img2-animation' : 'banner-img banner-img2' } ></div>
 
         <div className="banner-center-holder">
           <span className="countup-title">
@@ -221,48 +254,48 @@ const Home: React.FC = () => {
             <div className="contact">
               <h2>{ t('Contact & Subscription') }</h2>
               <div>
-                <Input style={{ height: '48px', width: '300px', marginRight: '10px' }} />
-                <Button style={{ fontSize: '16px', color: 'white', backgroundColor: '#14B071', height: '48px', width: '120px' }}>{ t('Subscribe') }</Button>
+                <Input onChange={ e => setEmail(e.target.value) } style={{ height: '48px', width: '300px', marginRight: '10px' }} />
+                <Button disabled={disabled} loading={subLoading} onClick={ onSubscribe } style={{ fontSize: '16px', color: 'white', backgroundColor: '#14B071', height: '48px', padding: '0px 21px' }}>{ t('Subscribe') }</Button>
               </div>
               <ul className="contact-list">
                 <li>
-                  <a href="mailto:hi@patractlabs.com">
-                    <img src={WechatSvg} alt="" />
+                  <a href="mailto:hi@patractlabs.com" onMouseOver={ () => setIconLinkHoverAt(IconLink.Wechat) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                    <WechatSvg  color={ iconLinkHoverAt === IconLink.Wechat ? green : defaultGray } />
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" rel="noreferrer" href="https://twitter.com/patractlabs">
-                    <img src={TwitterSvg} alt="" />
+                  <a target="_blank" rel="noreferrer" href="https://twitter.com/patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Twitter) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                    <TwitterSvg  color={ iconLinkHoverAt === IconLink.Twitter ? green : defaultGray } />
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" rel="noreferrer" href="https://medium.com/@patractlabs">
-                    <img src={MediumSvg} alt="" />
+                  <a target="_blank" rel="noreferrer" href="https://medium.com/@patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Medium) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                    <MediumSvg  color={ iconLinkHoverAt === IconLink.Medium ? green : defaultGray } />
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" rel="noreferrer" href="https://t.me/patract">
-                    <img src={TelegramSvg} alt="" />
+                  <a target="_blank" rel="noreferrer" href="https://t.me/patract" onMouseOver={ () => setIconLinkHoverAt(IconLink.Telegram) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                    <TelegramSvg  color={ iconLinkHoverAt === IconLink.Telegram ? green : defaultGray } />
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" rel="noreferrer" href="https://discord.gg/wJ8TnTfjcq">
-                    <img src={DiscordSvg} alt="" />
+                  <a target="_blank" rel="noreferrer" href="https://discord.gg/wJ8TnTfjcq" onMouseOver={ () => setIconLinkHoverAt(IconLink.Discord) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                    <DiscordSvg  color={ iconLinkHoverAt === IconLink.Discord ? green : defaultGray } />
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCnvwkuLKx6k56M5rErH9AoQ">
-                    <img src={YoutubeSvg} alt="" />
+                  <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCnvwkuLKx6k56M5rErH9AoQ" onMouseOver={ () => setIconLinkHoverAt(IconLink.Youtube) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                    <YoutubeSvg  color={ iconLinkHoverAt === IconLink.Youtube ? green : defaultGray } />
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" rel="noreferrer" href="https://app.element.io/#/room/#PatractLabsDev:matrix.org">
-                    <img src={ElementSvg} alt="" />
+                  <a target="_blank" rel="noreferrer" href="https://app.element.io/#/room/#PatractLabsDev:matrix.org" onMouseOver={ () => setIconLinkHoverAt(IconLink.Element) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                    <ElementSvg  color={ iconLinkHoverAt === IconLink.Element ? green : defaultGray } />
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/elara">
-                    <img src={GithubSvg} alt="" />
+                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/elara" onMouseOver={ () => setIconLinkHoverAt(IconLink.Github) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                    <GithubSvg  color={ iconLinkHoverAt === IconLink.Github ? green : defaultGray } />
                   </a>
                 </li>
               </ul>

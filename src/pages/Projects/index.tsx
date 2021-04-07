@@ -50,7 +50,7 @@ const Projects: React.FC = () => {
       </button>
 
       <Table
-        locale={{emptyText: t('No Data')}}
+        locale={{ emptyText: t('No Data') }}
         size="small"
         pagination={false}
         style={{ marginTop: '12px' }}

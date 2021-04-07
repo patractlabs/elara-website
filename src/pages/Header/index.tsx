@@ -162,43 +162,43 @@ const Header: React.FC = () => {
             </li>
           </ul>
           <ul className="head-right">
-          <li>
-            <Dropdown overlay={LanguageMenu}>
-              <span>
-                <span style={{ marginRight: '8px', cursor: 'pointer' }}>
-                  {i18n.language === Language.en ? "English " : "中文 "}
-                </span>
-                <DownOutlined
-                  style={{
-                    display: "inline-block",
-                    color: "#2A292B",
-                  }}
-                />
-              </span>
-            </Dropdown>
-          </li>
-          {
-            isLogged ?
-              <li>
-                <Dropdown overlay={UserMenu}>
-                  <span>
-                    <span style={{ marginRight: '8px' }}>
-                      { user.username }
-                    </span>
-                    <DownOutlined
-                      style={{
-                        display: "inline-block",
-                      }}
-                    />
+            <li style={{ marginRight: '40px' }}>
+              <Dropdown overlay={LanguageMenu}>
+                <span>
+                  <span style={{ marginRight: '8px', cursor: 'pointer' }}>
+                    {i18n.language === Language.en ? "English " : "中文 "}
                   </span>
-                </Dropdown> 
-              </li>
-                :
-              <li className="user_login">
-                <div className="login_btn" onClick={ () => setLoginModalVisible(true) }>{t("sign.login")}</div>
-                <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
-              </li>
-          }
+                  <DownOutlined
+                    style={{
+                      display: "inline-block",
+                      color: "#2A292B",
+                    }}
+                  />
+                </span>
+              </Dropdown>
+            </li>
+            {
+              isLogged ?
+                <li>
+                  <Dropdown overlay={UserMenu}>
+                    <span>
+                      <span style={{ marginRight: '8px' }}>
+                        { user.username }
+                      </span>
+                      <DownOutlined
+                        style={{
+                          display: "inline-block",
+                        }}
+                      />
+                    </span>
+                  </Dropdown> 
+                </li>
+                  :
+                <li>
+                  <div className="login_btn" onClick={ () => setLoginModalVisible(true) }>{t("sign.login")}</div>
+                  <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
+                </li>
+            }
         </ul>
         </div>
       </div>

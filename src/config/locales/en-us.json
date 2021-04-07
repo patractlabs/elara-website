@@ -90,7 +90,9 @@
 
     "tip": {
       "fail": "Failed",
-      "created": "Created successfully"
+      "created": "Created successfully",
+      "Subscribe Successfully": "Subscribe Successfully",
+      "Subscribe Failed": "Subscribe Failed"
     },
 
     "modal": {

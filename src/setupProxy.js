@@ -11,15 +11,4 @@ module.exports = function(app) {
       }
     })
   );
-
-  // app.use(
-  //   '/easydoc',
-  //   proxy.createProxyMiddleware({
-  //     target: 'https://easydoc.xyz/mock/jQBwURUE',
-  //     changeOrigin: true,
-  //     pathRewrite: {
-  //       '^/easydoc': ''
-  //     }
-  //   })
-  // );
 };

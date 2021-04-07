@@ -88,7 +88,9 @@
 
   "tip": {
     "fail": "操作失败",
-    "created": "创建成功"
+    "created": "创建成功",
+    "Subscribe Successfully": "订阅成功",
+    "Subscribe Failed": "订阅失败"
   },
 
   "modal": {

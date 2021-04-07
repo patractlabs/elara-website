@@ -6,6 +6,7 @@
   top: 0;
   z-index: 1;
   background: white;
+  box-shadow: 0px 1px rgb(0 0 0 / 10%);
 }
 
 .head-auto {
@@ -30,7 +31,7 @@
 .tab-title-bottom {
   height: 5px;
   border-radius: 3px;
-  background-color: #FA6400;
+  background-color: #14B071;
   position: relative;
   top: 5px;
 }
@@ -51,7 +52,6 @@
   align-items: center;
 }
 .login_btn {
-  margin-left: 40px;
   font-size: 15px;
   color: white;
   width: 110px;

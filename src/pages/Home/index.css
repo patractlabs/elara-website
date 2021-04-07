@@ -24,9 +24,11 @@
   top: 0px;
   right: -300px;
   height: 260px;
+}
+.banner-img1-animation {
   animation: rightEnter;
   animation-duration:  1.2s;
-  animation-delay: 1s;
+  animation-delay: 0s;
   animation-fill-mode: forwards;
 }
 .banner-img2 {
@@ -34,12 +36,13 @@
   left: -300px;
   background-image: url("../../assets/banner-img2.png");
   height: 320px;
+}
+.banner-img2-animation {
   animation: leftEnter;
   animation-duration:  1.2s;
-  animation-delay: 1s;
+  animation-delay: 0s;
   animation-fill-mode: forwards;
 }
-
 .banner-title-holder {
   z-index: 200;
   position: relative;
@@ -265,6 +268,9 @@
   width: 32px;
   height: 32px;
 }
+.contact-list li svg:hover {
+  fill: #14B071;
+}
 .contact-list li:last-child {
   margin-right: 0px;
 }
@@ -281,8 +287,12 @@
   color: #686868;
   line-height: 16px;
 }
-.email {
+.email a {
   font-size: 20px;
   color: #14B071;
   line-height: 28px;
+}
+.email a:hover {
+  color: #14B071;
+
 }
