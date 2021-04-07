@@ -250,6 +250,10 @@
 .site-list li a {
   color: #14B071;
 }
+
+.site span {
+  color: #14B071
+}
 .contact h2 {
   font-size: 24px;
   font-weight: 600;

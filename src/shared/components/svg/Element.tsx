@@ -1,7 +1,7 @@
 export const ElementSvg = ({ color }: { color: string }) => (
   <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <title>ele-secondary</title>
-    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.699999988">
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity="0.699999988">
         <g id="Elara中文" transform="translate(-1088.000000, -2383.000000)" fill={color}>
             <g id="底部" transform="translate(0.000000, 2176.000000)">
                 <g id="编组备份-3" transform="translate(800.000000, 207.000000)">

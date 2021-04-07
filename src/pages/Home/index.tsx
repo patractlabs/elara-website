@@ -87,8 +87,8 @@ const Home: React.FC = (): ReactElement => {
   };
 
   const disabled = useMemo(() => {
-    const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return !email || !reg.test(email);
+    // const reg = new RegExp('[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*');
+    return !email;
   }, [email]);
 
   useEffect(() => {
@@ -212,42 +212,42 @@ const Home: React.FC = (): ReactElement => {
             <div className="footer-sites-holder">
                <ul className="site-list">
                 <li className="site">
-                  <a href="">Jupiter</a>
+                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/jupiter/">Jupiter</a>
                 </li>
                 <li className="site">
-                  <a href="">Ask!</a>
+                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/ask">Ask!</a>
                 </li>
                 <li className="site">
-                  <a href="">Metis</a>
+                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/metis">Metis</a>
                 </li>
                 <li className="site">
-                  <a href="">Redspot</a>
+                  <a target="_blank" rel="noreferrer" href="https://redspot.patract.io/zh-CN/">Redspot</a>
                 </li>
                 <li className="site">
-                  <a href="">Europa</a>
+                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/europa">Europa</a>
                 </li>
                 <li className="site">
-                  <a href="">zkMega</a>
+                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/zkmega">zkMega</a>
                 </li>
               </ul>
               <ul className="site-list">
                 <li className="site">
-                  <a href="">Himalia</a>
+                  <span>Himalia</span>
                 </li>
                 <li className="site">
-                  <a href="">Elara</a>
+                  <a target="_blank" rel="noreferrer" href="https://elara.patract.io">Elara</a>
                 </li>
                 <li className="site">
-                  <a href="">Leda</a>
+                  <span>Leda</span>
                 </li>
                 <li className="site">
-                  <a href="">Carpo</a>
+                  <span>Carpo</span>
                 </li>
                 <li className="site">
-                  <a href="">PatraStore</a>
+                  <a target="_blank" rel="noreferrer" href="https://patrastore.io">PatraStore</a>
                 </li>
                 <li className="site">
-                  <a href="">PatraScan</a>
+                  <span>PatraScan</span>
                 </li>
               </ul>
             </div>
@@ -294,7 +294,7 @@ const Home: React.FC = (): ReactElement => {
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/elara" onMouseOver={ () => setIconLinkHoverAt(IconLink.Github) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Github) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
                     <GithubSvg  color={ iconLinkHoverAt === IconLink.Github ? green : defaultGray } />
                   </a>
                 </li>

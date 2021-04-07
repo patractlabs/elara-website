@@ -1,8 +1,8 @@
 export const TwitterSvg = ({ color }: { color: string }) => (
   <svg width="32px" height="33px" viewBox="0 0 32 33" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <title>twitter</title>
-    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.699999988">
-        <g id="ElaraEN" transform="translate(-848.000000, -2466.000000)" fill={color} fill-rule="nonzero">
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity="0.699999988">
+        <g id="ElaraEN" transform="translate(-848.000000, -2466.000000)" fill={color} fillRule="nonzero">
             <g id="bottom" transform="translate(0.000000, 2264.000000)">
                 <g id="编组备份-2" transform="translate(800.000000, 202.792683)">
                     <g id="twitter" transform="translate(48.000000, 0.000000)">
