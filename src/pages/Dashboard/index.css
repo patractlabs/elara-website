@@ -28,13 +28,8 @@
 }
 .project-item-active {
   color: white;
-  background-color: #38CA9E;
-  border-left: 5px solid #2EA772;
-}
-.sider .project-item:hover {
-  color: white;
-  background-color: #38CA9E;
-  border-left: 5px solid #2EA772;
+  background-color: #14B071;
+  border-left: 5px solid #0b5e3d;
 }
 .sider .project-item img {
   height: 25px;

@@ -61,10 +61,10 @@ const requestOption: any = {
       symbol: 'circle',
       lineStyle: {
         width: 2,
-        color: '#23B899'
+        color: '#14B071'
       },
       itemStyle: {
-        color: '#23B899',
+        color: '#14B071',
       }
     },
     {
