@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 17</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="80" height="80"></rect>
+        <linearGradient x1="82.1093606%" y1="0%" x2="27.5548816%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#1AB174" offset="0%"></stop>
+            <stop stop-color="#118A68" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="43.5742257%" y1="0%" x2="56.4257743%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="79.5857988%" y1="0%" x2="22.8368106%" y2="96.0965791%" id="linearGradient-5">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0088757%" y1="0%" x2="55.1271868%" y2="100%" id="linearGradient-6">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-7">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-8">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="23.2988166%" y1="0%" x2="76.7011834%" y2="100%" id="linearGradient-9">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="54.9294027%" y1="4.36794246%" x2="44.0088757%" y2="100%" id="linearGradient-10">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="56.1899863%" y1="0%" x2="44.6830959%" y2="97.8908549%" id="linearGradient-11">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Elara中文" transform="translate(-880.000000, -1070.000000)">
+            <g id="编组-17" transform="translate(880.000000, 1070.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="蒙版"></g>
+                <polygon id="矩形" fill="url(#linearGradient-3)" mask="url(#mask-2)" points="13.5 0 66.5 0 80 24 40 80 0 24.5175977"></polygon>
+                <line x1="21.5" y1="24.5" x2="39.5" y2="76.5" id="路径-9" stroke="url(#linearGradient-4)" mask="url(#mask-2)"></line>
+                <line x1="21.5" y1="24.5" x2="40.5" y2="-0.5" id="路径-9" stroke="url(#linearGradient-5)" mask="url(#mask-2)"></line>
+                <line x1="21.5" y1="24.5" x2="13.5" y2="-0.5" id="路径-9" stroke="url(#linearGradient-6)" mask="url(#mask-2)"></line>
+                <polygon id="路径-9" fill="url(#linearGradient-7)" fill-rule="nonzero" mask="url(#mask-2)" points="21.828304 24 22.2130854 25 1 25 1 24"></polygon>
+                <polygon id="路径-9备份" fill="url(#linearGradient-8)" fill-rule="nonzero" mask="url(#mask-2)" points="79 24 79 25 57.7992068 25 58.1302246 24"></polygon>
+                <line x1="58.5" y1="24.5" x2="20.5" y2="24.5" id="路径-9" stroke="#FFFFFF" opacity="0.5" mask="url(#mask-2)"></line>
+                <line x1="58.5" y1="24.5" x2="40.5" y2="-0.5" id="路径-9" stroke="url(#linearGradient-9)" mask="url(#mask-2)"></line>
+                <line x1="58.5" y1="24.5" x2="66.5" y2="-0.5" id="路径-9" stroke="url(#linearGradient-10)" mask="url(#mask-2)"></line>
+                <line x1="58.5" y1="24.5" x2="40.5" y2="77.5" id="路径-9" stroke="url(#linearGradient-11)" mask="url(#mask-2)"></line>
+            </g>
+        </g>
+    </g>
+</svg>
