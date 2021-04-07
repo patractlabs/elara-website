@@ -33,6 +33,12 @@
     "NeedMore": "Need more services?",
     "YouCan": "You can contact us through the following channels, we will provide you with customized solutions",
     "No Data": "No Data",
+    "We provide you": "We provide you",
+    "10 Projects": "10 Projects",
+    "All networks in the Polkadot ecosystem": "All networks in the Polkadot ecosystem",
+    "Public API Access Service for Polkadot Ecosystem": "Public API Access Service for Polkadot Ecosystem",
+    "Contact & Subscription": "Contact & Subscription",
+    "Subscribe": "Subscribe",
 
     "listPage":{
         "Name":"Name",
@@ -77,7 +83,9 @@
     "sign":{
         "Sign": "Sign in with Github Account",
         "login": "login",
-        "signin": "Sign in"
+        "signin": "Sign in",
+        "Connect to Polkadot now": "Connect to Polkadot now",
+        "Github quick Login": "Github quick Login"
     },
 
     "tip": {

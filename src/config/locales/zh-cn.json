@@ -31,6 +31,12 @@
   "NeedMore": "需要更多的服务？",
   "YouCan": "您可以通过以下渠道联系我们，我们将为您提供定制方案",
   "No Data": "暂无数据",
+  "We provide you": "我们为您提供",
+  "10 Projects": "10 个免费项目",
+  "All networks in the Polkadot ecosystem": "波卡生态所有网络",
+  "Public API Access Service for Polkadot Ecosystem": "波卡生态的公共API接入服务",
+  "Contact & Subscription": "联系和订阅",
+  "Subscribe": "订阅",
 
   "listPage":{
     "Name":"项目名称",
@@ -75,7 +81,9 @@
   "sign":{
     "Sign":"Github账户登录",
     "login":"登录",
-    "signin": "登录"
+    "signin": "登录",
+    "Connect to Polkadot now": "立即连接波卡生态",
+    "Github quick Login": "Github 快捷登录"
   },
 
   "tip": {

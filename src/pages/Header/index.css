@@ -32,7 +32,7 @@
   border-radius: 3px;
   background-color: #FA6400;
   position: relative;
-  top: -16px;
+  top: 5px;
 }
 
 .head-tabs li {
@@ -44,9 +44,6 @@
   color: #2A292B;
   font-size: 14px;
   padding: 0px 5px;
-}
-
-.head-tabs li a:hover {
 }
 
 .head-right {
@@ -105,14 +102,3 @@
 .user-menu-logout .sign-out img {
   margin-right: 8px;
 }
-
-.PHover {
-  cursor: pointer;
-  width: 100%;
-}
-
-
-/* .user_dropdwon :hover a {
-    color: #fff !important;
-} */
-

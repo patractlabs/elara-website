@@ -9,6 +9,8 @@ import PageLoading from './pages/PageLoading'
 import "./App.css";
 import { ApiProvider } from './core/context/api';
 import { useApi } from './core/hooks/useApi';
+import { useTranslation } from 'react-i18next';
+import { Language } from './core/enum';
 
 const AuthRoute: FC<{
   component: FC;
@@ -31,9 +33,11 @@ const AuthRoute: FC<{
 }
 
 const App: FC = (): ReactElement => {
+  const { i18n } = useTranslation();
+
   return (
     <ApiProvider>
-      <div>
+      <div style={{ fontFamily: i18n.language === Language.en ? 'WorkSans' : 'PingFang SC' }}>
         <BrowserRouter>
           <Header />
           <Switch>

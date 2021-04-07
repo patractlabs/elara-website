@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { apiGetChainStats } from "../../core/data/api";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import img1 from '../../assets/cp1.svg';
+import img1 from '../../assets/easy-use.webp';
 import img2 from '../../assets/cp2.svg';
-import img3 from '../../assets/cp3.svg';
+import img3 from '../../assets/multi-chain.webp';
 import img4 from '../../assets/cp4.svg';
 import img5 from '../../assets/all-network.svg';
 import img6 from '../../assets/request.svg';
@@ -76,7 +76,7 @@ const Home: React.FC = () => {
   return (
     <div className="Home" id="Home">
       <div className="Home_banner animated fadeInLeft">
-        <div className="banner-img banner-img1 animated fadeInRight"></div>
+        <div className="banner-img banner-img1"></div>
         <div className="banner-title-holder">
           {
             i18n.language === Language.zh ?
@@ -86,7 +86,7 @@ const Home: React.FC = () => {
           }
           <h5 className="banner_title2"> {t("bannerTitle2")} </h5>
         </div>
-        <div className="banner-img banner-img2 animated fadeInLeft"></div>
+        <div className="banner-img banner-img2"></div>
 
         <div className="banner-center-holder">
           <span className="countup-title">
@@ -131,7 +131,7 @@ const Home: React.FC = () => {
 
       <div className="product">
         <h2>
-          我们为您提供
+          {t('We provide you')}
         </h2>
         <div className="product-main">
           <div className="product-left"></div>
@@ -140,20 +140,27 @@ const Home: React.FC = () => {
               <div>
                 <div className="autoplay-content">
                   <div className="all-chain">
-                    波卡所有生态网络
+                    { t('All networks in the Polkadot ecosystem') }
                   </div>
                 </div>
               </div>
               <div>
                 <div className="autoplay-content">
-                  <p className="product-tip">{t("1000000requests")}</p>
+                  {
+                    i18n.language === Language.zh &&
+                      <p className="product-tip">每个账户每天</p>
+                  }
                   <p className="product-text">1000000</p>
-                  <p className="product-tip">{t("1000000requests1")}</p>
+                  <p className="product-tip">{
+                    i18n.language === Language.en ?
+                      'Requests for every account every day'
+                      : '次请求'
+                    }</p>
                 </div>
               </div>
               <div>
                 <div className="autoplay-content">
-                  <p className="product-text">10 个免费项目</p>
+                  <p className="product-text">{ t('10 Projects') }</p>
                 </div>
               </div>
             </Carousel>
@@ -166,7 +173,7 @@ const Home: React.FC = () => {
       <footer className="home-footer" id="home-footer">
         <div className="footer-content">
           <h2 className="footer-sites-title">
-            波卡生态的公共API接入服务
+            { t('Public API Access Service for Polkadot Ecosystem') }
           </h2>
           <div className="footer-content-main">
             <div className="footer-sites-holder">
@@ -212,10 +219,10 @@ const Home: React.FC = () => {
               </ul>
             </div>
             <div className="contact">
-              <h2>联系和订阅</h2>
+              <h2>{ t('Contact & Subscription') }</h2>
               <div>
                 <Input style={{ height: '48px', width: '300px', marginRight: '10px' }} />
-                <Button style={{ color: 'white', backgroundColor: '#14B071', height: '48px', width: '120px' }}>Subscribe</Button>
+                <Button style={{ fontSize: '16px', color: 'white', backgroundColor: '#14B071', height: '48px', width: '120px' }}>{ t('Subscribe') }</Button>
               </div>
               <ul className="contact-list">
                 <li>
@@ -261,6 +268,7 @@ const Home: React.FC = () => {
               </ul>
             </div>
           </div>
+          <div className="footer-bg"></div>
         </div>
         <div className="footer-info">
           <div>
@@ -268,7 +276,9 @@ const Home: React.FC = () => {
           </div>
           <div className="info-row">
             <p className="copyright">© 2021 Patract Labs Co., Limited, All Rights Reserved.</p>
-            <p className="email">hi@patract.io</p>
+            <p className="email">
+              <a href="mailto:hi@patract.io">hi@patract.io</a>
+            </p>
           </div>
         </div>
       </footer>
