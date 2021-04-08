@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
                 <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/metis">Metis</a>
               </li>
               <li className="site">
-                <a target="_blank" rel="noreferrer" href="https://redspot.patract.io/zh-CN/">Redspot</a>
+                <a target="_blank" rel="noreferrer" href="https://redspot.patract.io">Redspot</a>
               </li>
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/europa">Europa</a>
