@@ -1,5 +1,6 @@
-import React, { ReactElement, useEffect, useMemo, useState } from "react";
-import { apiGetChainStats, apiSubscribe } from "../../core/data/api";
+import React, { ReactElement, useEffect, useState } from "react";
+import "./index.css";
+import { apiGetChainStats } from "../../core/data/api";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import img1 from '../../assets/easy-use.webp';
@@ -10,36 +11,12 @@ import img5 from '../../assets/all-network.svg';
 import img6 from '../../assets/request.svg';
 import img7 from '../../assets/projects.svg';
 import img8 from '../../assets/sv4.svg';
-import FooterLogo from '../../assets/footer-logo.svg';
-import { WechatSvg } from '../../shared/components/svg/Wechat';
-import { TwitterSvg } from '../../shared/components/svg/Twitter';
-import { MediumSvg } from '../../shared/components/svg/Medium';
-import { TelegramSvg } from '../../shared/components/svg/Telegram';
-import { DiscordSvg } from '../../shared/components/svg/Discord';
-import { YoutubeSvg } from '../../shared/components/svg/Youtube';
-import { ElementSvg } from '../../shared/components/svg/Element';
-import { GithubSvg } from '../../shared/components/svg/Github';
-import "./index.css";
 import { Language } from '../../core/enum';
 import { useApi } from '../../core/hooks/useApi';
 import { LoginModal } from '../../shared/components/LoginModal';
 import { useHistory } from 'react-router';
-import { message, Button, Carousel, Input } from 'antd';
-
-const green = '#14B071';
-const defaultGray = '#2A292B';
-
-enum IconLink {
-  Wechat = 'Wechat',
-  Twitter = 'Twitter',
-  Medium = 'Medium',
-  Telegram = 'Telegram',
-  Discord = 'Discord',
-  Youtube = 'Youtube',
-  Element = 'Element',
-  Github = 'Github',
-  Null = 'Null',
-}
+import { Carousel } from 'antd';
+import Footer from '../Footer';
 
 const imgList = [
   img1,
@@ -64,9 +41,6 @@ const Home: React.FC = (): ReactElement => {
   const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
   const [ total, setTotal ] = useState(0);
   const [ loaded, setLoaded ] = useState<boolean>(false);
-  const [ subLoading, setSubLoading ] = useState<boolean>(false);
-  const [ email, setEmail ] = useState<string>('');
-  const [ iconLinkHoverAt, setIconLinkHoverAt ] = useState<IconLink>(IconLink.Null);
   const history = useHistory();
   const { isLogged, homeHeight } = useApi();
   const { t, i18n } = useTranslation();
@@ -77,19 +51,6 @@ const Home: React.FC = (): ReactElement => {
     }
     history.push("/dashboard/projects");
   };
-
-  const onSubscribe = () => {
-    setSubLoading(true);
-    apiSubscribe({ email }).then(
-      () => message.success(t('tip.Subscribe Successfully')),
-      () => message.error(t('tip.Subscribe Failed')),
-    ).finally(() => setSubLoading(false));
-  };
-
-  const disabled = useMemo(() => {
-    // const reg = new RegExp('[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*');
-    return !email;
-  }, [email]);
 
   useEffect(() => {
     window.scrollTo({ top: homeHeight.height });
@@ -161,8 +122,7 @@ const Home: React.FC = (): ReactElement => {
         </div>
       </div>
 
-
-      <div className="product">
+      <div className="product" id="home-product">
         <h2>
           {t('We provide you')}
         </h2>
@@ -202,119 +162,8 @@ const Home: React.FC = (): ReactElement => {
         </div>
         <div onClick={gotoDashboard} className="black-btn">{t('bannerBtn')}</div>
       </div>
-
-      <footer className="home-footer" id="home-footer">
-        <div className="footer-content">
-          <h2 className="footer-sites-title">
-            { t('Public API Access Service for Polkadot Ecosystem') }
-          </h2>
-          <div className="footer-content-main">
-            <div className="footer-sites-holder">
-               <ul className="site-list">
-                <li className="site">
-                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/jupiter/">Jupiter</a>
-                </li>
-                <li className="site">
-                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/ask">Ask!</a>
-                </li>
-                <li className="site">
-                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/metis">Metis</a>
-                </li>
-                <li className="site">
-                  <a target="_blank" rel="noreferrer" href="https://redspot.patract.io/zh-CN/">Redspot</a>
-                </li>
-                <li className="site">
-                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/europa">Europa</a>
-                </li>
-                <li className="site">
-                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/zkmega">zkMega</a>
-                </li>
-              </ul>
-              <ul className="site-list">
-                <li className="site">
-                  <span>Himalia</span>
-                </li>
-                <li className="site">
-                  <a target="_blank" rel="noreferrer" href="https://elara.patract.io">Elara</a>
-                </li>
-                <li className="site">
-                  <span>Leda</span>
-                </li>
-                <li className="site">
-                  <span>Carpo</span>
-                </li>
-                <li className="site">
-                  <a target="_blank" rel="noreferrer" href="https://patrastore.io">PatraStore</a>
-                </li>
-                <li className="site">
-                  <span>PatraScan</span>
-                </li>
-              </ul>
-            </div>
-            <div className="contact">
-              <h2>{ t('Contact & Subscription') }</h2>
-              <div>
-                <Input onChange={ e => setEmail(e.target.value) } style={{ height: '48px', width: '300px', marginRight: '10px' }} />
-                <Button disabled={disabled} loading={subLoading} onClick={ onSubscribe } style={{ fontSize: '16px', color: 'white', backgroundColor: '#14B071', height: '48px', padding: '0px 21px' }}>{ t('Subscribe') }</Button>
-              </div>
-              <ul className="contact-list">
-                <li>
-                  <a href="mailto:hi@patractlabs.com" onMouseOver={ () => setIconLinkHoverAt(IconLink.Wechat) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                    <WechatSvg  color={ iconLinkHoverAt === IconLink.Wechat ? green : defaultGray } />
-                  </a>
-                </li>
-                <li>
-                  <a target="_blank" rel="noreferrer" href="https://twitter.com/patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Twitter) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                    <TwitterSvg  color={ iconLinkHoverAt === IconLink.Twitter ? green : defaultGray } />
-                  </a>
-                </li>
-                <li>
-                  <a target="_blank" rel="noreferrer" href="https://medium.com/@patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Medium) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                    <MediumSvg  color={ iconLinkHoverAt === IconLink.Medium ? green : defaultGray } />
-                  </a>
-                </li>
-                <li>
-                  <a target="_blank" rel="noreferrer" href="https://t.me/patract" onMouseOver={ () => setIconLinkHoverAt(IconLink.Telegram) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                    <TelegramSvg  color={ iconLinkHoverAt === IconLink.Telegram ? green : defaultGray } />
-                  </a>
-                </li>
-                <li>
-                  <a target="_blank" rel="noreferrer" href="https://discord.gg/wJ8TnTfjcq" onMouseOver={ () => setIconLinkHoverAt(IconLink.Discord) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                    <DiscordSvg  color={ iconLinkHoverAt === IconLink.Discord ? green : defaultGray } />
-                  </a>
-                </li>
-                <li>
-                  <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCnvwkuLKx6k56M5rErH9AoQ" onMouseOver={ () => setIconLinkHoverAt(IconLink.Youtube) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                    <YoutubeSvg  color={ iconLinkHoverAt === IconLink.Youtube ? green : defaultGray } />
-                  </a>
-                </li>
-                <li>
-                  <a target="_blank" rel="noreferrer" href="https://app.element.io/#/room/#PatractLabsDev:matrix.org" onMouseOver={ () => setIconLinkHoverAt(IconLink.Element) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                    <ElementSvg  color={ iconLinkHoverAt === IconLink.Element ? green : defaultGray } />
-                  </a>
-                </li>
-                <li>
-                  <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Github) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                    <GithubSvg  color={ iconLinkHoverAt === IconLink.Github ? green : defaultGray } />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bg"></div>
-        </div>
-        <div className="footer-info">
-          <div>
-            <img src={FooterLogo} alt="" />
-          </div>
-          <div className="info-row">
-            <p className="copyright">© 2021 Patract Labs Co., Limited, All Rights Reserved.</p>
-            <p className="email">
-              <a href="mailto:hi@patract.io">hi@patract.io</a>
-            </p>
-          </div>
-        </div>
-      </footer>
+      
+      <Footer />
       <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
     </div>
   );

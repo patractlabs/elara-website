@@ -48,12 +48,12 @@ const Header: React.FC = () => {
         homeHeight.setHeight(0);
         break;
       case ScrollTarget.Service:
-        const serviceDiv = document.getElementById('home-service');
-        homeHeight.setHeight(serviceDiv?.offsetTop || 1248);
+        const serviceDiv = document.getElementById('home-product');
+        homeHeight.setHeight(serviceDiv?.offsetTop || 1440);
         break;
       case ScrollTarget.Contact:
         const footerDiv = document.getElementById('home-footer');
-        homeHeight.setHeight(footerDiv?.offsetTop || 1836);
+        homeHeight.setHeight(footerDiv?.offsetTop || 2236);
         break;
     }
   };
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
           <h3>
             {user.ext.projects}/{!user.vip ? "20" : "100"}
           </h3>
-        </Link> 
+        </Link>
       </li>
       <li className="menu-split"></li>
       <li className="user-menu-logout">
@@ -181,7 +181,7 @@ const Header: React.FC = () => {
               isLogged ?
                 <li>
                   <Dropdown overlay={UserMenu}>
-                    <span>
+                    <span style={{ cursor: 'pointer' }}>
                       <span style={{ marginRight: '8px' }}>
                         { user.username }
                       </span>
