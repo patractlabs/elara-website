@@ -117,19 +117,20 @@ export default function MyComponent () {
 - [ ] BFF
 
 ## github认证过程
-1. window.open(test-elara.patract.io/auth/github)
+1. window.open(test-elara.patract.cn/auth/github)
 2. node进程重定向到
   https://github.com/login/oauth/authorize
   response_type=code  
-  redirect_uri=https://test-elara.patract.io/auth/github/callback  
+  redirect_uri=https://test-elara.patract.cn/auth/github/callback  
   client_id=c8857f82ccbf2d5fbcc3
 3. 用户在github网站完成认证
 4. github向node发起请求
 ```
 'GET /auth/github/callback': callback, //github 验证回调
 ```
-5. node返回html页面，页面通过js调用window.postMessage发送sid给原网页，该窗口任务完成，关闭。
-6. 原网页通过sid（sid通过cookie传给服务器）获取用户信息，存在localstorage
+5. ~~node返回html页面，页面通过js调用window.postMessage发送sid给原网页，该窗口任务完成，关闭。~~
+6. ~~原网页通过sid（sid通过cookie传给服务器）获取用户信息，存在localstorage~~
+5. 服务端设置cookie：sid="..."
 ``` js
 async (ctx, next) => {
   return passport.authenticate('github')(ctx)

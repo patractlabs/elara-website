@@ -37,13 +37,13 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
     window.open(`${LOGIN_DOMAIN}/auth/github`);
 
     console.log('open window', `${LOGIN_DOMAIN}/auth/github`);
-    window.onmessage = function (ev: { data: any }) {
-      if (off) {
-        console.log('message', ev.data);
-        loginInit();
-        off = false;
-      }
-    };
+    // window.onmessage = function (ev: { data: any }) {
+    //   if (off) {
+    //     console.log('message', ev.data);
+    //     loginInit();
+    //     off = false;
+    //   }
+    // };
   };
 
   useEffect(() => {
