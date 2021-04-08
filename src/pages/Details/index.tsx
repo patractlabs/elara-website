@@ -258,29 +258,29 @@ const Details: React.FC = () => {
           <div className="mock-th">
             <span>API</span>
           </div>
-          <div className="mock-row active-row">
-            <div className="first-column">PID</div>
-            <div className="second-column">PSECRET</div>
-            <div className="third-column">ENDPOINTS</div>
-          </div>
-          <div className="mock-row">
-            <div className="first-column">
-              <span>{ project?.pid }</span>
+          <div className="project-infos">
+            <div className="pid-psecret">
+              <div className="active-row">PID</div>
+              <div className="info-row pid-row">
+                <span>{ project?.pid }</span>
+                <img className="copy-img" onClick={ () => copy(project?.pid || '')} src={CopySVG} alt=""/>
+              </div>
+              <div className="active-row">PSECRET</div>
+              <div className="info-row psecret-row">
+                <span>{ project?.psecret }</span>
+                <img className="copy-img" onClick={ () => copy(project?.psecret || '')} src={CopySVG} alt=""/>
+              </div>
             </div>
-            <div className="second-column">
-              <img className="copy-img" onClick={ () => copy(project?.psecret || '')} src={CopySVG} alt=""/>
-            </div>
-            <div className="third-column">
-              <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
-              <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
-            </div>
-          </div>
-          <div className="mock-row">
-            <div className="first-column"></div>
-            <div className="second-column"></div>
-            <div className="third-column">
-              <span>{ `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
-              <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
+            <div className="endpoints">
+              <div className="active-row">ENDPOINTS</div>
+              <div className="info-row endpoints-row">
+                <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
+                <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
+              </div>
+              <div className="info-row endpoints-row">
+                { `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }
+                <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
+              </div>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@
   z-index: 1;
   background: white;
   box-shadow: 0px 1px rgb(0 0 0 / 10%);
+  /* box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.12); */
 }
 
 .head-auto {
@@ -38,21 +39,26 @@
 
 .head-tabs li {
   padding: 0px 28px;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #2A292B;
+  line-height: 20px;
 }
 
 .head-tabs li a {
   color: #2A292B;
-  font-size: 14px;
   padding: 0px 5px;
+}
+.head-tabs li a:hover {
+  color: #686868;
 }
 
 .head-right {
   display: inline-flex;
   align-items: center;
+  font-size: 15px;
 }
 .login_btn {
-  font-size: 15px;
   color: white;
   width: 110px;
   height: 36px;

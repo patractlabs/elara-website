@@ -6,12 +6,11 @@
   width: 100%;
 }
 .sider {
-  min-width: 150px;
+  width: 180px;
   padding: 13px 0px;
   position: absolute;
   top: 0px;
   bottom: 0px;
-  width: 10.4%;
   box-shadow: 4px 8px 15px 0px rgba(149, 156, 182, 0.15);
   background-color: white;
 }
@@ -24,45 +23,42 @@
   height: 43px;
   display: flex;
   align-items: center;
-  padding: 0px 14px 0px 20px;
+  padding-right: 14px;
+  padding-left: 20px;
 }
-.project-item-active {
+.sider .project-item-active, .sider .project-item:hover {
   color: white;
-  background-color: #14B071;
-  border-left: 5px solid #0b5e3d;
-}
-.sider .project-item:hover {
-  color: white;
-  background-color: #14B071;
-  border-left: 5px solid #0b5e3d;
+  background-color: #38CA9E;
+  border-left: 5px solid #2EA772;
+  padding-left: 15px;
 }
 .sider .project-item img {
   height: 25px;
   width: 25px;
-  margin-right: 16.7%;
+  margin-right: 25px;
 }
 
 .project-item-main {
   flex: 1;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-
 }
 .project-counts {
   margin-left: 5px;
-  vertical-align: middle;
-  display: inline-block;
+  display: inline-flex;
   width: 16px;
   height: 16px;
-  line-height: 16px;
-  border-radius: 16px;
-  text-align: center;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
   color: white;
   background: #FA6400;
 }
 
 .content {
-  padding-left: 10.4%;
+  /* padding-left: 10.4%; */
+  padding-left: 180px;
   padding-top: 30px;
   height: 100%;
   overflow-y: auto;

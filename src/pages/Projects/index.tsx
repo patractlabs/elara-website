@@ -44,7 +44,7 @@ const Projects: React.FC = () => {
 
   return (
     <div className="projects">
-      <button className="modal-button modal-button-active" onClick={ () => setCreateIsModalVisible(true) }>
+      <button className="modal-button modal-button-active" style={{ padding: '7px 8px', background: '#2FAA74 linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 100%)', boxShadow: '1px 2px 4px 0px rgba(0, 0, 0, 0.1)' }} onClick={ () => setCreateIsModalVisible(true) }>
         <img src={AddProject} alt="" style={{ marginRight: '5px' }} />
         { t('listPage.Create Project') }
       </button>
@@ -54,6 +54,11 @@ const Projects: React.FC = () => {
         size="small"
         pagination={false}
         style={{ marginTop: '12px' }}
+        onRow={
+          project => ({
+            onClick: () => history.push(`/dashboard/details/${project.chain}/${project.id}`)
+          })
+        }
         columns={[
           {
             title:
@@ -102,23 +107,23 @@ const Projects: React.FC = () => {
               </div>,
             width: 150,
           },
-          {
-            title:
-              <div className="th-default">
-                <img src={OperatSVG} alt="" style={{ marginRight: '8px' }}/>
-                <span>{t('listPage.Operation')}</span>
-              </div>,
-            dataIndex: 'operations',
-            key: 'operations',
-            render: (_ = undefined, project: Project) =>
-              <span
-                onClick={() => history.push(`/dashboard/details/${project.chain}/${project.id}`)}
-                className="td-op"
-              >
-                {t(`listPage.op-view`)}
-              </span>,
-            width: 60,
-          },
+          // {
+          //   title:
+          //     <div className="th-default">
+          //       <img src={OperatSVG} alt="" style={{ marginRight: '8px' }}/>
+          //       <span>{t('listPage.Operation')}</span>
+          //     </div>,
+          //   dataIndex: 'operations',
+          //   key: 'operations',
+          //   render: (_ = undefined, project: Project) =>
+          //     <span
+          //       onClick={() => history.push(`/dashboard/details/${project.chain}/${project.id}`)}
+          //       className="td-op"
+          //     >
+          //       {t(`listPage.op-view`)}
+          //     </span>,
+          //   width: 60,
+          // },
         ]}
         dataSource={projects}
         rowKey={record => record.id}
