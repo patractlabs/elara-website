@@ -57,7 +57,7 @@ const Home: React.FC = (): ReactElement => {
   }, [homeHeight.height]);
 
   useEffect(() => {
-    window.addEventListener('load', () => { console.log('load'); setLoaded(true) }, false);
+    setLoaded(true);
     apiGetChainStats()
       .then(chainStatus =>
         setTotal(

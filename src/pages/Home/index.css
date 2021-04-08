@@ -95,6 +95,11 @@
   border-radius: 28px;
   color: white;
 }
+.active-btn:hover {
+  background: white;
+  border: 1px solid #14B071;
+  color: #14B071;
+}
 .advantage-holder {
   background: #EFEFEF;
   padding: 100px 0px;
@@ -207,7 +212,11 @@
   font-size: 16px;
   font-weight: 600;
 }
-
+.black-btn:hover {
+  background: white;
+  color: #14B071;
+  /* border: 1px solid #2A292B; */
+}
 .home-footer {
   background: #EFEFEF;
   padding: 50px;

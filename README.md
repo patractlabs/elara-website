@@ -137,3 +137,5 @@ async (ctx, next) => {
 }
 ```
 
+https://github.com/login/oauth/authorize?client_id=f47f304f25add575a164&redirect_uri=https%3A%2F%2Fhackmd.io%2Fauth%2Fgithub%2Fcallback&response_type=code
+

@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.a27047ca.chunk.css",
-    "main.js": "/static/js/main.9d871f9a.chunk.js",
-    "main.js.map": "/static/js/main.9d871f9a.chunk.js.map",
+    "main.css": "/static/css/main.31645293.chunk.css",
+    "main.js": "/static/js/main.c18f350b.chunk.js",
+    "main.js.map": "/static/js/main.c18f350b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d3cecef8.js",
     "runtime-main.js.map": "/static/js/runtime-main.d3cecef8.js.map",
     "static/css/2.98e7ac70.chunk.css": "/static/css/2.98e7ac70.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.523b48ba.chunk.js.map": "/static/js/2.523b48ba.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.98e7ac70.chunk.css.map": "/static/css/2.98e7ac70.chunk.css.map",
-    "static/css/main.a27047ca.chunk.css.map": "/static/css/main.a27047ca.chunk.css.map",
+    "static/css/main.31645293.chunk.css.map": "/static/css/main.31645293.chunk.css.map",
     "static/js/2.523b48ba.chunk.js.LICENSE.txt": "/static/js/2.523b48ba.chunk.js.LICENSE.txt",
     "static/media/Darwinia.639aed77.png": "/static/media/Darwinia.639aed77.png",
     "static/media/Dock.ec787417.svg": "/static/media/Dock.ec787417.svg",
@@ -48,13 +48,13 @@
     "static/media/status.38b07516.svg": "/static/media/status.38b07516.svg",
     "static/media/sv4.ff531515.svg": "/static/media/sv4.ff531515.svg",
     "static/media/time.68cffe72.svg": "/static/media/time.68cffe72.svg",
-    "static/media/wechat-qrcode.b7824233.png": "/static/media/wechat-qrcode.b7824233.png"
+    "static/media/wechat-qrcode.fc3ebb1b.jpg": "/static/media/wechat-qrcode.fc3ebb1b.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.d3cecef8.js",
     "static/css/2.98e7ac70.chunk.css",
     "static/js/2.523b48ba.chunk.js",
-    "static/css/main.a27047ca.chunk.css",
-    "static/js/main.9d871f9a.chunk.js"
+    "static/css/main.31645293.chunk.css",
+    "static/js/main.c18f350b.chunk.js"
   ]
 }

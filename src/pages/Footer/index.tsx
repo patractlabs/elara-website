@@ -11,7 +11,7 @@ import { TwitterSvg } from '../../shared/components/svg/Twitter';
 import { WechatSvg } from '../../shared/components/svg/Wechat';
 import { YoutubeSvg } from '../../shared/components/svg/Youtube';
 import FooterLogo from '../../assets/footer-logo.svg';
-import WechatQRCode from '../../assets/wechat-qrcode.png';
+import WechatQRCode from '../../assets/wechat-qrcode.jpg';
 
 import "./index.css";
 
