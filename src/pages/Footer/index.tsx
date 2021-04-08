@@ -52,14 +52,30 @@ const Footer: React.FC = () => {
   return (
     <footer className="home-footer" id="home-footer">
       <div className="footer-content">
-        <h2 className="footer-sites-title">
-          { t('Public API Access Service for Polkadot Ecosystem') }
-        </h2>
-        <div className="footer-content-main">
-          <div className="footer-sites-holder">
-              <ul className="site-list">
+        <div className="footer-sites-holder">
+          <div className="site-class">
+            <h3>{ t('footer.Websites') }</h3>
+            <ul className="site-list">
               <li className="site">
-                <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/jupiter/">Jupiter</a>
+                <a target="_blank" rel="noreferrer" href="https://patract.io">Patract</a>
+              </li>
+              <li className="site">
+                <a target="_blank" rel="noreferrer" href="https://patract.io/products">Products</a>
+              </li>
+              <li className="site">
+                <a target="_blank" rel="noreferrer" href="https://blog.patract.io/">Blog</a>
+              </li>
+              <li className="site">
+                <a target="_blank" rel="noreferrer" href="https://docs.patract.io/">Docs</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="site-class">
+            <h3>{ t('footer.Contracts') }</h3>
+            <ul className="site-list">
+              <li className="site">
+                <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/jupiter">Jupiter</a>
               </li>
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/ask">Ask!</a>
@@ -67,6 +83,12 @@ const Footer: React.FC = () => {
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/metis">Metis</a>
               </li>
+            </ul>
+          </div>
+
+          <div className="site-class">
+            <h3>{ t('footer.Tools') }</h3>
+            <ul className="site-list">
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://redspot.patract.io">Redspot</a>
               </li>
@@ -76,79 +98,83 @@ const Footer: React.FC = () => {
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/zkmega">zkMega</a>
               </li>
-            </ul>
-            <ul className="site-list">
-              {/* <li className="site">
+              <li className="site">
                 <span>Himalia</span>
-              </li> */}
+              </li>
+            </ul>
+          </div>
+          
+          <div className="site-class">
+            <h3>{ t('footer.Services') }</h3>
+            <ul className="site-list">
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://elara.patract.io">Elara</a>
               </li>
-              {/* <li className="site">
+              <li className="site">
                 <span>Leda</span>
-              </li> */}
-              {/* <li className="site">
+              </li>
+              <li className="site">
                 <span>Carpo</span>
-              </li> */}
+              </li>
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://patrastore.io">PatraStore</a>
               </li>
-              {/* <li className="site">
+              <li className="site">
                 <span>PatraScan</span>
-              </li> */}
-            </ul>
-          </div>
-          <div className="contact">
-            <h2>{ t('Contact & Subscription') }</h2>
-            <div>
-              <Input onChange={ e => setEmail(e.target.value) } style={{ height: '48px', width: '300px', marginRight: '10px' }} />
-              <Button disabled={disabled} loading={subLoading} onClick={ onSubscribe } style={{ fontSize: '16px', color: 'white', backgroundColor: '#14B071', height: '48px', padding: '0px 21px' }}>{ t('Subscribe') }</Button>
-            </div>
-            <ul className="contact-list">
-              <li>
-                <Popover content={<img style={{ width: '150px', height: '150px' }} src={WechatQRCode} alt="" />} title={null}>
-                <a href="mailto:hi@patractlabs.com" onMouseOver={ () => setIconLinkHoverAt(IconLink.Wechat) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                  <WechatSvg  color={ iconLinkHoverAt === IconLink.Wechat ? green : defaultGray } />
-                </a>
-                </Popover>
-              </li>
-              <li>
-                <a target="_blank" rel="noreferrer" href="https://twitter.com/patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Twitter) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                  <TwitterSvg  color={ iconLinkHoverAt === IconLink.Twitter ? green : defaultGray } />
-                </a>
-              </li>
-              <li>
-                <a target="_blank" rel="noreferrer" href="https://medium.com/@patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Medium) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                  <MediumSvg  color={ iconLinkHoverAt === IconLink.Medium ? green : defaultGray } />
-                </a>
-              </li>
-              <li>
-                <a target="_blank" rel="noreferrer" href="https://t.me/patract" onMouseOver={ () => setIconLinkHoverAt(IconLink.Telegram) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                  <TelegramSvg  color={ iconLinkHoverAt === IconLink.Telegram ? green : defaultGray } />
-                </a>
-              </li>
-              <li>
-                <a target="_blank" rel="noreferrer" href="https://discord.gg/wJ8TnTfjcq" onMouseOver={ () => setIconLinkHoverAt(IconLink.Discord) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                  <DiscordSvg  color={ iconLinkHoverAt === IconLink.Discord ? green : defaultGray } />
-                </a>
-              </li>
-              <li>
-                <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCnvwkuLKx6k56M5rErH9AoQ" onMouseOver={ () => setIconLinkHoverAt(IconLink.Youtube) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                  <YoutubeSvg  color={ iconLinkHoverAt === IconLink.Youtube ? green : defaultGray } />
-                </a>
-              </li>
-              <li>
-                <a target="_blank" rel="noreferrer" href="https://app.element.io/#/room/#PatractLabsDev:matrix.org" onMouseOver={ () => setIconLinkHoverAt(IconLink.Element) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                  <ElementSvg  color={ iconLinkHoverAt === IconLink.Element ? green : defaultGray } />
-                </a>
-              </li>
-              <li>
-                <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Github) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
-                  <GithubSvg  color={ iconLinkHoverAt === IconLink.Github ? green : defaultGray } />
-                </a>
               </li>
             </ul>
           </div>
+        </div>
+        <div className="contact">
+          <h2>{ t('Contact & Subscription') }</h2>
+          <div>
+            <Input onChange={ e => setEmail(e.target.value) } style={{ height: '48px', width: '300px', marginRight: '10px' }} />
+            <Button disabled={disabled} loading={subLoading} onClick={ onSubscribe } style={{ fontSize: '16px', color: 'white', backgroundColor: '#14B071', height: '48px', padding: '0px 21px' }}>{ t('Subscribe') }</Button>
+          </div>
+          <ul className="contact-list">
+            <li>
+              <Popover content={<img style={{ width: '150px', height: '150px' }} src={WechatQRCode} alt="" />} title={null}>
+              <a href="mailto:hi@patractlabs.com" onMouseOver={ () => setIconLinkHoverAt(IconLink.Wechat) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                <WechatSvg  color={ iconLinkHoverAt === IconLink.Wechat ? green : defaultGray } />
+              </a>
+              </Popover>
+            </li>
+            <li>
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Twitter) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                <TwitterSvg  color={ iconLinkHoverAt === IconLink.Twitter ? green : defaultGray } />
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noreferrer" href="https://medium.com/@patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Medium) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                <MediumSvg  color={ iconLinkHoverAt === IconLink.Medium ? green : defaultGray } />
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noreferrer" href="https://t.me/patract" onMouseOver={ () => setIconLinkHoverAt(IconLink.Telegram) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                <TelegramSvg  color={ iconLinkHoverAt === IconLink.Telegram ? green : defaultGray } />
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noreferrer" href="https://discord.gg/wJ8TnTfjcq" onMouseOver={ () => setIconLinkHoverAt(IconLink.Discord) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                <DiscordSvg  color={ iconLinkHoverAt === IconLink.Discord ? green : defaultGray } />
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCnvwkuLKx6k56M5rErH9AoQ" onMouseOver={ () => setIconLinkHoverAt(IconLink.Youtube) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                <YoutubeSvg  color={ iconLinkHoverAt === IconLink.Youtube ? green : defaultGray } />
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noreferrer" href="https://app.element.io/#/room/#PatractLabsDev:matrix.org" onMouseOver={ () => setIconLinkHoverAt(IconLink.Element) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                <ElementSvg  color={ iconLinkHoverAt === IconLink.Element ? green : defaultGray } />
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs" onMouseOver={ () => setIconLinkHoverAt(IconLink.Github) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+                <GithubSvg  color={ iconLinkHoverAt === IconLink.Github ? green : defaultGray } />
+              </a>
+            </li>
+          </ul>
         </div>
         <div className="footer-bg"></div>
       </div>

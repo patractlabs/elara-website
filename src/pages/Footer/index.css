@@ -9,3 +9,106 @@
   font-weight: 400;
   color: #BABABA;
 }
+
+.home-footer {
+  background: #EFEFEF;
+  padding: 50px;
+  padding-top: 80px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+}
+.footer-sites-holder {
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+.footer-bg {
+  position: absolute;
+  z-index: 1;
+  height: 216px;
+  left: 250px;
+  right: 250px;
+  background-image: url("../../assets/footer-bg.svg");
+}
+.site-class {
+  width: 148px;
+}
+.site-class h3 {
+  height: 34px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2A292B;
+  line-height: 22px;
+  padding-bottom: 12px;
+}
+.site {
+  width: 57px;
+  height: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 8px 0px;
+}
+.site-list li a {
+  color: #2A292B;
+}
+.site-list li a:hover {
+  color: #14B071;
+}
+.site-list li span {
+  color: #949593;
+}
+.contact {
+  position: relative;
+  z-index: 2;
+}
+.contact h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2A292B;
+  line-height: 32px;
+  margin-bottom: 20px;
+}
+.contact-list {
+  margin-top: 27px;
+  display: flex;
+}
+.contact-list li {
+  margin-right: 16px;
+}
+.contact-list li img {
+  width: 32px;
+  height: 32px;
+}
+.contact-list li svg:hover {
+  fill: #14B071;
+}
+.contact-list li:last-child {
+  margin-right: 0px;
+}
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.copyright {
+  font-size: 14px;
+  font-weight: 400;
+  color: #686868;
+  line-height: 16px;
+}
+.email a {
+  width: 106px;
+  height: 20px;
+  font-size: 16px;
+  color: #14B071;
+  line-height: 20px;
+  font-size: 20px;
+}
+.email a:hover {
+  color: #14B071;
+
+}

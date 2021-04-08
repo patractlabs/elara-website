@@ -98,5 +98,12 @@
     "modal": {
       "cancel": "Cancel",
       "ok": "OK"
+    },
+
+    "footer": {
+      "Websites": "Website",
+      "Contracts": "Contract",
+      "Tools": "Tools",
+      "Services": "Services"
     }
 }

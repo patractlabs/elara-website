@@ -96,5 +96,12 @@
   "modal": {
     "cancel": "取消",
     "ok": "确定"
+  },
+
+  "footer": {
+    "Websites": "网站",
+    "Contracts": "合约",
+    "Tools": "工具",
+    "Services": "服务"
   }
 }
