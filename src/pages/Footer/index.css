@@ -21,6 +21,7 @@
   justify-content: space-between;
 }
 .footer-sites-holder {
+  width: 46%;
   display: flex;
   position: relative;
   z-index: 2;
@@ -34,7 +35,7 @@
   background-image: url("../../assets/footer-bg.svg");
 }
 .site-class {
-  width: 148px;
+  width: 25%;
 }
 .site-class h3 {
   height: 34px;
@@ -62,6 +63,7 @@
   color: #949593;
 }
 .contact {
+  width: 35%;
   position: relative;
   z-index: 2;
 }

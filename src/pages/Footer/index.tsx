@@ -127,8 +127,8 @@ const Footer: React.FC = () => {
         </div>
         <div className="contact">
           <h2>{ t('Contact & Subscription') }</h2>
-          <div>
-            <Input onChange={ e => setEmail(e.target.value) } style={{ height: '48px', width: '300px', marginRight: '10px' }} />
+          <div style={{ display: 'flex' }}>
+            <Input onChange={ e => setEmail(e.target.value) } style={{ flex: 1, height: '48px', width: '300px', marginRight: '10px' }} />
             <Button disabled={disabled} loading={subLoading} onClick={ onSubscribe } style={{ fontSize: '16px', color: 'white', backgroundColor: '#14B071', height: '48px', padding: '0px 21px' }}>{ t('Subscribe') }</Button>
           </div>
           <ul className="contact-list">
