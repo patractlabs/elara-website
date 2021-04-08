@@ -78,24 +78,24 @@ const Footer: React.FC = () => {
               </li>
             </ul>
             <ul className="site-list">
-              <li className="site">
+              {/* <li className="site">
                 <span>Himalia</span>
-              </li>
+              </li> */}
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://elara.patract.io">Elara</a>
               </li>
-              <li className="site">
+              {/* <li className="site">
                 <span>Leda</span>
-              </li>
-              <li className="site">
+              </li> */}
+              {/* <li className="site">
                 <span>Carpo</span>
-              </li>
+              </li> */}
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://patrastore.io">PatraStore</a>
               </li>
-              <li className="site">
+              {/* <li className="site">
                 <span>PatraScan</span>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="contact">
@@ -159,7 +159,7 @@ const Footer: React.FC = () => {
         <div className="info-row">
           <p className="copyright">© 2021 Patract Labs Co., Limited, All Rights Reserved.</p>
           <p className="email">
-            <a href="mailto:hi@patract.io">hi@patract.io</a>
+            <a href="mailto:elara@patract.io">elara@patract.io</a>
           </p>
         </div>
       </div>

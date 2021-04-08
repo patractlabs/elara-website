@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import "./index.css";
 import { apiGetChainStats } from "../../core/data/api";
 import CountUp from "react-countup";
@@ -44,6 +44,7 @@ const Home: React.FC = (): ReactElement => {
   const history = useHistory();
   const { isLogged, homeHeight } = useApi();
   const { t, i18n } = useTranslation();
+  const carousel = useRef<any>(null);
 
   const gotoDashboard = () => {
     if (!isLogged) {
@@ -66,6 +67,15 @@ const Home: React.FC = (): ReactElement => {
         )
       );
   }, []);
+
+  
+  useEffect(() => {
+    if (!carousel.current) {
+      return;
+    }
+    const timer = setInterval(() => carousel.current.next(), 2500);
+    return () => clearInterval(timer);
+  }, [carousel]);
 
   return (
     <div className="Home" id="Home">
@@ -129,7 +139,7 @@ const Home: React.FC = (): ReactElement => {
         <div className="product-main">
           <div className="product-left"></div>
           <div style={{ position: 'absolute', left: '240px', right: '240px', height: '327px' }}>
-            <Carousel autoplay>
+            <Carousel ref={carousel}>
               <div>
                 <div className="autoplay-content">
                   <div className="all-chain">
