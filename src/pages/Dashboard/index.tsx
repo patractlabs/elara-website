@@ -163,7 +163,7 @@ const Dashboard: React.FC = () => {
                 <img src={ chain.img } alt="" />
                 <div className="project-item-main">
                   <span>{ chain.name }</span>
-                  { !!chain.count && <div className="project-counts">{ chain.count }</div> }
+                  { !!chain.count && <div className={ choosedChain === chain.name ? 'project-counts project-counts-active' : 'project-counts project-counts-default' }>{ chain.count }</div> }
                 </div>
               </li>
             )

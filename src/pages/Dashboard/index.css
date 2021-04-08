@@ -6,8 +6,8 @@
   width: 100%;
 }
 .sider {
-  width: 180px;
-  padding: 13px 0px;
+  width: 240px;
+  padding: 9px 0px;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -20,22 +20,21 @@
 .sider .project-item {
   cursor: pointer;
   font-size: 12px;
-  height: 43px;
+  font-weight: 500;
+  height: 51px;
   display: flex;
   align-items: center;
-  padding-right: 14px;
-  padding-left: 20px;
+  padding-right: 30px;
+  padding-left: 40px;
 }
 .sider .project-item-active, .sider .project-item:hover {
   color: white;
-  background-color: #38CA9E;
-  border-left: 5px solid #2EA772;
-  padding-left: 15px;
+  background-color: #14B071;
 }
 .sider .project-item img {
   height: 25px;
   width: 25px;
-  margin-right: 25px;
+  margin-right: 20px;
 }
 
 .project-item-main {
@@ -52,13 +51,23 @@
   border-radius: 8px;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
+  color: #14B071;
+  background: white;
+}
+.project-counts-default {
   color: white;
-  background: #FA6400;
+  background: #14B071;
+}
+
+.project-counts-active {
+  color: #14B071;
+  background: white;
 }
 
 .content {
   /* padding-left: 10.4%; */
-  padding-left: 180px;
+  padding-left: 240px;
   padding-top: 30px;
   height: 100%;
   overflow-y: auto;

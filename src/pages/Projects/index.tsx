@@ -44,7 +44,7 @@ const Projects: React.FC = () => {
 
   return (
     <div className="projects">
-      <button className="modal-button modal-button-active" style={{ padding: '7px 8px', background: '#2FAA74 linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 100%)', boxShadow: '1px 2px 4px 0px rgba(0, 0, 0, 0.1)' }} onClick={ () => setCreateIsModalVisible(true) }>
+      <button className="modal-button modal-button-active" style={{ padding: '6px 8px', background: '#14B071' }} onClick={ () => setCreateIsModalVisible(true) }>
         <img src={AddProject} alt="" style={{ marginRight: '5px' }} />
         { t('listPage.Create Project') }
       </button>

@@ -13,7 +13,7 @@ const _CreateProjectModel: FC<{
   chain,
 }): ReactElement => {
   const [ projectName, setProjectName ] = useState<string>('');
-  const [ isValid, setIsValid ] = useState<boolean>(true);
+  const [ isValid, setIsValid ] = useState<boolean>(false);
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const { t } = useTranslation();
   const createProject = () => {
@@ -45,14 +45,14 @@ const _CreateProjectModel: FC<{
         </div>
         <div className="project-input">
           <input placeholder={ t('listPage.PleaseProjectName') } value={projectName} onChange={ e => onInputChange(e.target.value) }/>
-          <p style={{ display: isValid ? 'none' : 'block', color: '#ff4d4f' }}>
+          <p style={{ display: !projectName || isValid ? 'none' : 'block', color: '#ff4d4f' }}>
             {t('listPage.FormatError')}
           </p>
         </div>
       </div>
       <div className="create-project-modal-footer">
         <button onClick={ () => onModalClose() } className="modal-button modal-button-default cancel-margin-right">{ t('modal.cancel') }</button>
-        <Button type="primary" disabled={!isValid} loading={isLoading} onClick={createProject} color="#2FAA74" className="modal-button modal-button-active">{ t('modal.ok') }</Button>
+        <Button type="primary" disabled={!isValid} loading={isLoading} onClick={createProject} className="modal-button modal-button-active">{ t('modal.ok') }</Button>
       </div>
     </div>
   );
