@@ -128,7 +128,7 @@ const Footer: React.FC = () => {
         <div className="contact">
           <h2>{ t('Contact & Subscription') }</h2>
           <div style={{ display: 'flex' }}>
-            <Input onChange={ e => setEmail(e.target.value) } style={{ flex: 1, height: '48px', width: '300px', marginRight: '10px' }} />
+            <Input placeholder={ t('footer.Enter your email account')} onChange={ e => setEmail(e.target.value) } style={{ flex: 1, height: '48px', width: '300px', marginRight: '10px' }} />
             <Button disabled={disabled} loading={subLoading} onClick={ onSubscribe } style={{ fontSize: '16px', color: 'white', backgroundColor: '#14B071', height: '48px', padding: '0px 21px' }}>{ t('Subscribe') }</Button>
           </div>
           <ul className="contact-list">
@@ -182,7 +182,7 @@ const Footer: React.FC = () => {
         <div>
           <img src={FooterLogo} alt="" />
         </div>
-        <div className="info-row">
+        <div className="footer-info-row">
           <p className="copyright">© 2021 Patract Labs Co., Limited, All Rights Reserved.</p>
           <p className="email">
             <a href="mailto:elara@patract.io">elara@patract.io</a>

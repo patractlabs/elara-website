@@ -153,6 +153,7 @@ const Home: React.FC = (): ReactElement => {
                     i18n.language === Language.zh &&
                       <p className="product-tip">每个账户每天</p>
                   }
+                  { !!i18n.language ? i18n.language : 'undefined'}
                   <p className="product-text">1000000</p>
                   <p className="product-tip">{
                     i18n.language === Language.en ?

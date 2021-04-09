@@ -17,6 +17,7 @@
 }
 
 .footer-content {
+  height: 244px;
   display: flex;
   justify-content: space-between;
 }
@@ -91,7 +92,7 @@
 .contact-list li:last-child {
   margin-right: 0px;
 }
-.info-row {
+.footer-info-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
