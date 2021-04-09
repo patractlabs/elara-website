@@ -84,9 +84,12 @@ const Home: React.FC = (): ReactElement => {
         <div className="banner-title-holder">
           {
             i18n.language === Language.zh ?
-              <h3 className="banner_title1">波卡生态的公共API接入服务</h3>
+              <h3 className="banner_title1" style={{ paddingTop: '126px' }}>波卡生态的公共API接入服务</h3>
               :
-              <h3 className="banner_title1"><span>Public API Access Service for</span><br/>Polkadot Ecosystem</h3>
+              <h3 className="banner_title1" style={{ paddingTop: '70px' }}>
+                <span>Public API Access Service for</span><br/>
+                <span>Polkadot Ecosystem</span>
+              </h3>
           }
           <h5 className="banner_title2"> {t("bannerTitle2")} </h5>
         </div>

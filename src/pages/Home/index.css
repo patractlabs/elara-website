@@ -52,7 +52,9 @@
 }
 
 .banner_title1 {
-  padding-top: 72px;
+  margin: 0 auto;
+  width: 1000px;
+  height: 216px;
   line-height: 72px;
   font-size: 50px;
   color: black;
@@ -60,8 +62,9 @@
   text-align: center;
 }
 .banner_title2 {
-  padding: 0px 140px;
-  margin-top: 24px;
+  margin: 0 auto;
+  width: 1000px;
+  margin-top: 20px;
   line-height: 28px;
   font-size: 18px;
   color: black;
