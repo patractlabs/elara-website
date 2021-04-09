@@ -56,8 +56,8 @@
   width: 1000px;
   height: 216px;
   line-height: 72px;
-  font-size: 50px;
-  color: black;
+  font-size: 60px;
+  color: #2a292b;
   letter-spacing: 0.38px;
   text-align: center;
 }
@@ -67,7 +67,7 @@
   margin-top: 20px;
   line-height: 28px;
   font-size: 18px;
-  color: black;
+  color: #2a292b;
   text-align: center;
 }
 .banner-center-holder {
