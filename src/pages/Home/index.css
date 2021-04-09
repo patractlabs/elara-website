@@ -74,12 +74,13 @@
 }
 .countup-title {
   height: 24px;
-    color: #949593;
-    font-size: 16px;
-    margin-bottom: 10px;
-    line-height: 24px;
+  color: #949593;
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 24px;
 }
 .countup {
+  font-family: WorkSans;
   font-weight: bold;
   font-size: 40px;
   color: #2A292B;
@@ -119,7 +120,7 @@
 }
 .advantage {
   height: 210px;
-  width: 400px;
+  width: 550px;
   text-align: center;
 }
 .advantage p {
@@ -202,12 +203,15 @@
   color: #DEF4EC;
 }
 .product-text {
+  font-family: WorkSans;
+  font-weight: bold;
   margin: 24px;
   letter-spacing: 6px;
   line-height: 80px;
   height: 80px;
   font-size: 80px;
   color: #FFFFFF;
+  font-weight: 700;
 }
 .black-btn {
   margin-top: 50px;
