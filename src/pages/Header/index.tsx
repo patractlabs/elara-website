@@ -41,11 +41,11 @@ const Header: React.FC = () => {
         break;
       case ScrollTarget.Service:
         const serviceDiv = document.getElementById('home-product');
-        homeHeight.setHeight(serviceDiv?.offsetTop || 1440);
+        homeHeight.setHeight((serviceDiv?.offsetTop || 1360) - 60);
         break;
       case ScrollTarget.Contact:
         const footerDiv = document.getElementById('home-footer');
-        homeHeight.setHeight(footerDiv?.offsetTop || 2236);
+        homeHeight.setHeight((footerDiv?.offsetTop || 2096) - 60);
         break;
     }
   };
@@ -105,84 +105,82 @@ const Header: React.FC = () => {
 
   return (
     <div className="head-main animated fadeInDown">
-      <div className="head-auto">
-        <Link to="/" style={{ display: 'flex', height: '100%', alignItems: 'center', marginRight: '5px' }}>
-          <img
-            onClick={() => scrollTo(ScrollTarget.Home)}
-            src={logo}
-            className="logo"
-            alt=""
-          />
-        </Link>
-        <div className="head-content">
-          <ul className="head-tabs">
-            <li>
-              <Link to="/" onClick={() => scrollTo(ScrollTarget.Home)}>
-                {t("home")}
-              </Link>
-            </li>
-            <li>
-              <Link to="/" onClick={() => scrollTo(ScrollTarget.Service)}>
-                {t("serve")}
-              </Link>
-            </li>
-            <li>
-              <Link to="/" onClick={() => scrollTo(ScrollTarget.Contact)}>
-                {t("contactUs")}
-              </Link>
-            </li>
-            <li>
-              <a target="_blank" rel="noreferrer" href="https://docs.elara.patract.io/">
-                {t("Documentation")}
-              </a>
-            </li>
-            <li>
-              <a target="_blank" rel="noreferrer" href="https://patract.io/">
-                Patract
-                <img style={{ marginLeft: '4px', position: 'relative', top: '-3px' }} src={PatractLinkSVG} alt="" />
-              </a>
-            </li>
-          </ul>
-          <ul className="head-right">
-            <li style={{ marginRight: '40px' }}>
-              <Dropdown overlay={LanguageMenu}>
-                <span>
-                  <span style={{ marginRight: '8px', cursor: 'pointer' }}>
-                    {i18n.language === Language.en ? "English " : "中文 "}
-                  </span>
-                  <DownOutlined
-                    style={{
-                      display: "inline-block",
-                      color: "#2A292B",
-                    }}
-                  />
-                </span>
-              </Dropdown>
-            </li>
-            {
-              isLogged ?
-                <li>
-                  <Dropdown overlay={UserMenu}>
-                    <span style={{ cursor: 'pointer' }}>
-                      <span style={{ marginRight: '8px' }}>
-                        { user.username }
-                      </span>
-                      <DownOutlined
-                        style={{
-                          display: "inline-block",
-                        }}
-                      />
-                    </span>
-                  </Dropdown> 
-                </li>
-                  :
-                <li>
-                  <div className="login_btn" onClick={ () => setLoginModalVisible(true) }>{t("sign.login")}</div>
-                  <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
-                </li>
-            }
+      <Link to="/" style={{ display: 'flex', height: '100%', alignItems: 'center', marginRight: '30px' }}>
+        <img
+          onClick={() => scrollTo(ScrollTarget.Home)}
+          src={logo}
+          className="logo"
+          alt=""
+        />
+      </Link>
+      <div className="head-content">
+        <ul className="head-tabs">
+          <li>
+            <Link to="/" onClick={() => scrollTo(ScrollTarget.Home)}>
+              {t("home")}
+            </Link>
+          </li>
+          <li>
+            <Link to="/" onClick={() => scrollTo(ScrollTarget.Service)}>
+              {t("serve")}
+            </Link>
+          </li>
+          <li>
+            <Link to="/" onClick={() => scrollTo(ScrollTarget.Contact)}>
+              {t("contactUs")}
+            </Link>
+          </li>
+          <li>
+            <a target="_blank" rel="noreferrer" href="https://docs.elara.patract.io/">
+              {t("Documentation")}
+            </a>
+          </li>
+          <li>
+            <a target="_blank" rel="noreferrer" href="https://patract.io/">
+              Patract
+              <img style={{ marginLeft: '4px', position: 'relative', top: '-3px' }} src={PatractLinkSVG} alt="" />
+            </a>
+          </li>
         </ul>
-        </div>
+        <ul className="head-right">
+          <li style={{ marginRight: '40px' }}>
+            <Dropdown overlay={LanguageMenu}>
+              <span>
+                <span style={{ marginRight: '8px', cursor: 'pointer' }}>
+                  {i18n.language === Language.en ? "English " : "中文 "}
+                </span>
+                <DownOutlined
+                  style={{
+                    display: "inline-block",
+                    color: "#2A292B",
+                  }}
+                />
+              </span>
+            </Dropdown>
+          </li>
+          {
+            isLogged ?
+              <li>
+                <Dropdown overlay={UserMenu}>
+                  <span style={{ cursor: 'pointer' }}>
+                    <span style={{ marginRight: '8px' }}>
+                      { user.username }
+                    </span>
+                    <DownOutlined
+                      style={{
+                        display: "inline-block",
+                      }}
+                    />
+                  </span>
+                </Dropdown> 
+              </li>
+                :
+              <li>
+                <div className="login_btn" onClick={ () => setLoginModalVisible(true) }>{t("sign.login")}</div>
+                <LoginModal isModalVisible={isLoginModalVisible} onModalClose={() => setLoginModalVisible(false)} />
+              </li>
+          }
+      </ul>
       </div>
     </div>
   );

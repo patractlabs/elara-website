@@ -47,12 +47,12 @@
   z-index: 200;
   position: relative;
   background-image: url("../../assets/banner-bg.svg");
-  height: 371px;
+  height: 352px;
   background-size: 100% 100%;
 }
 
 .banner_title1 {
-  padding-top: 122px;
+  padding-top: 72px;
   line-height: 72px;
   font-size: 50px;
   color: black;
@@ -73,11 +73,14 @@
   align-items: center;
 }
 .countup-title {
-  color: #949593;
-  font-size: 16px;
-  margin-bottom: 10px;
+  height: 24px;
+    color: #949593;
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 24px;
 }
 .countup {
+  font-weight: bold;
   font-size: 40px;
   color: #2A292B;
   letter-spacing: 6px;
@@ -94,6 +97,8 @@
   background: #14B071;
   border-radius: 28px;
   color: white;
+  font-weight: 600;
+  font-size: 16px;
 }
 .active-btn:hover {
   background: white;
@@ -113,12 +118,12 @@
   padding-top: 0px;
 }
 .advantage {
-  color: #686868;
+  height: 210px;
   width: 400px;
-  /* flex: 1; */
   text-align: center;
 }
 .advantage p {
+  color: #686868;
   line-height: 22px;
   letter-spacing: 0.32px;
 }
@@ -131,6 +136,8 @@
   font-size: 18px;
   font-weight: 600;
   color: #14B071;
+  line-height: 24px;
+  height: 24px;
 }
 
 .product {
@@ -148,7 +155,6 @@
   color: white;
   font-size: 56px;
   font-weight: 400;
-  color: #FFFFFF;
 }
 
 .product-main {
@@ -184,6 +190,7 @@
   color: white;
   font-weight: 600;
   font-size: 28px;
+  line-height: 36px;
   padding: 0px 120px;
 }
 .product-main .ant-carousel .slick-dots-bottom {
@@ -195,8 +202,10 @@
   color: #DEF4EC;
 }
 .product-text {
+  margin: 24px;
   letter-spacing: 6px;
   line-height: 80px;
+  height: 80px;
   font-size: 80px;
   color: #FFFFFF;
 }
