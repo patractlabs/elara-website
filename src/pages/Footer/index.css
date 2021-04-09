@@ -103,12 +103,10 @@
   line-height: 16px;
 }
 .email a {
-  width: 106px;
   height: 20px;
   font-size: 16px;
   color: #14B071;
   line-height: 20px;
-  font-size: 20px;
 }
 .email a:hover {
   color: #14B071;
