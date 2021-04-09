@@ -168,10 +168,16 @@
   justify-content: space-between;
 }
 .product-left, .product-right {
-  background-image: url("../../assets/bg-left.svg");
   background-size: 240% 100%;
   width: 240px;
   height: 100%;
+}
+.product-left {
+  background-image: url("../../assets/bg-left.svg");
+  transform: scaleX(-1);
+}
+.product-right {
+  background-image: url("../../assets/bg-right.svg");
 }
 .autoplay-content {
   display: flex;
