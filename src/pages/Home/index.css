@@ -49,10 +49,12 @@
   background-image: url("../../assets/banner-bg.svg");
   height: 352px;
   background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .banner_title1 {
-  margin: 0 auto;
   width: 1000px;
   height: 216px;
   line-height: 72px;
@@ -62,7 +64,7 @@
   text-align: center;
 }
 .banner_title2 {
-  margin: 0 auto;
+  /* margin: 0px auto; */
   width: 1000px;
   margin-top: 20px;
   line-height: 28px;

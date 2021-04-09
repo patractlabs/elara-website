@@ -145,7 +145,7 @@ table {
 
 html,
 body {
-	/* min-width: 1200px; */
+	min-width: 1200px;
   /* background: #EFF2F5; */
 }
 
