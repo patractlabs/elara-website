@@ -134,9 +134,9 @@ const Footer: React.FC = () => {
           <ul className="contact-list">
             <li>
               <Popover content={<img style={{ width: '150px', height: '150px' }} src={WechatQRCode} alt="" />} title={null}>
-              <a href="mailto:hi@patractlabs.com" onMouseOver={ () => setIconLinkHoverAt(IconLink.Wechat) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
+              <span style={{ cursor: 'pointer' }} onMouseOver={ () => setIconLinkHoverAt(IconLink.Wechat) } onMouseOut={ () => setIconLinkHoverAt(IconLink.Null) }>
                 <WechatSvg  color={ iconLinkHoverAt === IconLink.Wechat ? green : defaultGray } />
-              </a>
+              </span>
               </Popover>
             </li>
             <li>

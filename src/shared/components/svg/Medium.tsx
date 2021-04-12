@@ -1,6 +1,6 @@
 export const MediumSvg = ({ color }: { color: string }) => (
   <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <title>medium</title>
+    <title>Medium</title>
     <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity="0.699999988">
         <g id="Elara中文" transform="translate(-896.000000, -2383.000000)" fill={color} fillRule="nonzero">
             <g id="底部" transform="translate(0.000000, 2176.000000)">
