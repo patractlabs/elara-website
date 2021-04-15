@@ -10,8 +10,6 @@ import GithubLogo from '../../../assets/github-login.svg';
 import GithubWhite from '../../../assets/github-white.svg';
 import { useHistory } from 'react-router';
 
-let off = true;
-
 const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> = ({ isModalVisible, onModalClose }) => {
   const history = useHistory();
   const { setUser, setIsLoggged } = useApi();

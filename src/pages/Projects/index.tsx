@@ -11,7 +11,6 @@ import NameSVG from '../../assets/name.svg';
 import ActiveStatusSVG from '../../assets/active-status.svg';
 import DeactiveStatusSVG from '../../assets/deactive-status.svg';
 import StatusSVG from '../../assets/status.svg';
-import OperatSVG from '../../assets/operat.svg';
 import TimeSVG from '../../assets/time.svg';
 import { ProjectStatus } from '../../core/enum';
 import { formatTime } from '../../shared/utils';
