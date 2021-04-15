@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { apiLogin } from '../../../core/data/api';
 import { APIError } from '../../../core/types/classes/error';
-import { LOGIN_DOMAIN } from '../../../config/origin';
+import { API_DOMAIN } from '../../../config/origin';
 import './index.css';
 import { createPlainModal } from '../plain-modal';
 import { useApi } from '../../../core/hooks/useApi';
@@ -31,18 +31,7 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
       }
   ), [setIsLoggged, setUser, history]);
 
-  const openWindow = () => {
-    window.open(`${LOGIN_DOMAIN}/auth/github`);
-
-    console.log('open window', `${LOGIN_DOMAIN}/auth/github`);
-    // window.onmessage = function (ev: { data: any }) {
-    //   if (off) {
-    //     console.log('message', ev.data);
-    //     loginInit();
-    //     off = false;
-    //   }
-    // };
-  };
+  const openWindow = () => window.open(`${API_DOMAIN}/auth/github`);
 
   useEffect(() => {
     if (!isModalVisible) {
