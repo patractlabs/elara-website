@@ -44,7 +44,7 @@ const _CreateProjectModel: FC<{
           <span>{ t('listPage.projectName') }</span>
         </div>
         <div className="project-input">
-          <input placeholder={ t('listPage.PleaseProjectName') } value={projectName} onChange={ e => onInputChange(e.target.value) }/>
+          <input style={{ width: '100%' }} placeholder={ t('listPage.PleaseProjectName') } value={projectName} onChange={ e => onInputChange(e.target.value) }/>
           <p style={{ display: !projectName || isValid ? 'none' : 'block', color: '#ff4d4f' }}>
             {t('listPage.FormatError')}
           </p>
@@ -58,4 +58,4 @@ const _CreateProjectModel: FC<{
   );
 };
 
-export const CreateProjectModel = createPlainModal(_CreateProjectModel, 440);
+export const CreateProjectModel = createPlainModal(_CreateProjectModel);
