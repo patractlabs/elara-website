@@ -8,7 +8,7 @@ if (process.env.REACT_APP_NODE_ENV === 'development') {
   ENDPOINTS_URL = "https://test-api.elara.patract.cn";
   WSS_ENDPOINTS_URL = "wss://test-api.elara.patract.cn";
 } else if (process.env.REACT_APP_NODE_ENV === 'pre-production') {
-  API_DOMAIN = 'https://test-elara-website.vercel.app/api';
+  API_DOMAIN = 'https://test-elara.patract.cn';
 
   ENDPOINTS_URL = "https://test-api.elara.patract.cn";
   WSS_ENDPOINTS_URL = "wss://test-api.elara.patract.cn";
