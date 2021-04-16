@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { apiLogin } from '../../../core/data/api';
 import { APIError } from '../../../core/types/classes/error';
@@ -10,9 +10,7 @@ import GithubLogo from '../../../assets/github-login.svg';
 import GithubWhite from '../../../assets/github-white.svg';
 import { useHistory } from 'react-router';
 
-let hasGotMessage = false;
-
-const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> = () => {
+const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> = ({ isModalVisible }) => {
   const history = useHistory();
   const { setUser, setIsLoggged } = useApi();
   const { t } = useTranslation();
@@ -33,37 +31,25 @@ const _LoginModal: React.FC<{ isModalVisible: boolean; onModalClose(): void }> =
       }
   ), [setIsLoggged, setUser, history]);
 
-  const openWindow = () => {
-    window.open(`${API_DOMAIN}/auth/github`);
-    window.onmessage = function (ev: { data: any }) {
-      const filter = 'elara-sid:';
-      if (!hasGotMessage && (typeof ev.data === 'string') && ev.data.startsWith(filter)) {
-        const sid = ev.data.slice(filter.length);
-        console.log('onmessage sid', sid);
-        hasGotMessage = true;
-        document.cookie = `sid=${sid}`;
-        loginInit();
-      }
-    };
-  }
+  const openWindow = () => window.open(`${API_DOMAIN}/auth/github`);
 
-  // useEffect(() => {
-  //   if (!isModalVisible) {
-  //     return;
-  //   }
-  //   loginInit();
+  useEffect(() => {
+    if (!isModalVisible) {
+      return;
+    }
+    loginInit();
 
-  //   const repeater = setInterval(async () => {
-  //       const result = await loginInit();
-  //       if(result === true) {
-  //         clearInterval(repeater)
-  //       }
-  //   }, 2000);
+    const repeater = setInterval(async () => {
+        const result = await loginInit();
+        if(result === true) {
+          clearInterval(repeater)
+        }
+    }, 2000);
 
-  //   return () => {
-  //     clearInterval(repeater)
-  //   }
-  // }, [isModalVisible, loginInit]);
+    return () => {
+      clearInterval(repeater)
+    }
+  }, [isModalVisible, loginInit]);
 
   return (
     <div className="login-modal">
