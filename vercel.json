@@ -1,5 +1,8 @@
 {
   "redirects": [
-    { "source": "/api/(.*)", "destination": "https://test-elara.patract.cn" }
+    { "source": "/api/auth/login", "destination": "https://test-elara.patract.cn/auth/login" },
+    { "source": "/api/auth/logout", "destination": "https://test-elara.patract.cn/auth/logout" },
+    { "source": "/api/project/create", "destination": "https://test-elara.patract.cn/project/create" },
+    { "source": "/api/project/list", "destination": "https://test-elara.patract.cn/project/list" }
   ]
 }
