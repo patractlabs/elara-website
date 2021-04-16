@@ -1,5 +1,5 @@
 {
-  "rewrites": [
+  "redirects": [
     { "source": "/api/*", "destination": "https://test-elara.patract.cn" }
   ]
 }
