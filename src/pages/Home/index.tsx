@@ -1,7 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import "./index.css";
 import { apiGetChainStats } from "../../core/data/api";
-import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import img1 from '../../assets/easy-use.webp';
 import img2 from '../../assets/cp2.svg';
@@ -17,6 +16,7 @@ import { LoginModal } from '../../shared/components/LoginModal';
 import { useHistory } from 'react-router';
 import { Carousel } from 'antd';
 import Footer from '../Footer';
+import { Countup } from '../../shared/components/Countup';
 
 const imgList = [
   img1,
@@ -29,14 +29,6 @@ const imgList = [
   img8,
 ];
 
-const countUpProps = {
-  star: 0,
-  duration: 2.75,
-  decimals: 0,
-  useEasing: true,
-  useGrouping: true,
-  separator: ",",
-};
 const Home: React.FC = (): ReactElement => {
   const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
   const [ total, setTotal ] = useState(0);
@@ -59,13 +51,16 @@ const Home: React.FC = (): ReactElement => {
 
   useEffect(() => {
     setLoaded(true);
-    apiGetChainStats()
-      .then(chainStatus =>
-        setTotal(
-          Object.keys(chainStatus)
-            .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
-        )
-      );
+    const timer = setInterval(() => {
+      apiGetChainStats()
+        .then(chainStatus =>
+          setTotal(
+            Object.keys(chainStatus)
+              .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
+          )
+        );
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
   
@@ -100,7 +95,7 @@ const Home: React.FC = (): ReactElement => {
             {t('Cumulative')}
           </span>
           <span className="countup">
-            <CountUp end={total} suffix="" {...countUpProps}></CountUp>
+            <Countup num={total} />
           </span>
           <div className="active-btn" onClick={gotoDashboard}>
             {t("bannerBtn")}
@@ -156,7 +151,7 @@ const Home: React.FC = (): ReactElement => {
                     i18n.language === Language.zh &&
                       <p className="product-tip">每个账户每天</p>
                   }
-                  <p className="product-text">1000000</p>
+                  <p className="product-text">1,000,000</p>
                   <p className="product-tip">{
                     i18n.language === Language.en ?
                       'Requests for every account every day'
