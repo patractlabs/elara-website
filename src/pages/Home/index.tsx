@@ -66,7 +66,7 @@ const Home: React.FC = (): ReactElement => {
               .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
           )
         );
-    }, 1500);
+    }, 1200);
     return () => clearInterval(timer);
   }, []);
   

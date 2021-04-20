@@ -91,7 +91,7 @@ export const Countup: FC<{ number: number }> = ({ number }) => {
               {
                 <span style={ loaded ? {
                   animationFillMode: 'forwards',
-                  animationDuration: to > from ? `${1.5}s` : `${1.5 * (fromDuration / (fromDuration + toDuration))}, ${1.5 * (toDuration / fromDuration + toDuration)}`,
+                  animationDuration: to > from ? `${0.8}s` : `${0.8 * (fromDuration / (fromDuration + toDuration))}, ${0.8 * (toDuration / fromDuration + toDuration)}`,
                   // animationDuration: to > from ? `${duration}s` : `${fromDuration}, ${toDuration}`,
                   animationDelay: to > from ? '0s' : `0s, ${fromDuration}`,
                   animationName: to > from ? `countup${change}` : `countup${from}-10, countup0-${to}`,

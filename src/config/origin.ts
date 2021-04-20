@@ -4,6 +4,7 @@ let WSS_ENDPOINTS_URL = '';
 console.log('process.env.REACT_APP_NODE_ENV', process.env.REACT_APP_NODE_ENV);
 if (process.env.REACT_APP_NODE_ENV === 'development') {
   API_DOMAIN = '/accountApi';
+  // API_DOMAIN = 'https://elara.patract.io';
 
   ENDPOINTS_URL = "https://test-api.elara.patract.cn";
   WSS_ENDPOINTS_URL = "wss://test-api.elara.patract.cn";
