@@ -1,6 +1,6 @@
 export enum Language {
-  en = 'en-US',
-  zh = 'zh-CN',
+  en = 'en',
+  zh = 'zh',
 }
 
 export enum ChainName {

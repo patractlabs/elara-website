@@ -102,8 +102,8 @@ const getChains = (projects: Project[] = []): Chain[] => {
   };
 
   projects.forEach(project => {
-    const upperCaseChainName = project.chain.toLocaleUpperCase();
-    const chainName = chainNames.find(_chainName => _chainName.toLocaleUpperCase() === upperCaseChainName) || '';
+    const upperCaseChainName = project.chain.toUpperCase();
+    const chainName = chainNames.find(_chainName => _chainName.toUpperCase() === upperCaseChainName) || '';
     chainsMap[chainName] && chainsMap[chainName].count ++;
   });
 

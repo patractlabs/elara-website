@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, Suspense } from "react";
+import React, { FC, ReactElement, Suspense, useEffect } from "react";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import  "./i18n";
 import useRouter from "./core/hooks/useRouter";
@@ -35,7 +35,10 @@ const AuthRoute: FC<{
 const App: FC = (): ReactElement => {
   const { i18n } = useTranslation();
 
-  console.log('lang', i18n.language);
+  useEffect(() => {
+    i18n.language = i18n.language.toLowerCase().includes('zh') ? Language.zh : Language.en;
+    console.log('lang', i18n.language);
+  }, [i18n]);
 
   return (
     <ApiProvider>
