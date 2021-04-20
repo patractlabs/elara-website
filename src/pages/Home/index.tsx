@@ -66,7 +66,7 @@ const Home: React.FC = (): ReactElement => {
               .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
           )
         );
-    }, 2000);
+    }, 1500);
     return () => clearInterval(timer);
   }, []);
   
@@ -101,7 +101,7 @@ const Home: React.FC = (): ReactElement => {
             {t('Cumulative')}
           </span>
           <span className="countup">
-            <Countup num={total} />
+            <Countup number={total} />
           </span>
           <div className="active-btn" onClick={gotoDashboard}>
             {t("bannerBtn")}
