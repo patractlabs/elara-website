@@ -35,9 +35,11 @@ const AuthRoute: FC<{
 const App: FC = (): ReactElement => {
   const { i18n } = useTranslation();
 
+  console.log('lang', i18n.language);
+
   return (
     <ApiProvider>
-      <div style={{ fontFamily: i18n.language === Language.en ? 'WorkSans' : 'PingFang SC' }}>
+      <div style={{ fontFamily: i18n.language === Language.zh ? 'PingFang SC' : 'WorkSans' }}>
         <BrowserRouter>
           <Header />
           <Switch>

@@ -158,11 +158,14 @@ const Home: React.FC = (): ReactElement => {
                       <p className="product-tip">每个账户每天</p>
                   }
                   <p className="product-text">1,000,000</p>
-                  <p className="product-tip">{
-                    i18n.language === Language.en ?
-                      'Requests for every account every day'
-                      : '次请求'
-                    }</p>
+                  <p className="product-tip">
+                    {
+                      i18n.language === Language.zh ?
+                        '次请求'
+                        :
+                        'Requests for every account every day'
+                    }
+                  </p>
                 </div>
               </div>
               <div>

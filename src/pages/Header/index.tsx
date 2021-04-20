@@ -147,7 +147,7 @@ const Header: React.FC = () => {
             <Dropdown overlay={LanguageMenu}>
               <span>
                 <span style={{ marginRight: '8px', cursor: 'pointer' }}>
-                  {i18n.language === Language.en ? "English " : "中文 "}
+                  {i18n.language === Language.zh ? "中文 " : "English " }
                 </span>
                 <DownOutlined
                   style={{
