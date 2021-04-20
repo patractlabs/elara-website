@@ -80,10 +80,10 @@
   justify-content: space-between;
 }
 .pid-row, .psecret-row {
-  width: 241px;
+  width: 255px;
 }
 .endpoints-row {
-  width: 480px;
+  width: 450px;
 }
 .copy-img {
   cursor: pointer;
