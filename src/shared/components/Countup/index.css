@@ -2,32 +2,31 @@
   width: 100%;
   height: 50px;
   line-height: 50px;
-  margin-top: 6px;
   display: flex;
   justify-content: center;
 }
 @keyframes scrollNumber0
 {
   0% { margin-top: 0px; }
-  100% { margin-top: -1100px;}
+  100% { margin-top: -550px;}
 }
 
 @-moz-keyframes scrollNumber0 /* Firefox */
 {
   0% { margin-top: 0px; }
-  100% { margin-top: -1100px;}
+  100% { margin-top: -550px;}
 }
 
 @-webkit-keyframes scrollNumber0 /* Safari 和 Chrome */
 {
   0% { margin-top: 0px; }
-  100% { margin-top: -1100px;}
+  100% { margin-top: -550px;}
 }
 
 @-o-keyframes scrollNumber0 /* Opera */
 {
   0% { margin-top: 0px; }
-  100% { margin-top: -1100px;}
+  100% { margin-top: -550px;}
 }
 @keyframes scrollNumber1
 {
@@ -243,7 +242,7 @@
 }
 
 .numbers-box span {
-  display: inline-block;
+  display: block;
   color: #666;
   height: 550px;
 }
@@ -251,7 +250,7 @@
 .numbers-box span label {
   color: #2A292B;
   font-size: 40px;
-  float: left;
+  display: block;
 }
 .numbers-box span label:nth-child(1), label:nth-child(2), label:nth-child(3), label:nth-child(4), label:nth-child(5), label:nth-child(6), label:nth-child(7), label:nth-child(8), label:nth-child(9), label:nth-child(10) {
   padding-top: 0rem;

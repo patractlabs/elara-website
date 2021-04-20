@@ -1,7 +1,9 @@
-import { FC, useMemo } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import './index.css';
 
 export const Countup: FC<{ num: number }> = ({ num }) => {
+  const [ loaded, setLoaded ] = useState<boolean>(false);
+
   const numberList = useMemo(() => {
     const nums = `${num}`.split('').reverse();
     
@@ -11,24 +13,27 @@ export const Countup: FC<{ num: number }> = ({ num }) => {
     }
     return nums.reverse();
   }, [num]);
+
+  useEffect(() => setLoaded(true), []);
+
   return (
     <div className="numbers-container">
       {
         numberList.map((number, index) => {
           if (number === ',') {
-            return <div className="numbers-box" key={index}>
+            return <div className="numbers-box" key={index} style={{ width: 'auto' }}>
               <span>
                 <label>,</label>
               </span>
             </div>
           }
           const scrollClass = number === '0' ?
-            `numbers-scroll0${Math.ceil(Math.random() * 5)}`
+            `numbers-scroll03`
             :
             `numbers-scroll${number}`;
 
           return (
-            <div className="numbers-box" key={index}>
+            <div className={ loaded ? 'numbers-box' : '' } key={index}>
               {
                 num > 0 ?
                   <span className={scrollClass}>

@@ -51,6 +51,13 @@ const Home: React.FC = (): ReactElement => {
 
   useEffect(() => {
     setLoaded(true);
+    apiGetChainStats()
+      .then(chainStatus =>
+        setTotal(
+          Object.keys(chainStatus)
+            .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
+        )
+      );
     const timer = setInterval(() => {
       apiGetChainStats()
         .then(chainStatus =>
@@ -59,10 +66,9 @@ const Home: React.FC = (): ReactElement => {
               .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
           )
         );
-    }, 1000);
+    }, 2000);
     return () => clearInterval(timer);
   }, []);
-
   
   useEffect(() => {
     if (!carousel.current) {
