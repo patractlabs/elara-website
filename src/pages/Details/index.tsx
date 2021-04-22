@@ -107,22 +107,28 @@ const methodsCallOption: any = {
     trigger: 'item',
   },
   legend: {
-    orient: 'horizontal',
-    left: 'center',
-    top: 'bottom',
+    type: 'scroll',
+    orient: 'vertical',
+    right: 10,
+    top: 20,
+    bottom: 20
   },
   series: [
     {
       type: 'pie',
-      radius: ['40%', '70%'],
+      radius: '70%',
+      center: ['35%', '50%'],
+      // radius: ['30%', '70%'],
       avoidLabelOverlap: false,
       label: {
         show: false,
         position: 'center'
       },
       emphasis: {
-        label: {
-          show: false
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
         }
       },
       labelLine: {
