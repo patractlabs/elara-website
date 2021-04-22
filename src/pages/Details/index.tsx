@@ -279,13 +279,14 @@ const Details: React.FC = () => {
             <div className="endpoints">
               <div className="active-row">ENDPOINTS (WSS)</div>
               <div className="info-row endpoints-row">
-                <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
-                <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
+                { `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }
+                <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
               </div>
               <div className="active-row">ENDPOINTS (HTTPS)</div>
               <div className="info-row endpoints-row">
-                { `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }
-                <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
+                
+              <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
+                <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
               </div>
             </div>
             {/* <div className="endpoints">
