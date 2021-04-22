@@ -40,12 +40,10 @@ const sumUpMethodCalls = (statMonth: StatMonth) => {
     const dayMethod = statMonth[day].method;
     Object.keys(dayMethod).forEach(
       method => {
-        console.log('method', sumUp[method], dayMethod[method]);
         sumUp[method] = sumUp[method] ? sumUp[method]  + parseInt(dayMethod[method] || '0') : parseInt(dayMethod[method] || '0');
       }
     );
   });
-  console.log('sumUp', sumUp);
   return Object.keys(sumUp).map(method => ({
     name: method,
     value: sumUp[method],

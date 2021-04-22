@@ -42,7 +42,7 @@ const chainNames = [
   ChainName.Stafi,
   ChainName.Mandala,
   ChainName.ChainX,
-  ChainName.Westend,
+  // ChainName.Westend,
 ];
 
 const getChains = (projects: Project[] = []): Chain[] => {
