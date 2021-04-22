@@ -75,7 +75,7 @@
     "user":{
         "Level":"Level",
         "Projects":"Projects",
-        "Personal":"Personal",
+        "Personal":"personal",
         "Logout":"Logout",
         "team":"team"
     },

@@ -23,3 +23,8 @@ export enum ProjectStatus {
   Active = 'Active',
   Stop = 'Stop',
 }
+
+export enum AccountLevel {
+  personal = '0',
+  team = '1',
+}

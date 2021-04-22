@@ -73,17 +73,17 @@
   line-height: 17px;
   height: 17px;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .pid-row, .psecret-row {
-  width: 255px;
+  width: 295px;
 }
 .endpoints-row {
-  width: 450px;
+  width: 540px;
 }
 .copy-img {
   cursor: pointer;

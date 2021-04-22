@@ -24,8 +24,8 @@ import copy from 'copy-to-clipboard';
 
 interface ProjectDetail {
   createtime: string;
-  request: number;
-  bandwidth: number;
+  request: string;
+  bandwidth: string;
   status: ProjectStatus;
   pid: string;
   psecret: string;
@@ -37,9 +37,13 @@ const sumUpMethodCalls = (statMonth: StatMonth) => {
   Object.keys(statMonth).forEach(day => {
     const dayMethod = statMonth[day].method;
     Object.keys(dayMethod).forEach(
-      method => sumUp[method] = sumUp[method] ? sumUp[method] + dayMethod[method] : dayMethod[method]
+      method => {
+        console.log('method', sumUp[method], dayMethod[method]);
+        sumUp[method] = sumUp[method] ? sumUp[method]  + parseInt(dayMethod[method] || '0') : parseInt(dayMethod[method] || '0');
+      }
     );
   });
+  console.log('sumUp', sumUp);
   return Object.keys(sumUp).map(method => ({
     name: method,
     value: sumUp[method],
@@ -162,7 +166,7 @@ const Details: React.FC = () => {
       requestOption.series[1].data = keys.map(key => statMonth[key].request);
 
       bandwidthOption.xAxis.data = keys
-      bandwidthOption.series[0].data = keys.map(key => statMonth[key].bandwidth / 1024 / 1024);
+      bandwidthOption.series[0].data = keys.map(key => parseInt(statMonth[key].bandwidth || '0') / 1024 / 1024);
 
       methodsCallOption.series[0].data = sumUpMethodCalls(statMonth);
       methodsCallOption.series[0].data = !methodsCallOption.series[0].data.length ?
@@ -271,7 +275,20 @@ const Details: React.FC = () => {
                 <img className="copy-img" onClick={ () => copy(project?.psecret || '')} src={CopySVG} alt=""/>
               </div>
             </div>
+            
             <div className="endpoints">
+              <div className="active-row">ENDPOINTS (WSS)</div>
+              <div className="info-row endpoints-row">
+                <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
+                <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
+              </div>
+              <div className="active-row">ENDPOINTS (HTTPS)</div>
+              <div className="info-row endpoints-row">
+                { `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }
+                <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
+              </div>
+            </div>
+            {/* <div className="endpoints">
               <div className="active-row">ENDPOINTS</div>
               <div className="info-row endpoints-row">
                 <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
@@ -281,7 +298,7 @@ const Details: React.FC = () => {
                 { `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }
                 <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

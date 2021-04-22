@@ -3,12 +3,12 @@ export class ChainStats {
 }
 
 export class StatDay {
-  request: number;
-  updatetime: number;
+  request: string;
+  updatetime: string;
   method: {
-    [ key: string ]: number;
+    [ key: string ]: string;
   };
-  bandwidth: number;
+  bandwidth: string;
   code: {
     [ key: string ]: string;
   };
@@ -18,8 +18,8 @@ export class StatDay {
   origin: {
     [ key: string ]: string;
   };
-  timeout: number;
-  delay: number;
+  timeout: string;
+  delay: string;
 }
 
 export class StatWeek {

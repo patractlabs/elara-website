@@ -55,14 +55,14 @@ const Header: React.FC = () => {
       <li className="">
         <Link to="/dashboard/projects">
           <p>{t("user.Level")}</p>
-          <h3>{!user.vip ? t("user.Personal") : t("user.team")}</h3>
+          <h3>{user.vip === '0' ? t("user.Personal") : t("user.team")}</h3>
         </Link>
       </li>
       <li className="user-menu-project-counts">
         <Link to="/dashboard/projects">
           <p>{t("user.Projects")}</p>
           <h3>
-            {user.ext.projects}/{!user.vip ? "20" : "100"}
+            {user.ext.projects}/{user.vip === '0' ? "10" : "100"}
           </h3>
         </Link>
       </li>
