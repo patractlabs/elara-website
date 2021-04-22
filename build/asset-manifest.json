@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.4097c253.chunk.css",
-    "main.js": "/static/js/main.51755c6b.chunk.js",
-    "main.js.map": "/static/js/main.51755c6b.chunk.js.map",
+    "main.css": "/static/css/main.808198f1.chunk.css",
+    "main.js": "/static/js/main.de5322fa.chunk.js",
+    "main.js.map": "/static/js/main.de5322fa.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d3cecef8.js",
     "runtime-main.js.map": "/static/js/runtime-main.d3cecef8.js.map",
     "static/css/2.98e7ac70.chunk.css": "/static/css/2.98e7ac70.chunk.css",
-    "static/js/2.385abdbd.chunk.js": "/static/js/2.385abdbd.chunk.js",
-    "static/js/2.385abdbd.chunk.js.map": "/static/js/2.385abdbd.chunk.js.map",
+    "static/js/2.b3677a5e.chunk.js": "/static/js/2.b3677a5e.chunk.js",
+    "static/js/2.b3677a5e.chunk.js.map": "/static/js/2.b3677a5e.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.98e7ac70.chunk.css.map": "/static/css/2.98e7ac70.chunk.css.map",
-    "static/css/main.4097c253.chunk.css.map": "/static/css/main.4097c253.chunk.css.map",
-    "static/js/2.385abdbd.chunk.js.LICENSE.txt": "/static/js/2.385abdbd.chunk.js.LICENSE.txt",
+    "static/css/main.808198f1.chunk.css.map": "/static/css/main.808198f1.chunk.css.map",
+    "static/js/2.b3677a5e.chunk.js.LICENSE.txt": "/static/js/2.b3677a5e.chunk.js.LICENSE.txt",
     "static/media/Darwinia.639aed77.png": "/static/media/Darwinia.639aed77.png",
     "static/media/Edgeware.ce8e73fb.svg": "/static/media/Edgeware.ce8e73fb.svg",
     "static/media/Jupiter.654d8f9f.svg": "/static/media/Jupiter.654d8f9f.svg",
@@ -22,6 +22,7 @@
     "static/media/Plasm.16cf115c.png": "/static/media/Plasm.16cf115c.png",
     "static/media/Polkadot.0fd79233.svg": "/static/media/Polkadot.0fd79233.svg",
     "static/media/Rococo.afea08ac.svg": "/static/media/Rococo.afea08ac.svg",
+    "static/media/Westend.0fd79233.svg": "/static/media/Westend.0fd79233.svg",
     "static/media/index.css": "/static/media/footer-bg.e869d484.svg",
     "static/media/active-status.91d01f10.svg": "/static/media/active-status.91d01f10.svg",
     "static/media/add-project.e0e6f4b6.svg": "/static/media/add-project.e0e6f4b6.svg",
@@ -53,8 +54,8 @@
   "entrypoints": [
     "static/js/runtime-main.d3cecef8.js",
     "static/css/2.98e7ac70.chunk.css",
-    "static/js/2.385abdbd.chunk.js",
-    "static/css/main.4097c253.chunk.css",
-    "static/js/main.51755c6b.chunk.js"
+    "static/js/2.b3677a5e.chunk.js",
+    "static/css/main.808198f1.chunk.css",
+    "static/js/main.de5322fa.chunk.js"
   ]
 }

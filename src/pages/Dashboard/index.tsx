@@ -16,6 +16,7 @@ import img10 from '../../assets/Plasm.png';
 import img11 from '../../assets/stafi.webp';
 import img12 from '../../assets/Mandala.svg';
 import img13 from '../../assets/ChainX.png';
+import img14 from '../../assets/Westend.svg';
 import { apiGetProjectList } from '../../core/data/api';
 import { Project } from '../../core/types/classes/project';
 import { ChainName } from '../../core/enum';
@@ -41,6 +42,7 @@ const chainNames = [
   ChainName.Stafi,
   ChainName.Mandala,
   ChainName.ChainX,
+  ChainName.Westend,
 ];
 
 const getChains = (projects: Project[] = []): Chain[] => {
@@ -99,6 +101,10 @@ const getChains = (projects: Project[] = []): Chain[] => {
       img: img13,
       count: 0,
     },
+    Westend: {
+      img: img14,
+      count: 0,
+    }
   };
 
   projects.forEach(project => {

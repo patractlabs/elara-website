@@ -4,6 +4,7 @@ export enum Language {
 }
 
 export enum ChainName {
+
   Polkadot = 'Polkadot',
   Kusama = 'Kusama',
   Jupiter = 'Jupiter',
@@ -17,6 +18,8 @@ export enum ChainName {
   Stafi = 'Stafi',
   Mandala = 'Mandala',
   ChainX = 'ChainX',
+  Westend = 'Westend',
+
 }
 
 export enum ProjectStatus {

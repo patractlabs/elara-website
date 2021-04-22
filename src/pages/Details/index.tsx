@@ -18,11 +18,13 @@ import RequestCountsSVG from '../../assets/request-counts.svg';
 import BandwidthSVG from '../../assets/bandwidth.svg';
 import CopySVG from '../../assets/copy.svg';
 import StatusSVG from '../../assets/status.svg';
+import NameSVG from '../../assets/name.svg';
 import { formatSize, formatTime } from '../../shared/utils';
 import { ENDPOINTS_URL, WSS_ENDPOINTS_URL } from '../../config/origin';
 import copy from 'copy-to-clipboard';
 
 interface ProjectDetail {
+  name: string;
   createtime: string;
   request: string;
   bandwidth: string;
@@ -146,6 +148,7 @@ const Details: React.FC = () => {
     const dayDetailPromise = apiGetDayDetail(params.projectId);
     Promise.all([projectPromise, dayDetailPromise]).then(([project, dayDetail]) =>
       setProject({
+        name: project.name,
         createtime: project.createtime,
         request: dayDetail.request,
         bandwidth: dayDetail.bandwidth,
@@ -196,6 +199,17 @@ const Details: React.FC = () => {
           size="small"
           pagination={false}
           columns={[
+            {
+              title:
+                <div className="th-default">
+                  <img src={NameSVG} alt="" style={{ marginRight: '8px' }}/>
+                  <span>{t('listPage.projectName')}</span>
+                </div>,
+              dataIndex: 'name',
+              key: 'name',
+              render: (text: string) => <span className="td-span-default">{text}</span>,
+              width: 150,
+            },
             {
               title:
                 <div className="th-default">
@@ -289,17 +303,6 @@ const Details: React.FC = () => {
                 <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
               </div>
             </div>
-            {/* <div className="endpoints">
-              <div className="active-row">ENDPOINTS</div>
-              <div className="info-row endpoints-row">
-                <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
-                <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
-              </div>
-              <div className="info-row endpoints-row">
-                { `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }
-                <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
