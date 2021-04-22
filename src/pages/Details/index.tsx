@@ -58,24 +58,21 @@ const requestOption: any = {
   yAxis: {
     type: 'value',
   },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+        type: 'cross',
+        label: {
+            backgroundColor: '#283b56'
+        }
+    }
+  },
   series: [
-    {
-      data: [],
-      type: 'line',
-      symbol: 'circle',
-      lineStyle: {
-        width: 2,
-        color: '#14B071'
-      },
-      itemStyle: {
-        color: '#14B071',
-      }
-    },
     {
       data: [],
       type: 'bar',
       itemStyle: {
-        color: 'rgb(243, 243, 251)'
+        color: '#14B071'
       }
     },
   ],
@@ -90,15 +87,23 @@ const bandwidthOption: any = {
     type: 'value',
     axisLabel:{ formatter: '{value} MB'}
   },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+        type: 'cross',
+        label: {
+            backgroundColor: '#283b56'
+        }
+    }
+  },
   series: [
     {
       data: [],
-      type: 'line',
-      symbolSize: 0,
-      lineStyle: {
-        color: '#333FFF'
+      type: 'bar',
+      itemStyle: {
+        color: '#14B071'
       }
-    }
+    },
   ],
 };
 
@@ -170,7 +175,6 @@ const Details: React.FC = () => {
       
       requestOption.xAxis.data = keys;
       requestOption.series[0].data = keys.map(key => statMonth[key].request);
-      requestOption.series[1].data = keys.map(key => statMonth[key].request);
 
       bandwidthOption.xAxis.data = keys
       bandwidthOption.series[0].data = keys.map(key => parseInt(statMonth[key].bandwidth || '0') / 1024 / 1024);
