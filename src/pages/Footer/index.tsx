@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
                 <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/zkmega">zkMega</a>
               </li>
               <li className="site">
-                <span>Himalia</span>
+                <a target="_blank" rel="noreferrer" href="https://github.com/patractlabs/himalia">Himalia</a>
               </li>
             </ul>
           </div>
