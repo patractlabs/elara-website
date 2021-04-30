@@ -8,7 +8,7 @@ import * as echarts from 'echarts';
 import "./index.css";
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ProjectStatus } from '../../core/enum';
+import { Language, ProjectStatus } from '../../core/enum';
 import { Table } from 'antd';
 import { StatMonth } from '../../core/types/classes/stat';
 import TimeSVG from '../../assets/time.svg';
@@ -145,7 +145,7 @@ const methodsCallOption: any = {
 };
 
 const Details: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [ project, setProject ] = useState<ProjectDetail>();
   const params = useParams<{ projectId: string; chain: string }>();
   const requestEchart = useRef<HTMLDivElement>(null);
@@ -198,8 +198,40 @@ const Details: React.FC = () => {
     });
   }, [params.projectId]);
 
+  console.log('params.chain', params.chain)
   return (
     <div className="project-detail">
+      {
+        (params.chain === 'Polkadot' || params.chain === 'Kusama') &&
+          <div style={{
+            position: 'absolute',
+            top: '0px',
+            bottom: '0px',
+            left: '240px',
+            right: '0px',
+            zIndex: 1,
+            background: 'rgba(0,0,0,0.8)',
+            fontSize: '16px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            display: 'flex',
+            color: 'white'
+          }}>
+            <div style={{
+              marginBottom: '15px',
+              fontSize: '20px',
+            }}>{ i18n.language === Language.zh ? '维护中...' : `It's maintaining.` }</div>
+            <div>
+              { 
+                i18n.language === Language.zh ?
+                  <span>请直接使用：<span style={{ color: '#14B071' }}>{params.chain === 'Polkadot' ?  'wss://polkadot.elara.patract.io/' : 'wss://kusama.elara.patract.io/' }</span></span>
+                  :
+                  <span>Please use <span style={{ color: '#14B071' }}>{params.chain === 'Polkadot' ?  'wss://polkadot.elara.patract.io/' : 'wss://kusama.elara.patract.io/' }</span> directly.</span>
+              }
+            </div>
+          </div>
+      }
       <div className="project-card project-status">
         <Table
           locale={{emptyText: t('No Data')}}

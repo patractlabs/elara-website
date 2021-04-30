@@ -12,12 +12,12 @@ import ActiveStatusSVG from '../../assets/active-status.svg';
 import DeactiveStatusSVG from '../../assets/deactive-status.svg';
 import StatusSVG from '../../assets/status.svg';
 import TimeSVG from '../../assets/time.svg';
-import { ProjectStatus } from '../../core/enum';
+import { Language, ProjectStatus } from '../../core/enum';
 import { formatTime } from '../../shared/utils';
 import { useApi } from '../../core/hooks/useApi';
 
 const Projects: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [ isCreateModalVisible, setCreateIsModalVisible ] = useState<boolean>(false);
   const [ updateSignal, setUpdateSiganl ] = useState(0);
   const [ projects, setProjects ] = useState<Project[]>([]);
@@ -43,6 +43,37 @@ const Projects: React.FC = () => {
 
   return (
     <div className="projects">
+      {
+        (params.chain === 'Polkadot' || params.chain === 'Kusama') &&
+          <div style={{
+            position: 'absolute',
+            top: '0px',
+            bottom: '0px',
+            left: '240px',
+            right: '0px',
+            zIndex: 1,
+            background: 'rgba(0,0,0,0.8)',
+            fontSize: '16px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            display: 'flex',
+            color: 'white'
+          }}>
+            <div style={{
+              marginBottom: '15px',
+              fontSize: '20px',
+            }}>{ i18n.language === Language.zh ? '临时维护中' : `It's maintaining.` }</div>
+            <div>
+              { 
+                i18n.language === Language.zh ?
+                  <span>请直接使用：<span style={{ color: '#14B071' }}>{params.chain === 'Polkadot' ?  'wss://polkadot.elara.patract.io/' : 'wss://kusama.elara.patract.io/' }</span></span>
+                  :
+                  <span>Please use <span style={{ color: '#14B071' }}>{params.chain === 'Polkadot' ?  'wss://polkadot.elara.patract.io/' : 'wss://kusama.elara.patract.io/' }</span> directly.</span>
+              }
+            </div>
+          </div>
+      }
       <button className="modal-button modal-button-active" style={{ padding: '6px 8px', background: '#14B071' }} onClick={ () => setCreateIsModalVisible(true) }>
         <img src={AddProject} alt="" style={{ marginRight: '5px' }} />
         { t('listPage.Create Project') }

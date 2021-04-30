@@ -6,6 +6,7 @@
   width: 100%;
 }
 .sider {
+  z-index: 1;
   width: 240px;
   padding: 9px 0px;
   position: absolute;
@@ -66,9 +67,9 @@
 }
 
 .content {
-  /* padding-left: 10.4%; */
+  position: relative;
+  z-index: 0;
   padding-left: 240px;
-  padding-top: 30px;
   height: 100%;
   overflow-y: auto;
 }
