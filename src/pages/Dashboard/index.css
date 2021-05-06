@@ -6,8 +6,9 @@
   width: 100%;
 }
 .sider {
+  overflow-y: auto;
+  z-index: 1;
   width: 240px;
-  padding: 9px 0px;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -35,6 +36,28 @@
   height: 25px;
   width: 25px;
   margin-right: 20px;
+}
+.sider .chain-type {
+  margin: 10px 0px;
+  height: 28px;
+  background: #EFEFEF;
+  display: flex;
+  align-items: center;
+  padding: 0px 30px;
+  justify-content: space-between;
+}
+.sider .chain-type span {
+  height: 24px;
+  font-size: 14px;
+  color: #2A292B;
+  line-height: 24px;
+}
+
+.sider .chain-type img {
+  transform: scaleY(-1);
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
 }
 
 .project-item-main {
@@ -66,9 +89,9 @@
 }
 
 .content {
-  /* padding-left: 10.4%; */
+  position: relative;
+  z-index: 0;
   padding-left: 240px;
-  padding-top: 30px;
   height: 100%;
   overflow-y: auto;
 }

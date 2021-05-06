@@ -1,140 +1,74 @@
 import "./index.css";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useContext, FC, ReactElement } from "react";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import Projects from "../Projects";
 import Details from "../Details";
-import img1 from '../../assets/Polkadot.svg';
-import img2 from '../../assets/Kusama.svg';
-import img3 from '../../assets/Jupiter.svg';
-import img4 from '../../assets/Rococo.svg';
-import img5 from '../../assets/Darwinia.png';
-import img6 from '../../assets/dock.webp';
-import img7 from '../../assets/Edgeware.svg';
-import img8 from '../../assets/Kulupu.svg';
-import img9 from '../../assets/Nodle.svg';
-import img10 from '../../assets/Plasm.png';
-import img11 from '../../assets/stafi.webp';
-import img12 from '../../assets/Mandala.svg';
-import img13 from '../../assets/ChainX.png';
-import img14 from '../../assets/Westend.svg';
-import { apiGetProjectList } from '../../core/data/api';
-import { Project } from '../../core/types/classes/project';
 import { ChainName } from '../../core/enum';
-import { useApi } from '../../core/hooks/useApi';
+import { DashboardContext } from '../../core/context/dashboard-context';
+import DropdownSvg from '../../assets/dropdown.svg';
+import { useTranslation } from 'react-i18next';
+import { Chain } from '../../core/types/classes/chain';
 
-interface Chain {
-  name: string;
-  img: any;
-  count: number;
-}
+const CollapsedChains: FC<{
+  title: string;
+  collapse: boolean;
+  toggleCollapse: React.Dispatch<React.SetStateAction<boolean>>;
+  choosedChain: string;
+  chains: Chain[];
+}> = ({
+  collapse,
+  toggleCollapse,
+  title,
+  choosedChain,
+  chains,
+}): ReactElement => {
+  const history = useHistory();
 
-const chainNames = [
-  ChainName.Polkadot,
-  ChainName.Kusama,
-  ChainName.Jupiter,
-  ChainName.Rococo,
-  ChainName.Darwinia,
-  ChainName.Dock,
-  ChainName.Edgeware,
-  ChainName.Kulupu,
-  ChainName.Nodle,
-  ChainName.Plasm,
-  ChainName.Stafi,
-  ChainName.Mandala,
-  ChainName.ChainX,
-  ChainName.Westend,
-];
-
-const getChains = (projects: Project[] = []): Chain[] => {
-  const chainsMap: {
-    [key: string]: { img: any, count: number }
-  } = {
-    Polkadot: {
-      img: img1,
-      count: 0,
-    },
-    Kusama: {
-      img: img2,
-      count: 0,
-    },
-    Jupiter: {
-      img: img3,
-      count: 0,
-    },
-    Rococo: {
-      img: img4,
-      count: 0,
-    },
-    Darwinia: {
-      img: img5,
-      count: 0,
-    },
-    Dock: {
-      img: img6,
-      count: 0,
-    },
-    Edgeware: {
-      img: img7,
-      count: 0,
-    },
-    Kulupu: {
-      img: img8,
-      count: 0,
-    },
-    Nodle: {
-      img: img9,
-      count: 0,
-    },
-    Plasm: {
-      img: img10,
-      count: 0,
-    },
-    Stafi: {
-      img: img11,
-      count: 0,
-    },
-    Mandala: {
-      img: img12,
-      count: 0,
-    },
-    ChainX: {
-      img: img13,
-      count: 0,
-    },
-    Westend: {
-      img: img14,
-      count: 0,
-    }
-  };
-
-  projects.forEach(project => {
-    const upperCaseChainName = project.chain.toUpperCase();
-    const chainName = chainNames.find(_chainName => _chainName.toUpperCase() === upperCaseChainName) || '';
-    chainsMap[chainName] && chainsMap[chainName].count ++;
-  });
-
-  const chains: Chain[] = [];
-  chainNames
-    .filter(chainName => !!chainsMap[chainName].count)
-    .forEach(chainName => chains.push({
-      name: chainName,
-      ...chainsMap[chainName],
-    }));
-  chainNames
-    .filter(chainName => !chainsMap[chainName].count)
-    .forEach(chainName => chains.push({
-      name: chainName,
-      ...chainsMap[chainName],
-    }));
-
-  return chains;
+  return (
+    <div>
+      <div className="chain-type" onClick={() => toggleCollapse(!collapse)}>
+        <span>{title}</span>
+        <img src={DropdownSvg} alt="" style={{ transform: collapse ? 'scaleY(1)' : 'scaleY(-1)' }} />
+      </div>
+      {
+        !collapse &&
+          <ul className="project-list">
+            {
+              chains.map(chain => 
+                <li
+                  key={chain.name}
+                  className={ choosedChain === chain.name ? 'project-item project-item-active' : 'project-item' }
+                  onClick={ () => history.push(`/dashboard/projects/${chain.name}`) }
+                >
+                  <img src={ chain.img } alt="" />
+                  <div className="project-item-main">
+                    <span>{ chain.name }</span>
+                    {
+                      !!chain.count &&
+                        <div
+                          className={
+                            choosedChain === chain.name ?
+                              'project-counts project-counts-active' : 'project-counts project-counts-default'
+                          }
+                        >
+                          { chain.count }
+                        </div>
+                    }
+                  </div>
+                </li>
+              )
+            }
+          </ul>
+      }
+    </div>
+  );
 };
 
-const Dashboard: React.FC = () => {
-  const [ chains, setChains ] = useState<Chain[]>([]);
-  const history = useHistory();
+const Dashboard: FC = (): ReactElement => {
   const location = useLocation();
-  const { updateProjectCountsSignal } = useApi();
+  const { chains, liveCollapse, setLiveCollapse, testCollapse, setTestCollapse } = useContext(DashboardContext);
+  const { t } = useTranslation();
+  const history = useHistory();
 
   /** redirect to default chain's projects */
   useEffect(() => {
@@ -142,10 +76,6 @@ const Dashboard: React.FC = () => {
       history.push(`/dashboard/projects/${ChainName.Polkadot}`);
     }
   }, [location.pathname, history]);
-
-  useEffect(() => {
-    apiGetProjectList().then(projects => setChains(getChains(projects)), () => setChains([]));
-  }, [setChains, updateProjectCountsSignal]);
 
   const choosedChain = useMemo(() => {
     const paths = location.pathname.split('/');
@@ -162,23 +92,20 @@ const Dashboard: React.FC = () => {
     // animated fadeInLeft
     <div className="dashboard">
       <div className="sider">
-        <ul className="project-list">
-          {
-            chains.map(chain => 
-              <li
-                key={chain.name}
-                className={ choosedChain === chain.name ? 'project-item project-item-active' : 'project-item' }
-                onClick={ () => history.push(`/dashboard/projects/${chain.name}`) }
-              >
-                <img src={ chain.img } alt="" />
-                <div className="project-item-main">
-                  <span>{ chain.name }</span>
-                  { !!chain.count && <div className={ choosedChain === chain.name ? 'project-counts project-counts-active' : 'project-counts project-counts-default' }>{ chain.count }</div> }
-                </div>
-              </li>
-            )
-          }
-        </ul>
+        <CollapsedChains
+          title={t('LIVE NETWORKS')}
+          collapse={liveCollapse}
+          toggleCollapse={setLiveCollapse}
+          choosedChain={choosedChain}
+          chains={chains.filter(chain => chain.liveNetwork)}
+        />
+        <CollapsedChains
+          title={t('TEST NETWORKS')}
+          collapse={testCollapse}
+          toggleCollapse={setTestCollapse}
+          choosedChain={choosedChain}
+          chains={chains.filter(chain => !chain.liveNetwork)}
+        />
       </div>
       <div className="content">
         <Switch>

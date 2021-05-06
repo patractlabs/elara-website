@@ -11,6 +11,7 @@ import { ApiProvider } from './core/context/api';
 import { useApi } from './core/hooks/useApi';
 import { useTranslation } from 'react-i18next';
 import { Language } from './core/enum';
+import { DashboardProvider } from './core/context/dashboard-context';
 
 const AuthRoute: FC<{
   component: FC;
@@ -48,7 +49,9 @@ const App: FC = (): ReactElement => {
           <Switch>
             <Suspense fallback={<PageLoading />}>
               <Route path="/" exact component={Home}></Route>
-              <AuthRoute path="/dashboard" component={Dashboard} />
+              <DashboardProvider>
+                <AuthRoute path="/dashboard" component={Dashboard} />
+              </DashboardProvider>
             </Suspense>
           </Switch>
         </BrowserRouter>

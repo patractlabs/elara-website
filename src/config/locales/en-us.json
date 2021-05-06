@@ -39,6 +39,8 @@
     "Public API Access Service for Polkadot Ecosystem": "Public API Access Service for Polkadot Ecosystem",
     "Contact & Subscription": "Contact & Subscription",
     "Subscribe": "Subscribe",
+    "LIVE NETWORKS": "LIVE NETWORKS",
+    "TEST NETWORKS": "TEST NETWORKS",
 
     "listPage":{
         "Name":"Name",

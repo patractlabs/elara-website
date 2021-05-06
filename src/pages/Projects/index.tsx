@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import "./index.css";
 import { Table, } from "antd";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ import StatusSVG from '../../assets/status.svg';
 import TimeSVG from '../../assets/time.svg';
 import { ProjectStatus } from '../../core/enum';
 import { formatTime } from '../../shared/utils';
-import { useApi } from '../../core/hooks/useApi';
+import { DashboardContext } from '../../core/context/dashboard-context';
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -23,13 +23,13 @@ const Projects: React.FC = () => {
   const [ projects, setProjects ] = useState<Project[]>([]);
   const params = useParams<{ chain: string }>();
   const history = useHistory();
-  const { updateProjectCountsSignal, setUpdateProjectCountsSignal } = useApi();
+  const { updateSignal: updateDashboardSignal, setUpdateSignal: setUpdateDashboardSignal } = useContext(DashboardContext);
 
   const onProjectCreated = useCallback(() => {
     setUpdateSiganl(updateSignal + 1);
     setCreateIsModalVisible(false);
-    setUpdateProjectCountsSignal(updateProjectCountsSignal + 1);
-  }, [updateSignal, updateProjectCountsSignal, setUpdateProjectCountsSignal]);
+    setUpdateDashboardSignal(updateDashboardSignal + 1);
+  }, [updateSignal, updateDashboardSignal, setUpdateDashboardSignal]);
 
   useEffect(() => {
     apiGetProjectList().then(

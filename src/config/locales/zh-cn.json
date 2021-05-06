@@ -37,6 +37,8 @@
   "Public API Access Service for Polkadot Ecosystem": "波卡生态的公共API接入服务",
   "Contact & Subscription": "联系和订阅",
   "Subscribe": "订阅",
+  "LIVE NETWORKS": "主网",
+  "TEST NETWORKS": "测试网",
 
   "listPage":{
     "Name":"项目名称",
