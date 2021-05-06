@@ -4,7 +4,7 @@ import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import Projects from "../Projects";
 import Details from "../Details";
 import { ChainName } from '../../core/enum';
-import { DashboardContext } from '../../core/context/dashboard-context';
+import { DashboardContext, DashboardProvider } from '../../core/context/dashboard-context';
 import DropdownSvg from '../../assets/dropdown.svg';
 import { useTranslation } from 'react-i18next';
 import { Chain } from '../../core/types/classes/chain';
@@ -64,7 +64,7 @@ const CollapsedChains: FC<{
   );
 };
 
-const Dashboard: FC = (): ReactElement => {
+const DashboardMain: FC = (): ReactElement => {
   const location = useLocation();
   const { chains, liveCollapse, setLiveCollapse, testCollapse, setTestCollapse } = useContext(DashboardContext);
   const { t } = useTranslation();
@@ -117,4 +117,10 @@ const Dashboard: FC = (): ReactElement => {
   );
 };
 
-export default Dashboard;
+export const Dashboard: FC = (): ReactElement => {
+  return (
+    <DashboardProvider>
+      <DashboardMain />
+    </DashboardProvider>
+  );
+};

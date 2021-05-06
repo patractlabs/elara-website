@@ -30,10 +30,11 @@
   display: flex;
 }
 .project-30days-bandwidth .bandwidth {
-  width: 62%;
+  flex: 3;
 }
 .methods-call {
-  flex: 1;
+  flex: 2;
+  min-width: 470px;
 }
 .th-default {
   color: #666666;
@@ -80,10 +81,10 @@
   justify-content: space-between;
 }
 .pid-row, .psecret-row {
-  width: 295px;
+  width: 290px;
 }
 .endpoints-row {
-  width: 570px;
+  width: 535px;
 }
 .copy-img {
   cursor: pointer;

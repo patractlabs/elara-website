@@ -160,8 +160,10 @@ const DashboardProvider = React.memo(({ children }): React.ReactElement<Props> =
 
   useEffect(() => {
     apiGetProjectList().then(
-      projects => setChains(getChains(projects)),
-      () => setChains(chains && chains.length ? chains : []),
+      projects => {
+        console.log('projects', projects);
+        setChains(getChains(projects))
+      },
     );
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setChains, updateSignal]);

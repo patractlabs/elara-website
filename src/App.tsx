@@ -4,14 +4,13 @@ import  "./i18n";
 import useRouter from "./core/hooks/useRouter";
 import Home from "./pages/Home";
 import Header from "./pages/Header";
-import Dashboard from "./pages/Dashboard";
+import { Dashboard } from "./pages/Dashboard";
 import PageLoading from './pages/PageLoading'
 import "./App.css";
 import { ApiProvider } from './core/context/api';
 import { useApi } from './core/hooks/useApi';
 import { useTranslation } from 'react-i18next';
 import { Language } from './core/enum';
-import { DashboardProvider } from './core/context/dashboard-context';
 
 const AuthRoute: FC<{
   component: FC;
@@ -49,9 +48,7 @@ const App: FC = (): ReactElement => {
           <Switch>
             <Suspense fallback={<PageLoading />}>
               <Route path="/" exact component={Home}></Route>
-              <DashboardProvider>
-                <AuthRoute path="/dashboard" component={Dashboard} />
-              </DashboardProvider>
+              <AuthRoute path="/dashboard" component={Dashboard} />
             </Suspense>
           </Switch>
         </BrowserRouter>

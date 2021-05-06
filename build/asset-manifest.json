@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.c9c27568.chunk.css",
-    "main.js": "/static/js/main.0e18bbc8.chunk.js",
-    "main.js.map": "/static/js/main.0e18bbc8.chunk.js.map",
+    "main.css": "/static/css/main.50450d38.chunk.css",
+    "main.js": "/static/js/main.f5a2d900.chunk.js",
+    "main.js.map": "/static/js/main.f5a2d900.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d3cecef8.js",
     "runtime-main.js.map": "/static/js/runtime-main.d3cecef8.js.map",
     "static/css/2.98e7ac70.chunk.css": "/static/css/2.98e7ac70.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.45b2153d.chunk.js.map": "/static/js/2.45b2153d.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.98e7ac70.chunk.css.map": "/static/css/2.98e7ac70.chunk.css.map",
-    "static/css/main.c9c27568.chunk.css.map": "/static/css/main.c9c27568.chunk.css.map",
+    "static/css/main.50450d38.chunk.css.map": "/static/css/main.50450d38.chunk.css.map",
     "static/js/2.45b2153d.chunk.js.LICENSE.txt": "/static/js/2.45b2153d.chunk.js.LICENSE.txt",
     "static/media/Darwinia.639aed77.png": "/static/media/Darwinia.639aed77.png",
     "static/media/Edgeware.ce8e73fb.svg": "/static/media/Edgeware.ce8e73fb.svg",
@@ -57,7 +57,7 @@
     "static/js/runtime-main.d3cecef8.js",
     "static/css/2.98e7ac70.chunk.css",
     "static/js/2.45b2153d.chunk.js",
-    "static/css/main.c9c27568.chunk.css",
-    "static/js/main.0e18bbc8.chunk.js"
+    "static/css/main.50450d38.chunk.css",
+    "static/js/main.f5a2d900.chunk.js"
   ]
 }
