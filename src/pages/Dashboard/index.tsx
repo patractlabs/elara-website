@@ -4,7 +4,7 @@ import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import Projects from "../Projects";
 import Details from "../Details";
 import { ChainName } from '../../core/enum';
-import { DashboardContext, DashboardProvider } from '../../core/context/dashboard-context';
+import { DashboardContext } from '../../core/context/dashboard-context';
 import DropdownSvg from '../../assets/dropdown.svg';
 import { useTranslation } from 'react-i18next';
 import { Chain } from '../../core/types/classes/chain';
@@ -64,11 +64,14 @@ const CollapsedChains: FC<{
   );
 };
 
-const DashboardMain: FC = (): ReactElement => {
+const Dashboard: FC = (): ReactElement => {
   const location = useLocation();
-  const { chains, liveCollapse, setLiveCollapse, testCollapse, setTestCollapse } = useContext(DashboardContext);
+  const { update, chains, liveCollapse, setLiveCollapse, testCollapse, setTestCollapse } = useContext(DashboardContext);
   const { t } = useTranslation();
   const history = useHistory();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => update(), []);
 
   /** redirect to default chain's projects */
   useEffect(() => {
@@ -117,10 +120,4 @@ const DashboardMain: FC = (): ReactElement => {
   );
 };
 
-export const Dashboard: FC = (): ReactElement => {
-  return (
-    <DashboardProvider>
-      <DashboardMain />
-    </DashboardProvider>
-  );
-};
+export default Dashboard;

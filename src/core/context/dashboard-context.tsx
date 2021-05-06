@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ChainName } from '../enum';
 import { Project } from '../../core/types/classes/project';
 import { apiGetProjectList } from '../data/api';
@@ -22,8 +22,7 @@ import img15 from '../../assets/subsocial.svg';
 
 const DashboardContext: React.Context<{
   chains: Chain[];
-  updateSignal: number;
-  setUpdateSignal: React.Dispatch<React.SetStateAction<number>>;
+  update: () => void;
   liveCollapse: boolean;
   setLiveCollapse: React.Dispatch<React.SetStateAction<boolean>>;
   testCollapse: boolean;
@@ -168,11 +167,12 @@ const DashboardProvider = React.memo(({ children }): React.ReactElement<Props> =
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setChains, updateSignal]);
 
+  const update = useCallback(() => setUpdateSignal(updateSignal + 1), [setUpdateSignal, updateSignal]);
+
   return (
     <DashboardContext.Provider value={{
       chains,
-      updateSignal,
-      setUpdateSignal,
+      update,
       liveCollapse,
       setLiveCollapse,
       testCollapse,

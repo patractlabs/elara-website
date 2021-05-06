@@ -23,13 +23,13 @@ const Projects: React.FC = () => {
   const [ projects, setProjects ] = useState<Project[]>([]);
   const params = useParams<{ chain: string }>();
   const history = useHistory();
-  const { updateSignal: updateDashboardSignal, setUpdateSignal: setUpdateDashboardSignal } = useContext(DashboardContext);
+  const { update } = useContext(DashboardContext);
 
   const onProjectCreated = useCallback(() => {
     setUpdateSiganl(updateSignal + 1);
     setCreateIsModalVisible(false);
-    setUpdateDashboardSignal(updateDashboardSignal + 1);
-  }, [updateSignal, updateDashboardSignal, setUpdateDashboardSignal]);
+    update();
+  }, [updateSignal, update]);
 
   useEffect(() => {
     apiGetProjectList().then(
