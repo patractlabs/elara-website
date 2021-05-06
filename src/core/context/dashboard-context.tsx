@@ -63,6 +63,7 @@ const getChains = (projects: Project[] = []): Chain[] => {
     Kusama: {
       img: img2,
       count: 0,
+      liveNetwork: true,
     },
     Jupiter: {
       img: img3,
@@ -75,30 +76,37 @@ const getChains = (projects: Project[] = []): Chain[] => {
     Darwinia: {
       img: img5,
       count: 0,
+      liveNetwork: true,
     },
     Dock: {
       img: img6,
       count: 0,
+      liveNetwork: true,
     },
     Edgeware: {
       img: img7,
       count: 0,
+      liveNetwork: true,
     },
     Kulupu: {
       img: img8,
       count: 0,
+      liveNetwork: true,
     },
     Nodle: {
       img: img9,
       count: 0,
+      liveNetwork: true,
     },
     Plasm: {
       img: img10,
       count: 0,
+      liveNetwork: true,
     },
     Stafi: {
       img: img11,
       count: 0,
+      liveNetwork: true,
     },
     Mandala: {
       img: img12,
@@ -107,6 +115,7 @@ const getChains = (projects: Project[] = []): Chain[] => {
     ChainX: {
       img: img13,
       count: 0,
+      liveNetwork: true,
     },
     Westend: {
       img: img14,
@@ -115,6 +124,7 @@ const getChains = (projects: Project[] = []): Chain[] => {
     Subsocial: {
       img: img15,
       count: 0,
+      liveNetwork: true,
     }
   };
 
