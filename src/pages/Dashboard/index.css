@@ -8,7 +8,7 @@
 .sider {
   overflow-y: auto;
   z-index: 1;
-  width: 240px;
+  width: 265px;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -91,7 +91,7 @@
 .content {
   position: relative;
   z-index: 0;
-  padding-left: 240px;
+  padding-left: 265px;
   height: 100%;
   overflow-y: auto;
 }

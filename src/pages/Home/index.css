@@ -23,7 +23,7 @@
   background-image: url("../../assets/banner-img1.png");
   top: 0px;
   right: -300px;
-  height: 260px;
+  height: 265px;
 }
 .banner-img1-animation {
   animation: rightEnter;
@@ -171,7 +171,7 @@
 }
 .product-left, .product-right {
   background-size: 240% 100%;
-  width: 240px;
+  width: 265px;
   height: 100%;
 }
 .product-left {
