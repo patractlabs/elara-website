@@ -20,7 +20,7 @@ export enum ChainName {
   ChainX = 'ChainX',
   Westend = 'Westend',
   Subsocial = 'Subsocial',
-  Moonbeam = 'Moonbeam',
+  Moonbase = 'Moonbase',
 
 }
 

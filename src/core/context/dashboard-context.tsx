@@ -49,7 +49,7 @@ const chainNames = [
   ChainName.ChainX,
   ChainName.Westend,
   ChainName.Subsocial,
-  ChainName.Moonbeam,
+  ChainName.Moonbase,
 ];
 
 const getChains = (projects: Project[] = []): Chain[] => {
@@ -157,7 +157,7 @@ const getChains = (projects: Project[] = []): Chain[] => {
       count: 0,
       liveNetwork: true,
     },
-    Moonbeam: {
+    Moonbase: {
       title: 'Moonbase Alpha',
       owner: 'moonbeam',
       img: img16,
