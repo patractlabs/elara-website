@@ -301,13 +301,14 @@ const Details: React.FC = () => {
             <div className="endpoints">
               <div className="active-row">ENDPOINT (WSS)</div>
               <div className="info-row endpoints-row">
-                { `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }
+                <span>
+                  { `${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }
+                </span>
                 <img className="copy-img" onClick={ () => copy(`${WSS_ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
               </div>
               <div className="active-row">ENDPOINT (HTTPS)</div>
               <div className="info-row endpoints-row">
-                
-              <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
+                <span>{ `${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}` }</span>
                 <img className="copy-img" onClick={ () => copy(`${ENDPOINTS_URL}/${project?.chain.toLowerCase()}/${project?.pid}`)} src={CopySVG} alt=""/>
               </div>
             </div>

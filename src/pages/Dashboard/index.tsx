@@ -42,7 +42,7 @@ const CollapsedChains: FC<{
                 >
                   <img src={ chain.img } alt="" />
                   <div className="project-item-main">
-                    <span>{ chain.name }</span>
+                    <span>{ chain.title }</span>
                     {
                       !!chain.count &&
                         <div

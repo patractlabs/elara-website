@@ -19,6 +19,7 @@ import img12 from '../../assets/Mandala.svg';
 import img13 from '../../assets/ChainX.png';
 import img14 from '../../assets/Westend.svg';
 import img15 from '../../assets/subsocial.svg';
+import img16 from '../../assets/moonbeam.png';
 
 const DashboardContext: React.Context<{
   chains: Chain[];
@@ -48,83 +49,120 @@ const chainNames = [
   ChainName.ChainX,
   ChainName.Westend,
   ChainName.Subsocial,
+  ChainName.Moonbase,
 ];
 
 const getChains = (projects: Project[] = []): Chain[] => {
   const chainsMap: {
-    [key: string]: { img: any, count: number, liveNetwork?: boolean }
+    [key: string]: { owner: string; title: string; img: any, count: number, liveNetwork?: boolean }
   } = {
     Polkadot: {
+      owner: 'polkadot',
+      title: 'Polkadot',
       img: img1,
       count: 0,
       liveNetwork: true,
     },
     Kusama: {
+      owner: 'kusama',
+      title: 'Kusama',
       img: img2,
       count: 0,
       liveNetwork: true,
     },
     Jupiter: {
+      owner: 'jupiter',
+      title: 'Jupiter',
       img: img3,
       count: 0,
     },
     Rococo: {
+      owner: 'Rococo',
+      title: 'Rococo',
       img: img4,
       count: 0,
     },
     Darwinia: {
+      owner: 'Darwinia',
+      title: 'Darwinia',
       img: img5,
       count: 0,
       liveNetwork: true,
     },
     Dock: {
+      owner: 'Dock',
+      title: 'Dock',
       img: img6,
       count: 0,
       liveNetwork: true,
     },
     Edgeware: {
+      owner: 'Edgeware',
+      title: 'Edgeware',
       img: img7,
       count: 0,
       liveNetwork: true,
     },
     Kulupu: {
+      owner: 'Kulupu',
+      title: 'Kulupu',
       img: img8,
       count: 0,
       liveNetwork: true,
     },
     Nodle: {
+      owner: 'Nodle',
+      title: 'Nodle',
       img: img9,
       count: 0,
       liveNetwork: true,
     },
     Plasm: {
+      owner: 'Plasm',
+      title: 'Plasm',
       img: img10,
       count: 0,
       liveNetwork: true,
     },
     Stafi: {
+      owner: 'Stafi',
+      title: 'Stafi',
       img: img11,
       count: 0,
       liveNetwork: true,
     },
     Mandala: {
+      title: 'Mandala',
+      owner: 'acala',
       img: img12,
       count: 0,
     },
     ChainX: {
+      owner: 'ChainX',
+      title: 'ChainX',
       img: img13,
       count: 0,
       liveNetwork: true,
     },
     Westend: {
+      owner: 'Westend',
+      title: 'Westend',
       img: img14,
       count: 0,
     },
     Subsocial: {
+      owner: 'Subsocial',
+      title: 'Subsocial',
       img: img15,
       count: 0,
       liveNetwork: true,
-    }
+    },
+    Moonbase: {
+      title: 'Moonbase Alpha',
+      owner: 'moonbeam',
+      img: img16,
+      count: 0,
+    },
   };
 
   // countup every networks' projects

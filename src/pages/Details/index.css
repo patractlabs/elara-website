@@ -78,13 +78,10 @@
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
 }
-.pid-row, .psecret-row {
-  width: 290px;
-}
-.endpoints-row {
-  width: 535px;
+.pid-row span, .psecret-row span, .endpoints-row span {
+  margin-right: 15px;
 }
 .copy-img {
   cursor: pointer;
