@@ -34,7 +34,9 @@
   bottom: 0px;
   left: -300px;
   background-image: url("../../assets/banner-img2.png");
-  height: 320px;
+  width: 220px;
+  height: 220px;
+  background-size: cover;
 }
 .banner-img2-animation {
   animation: leftEnter;

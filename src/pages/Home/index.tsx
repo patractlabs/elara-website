@@ -1,8 +1,7 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import * as echarts from 'echarts';
 import "./index.css";
-// import { apiGetChainStats } from "../../core/data/api";
-import { apiGetRequestsByDate } from '../../core/data/api'
+import { apiGetChainStats, apiGetRequestsByDate } from '../../core/data/api'
 import { useTranslation } from "react-i18next";
 import img1 from '../../assets/easy-use.webp';
 import img2 from '../../assets/cp2.svg';
@@ -18,7 +17,7 @@ import { LoginModal } from '../../shared/components/LoginModal';
 import { useHistory } from 'react-router';
 import { Carousel } from 'antd';
 import Footer from '../Footer';
-// import { Countup } from '../../shared/components/Countup';
+import { Countup } from '../../shared/components/Countup';
 
 const imgList = [
   img1,
@@ -35,6 +34,9 @@ const requestOption: any = {
   xAxis: {
     type: "category",
     data: [],
+    axisTick: {
+      alignWithLabel: true
+    }
   },
   yAxis: {
     type: "value",
@@ -45,6 +47,7 @@ const requestOption: any = {
       type: "cross",
       label: {
         backgroundColor: "#283b56",
+        precision: 0
       },
     },
   },
@@ -61,7 +64,7 @@ const requestOption: any = {
 
 const Home: React.FC = (): ReactElement => {
   const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
-  // const [ total, setTotal ] = useState(0);
+  const [ total, setTotal ] = useState(0);
   const [ loaded, setLoaded ] = useState<boolean>(false);
   const requestsEchart = useRef<HTMLDivElement>(null);
   const history = useHistory();
@@ -80,32 +83,32 @@ const Home: React.FC = (): ReactElement => {
     window.scrollTo({ top: homeHeight.height });
   }, [homeHeight.height]);
 
-  // useEffect(() => {
-  //   setLoaded(true);
-  //   apiGetChainStats()
-  //     .then(chainStatus =>
-  //       setTotal(
-  //         Object.keys(chainStatus)
-  //           .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
-  //       )
-  //     );
-  //   const timer = setInterval(() => {
-  //     apiGetChainStats()
-  //       .then(chainStatus =>
-  //         setTotal(
-  //           Object.keys(chainStatus)
-  //             .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
-  //         )
-  //       );
-  //   }, 1200);
-  //   return () => clearInterval(timer);
-  // }, []);
+  useEffect(() => {
+    setLoaded(true);
+    apiGetChainStats()
+      .then(chainStatus =>
+        setTotal(
+          Object.keys(chainStatus)
+            .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
+        )
+      );
+    const timer = setInterval(() => {
+      apiGetChainStats()
+        .then(chainStatus =>
+          setTotal(
+            Object.keys(chainStatus)
+              .reduce((sum, current) => sum + Number(chainStatus[current]), 0)
+          )
+        );
+    }, 1200);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
-    apiGetRequestsByDate(7).then(res=>{
+    apiGetRequestsByDate(30).then(res=>{
       const keys = Object.keys(res);
       
-      requestOption.xAxis.data = keys;
+      requestOption.xAxis.data = keys.map(s => s.slice(4,6) + "-" + s.slice(6));
       requestOption.series[0].data = keys.map(key => res[key]);
 
       const chart = echarts.init(requestsEchart.current!);
@@ -143,9 +146,9 @@ const Home: React.FC = (): ReactElement => {
           <span className="countup-title">
             {t('Cumulative')}
           </span>
-          {/* <span className="countup">
+          <span className="countup">
             <Countup number={total} />
-          </span> */}
+          </span>
           <div ref={requestsEchart} style={{ width: '80%', height: '255px' }}/>
           <div className="active-btn" onClick={gotoDashboard}>
             {t("bannerBtn")}
