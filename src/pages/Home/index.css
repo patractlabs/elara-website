@@ -8,7 +8,6 @@
 .Home_banner {
   position: relative;
   width: 100%;
-  height: 600px;
   background: #FFFFFF;
   overflow: hidden;
 }
@@ -100,6 +99,7 @@
   display: inline-flex;
   width: 176px;
   height: 56px;
+  margin-bottom: 30px;
   background: #14B071;
   border-radius: 28px;
   color: white;
