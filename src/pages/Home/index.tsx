@@ -149,7 +149,7 @@ const Home: React.FC = (): ReactElement => {
           <span className="countup">
             <Countup number={total} />
           </span>
-          <div ref={requestsEchart} style={{ width: '80%', height: '255px' }}/>
+          <div ref={requestsEchart} style={{ width: '60%', height: '355px' }}/>
           <div className="active-btn" onClick={gotoDashboard}>
             {t("bannerBtn")}
           </div>
