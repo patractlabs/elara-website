@@ -43,6 +43,11 @@ export const apiGetChainStats =
   async () => await httpGet<ChainStats>(`${API_DOMAIN}/stat/chain`);
 
 /**
+ * 获取过去n天，每天请求数
+ */
+export const apiGetRequestsByDate =
+  async (days: number) => await httpGet<ChainStats>(`${API_DOMAIN}/stat/requests/${days}`);
+/**
  * 控制台详情七天数据
  */
 export const apiGetWeekDetails =

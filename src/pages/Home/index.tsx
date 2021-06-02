@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
+import * as echarts from 'echarts';
 import "./index.css";
-import { apiGetChainStats } from "../../core/data/api";
+import { apiGetChainStats, apiGetRequestsByDate } from '../../core/data/api'
 import { useTranslation } from "react-i18next";
 import img1 from '../../assets/easy-use.webp';
 import img2 from '../../assets/cp2.svg';
@@ -29,10 +30,43 @@ const imgList = [
   img8,
 ];
 
+const requestOption: any = {
+  xAxis: {
+    type: "category",
+    data: [],
+    axisTick: {
+      alignWithLabel: true
+    }
+  },
+  yAxis: {
+    type: "value",
+  },
+  tooltip: {
+    trigger: "axis",
+    axisPointer: {
+      type: "cross",
+      label: {
+        backgroundColor: "#283b56",
+        precision: 0
+      },
+    },
+  },
+  series: [
+    {
+      data: [],
+      type: "bar",
+      itemStyle: {
+        color: "#14B071",
+      },
+    },
+  ],
+};
+
 const Home: React.FC = (): ReactElement => {
   const [ isLoginModalVisible, setLoginModalVisible ] = useState(false);
   const [ total, setTotal ] = useState(0);
   const [ loaded, setLoaded ] = useState<boolean>(false);
+  const requestsEchart = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const { isLogged, homeHeight } = useApi();
   const { t, i18n } = useTranslation();
@@ -69,6 +103,18 @@ const Home: React.FC = (): ReactElement => {
     }, 1200);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    apiGetRequestsByDate(30).then(res=>{
+      const keys = Object.keys(res);
+      
+      requestOption.xAxis.data = keys.map(s => s.slice(4,6) + "-" + s.slice(6));
+      requestOption.series[0].data = keys.map(key => res[key]);
+
+      const chart = echarts.init(requestsEchart.current!);
+      chart.setOption(requestOption);
+    })
+  }, [])
   
   useEffect(() => {
     if (!carousel.current) {
@@ -103,6 +149,7 @@ const Home: React.FC = (): ReactElement => {
           <span className="countup">
             <Countup number={total} />
           </span>
+          <div ref={requestsEchart} style={{ width: '60%', height: '355px' }}/>
           <div className="active-btn" onClick={gotoDashboard}>
             {t("bannerBtn")}
           </div>
