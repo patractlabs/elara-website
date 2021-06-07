@@ -20,6 +20,7 @@ import img13 from '../../assets/ChainX.png';
 import img14 from '../../assets/Westend.svg';
 import img15 from '../../assets/subsocial.svg';
 import img16 from '../../assets/moonbeam.png';
+import img17 from '../../assets/statemine.svg'
 
 const DashboardContext: React.Context<{
   chains: Chain[];
@@ -161,6 +162,18 @@ const getChains = (projects: Project[] = []): Chain[] => {
       title: 'Moonbase Alpha',
       owner: 'moonbeam',
       img: img16,
+      count: 0,
+    },
+    Statemine: {
+      title: 'Statemine',
+      owner: 'kusama',
+      img: img17,
+      count: 0,
+    },
+    Westmint: {
+      title: 'Westmint',
+      owner: 'Westend',
+      img: img17,
       count: 0,
     },
   };
