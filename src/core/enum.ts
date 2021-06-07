@@ -21,6 +21,8 @@ export enum ChainName {
   Westend = 'Westend',
   Subsocial = 'Subsocial',
   Moonbase = 'Moonbase',
+  Statemine = 'Statemine',
+  Westmint = 'Westmint'
 
 }
 

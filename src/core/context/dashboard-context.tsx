@@ -51,6 +51,8 @@ const chainNames = [
   ChainName.Westend,
   ChainName.Subsocial,
   ChainName.Moonbase,
+  ChainName.Statemine,
+  ChainName.Westmint
 ];
 
 const getChains = (projects: Project[] = []): Chain[] => {
