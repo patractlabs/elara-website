@@ -171,6 +171,7 @@ const getChains = (projects: Project[] = []): Chain[] => {
       owner: 'kusama',
       img: img17,
       count: 0,
+      liveNetwork: true,
     },
     Westmint: {
       title: 'Westmint',
