@@ -20,7 +20,9 @@ import img13 from '../../assets/ChainX.png';
 import img14 from '../../assets/Westend.svg';
 import img15 from '../../assets/subsocial.svg';
 import img16 from '../../assets/moonbeam.png';
-import img17 from '../../assets/statemine.svg'
+import img17 from '../../assets/statemine.svg';
+import img18 from '../../assets/karura.svg';
+import img19 from '../../assets/moonriver.svg';
 
 const DashboardContext: React.Context<{
   chains: Chain[];
@@ -29,6 +31,8 @@ const DashboardContext: React.Context<{
   setLiveCollapse: React.Dispatch<React.SetStateAction<boolean>>;
   testCollapse: boolean;
   setTestCollapse: React.Dispatch<React.SetStateAction<boolean>>;
+  kusamaParaCollapse: boolean,
+  setKusamaParaCollapse: React.Dispatch<React.SetStateAction<boolean>>;
 }> = React.createContext({} as any);
 interface Props {
   children: React.ReactNode;
@@ -52,132 +56,154 @@ const chainNames = [
   ChainName.Subsocial,
   ChainName.Moonbase,
   ChainName.Statemine,
-  ChainName.Westmint
+  ChainName.Westmint,
+  ChainName.Karura,
+  ChainName.Moonriver
 ];
 
 const getChains = (projects: Project[] = []): Chain[] => {
   const chainsMap: {
-    [key: string]: { owner: string; title: string; img: any, count: number, liveNetwork?: boolean }
+    [key: string]: { owner: string; title: string; img: any, count: number } & Pick<Chain, 'networkType'>
   } = {
     Polkadot: {
       owner: 'polkadot',
       title: 'Polkadot',
       img: img1,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Kusama: {
       owner: 'kusama',
       title: 'Kusama',
       img: img2,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Jupiter: {
       owner: 'jupiter',
       title: 'Jupiter',
       img: img3,
       count: 0,
+      networkType: 'test'
     },
     Rococo: {
       owner: 'Rococo',
       title: 'Rococo',
       img: img4,
       count: 0,
+      networkType: 'test'
     },
     Darwinia: {
       owner: 'Darwinia',
       title: 'Darwinia',
       img: img5,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Dock: {
       owner: 'Dock',
       title: 'Dock',
       img: img6,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Edgeware: {
       owner: 'Edgeware',
       title: 'Edgeware',
       img: img7,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Kulupu: {
       owner: 'Kulupu',
       title: 'Kulupu',
       img: img8,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Nodle: {
       owner: 'Nodle',
       title: 'Nodle',
       img: img9,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Plasm: {
       owner: 'Plasm',
       title: 'Plasm',
       img: img10,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Stafi: {
       owner: 'Stafi',
       title: 'Stafi',
       img: img11,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Mandala: {
       title: 'Mandala',
       owner: 'acala',
       img: img12,
       count: 0,
+      networkType: 'test'
     },
     ChainX: {
       owner: 'ChainX',
       title: 'ChainX',
       img: img13,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Westend: {
       owner: 'Westend',
       title: 'Westend',
       img: img14,
       count: 0,
+      networkType: 'test'
     },
     Subsocial: {
       owner: 'Subsocial',
       title: 'Subsocial',
       img: img15,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live'
     },
     Moonbase: {
       title: 'Moonbase Alpha',
       owner: 'moonbeam',
       img: img16,
       count: 0,
+      networkType: 'test'
     },
     Statemine: {
       title: 'Statemine',
       owner: 'kusama',
       img: img17,
       count: 0,
-      liveNetwork: true,
+      networkType: 'live',
     },
     Westmint: {
       title: 'Westmint',
       owner: 'Westend',
       img: img17,
       count: 0,
+      networkType: 'test'
+    },
+    Karura: {
+      title: 'Karura',
+      owner: 'Kusama',
+      img: img18,
+      count: 0,
+      networkType: 'kusamaPara'
+    },
+    Moonriver: {
+      title: 'Moonriver',
+      owner: 'Kusama',
+      img: img19,
+      count: 0,
+      networkType: 'kusamaPara'
     },
   };
 
@@ -210,6 +236,7 @@ const DashboardProvider = React.memo(({ children }): React.ReactElement<Props> =
   const [ updateSignal, setUpdateSignal ] = useState<number>(0);
   const [ liveCollapse, setLiveCollapse ] = useState<boolean>(false);
   const [ testCollapse, setTestCollapse ] = useState<boolean>(false);
+  const [kusamaParaCollapse, setKusamaParaCollapse] = useState<boolean>(false);
 
   useEffect(() => {
     apiGetProjectList().then(
@@ -231,6 +258,8 @@ const DashboardProvider = React.memo(({ children }): React.ReactElement<Props> =
       setLiveCollapse,
       testCollapse,
       setTestCollapse,
+      kusamaParaCollapse,
+      setKusamaParaCollapse
     }} >
       {children}
     </DashboardContext.Provider>

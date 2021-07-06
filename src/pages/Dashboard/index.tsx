@@ -66,7 +66,7 @@ const CollapsedChains: FC<{
 
 const Dashboard: FC = (): ReactElement => {
   const location = useLocation();
-  const { update, chains, liveCollapse, setLiveCollapse, testCollapse, setTestCollapse } = useContext(DashboardContext);
+  const { update, chains, liveCollapse, setLiveCollapse, testCollapse, setTestCollapse, kusamaParaCollapse, setKusamaParaCollapse } = useContext(DashboardContext);
   const { t } = useTranslation();
   const history = useHistory();
 
@@ -100,14 +100,21 @@ const Dashboard: FC = (): ReactElement => {
           collapse={liveCollapse}
           toggleCollapse={setLiveCollapse}
           choosedChain={choosedChain}
-          chains={chains.filter(chain => chain.liveNetwork)}
+          chains={chains.filter(chain => chain.networkType === 'live')}
         />
         <CollapsedChains
           title={t('TEST NETWORKS')}
           collapse={testCollapse}
           toggleCollapse={setTestCollapse}
           choosedChain={choosedChain}
-          chains={chains.filter(chain => !chain.liveNetwork)}
+          chains={chains.filter(chain => chain.networkType === "test")}
+        />
+        <CollapsedChains
+          title={t('Kusama Parallel Chain')}
+          collapse={kusamaParaCollapse}
+          toggleCollapse={setKusamaParaCollapse}
+          choosedChain={choosedChain}
+          chains={chains.filter(chain => chain.networkType === "kusamaPara")}
         />
       </div>
       <div className="content">

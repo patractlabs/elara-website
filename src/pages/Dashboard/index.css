@@ -36,6 +36,7 @@
   height: 25px;
   width: 25px;
   margin-right: 20px;
+  border-radius: 50%;
 }
 .sider .chain-type {
   margin: 10px 0px;
