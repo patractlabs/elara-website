@@ -4,5 +4,5 @@ export interface Chain {
   title: string;
   img: any;
   count: number;
-  liveNetwork?: boolean;
+  networkType?: 'live' | 'test' | 'kusamaPara';
 }

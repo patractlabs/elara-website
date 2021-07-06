@@ -22,7 +22,9 @@ export enum ChainName {
   Subsocial = 'Subsocial',
   Moonbase = 'Moonbase',
   Statemine = 'Statemine',
-  Westmint = 'Westmint'
+  Westmint = 'Westmint',
+  Karura = 'Karura',
+  Moonriver = 'Moonriver'
 
 }
 
