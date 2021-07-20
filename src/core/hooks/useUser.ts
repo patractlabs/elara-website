@@ -1,5 +1,6 @@
 import { User } from './../types/classes/user';
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { apiLogin } from '../data/api';
 
 let _isLogged = false;
 if (document.cookie.includes("sid")) {
@@ -19,10 +20,18 @@ export const useUser = () => {
     },
   });
 
+  const updateUser = useCallback(() => apiLogin().then(_user => {
+      setIsLoggged(true);
+      setUser(_user);
+      localStorage.setItem("user", JSON.stringify(_user));
+    })
+  , []);
+
   return {
     isLogged,
     setIsLoggged,
     user,
     setUser,
+    updateUser,
   };
 }

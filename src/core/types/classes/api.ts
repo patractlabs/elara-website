@@ -5,6 +5,7 @@ export class ApiProps {
   setIsLoggged: (_: boolean) => void;
   user: User;
   setUser: (_: User) => void;
+  updateUser: () => Promise<void>;
   homeHeight: {
     height: number;
     setHeight: React.Dispatch<React.SetStateAction<number>>;

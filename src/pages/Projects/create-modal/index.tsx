@@ -4,6 +4,7 @@ import { Button, message } from 'antd';
 import { apiCreateProject } from '../../../core/data/api';
 import { createPlainModal } from '../../../shared/components/plain-modal';
 import './index.css';
+import { useApi } from '../../../core/hooks/useApi';
 
 const _CreateProjectModel: FC<{
   onModalClose(): void;
@@ -16,6 +17,7 @@ const _CreateProjectModel: FC<{
   const [ isValid, setIsValid ] = useState<boolean>(false);
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   const { t } = useTranslation();
+  const { updateUser } = useApi();
   const createProject = () => {
     setIsLoading(true);
     apiCreateProject({
@@ -24,6 +26,7 @@ const _CreateProjectModel: FC<{
     }).then(
       () => {
         onModalClose();
+        updateUser();
         message.success(t('tip.created'));
       },
       () => message.error(t('tip.fail')),
