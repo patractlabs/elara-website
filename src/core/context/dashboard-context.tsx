@@ -23,6 +23,7 @@ import img16 from '../../assets/moonbeam.png';
 import img17 from '../../assets/statemine.svg';
 import img18 from '../../assets/karura.svg';
 import img19 from '../../assets/moonriver.svg';
+import img20 from '../../assets/bifrost.svg'
 
 const DashboardContext: React.Context<{
   chains: Chain[];
@@ -58,7 +59,8 @@ const chainNames = [
   ChainName.Statemine,
   ChainName.Westmint,
   ChainName.Karura,
-  ChainName.Moonriver
+  ChainName.Moonriver,
+  ChainName.Bifrost
 ];
 
 const getChains = (projects: Project[] = []): Chain[] => {
@@ -205,6 +207,13 @@ const getChains = (projects: Project[] = []): Chain[] => {
       count: 0,
       networkType: 'kusamaPara'
     },
+    Bifrost: {
+      title: 'Bifrost',
+      owner: 'Kusama',
+      img: img20,
+      count: 0,
+      networkType: 'kusamaPara'
+    }
   };
 
   // countup every networks' projects

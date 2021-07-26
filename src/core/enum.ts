@@ -24,7 +24,8 @@ export enum ChainName {
   Statemine = 'Statemine',
   Westmint = 'Westmint',
   Karura = 'Karura',
-  Moonriver = 'Moonriver'
+  Moonriver = 'Moonriver',
+  Bifrost = 'Bifrost'
 
 }
 
