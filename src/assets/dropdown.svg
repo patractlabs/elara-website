@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>编组 6</title>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>expand_more 2</title>
+    <defs>
+        <polygon id="path-1" points="10.59 0 6 4.58 1.41 0 0 1.41 6 7.41 12 1.41"></polygon>
+    </defs>
     <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="边界页面" transform="translate(-194.000000, -76.000000)">
-            <g id="编组-6" transform="translate(194.000000, 76.000000)">
-                <rect id="矩形" x="0" y="0" width="16" height="16"></rect>
-                <g id="编组" transform="translate(3.000000, 6.250000)" fill="#2A292B">
-                    <path d="M4.5049912,5.26489858 C4.6450058,5.4035935 4.83499942,5.53234769 5.01501417,5.49272457 C5.19500069,5.52246289 5.36500835,5.38376796 5.50499472,5.26489858 L9.83498883,0.955918433 C10.0550037,0.736690968 10.0550037,0.382655389 9.83498883,0.163434914 C9.6137107,-0.0544783047 9.25629942,-0.0544783047 9.03499307,0.163434914 L5.00500707,4.26441461 L0.965013991,0.163434914 C0.743707635,-0.0544783047 0.386296352,-0.0544783047 0.164989996,0.163434914 C-0.0549966655,0.382655389 -0.0549966655,0.736690968 0.164989996,0.955918433 L4.5049912,5.26489858 Z" id="Fill-1"></path>
+        <g id="Dashboard" transform="translate(-240.000000, -160.000000)">
+            <g id="编组" transform="translate(240.000000, 160.000000)">
+                <polygon id="路径" opacity="0.87" points="20 20 0 20 0 0 20 0"></polygon>
+                <g id="green-+-grey-蒙版" transform="translate(4.000000, 6.590000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="蒙版" fill="#14B071" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    <g id="编组" mask="url(#mask-2)">
+                        <g transform="translate(-4.000000, -6.590000)">
+                            <rect id="矩形" fill="#C5C7C4" x="0" y="0" width="20" height="20"></rect>
+                        </g>
+                    </g>
+                    <g id="编组" mask="url(#mask-2)">
+                        <g transform="translate(-4.000000, -6.590000)">
+                            <rect id="矩形" fill="#14B071" x="0" y="0" width="20" height="20"></rect>
+                        </g>
+                    </g>
                 </g>
             </g>
         </g>

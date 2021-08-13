@@ -9,11 +9,19 @@
   background: white;
   box-shadow: 0px 1px rgb(0 0 0 / 10%);
   display: flex;
+  color: #3F3F3F;
+  font-size: 16px;
 }
 .head-main .logo {
-  width: 101px;
-  height: 38px;
+  /* width: 101px;
+  height: 38px; */
 }
+.head-main .title {
+  font-weight: 800;
+  color: #3F3F3F;
+  padding-left: 10px;
+}
+
 .head-content {
   flex: 1;
   display: flex;

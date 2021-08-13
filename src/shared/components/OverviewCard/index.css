@@ -1,0 +1,23 @@
+.overview-card {
+  width: 215px;
+  height: 96px;
+  opacity: 1;
+  background: #f6f6f6;
+  border-radius: 12px;
+  padding: 0 20px;
+}
+.overview-card > span {
+  display: block;
+  padding: 20px 0 12px;
+  color: #616460;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.overview-card > .data {
+  text-align: left;
+  color: #3f3f3f;
+  line-height: 28px;
+  font-size: 20px;
+  font-weight: 700;
+}

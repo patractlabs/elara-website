@@ -1,0 +1,233 @@
+.add-button {
+  width: 175px;
+  height: 32px;
+  opacity: 1;
+  border-radius: 16px;
+  font-weight: 700;
+  text-align: left;
+  color: #ffffff;
+  line-height: 16px;
+  font-size: 12px;
+  background: url("./images/add.svg") no-repeat 10px center #14b071;
+  padding-left: 34px;
+  background-size: 14px 14px;
+  border: none;
+  cursor: pointer;
+}
+.add-button:hover {
+  background-color: #119a63;
+}
+
+.add-button:active {
+  background-color: #0e8756;
+}
+
+.ant-modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 30px;
+}
+
+.ant-modal-close {
+  top: 10px;
+  right: 10px;
+}
+
+.ant-modal-close > .ant-modal-close-x {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.ant-modal-header {
+  padding: 0 0 20px;
+  border-bottom: none;
+}
+
+.ant-modal-title {
+  height: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  color: #14b071;
+  line-height: 20px;
+}
+
+.ant-modal-body {
+  padding: 0;
+}
+
+.modal-body-row {
+  display: flex;
+}
+
+.modal-body-field {
+  display: flex;
+  margin-bottom: 16px;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.modal-body-field-single {
+  flex: 1;
+}
+
+.modal-body-field:nth-of-type(1) {
+  margin-left: 0;
+}
+
+.modal-body-field > .title {
+  font-size: 12px;
+  text-align: left;
+  color: #3f3f3f;
+  line-height: 16px;
+  margin-bottom: 8px;
+  font-weight: bolder;
+}
+
+.modal-body-field > .name {
+  background: #f6f6f6;
+  caret-color: #14b071;
+  width: 100%;
+  height: 40px;
+  border: none;
+  padding: 0 12px;
+}
+
+.modal-body-field > .name:focus {
+  border-bottom: 2px solid #14b071;
+}
+
+.modal-body-field > .name.error {
+  border-bottom: 2px solid #DF3D4B;
+}
+
+.ant-select-item {
+  text-align: left;
+  color: #3f3f3f;
+  line-height: 16px;
+  height: 16px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  color: #3f3f3f;
+}
+
+.ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background: #f6f6f6;
+  color: #14b071;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  color: #14b071;
+  background: url("./images/selected.svg") no-repeat right 4px center;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  padding: 0;
+}
+
+.ant-select-single.ant-select-show-arrow .ant-select-selection-search {
+  width: 100%;
+  display: flex;
+  left: 0;
+}
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border: none;
+  background: #f6f6f6;
+}
+
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border: none;
+  box-shadow: none;
+}
+
+.ant-select-show-search.ant-select:not(.ant-select-customize-input)
+  .ant-select-selector
+  input {
+  height: 100%;
+  padding: 0 12px;
+}
+.ant-select-show-search.ant-select:not(.ant-select-customize-input)
+  .ant-select-selector
+  input:focus {
+  caret-color: #14b071;
+  border-bottom: 2px solid #14b071;
+}
+
+.ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+.ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+  padding-left: 12px;
+}
+
+.ant-modal-footer {
+  border-top: none;
+  padding-top: 14px;
+  padding-bottom: 0;
+}
+
+.ant-btn {
+  background: #fff;
+  border-radius: 12px;
+  padding: 0 30px;
+  height: 32px;
+  line-height: 32px;
+  color: #14b071;
+  border: none;
+  box-shadow: none;
+}
+
+.ant-btn + .ant-btn {
+  background: #14b071;
+  color: #fff;
+  margin-left: 0;
+}
+
+.ant-btn:hover {
+  color: #119a63;
+}
+.ant-btn + .ant-btn:hover {
+  color: #fff;
+  background: #119a63;
+}
+
+.ant-btn:active {
+  color: #0e8756;
+}
+.ant-btn + .ant-btn:active,
+.ant-btn:active {
+  color: #fff;
+  background: #0e8756;
+}
+
+.ant-select-arrow {
+  width: 20px;
+  height: 20px;
+  top: 0;
+  bottom: 0;
+  margin-top: 0;
+  margin: auto;
+}
+
+.cus-option {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.cus-option img {
+  width: 24px;
+  padding-right: 8px;
+}

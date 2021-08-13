@@ -1,113 +1,138 @@
 {
-    "home": "Home",
-    "serve": "Services",
-    "contactUs": "Contact",
-    "Documentation": "API Docs",
-    "patract hub": "Patract Hub",
+  "home": "Home",
+  "dashboard": "DashBoard",
+  "contactUs": "Contact",
+  "Documentation": "API Docs",
+  "patract hub": "Patract Hub",
 
-    "bannerTitle1": "Public API Access Services to Polkadot Ecosystem",
-    "bannerTitle2": "Elara provides Polkadot developers with free, instant and scalable blockchain API access services, including Polkadot, Kusama, etc.",
-    "bannerBtn": "Start For Free",
-    "Cumulative": "Total Requests",
+  "bannerTitle1": "Public API Access Services to Polkadot Ecosystem",
+  "bannerTitle2": "Elara provides Polkadot developers with free, instant and scalable blockchain API access services, including Polkadot, Kusama, etc.",
+  "bannerBtn": "Start For Free",
+  "Cumulative": "Total Requests",
 
-    "Product": "Service Advantages",
-    "Easy": "Easy To Use",
-    "NoNeed": "Developers can directly use our JSON-RPC interface based on HTTPS and WebSocket to access the Polkadot network without synchronizing blocks and complex settings.",
+  "Product": "Service Advantages",
+  "Easy": "Easy To Use",
+  "NoNeed": "Developers can directly use our JSON-RPC interface based on HTTPS and WebSocket to access the Polkadot network without synchronizing blocks and complex settings.",
 
-    "Stable": "Stable and Reliable",
-    "ElaraHandles": "Elara will handle all network changes and upgrades, dedicated in providing high stability and high availability services. This allows developers to simplify application infrastructure and focus on building upper-level applications",
-   
-    "Rich": "Multi-chain Support",
-    "Ourhighly": "Our highly scalable infrastructure ensures rapid access to all relay chains, parachains, and independent chains based on Substrate in the Polkadot ecosystem, allowing developers to quickly deploy their applications to new networks",
+  "Stable": "Stable and Reliable",
+  "ElaraHandles": "Elara will handle all network changes and upgrades, dedicated in providing high stability and high availability services. This allows developers to simplify application infrastructure and focus on building upper-level applications",
 
-    "Customer": "Special Service",
-    "WeProvide": "If the amount of application requests exceeds the account free quota, developers can contact us at any time to provide customized solutions。",
+  "Rich": "Multi-chain Support",
+  "Ourhighly": "Our highly scalable infrastructure ensures rapid access to all relay chains, parachains, and independent chains based on Substrate in the Polkadot ecosystem, allowing developers to quickly deploy their applications to new networks",
 
-    "service": "Free Services",
-    "AllNetworks": "All networks in the",
-    "AllNetworks1": "Polkadot ecosystem",
-    "1000000requests": "1,000,000 requests for",
-    "1000000requests1": "every account every day",
-    "10projects": "10 projects",
-    "Direct":"Direct customer support",
-    "NeedMore": "Need more services?",
-    "YouCan": "You can contact us through the following channels, we will provide you with customized solutions",
-    "No Data": "No Data",
-    "We provide you": "We provide you",
-    "10 Projects": "10 Projects",
-    "All networks in the Polkadot ecosystem": "All networks in the Polkadot ecosystem",
-    "Public API Access Service for Polkadot Ecosystem": "Public API Access Service for Polkadot Ecosystem",
-    "Contact & Subscription": "Contact & Subscription",
-    "Subscribe": "Subscribe",
-    "LIVE NETWORKS": "LIVE NETWORKS",
-    "TEST NETWORKS": "TEST NETWORKS",
-    "Kusama Parallel Chain": "Kusama Parachain",
+  "Customer": "Special Service",
+  "WeProvide": "If the bandwidth requested by the application exceeds the account free quota, developers can contact us at any time to provide customized solutions。",
 
-    "listPage":{
-        "Name":"Name",
-        "Creation Time":"Creation time",
-        "Status":"Status",
-        "Status-Active":"Active",
-        "Status-Stop":"Stop",
-        "Create Project":"Create Project",
-        "projectName":"Project Name",
-        "PleaseProjectName":"Please enter the project name",
-        "FormatError":"Format error, normal format: English upper and lower case letters, length 4-32",
-        "onProject":"Create your first one",
-        "Project":"Project.",
-        "Operation": "Operation",
-        "op-view": "view",
-        "op-stop": "Stop",
-        "op-start": "Start",
-        "op-delete": "Delete"
-    },
+  "service": "Free Services",
+  "AllNetworks": "All networks in the",
+  "AllNetworks1": "Polkadot ecosystem",
+  "1000000requests": "1,000,000 requests for",
+  "1000000requests1": "every account every day",
+  "10projects": "10 projects",
+  "Direct": "Direct customer support",
+  "NeedMore": "Need more services?",
+  "YouCan": "You can contact us through the following channels, we will provide you with customized solutions",
+  "No Data": "No Data",
+  "We provide you": "We provide you",
+  "10 Projects": "10 Projects",
+  "All networks in the Polkadot ecosystem": "All networks in the Polkadot ecosystem",
+  "Public API Access Service for Polkadot Ecosystem": "Public API Access Service for Polkadot Ecosystem",
+  "Contact & Subscription": "Contact & Subscription",
+  "Subscribe": "Subscribe",
+  "LIVE NETWORKS": "LIVE NETWORKS",
+  "TEST NETWORKS": "TEST NETWORKS",
+  "Kusama Parallel Chain": "Kusama Parachain",
+  "dailyReq": "Requests Today",
+  "dailyBandwidth": "Bandwidth Today",
+  "AvgResTime": "Avg. Response Time",
+  "InvalidReq": "Invalid Request",
 
-    "Details":{
-        "Requests Today":"Requests Today",
-        "TodayBandwidth":"Bandwidth Today",
-        "WeekRequests":"Weekly requests statistics",
-        "WeekBandwidth":"Weekly bandwidth statistics",
-        "TopCall":"Top call method statistics",
-        "Creation Time":"Creation Time",
-        "Status":"Status",
-        "30days-request-counts": "Last 30 Days Requests Statistics",
-        "30days-bandwidth": "Last 30 Days Bandwidth Statistics",
-        "30days-callmethods": "Last 30 Days Call Method Statistics"
-    },
+  "overview": {
+    "Project": "Project",
+    "Team": "Team",
+    "Network": "Network",
+    "Created": "Created",
+    "Status": "Status",
+    "projectName": "Project Name"
+  },
 
-    "user":{
-        "Level":"Level",
-        "Projects":"Projects",
-        "Personal":"personal",
-        "Logout":"Logout",
-        "team":"team"
-    },
+  "listPage": {
+    "Name": "Name",
+    "Creation Time": "Creation time",
+    "Status": "Status",
+    "Status-Active": "Active",
+    "Status-Stop": "Stop",
+    "Create Project": "Create New Project",
+    "projectName": "Project Name",
+    "PleaseProjectName": "Please enter the project name",
+    "FormatError": "Format error, normal format: English upper and lower case letters, length 4-32",
+    "onProject": "Create your first one",
+    "Project": "Project.",
+    "Operation": "Operation",
+    "op-view": "view",
+    "op-stop": "Stop",
+    "op-start": "Start",
+    "op-delete": "Delete"
+  },
 
-    "sign":{
-        "Sign": "Sign in with Github Account",
-        "login": "login",
-        "signin": "Sign in",
-        "Connect to Polkadot now": "Connect to Polkadot now",
-        "Github quick Login": "Github quick Login"
-    },
+  "Details": {
+    "RequestAndBandwidth": "Requests / Bandwidth Statistics",
+    "TopCall": "Call Method Statistics",
+    "Last30days": "Last 30 Days",
+    "Requests": "Requests",
+    "Settings": "Settings",
+    "Requests Today": "Requests Today",
+    "TodayBandwidth": "Bandwidth Today",
+    "WeekRequests": "Weekly requests statistics",
+    "WeekBandwidth": "Weekly bandwidth statistics",
+    "Creation Time": "Creation Time",
+    "Status": "Status",
+    "30days-request-counts": "Last 30 Days Requests Statistics",
+    "30days-bandwidth": "Last 30 Days Bandwidth Statistics",
+    "30days-callmethods": "Last 30 Days Call Method Statistics",
+    "maxChar": "Within 16 characters",
+    "projectName": "Project Name",
+    "rateLimitLabel": "Per Second Requests Rate-Limiting",
+    "dailyTotalReqLable": "Per Day Total Requests"
+  },
 
-    "tip": {
-      "fail": "Failed",
-      "created": "Created successfully",
-      "Subscribe Successfully": "Subscribe Successfully",
-      "Subscribe Failed": "Subscribe Failed"
-    },
+  "user": {
+    "Level": "Level",
+    "Projects": "Projects",
+    "Personal": "personal",
+    "Logout": "Logout",
+    "team": "team"
+  },
 
-    "modal": {
-      "cancel": "Cancel",
-      "ok": "OK"
-    },
+  "sign": {
+    "Sign": "Sign in with Github Account",
+    "login": "login",
+    "signin": "Sign in",
+    "Connect to Polkadot now": "Connect to Polkadot now",
+    "Github quick Login": "Github quick Login"
+  },
 
-    "footer": {
-      "Websites": "Website",
-      "Contracts": "Contract",
-      "Tools": "Tools",
-      "Services": "Services",
-      "Enter your email account": "Enter your email account"
-    }
+  "tip": {
+    "fail": "Failed",
+    "created": "Created successfully",
+    "updated": "Update successfully",
+    "Subscribe Successfully": "Subscribe Successfully",
+    "Subscribe Failed": "Subscribe Failed"
+  },
+
+  "modal": {
+    "create": "Create",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "deleteBody": "Any processes going to the project‘s keys will stop working immediately. Please make sure that all processes using this app have been reconfigured before deleting."
+  },
+
+  "footer": {
+    "Websites": "Website",
+    "Contracts": "Contract",
+    "Tools": "Tools",
+    "Services": "Services",
+    "Enter your email account": "Enter your email account"
+  }
 }

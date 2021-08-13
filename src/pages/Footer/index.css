@@ -98,6 +98,18 @@
   align-items: center;
   justify-content: space-between;
 }
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 800;
+}
+.logo-wrapper img {
+  width: 53px;
+}
+.logo-wrapper .title {
+  padding-left: 12px;
+}
 .copyright {
   font-size: 14px;
   color: #686868;

@@ -1,5 +1,5 @@
 const formatTime = (val: string) => {
-  let date = new Date(Number(val) * 1000);
+  let date = new Date(val);
   let YY = date.getFullYear() + '-';
   let MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
   let DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
