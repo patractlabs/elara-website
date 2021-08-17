@@ -1,6 +1,6 @@
 {
   "home": "首页",
-  "dashboard": "总览",
+  "dashboard": "概览",
   "contactUs": "联系我们",
   "Documentation": "API 文档",
 
@@ -37,14 +37,27 @@
   "Public API Access Service for Polkadot Ecosystem": "波卡生态的公共API接入服务",
   "Contact & Subscription": "联系和订阅",
   "Subscribe": "订阅",
-  "LIVE NETWORKS": "主网",
-  "TEST NETWORKS": "测试网",
-  "Kusama Parallel Chain": "Kusama 平行链",
+  "Live Networks": "主网",
+  "Test Networks": "测试网",
+  "Polkadot Parchains": "Polkadot 平行链",
+  "Kusama Parachains": "Kusama 平行链",
+  "Westend Parachains": "Westend 平行链",
+  "Rococo Parachains": "Rococo 平行链",
+  "Create": "创建",
   "Project": "项目",
-  "dailyReq": "今日请求数",
-  "dailyBandwidth": "今日带宽",
-  "AvgResTime": "平均响应时间",
-  "InvalidReq": "无效请求数",
+
+  "summary": {
+    "Project": "项目",
+    "Team": "团队",
+    "Network": "网络",
+    "Created": "创建于",
+    "Status": "状态",
+    "dailyReq": "今日请求数",
+    "dailyBandwidth": "今日带宽",
+    "AvgResTime": "平均响应时间",
+    "InvalidReq": "无效请求数",
+    "projectName": "项目名称"
+  },
 
   "listPage": {
     "Name": "项目名称",
@@ -66,6 +79,10 @@
   },
 
   "Details": {
+    "Request": "请求数",
+    "Bandwidth": "带宽",
+    "Hrs": "小时",
+    "Days": "天",
     "RequestAndBandwidth": "请求/带宽 数据",
     "TopCall": "调用方法统计",
     "Last30days": "最近30天",
@@ -83,7 +100,15 @@
     "maxChar": "16个字符内",
     "projectName": "项目名称",
     "rateLimitLabel": "每秒请求数上限",
-    "dailyTotalReqLable": "每日请求总数上限"
+    "dailyTotalReqLable": "每日请求总数上限",
+    "invalidLimitReqs": "无效/限速 请求数",
+    "Method": "方法",
+    "ErrorCode": "错误码",
+    "ResponseTime": "响应时间",
+    "Time": "时间",
+    "DelProject": "删除项目",
+    "GeneralSettings": "通用",
+    "RequestLimiting": "请求限制"
   },
 
   "user": {
@@ -106,8 +131,10 @@
     "fail": "操作失败",
     "created": "创建成功",
     "updated": "更新成功",
+    "delete": "删除成功",
     "Subscribe Successfully": "订阅成功",
-    "Subscribe Failed": "订阅失败"
+    "Subscribe Failed": "订阅失败",
+    "copy": "点击复制到剪切板"
   },
 
   "modal": {

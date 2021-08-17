@@ -44,12 +44,12 @@ export const chainIconMap = {
   chainx: img13,
   westend: img14,
   subsocial: img15,
-  moonbeam: img16,
+  moonbasealpha: img16,
   statemine: img17,
   karura: img18,
   moonriver: img19,
   bifrost: img20,
-  westmint: img21
+  westmint: img21,
 }
 
 export const subMenuMap: Record<
@@ -57,7 +57,7 @@ export const subMenuMap: Record<
   { title: string; icon: typeof LiveNetworks }
 > = {
   live: { title: 'Live Networks', icon: LiveNetworks },
-  test: { title: 'Test Networks ', icon: TestNetworks },
+  test: { title: 'Test Networks', icon: TestNetworks },
   polkadot: { title: 'Polkadot Parchains', icon: PolkadotParachains },
   kusama: { title: 'Kusama Parachains', icon: KusamaParachains },
   westend: { title: 'Westend Parachains', icon: WestendParachains },

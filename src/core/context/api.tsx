@@ -10,16 +10,13 @@ export const ApiProvider = React.memo(
   ({ children }: Props): React.ReactElement<Props> => {
     const user = useUser();
     const [height, setHeight] = useState(0);
-    const [updateProjectCountsSignal, setUpdateProjectCountsSignal] =
-      useState(0);
+ 
 
     return (
       <ApiContext.Provider
         value={{
           ...user,
           homeHeight: { height, setHeight },
-          updateProjectCountsSignal,
-          setUpdateProjectCountsSignal,
         }}
       >
         {children}

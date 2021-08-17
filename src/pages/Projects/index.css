@@ -13,6 +13,16 @@
   overflow: hidden;
   border-radius: 12px 12px 0px 0px;
   display: inline-block;
+  height: 52px;
+}
+
+.project-empty {
+  width: 100%;
+  min-height: 560px;
+  position: relative;
+  top: -12px;
+  border-radius: 12px;
+  background: #fff;
 }
 
 .projects-tabs > .tab-item {

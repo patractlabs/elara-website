@@ -52,13 +52,13 @@ const Header: React.FC = () => {
   const UserMenu = (
     <ul className="user-menu">
       <li className="">
-        <Link to="/dashboard/projects">
+        <Link to="/dashboard/summary">
           <p>{t('user.Level')}</p>
           <h3>{t(user.level)}</h3>
         </Link>
       </li>
       <li className="user-menu-project-counts">
-        <Link to="/dashboard/projects">
+        <Link to="/dashboard/summary">
           <p>{t('user.Projects')}</p>
           <h3>{`${user.projectNum}/${user.maxProjectNum}`}</h3>
         </Link>
@@ -134,7 +134,7 @@ const Header: React.FC = () => {
           </li>
           <li>
             <Link
-              to="/dashboard/overview"
+              to="/dashboard/summary"
               onClick={() => scrollTo(ScrollTarget.Service)}
             >
               {t('dashboard')}

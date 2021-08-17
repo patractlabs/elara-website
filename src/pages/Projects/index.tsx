@@ -1,31 +1,30 @@
-import React, { useState, useRef, useEffect, FC } from 'react'
-import { message, Table } from 'antd'
+import React, { useState, useRef, useEffect, useCallback, FC } from 'react'
+import { message, Table, ConfigProvider } from 'antd'
 import Tooltip from '../../shared/components/Tooltip'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import copy from 'copy-to-clipboard'
 import { ENDPOINTS_URL, WSS_ENDPOINTS_URL } from '../../config/origin'
 import OverviewCard from '../../shared/components/OverviewCard'
 import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
 import { useApi } from '../../core/hooks/useApi'
-import {
-  Project,
-  InvalidTableDataExt,
-} from '../../core/types/classes/project'
+import { Project, InvalidTableDataExt } from '../../core/types/classes/project'
 import { formatTime } from '../../shared/utils'
 import {
   apiFetchProjectList,
   apiFetchProjectErrorStatics,
   apiUpdateProjectName,
   apiUpdateProjectLimit,
+  apiDelProject,
 } from '../../core/data/api'
 import BandwidthMixChart from './BandwidthMixChart'
 import CallMethodChart from './CallMethodChart'
 import SettingField, { IRefReturnType } from './SettingField'
 import BasicModal from '../../shared/components/BasicModalContainer'
+import EmptySample from '../../shared/components/EmptySample'
+import Pagination from '../../shared/components/Pagination'
 
 import './index.css'
-import { rejects } from 'node:assert'
 
 const Projects: FC<{}> = () => {
   const [tabNum, setTabNum] = useState(0)
@@ -37,12 +36,16 @@ const Projects: FC<{}> = () => {
   const rateLimitRef = useRef<IRefReturnType>(null)
   const dailyRequsetRef = useRef<IRefReturnType>(null)
   const { t } = useTranslation()
-  const params = useParams<{ chain: string; pid: string }>()
+  const params = useParams<{ chain: string; state?: any }>()
   const { user } = useApi()
   const wssEndpointUrl = `${WSS_ENDPOINTS_URL}/${projectInfo[tabNum]?.chain}/${projectInfo[tabNum]?.pid}`
   const httpEndpointUrl = `${ENDPOINTS_URL}/${projectInfo[tabNum]?.chain}/${projectInfo[tabNum]?.pid}`
+  const updatePageData = useCallback(async () => {
+    const res = await apiFetchProjectList(user.id, params.chain)
+    setProjectInfo(res)
+  }, [user.id, params.chain])
 
-  const handleUpdateProjectName = async() => {
+  const handleUpdateProjectName = async () => {
     return await apiUpdateProjectName({
       userId: user.id,
       chain: projectInfo[tabNum]?.chain,
@@ -51,6 +54,8 @@ const Projects: FC<{}> = () => {
     }).then(
       () => {
         message.success(t('tip.updated'))
+        // 更新页面数据
+        updatePageData()
         return ''
       },
       (res) => {
@@ -60,52 +65,71 @@ const Projects: FC<{}> = () => {
     )
   }
 
-  const handleUpdateLimit = async() => {
+  const handleUpdateLimit = async () => {
     await apiUpdateProjectLimit({
       id: projectInfo[tabNum]?.id,
       reqDayLimit: Number(rateLimitRef.current!.value),
       reqSecLimit: Number(dailyRequsetRef.current!.value),
-    }).then(() => {
-      message.success(t('tip.updated'))
-    }, (res) => {
-      message.success(t('tip.fail'))
-      return res.msg
-    })
+    }).then(
+      () => {
+        message.success(t('tip.updated'))
+        updatePageData()
+        // 更新页面数据
+      },
+      (res) => {
+        message.success(t('tip.fail'))
+        return res.msg
+      }
+    )
+  }
+
+  const handleDelProject = () => {
+    apiDelProject({ id: projectInfo[tabNum].id }).then(
+      () => {
+        message.success(t('tip.delete'))
+        updatePageData()
+        // 更新页面数据
+      },
+      (res) => {
+        message.success(t('tip.fail'))
+      }
+    )
+    setDeleteModalVisible(false)
   }
 
   useEffect(() => {
-    apiFetchProjectList(user.id, params.chain).then((res) => {
-      setProjectInfo(res)
-      const curIds = res.findIndex((info) => {
-        return info.pid === params.pid
-      })
-      setTabNum(curIds > -1 ? curIds : 0)
-    })
-  }, [params.pid, params.chain, user.id])
+    updatePageData()
+  }, [params.chain, user.id, updatePageData])
 
+  const changeProjectErrorStatics = useCallback(
+    (page: number, size: number) => {
+      apiFetchProjectErrorStatics({
+        page,
+        size,
+        chain: projectInfo[tabNum]?.chain,
+        pid: projectInfo[tabNum]?.pid,
+      }).then((res) => {
+        res.list = [
+          {
+            proto: 'wss',
+            method: 'health',
+            code: 200,
+            delay: 2,
+            time: '2020-01-01 23:22',
+          },
+        ]
+        setInvalidData(res)
+      })
+    },
+    [projectInfo, tabNum]
+  )
   useEffect(() => {
-    apiFetchProjectErrorStatics({
-      page: 0,
-      size: 10,
-      chain: projectInfo[tabNum]?.chain,
-      pid: projectInfo[tabNum]?.pid,
-    }).then((res) => {
-      // res.list = [
-      //   {
-      //     proto: 'wss',
-      //     method: 'health',
-      //     code: 200,
-      //     delay: 2,
-      //     time: '2020-01-01 23:22',
-      //   },
-      // ]
-      setInvalidData(res)
-    })
-  }, [projectInfo, tabNum])
+    changeProjectErrorStatics(1, 10)
+  }, [changeProjectErrorStatics])
 
   return (
     <div className="projects">
-      <CreateProjectBtn />
+      <CreateProjectBtn chain={params.chain} onCloseCallback={updatePageData} />
       <div className="projects-tabs">
         {projectInfo.map((data, index) => (
           <div
@@ -113,6 +137,7 @@ const Projects: FC<{}> = () => {
             className={`tab-item ${tabNum === index && 'active'}`}
             onClick={() => {
               setTabNum(index)
+              console.log(projectInfo[tabNum].name)
             }}
           >
             {data.name}
@@ -123,16 +148,18 @@ const Projects: FC<{}> = () => {
         <div className="main">
           <div className="info-container">
             <div className={`info-item created`}>
-              Created: {formatTime(projectInfo[tabNum]?.createdAt)}
+              {`${t('summary.Created')}: ${formatTime(
+                projectInfo[tabNum]?.createdAt
+              )}`}
             </div>
             <div className={`info-item team`}>
-              Team: {projectInfo[tabNum]?.team}
+              {`${t('summary.Team')}: ${projectInfo[tabNum]?.team}`}
             </div>
             <div className={`info-item network`}>
-              Network: {projectInfo[tabNum]?.name}
+              {`${t('summary.Network')}: ${projectInfo[tabNum]?.chain}`}
             </div>
             <div className={`info-item ${projectInfo[tabNum]?.status}`}>
-              Status: {projectInfo[tabNum]?.status}
+              {`${t('summary.Status')}: ${projectInfo[tabNum]?.status}`}
             </div>
           </div>
           <div className="view-switch">
@@ -142,7 +169,7 @@ const Projects: FC<{}> = () => {
                 switchToView('request')
               }}
             >
-              {t('Requests')}
+              {t('Details.Requests')}
             </div>
             <div
               className={`setting ${viewType === 'setting' && 'active'}`}
@@ -150,22 +177,22 @@ const Projects: FC<{}> = () => {
                 switchToView('setting')
               }}
             >
-              {t('Settings')}
+              {t('Details.Settings')}
             </div>
           </div>
           {viewType === 'request' && (
             <div className="request-section">
               <div className="category">
-                <OverviewCard title={t('dailyReq')}>
+                <OverviewCard title={t('summary.dailyReq')}>
                   {projectInfo[tabNum]?.reqCnt}
                 </OverviewCard>
-                <OverviewCard title={t('dailyBandwidth')}>
+                <OverviewCard title={t('summary.dailyBandwidth')}>
                   {projectInfo[tabNum]?.bw}
                 </OverviewCard>
-                <OverviewCard title={t('AvgResTime')}>
+                <OverviewCard title={t('summary.AvgResTime')}>
                   {projectInfo[tabNum]?.timeoutDelay}
                 </OverviewCard>
-                <OverviewCard title={t('InvalidReq')}>
+                <OverviewCard title={t('summary.InvalidReq')}>
                   {projectInfo[tabNum]?.inReqCnt}
                 </OverviewCard>
               </div>
@@ -177,7 +204,7 @@ const Projects: FC<{}> = () => {
                     className="value"
                     onClick={() => copy(projectInfo[tabNum]?.pid)}
                   >
-                    <Tooltip title={t('Click to copy')}>
+                    <Tooltip title={t('tip.copy')}>
                       {projectInfo[tabNum]?.pid}
                     </Tooltip>
                   </div>
@@ -188,7 +215,7 @@ const Projects: FC<{}> = () => {
                     className="value"
                     onClick={() => copy(projectInfo[tabNum]?.secret)}
                   >
-                    <Tooltip title={t('Click to copy')}>
+                    <Tooltip title={t('tip.copy')}>
                       {projectInfo[tabNum]?.secret}
                     </Tooltip>
                   </div>
@@ -196,17 +223,13 @@ const Projects: FC<{}> = () => {
                 <div className="api-info">
                   <div className="title">Endpoints(WSS)</div>
                   <div className="value" onClick={() => copy(wssEndpointUrl)}>
-                    <Tooltip title={t('Click to copy')}>
-                      {wssEndpointUrl}
-                    </Tooltip>
+                    <Tooltip title={t('tip.copy')}>{wssEndpointUrl}</Tooltip>
                   </div>
                 </div>
                 <div className="api-info">
                   <div className="title">Endpoints(HTTPS)</div>
                   <div className="value" onClick={() => copy(httpEndpointUrl)}>
-                    <Tooltip title={t('Click to copy')}>
-                      {httpEndpointUrl}
-                    </Tooltip>
+                    <Tooltip title={t('tip.copy')}>{httpEndpointUrl}</Tooltip>
                   </div>
                 </div>
               </div>
@@ -219,35 +242,51 @@ const Projects: FC<{}> = () => {
                 pid={projectInfo[tabNum]?.pid}
               />
               <div className="requsets-chart stat-card">
-                <div className="title">
-                  Recent Invalid / Rate Limited Requests
-                </div>
+                <div className="title">{t('Details.invalidLimitReqs')}</div>
                 <div className="invalid-table">
-                  <Table
-                    dataSource={invalidData?.list}
-                    columns={[
-                      {
-                        title: 'Method',
-                        dataIndex: 'method',
-                        key: 'method',
-                      },
-                      {
-                        title: 'Error Code',
-                        dataIndex: 'code',
-                        key: 'code',
-                      },
-                      {
-                        title: 'Response Time',
-                        dataIndex: 'delay',
-                        key: 'delay',
-                      },
-                      {
-                        title: 'Time',
-                        dataIndex: 'time',
-                        key: 'time',
-                      },
-                    ]}
-                  ></Table>
+                  <ConfigProvider
+                    renderEmpty={() => (
+                      <EmptySample title="No data" height={232} />
+                    )}
+                  >
+                    <Table
+                      rowKey={(data) => data.method}
+                      dataSource={invalidData?.list}
+                      columns={[
+                        {
+                          title: t('Details.Method'),
+                          dataIndex: 'method',
+                          key: 'method',
+                        },
+                        {
+                          title: t('Details.ErrorCode'),
+                          dataIndex: 'code',
+                          key: 'code',
+                        },
+                        {
+                          title: t('Details.ResponseTime'),
+                          dataIndex: 'delay',
+                          key: 'delay',
+                        },
+                        {
+                          title: t('Details.Time'),
+                          dataIndex: 'time',
+                          key: 'time',
+                        },
+                      ]}
+                      pagination={false}
+                    ></Table>
+                    {invalidData?.list && invalidData?.list.length > 0 && (
+                      <Pagination
+                        total={100}
+                        onChange={(page, pageSize) => {
+                          console.log(page, pageSize)
+                          
+                          changeProjectErrorStatics(page, pageSize)
+                        }}
+                      />
+                    )}
+                  </ConfigProvider>
                 </div>
               </div>
             </div>
@@ -255,7 +294,7 @@ const Projects: FC<{}> = () => {
           {viewType === 'setting' && (
             <div className="setting-section">
               <div className="setting-item">
-                <div className="title">General Settings</div>
+                <div className="title">{t('Details.GeneralSettings')}</div>
                 <SettingField
                   ref={nameRef}
                   label={t('Details.projectName')}
@@ -265,7 +304,7 @@ const Projects: FC<{}> = () => {
                 />
               </div>
               <div className="setting-item">
-                <div className="title">Request Limiting</div>
+                <div className="title">{t('Details.RequestLimiting')}</div>
                 <SettingField
                   ref={rateLimitRef}
                   label={t('Details.rateLimitLabel')}
@@ -283,24 +322,30 @@ const Projects: FC<{}> = () => {
                 className="setting-item setting-delete-btn"
                 onClick={() => setDeleteModalVisible(true)}
               >
-                Delete Project
+                {t('Details.DelProject')}
               </div>
             </div>
           )}
         </div>
-      ) : null}
+      ) : (
+        <div className="project-empty">
+          <EmptySample title="No project" height={560} />
+        </div>
+      )}
       <BasicModal
-        title="Delete Project"
+        title={
+          <span style={{ color: '#DF3D4B' }}>{t('Details.DelProject')}</span>
+        }
         visible={deleteModalVisible}
         okText={t('modal.delete')}
         onCancel={() => {
           setDeleteModalVisible(false)
         }}
         onOk={() => {
-          setDeleteModalVisible(false)
+          handleDelProject()
         }}
       >
-        { t("modal.deleteBody")}
+        {t('modal.deleteBody')}
       </BasicModal>
     </div>
   )

@@ -1,10 +1,12 @@
 import { User } from "./../types/classes/user";
-import { useCallback, useState } from "react";
+import {useEffect, useCallback, useState } from "react";
 import { apiLogin } from "../data/api";
+import {getCookie} from '../../shared/utils'
 
 let _isLogged = false;
-if (document.cookie.includes("sid")) {
-  _isLogged = true;
+
+if (getCookie('sid')) {
+  _isLogged = true
 }
 
 export const useUser = () => {
@@ -16,6 +18,13 @@ export const useUser = () => {
     maxProjectNum: 0,
     level: ''
   });
+
+  useEffect(() => {
+    const user = localStorage.getItem("user")
+    if (user) {
+      setUser(JSON.parse(user))
+    }
+  }, [])
 
   const updateUser = useCallback(() => {
     return apiLogin().then((_user) => {

@@ -1,4 +1,4 @@
-.overview-card {
+.summary-card {
   width: 215px;
   height: 96px;
   opacity: 1;
@@ -6,7 +6,7 @@
   border-radius: 12px;
   padding: 0 20px;
 }
-.overview-card > span {
+.summary-card > span {
   display: block;
   padding: 20px 0 12px;
   color: #616460;
@@ -14,7 +14,7 @@
   font-size: 12px;
 }
 
-.overview-card > .data {
+.summary-card > .data {
   text-align: left;
   color: #3f3f3f;
   line-height: 28px;

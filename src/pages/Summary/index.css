@@ -1,6 +1,5 @@
-.overview {
+.summary {
   width: 100%;
-  height: 560px;
   background: #fff;
   padding: 20px;
 }
@@ -30,6 +29,14 @@
   color: #14b071;
 }
 
+.summary-table table{
+  border-spacing: 0 10px;
+}
+
+.summary-table td {
+  vertical-align: middle;
+}
+
 .ant-table-small .ant-table-thead > tr > th {
   height: 48px;
   line-height: 48px;
@@ -39,11 +46,22 @@
 }
 
 .ant-table-wrapper {
-  clear: none;
+  clear: unset;
 }
 
-.ant-table-tbody > tr > td {
+.ant-table-tbody  {
+  border-radius: 8px;
+}
+
+.ant-table-tbody > tr > td,
+.ant-table-thead > tr > th {
   font-size: 12px;
+  border-bottom: none;
+  background: #F9F9F9 !important;
+}
+
+.ant-table-row {
+  height: 56px;
 }
 
 .table-chain-item {

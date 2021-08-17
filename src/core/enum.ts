@@ -37,15 +37,6 @@ export enum AccountLevel {
   team = "1",
 }
 
-export enum NetworkType {
-  "test" = "Test Networks ",
-  "live" = "Live Networks",
-  "polkadot" = "Polkadot & Parchains",
-  "kusama" = "Kusama & Parachains",
-  "westend" = "Test Westend & Parachains",
-  "rococo" = "Test Rococo & Parachains",
-}
-
 export enum RequestType {
   'bandwidth' = 'bandwidth',
   'request' = 'request',

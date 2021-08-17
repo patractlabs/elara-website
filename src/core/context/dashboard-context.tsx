@@ -7,9 +7,9 @@ import { Menu } from '../types/classes/chain'
 
 const DashboardContext: React.Context<{
   chains: Menu
-  update: () => void
-  collapse: any[]
-  setCollapse: React.Dispatch<React.SetStateAction<any>>
+  updateMenu: () => void
+  collapse: string[]
+  setCollapse: React.Dispatch<React.SetStateAction<string[]>>
 }> = React.createContext({} as any)
 interface Props {
   children: React.ReactNode
@@ -18,25 +18,26 @@ interface Props {
 const DashboardProvider = React.memo(
   ({ children }): React.ReactElement<Props> => {
     const [chains, setChains] = useState<Menu>({} as Menu)
-    const [updateSignal, setUpdateSignal] = useState<number>(0)
-    const [collapse, setCollapse] = useState([])
+    const [collapse, setCollapse] = useState<string[]>([])
     const { user } = useApi()
-    useEffect(() => {
+
+    const updateMenu = useCallback(() => {
       apiFetchMenuList(user.id).then((_chains) => {
         setChains(_chains)
       })
-    }, [setChains, updateSignal])
+    }, [user.id])
 
-    const update = useCallback(
-      () => setUpdateSignal(updateSignal + 1),
-      [setUpdateSignal, updateSignal]
-    )
+    useEffect(() => {
+      updateMenu()
+    }, [updateMenu])
+
+    
 
     return (
       <DashboardContext.Provider
         value={{
           chains,
-          update,
+          updateMenu,
           collapse,
           setCollapse,
         }}

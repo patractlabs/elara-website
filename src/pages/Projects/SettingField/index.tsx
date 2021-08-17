@@ -1,4 +1,4 @@
-import React, { useState, useRef, useImperativeHandle } from 'react'
+import React, { useState, useRef,useEffect, useImperativeHandle } from 'react'
 import Tooltip from '../../../shared/components/Tooltip'
 import TooltipIcon from '../../../assets/tooltip.svg'
 import EditIcon from '../../../assets/edit-icon.svg'
@@ -26,6 +26,11 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
     value,
   ])
 
+  useEffect(() => {
+    setValue(defaultValue)
+  }, [defaultValue])
+  console.log('defaultValue', defaultValue)
+  
   const onHandleConfirm = () => {
     handleConfirm().then((errMsg) => {
       if (!errMsg) {
@@ -40,8 +45,10 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
       <div className="form-item">
         <input
           type="text"
-          className={`${editable && 'editable'} ${errorMsg && 'error'}`}
-          defaultValue={defaultValue}
+          className={`${editable && 'editable'} ${
+            errorMsg && value && 'error'
+          }`}
+          value={value}
           readOnly={!editable}
           ref={intRef}
           onChange={(e) => {

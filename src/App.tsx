@@ -28,8 +28,7 @@ const AuthRoute: FC<{
         isLogged ? (
           <Component key={location.pathname} {...props} />
         ) : (
-            <Component key={location.pathname} {...props} />
-          // <Redirect to="/" />
+          <Redirect to="/" />
         )
       }
     />

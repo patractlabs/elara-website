@@ -9,8 +9,7 @@ import React, {
 } from 'react'
 import { Switch, Route, useHistory, useLocation, Link } from 'react-router-dom'
 import Projects from '../Projects'
-// import Details from '../Details'
-import Overview from '../Overview'
+import Summary from '../Summary'
 import { ChainName } from '../../core/enum'
 import { DashboardContext } from '../../core/context/dashboard-context'
 import DropdownSvg from '../../assets/dropdown.svg'
@@ -30,13 +29,14 @@ const CollapsedChains: FC<{
 }> = ({ type, chains }): ReactElement => {
   const location = useLocation()
   const history = useHistory()
+  const { t } = useTranslation()
   const { collapse, setCollapse } = useContext(DashboardContext)
   
   const choosedChain = useMemo(() => {
     const paths = location.pathname.split('/')
     let chainName: string = ''
-    if (location.pathname.startsWith('/dashboard/overview')) {
-      chainName = 'overview'
+    if (location.pathname.startsWith('/dashboard/summary')) {
+      chainName = 'summary'
     } else if (location.pathname.startsWith('/dashboard/projects')) {
       chainName = paths[3]
     }
@@ -56,14 +56,14 @@ const CollapsedChains: FC<{
   const renderIcon = () => {
     const Icons = subMenuMap[type].icon
     return <Icons collapse={collapse.indexOf(type) < 0} />
-  }
+  }  
 
   return (
     <Fragment>
       <div className="chain-type" onClick={toggleCollapse}>
         <div className="chain-type-title">
           {renderIcon()}
-          <span>{subMenuMap[type]['title']}</span>
+          <span>{t(subMenuMap[type]['title'])}</span>
           <img
             src={DropdownSvg}
             alt=""
@@ -115,12 +115,9 @@ const CollapsedChains: FC<{
 
 const Dashboard: FC = (): ReactElement => {
   const location = useLocation()
-  const { update, chains } = useContext(DashboardContext)
+  const { chains } = useContext(DashboardContext)
   const { t } = useTranslation()
   const history = useHistory()
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => update(), [])
 
   const renderMenu = () => {
     const types = Object.keys(chains) as NetworkType[]
@@ -153,9 +150,9 @@ const Dashboard: FC = (): ReactElement => {
       <div className="sider">
         <Link
           className={`sidebar-title ${
-            location.pathname === '/dashboard/overview' && 'active'
+            location.pathname === '/dashboard/summary' && 'active'
           }`}
-          to="/dashboard/overview"
+          to="/dashboard/summary"
         >
           <img src={DashboardSvg} alt="" />
           {t('dashboard')}
@@ -164,8 +161,8 @@ const Dashboard: FC = (): ReactElement => {
       </div>
       <div className="content">
         <Switch>
-          <Route path="/dashboard/projects/:chain/:pid" component={Projects}></Route>
-          <Route path="/dashboard/overview" component={Overview}></Route>
+          <Route path="/dashboard/projects/:chain" component={Projects}></Route>
+          <Route path="/dashboard/summary" component={Summary}></Route>
         </Switch>
       </div>
     </div>

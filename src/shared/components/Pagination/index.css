@@ -1,0 +1,79 @@
+.elara-pagination {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  justify-content: space-between;
+  color: #949593;
+}
+
+.elara-pagination .page-size {
+  display: flex;
+  align-items: center;
+}
+
+.elara-pagination .pagination-select {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.elara-pagination .pagination-select .ant-select-selector {
+  height: 28px;
+  background: #efefef;
+  border-radius: 8px;
+}
+
+.elara-pagination .pagination-select .ant-select-selection-item {
+  padding-left: 8px;
+  padding-right: 24px;
+}
+
+.elara-pagination .pagination-select .ant-select-arrow {
+  width: 16px;
+  height: 16px;
+  right: 8px;
+}
+
+.page-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.page-indicator .page-item {
+  display: inline-block;
+  min-width: 28px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 9px;
+  text-align: center;
+  background: #efefef;
+  border-radius: 8px;
+  color: #3f3f3f;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.page-indicator .page-item.prev {
+    background: url('./images/back.svg') no-repeat center #EFEFEF;
+}
+
+.page-indicator .page-item.prev.disabled {
+    background: url('./images/back-disabled.svg')  no-repeat center #EFEFEF;
+}
+
+.page-indicator .page-item.next {
+    background: url('./images/next.svg')  no-repeat center #EFEFEF;
+}
+
+.page-indicator .page-item.next.disabled {
+    background: url('./images/next-disabled.svg')  no-repeat center #EFEFEF;
+}
+
+.page-indicator .page-item.ellipsis {
+    background: none;
+}
+
+.page-indicator .page-active {
+  background: #14b071;
+  color: #fff;
+}

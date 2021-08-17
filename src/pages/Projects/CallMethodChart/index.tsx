@@ -3,9 +3,9 @@ import * as echarts from 'echarts'
 import { Radio } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { apiFetchProjectMethodsStatics } from '../../../core/data/api'
-import { CallMethodsDataExt} from '../../../core/types/classes/project'
+import { CallMethodsDataExt } from '../../../core/types/classes/project'
 import { RequestType } from '../../../core/enum'
-
+import EmptySample from '../../../shared/components/EmptySample'
 
 const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
   chain,
@@ -15,21 +15,26 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
   const { t } = useTranslation()
   const [chartType, setChartType] =
     useState<keyof typeof RequestType>('bandwidth')
-  const [chartData, setChartData] = useState<CallMethodsDataExt>()
+  const [chartData, setChartData] = useState<CallMethodsDataExt>({
+    request: { total: 0, list: [] },
+    bandwidth: { total: 0, list: [] },
+  })
 
   // fetMixChartData
   useEffect(() => {
-    apiFetchProjectMethodsStatics(
-      { chain, pid,  },
-    ).then((res) => {
+    apiFetchProjectMethodsStatics({ chain, pid }).then((res) => {
       setChartData(res)
     })
   }, [chain, pid])
 
   // setCurChartData
   useEffect(() => {
+    if (chartData[chartType].list.length === 0) {
+      return
+    }
+
     let chartOptions = {}
-    
+
     chartOptions = {
       tooltip: {
         trigger: 'axis',
@@ -44,25 +49,15 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       },
       xAxis: {
         type: 'value',
-        // boundaryGap: [0, 0.01],
       },
       yAxis: {
         type: 'category',
-        // data: chartData![chartType].list.map((i) => i.method),
-        data: ['post', 'a', 'b', 'c'],
+        data: chartData![chartType].list.map((i) => i.method),
       },
       series: [
         {
-          name: '2011年',
           type: 'bar',
-          // data: chartData![chartType].list.map((i) => i.value),
-          data: [1, 2, 5, 2].map((v, index) => ({
-            value: v,
-            itemStyle: {
-              color: `rgba(20,176,113,${(1 + index) * 0.2})`,
-              borderRadius: [0, 10, 10, 0],
-            },
-          })),
+          data: chartData![chartType].list.map((i) => i.value),
         },
       ],
     }
@@ -83,11 +78,15 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
           }}
           value={chartType}
         >
-          <Radio value={RequestType.request}>Request</Radio>
-          <Radio value={RequestType.bandwidth}>Bandwidth</Radio>
+          <Radio value={RequestType.request}>{t('Details.Request')}</Radio>
+          <Radio value={RequestType.bandwidth}>{t('Details.Bandwidth')}</Radio>
         </Radio.Group>
       </div>
-      <div ref={chartRef} style={{ height: '334px' }}></div>
+      {chartData && chartData![chartType].list.length > 0 ? (
+        <div ref={chartRef} style={{ height: '334px' }}></div>
+      ) : (
+        <EmptySample height={232} title="No data" />
+      )}
     </div>
   )
 }

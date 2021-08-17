@@ -55,6 +55,13 @@ export const apiCreateProject = async (data: ProjectCreatDto) =>
   await httpPost<Project>(`${API_DOMAIN}/project/create`, data)
 
 /**
+ * project delete 
+ */
+export const apiDelProject = async (data: {
+  id: string
+}) => await httpPost<unknown>(`${API_DOMAIN}/project/delete`, data)
+
+/**
  * 首页总数
  */
 export const apiGetTotalStatics = async () =>

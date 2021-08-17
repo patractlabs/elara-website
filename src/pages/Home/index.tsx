@@ -67,7 +67,7 @@ const Home: React.FC = (): ReactElement => {
     if (!isLogged) {
       return setLoginModalVisible(true);
     }
-    history.push("/dashboard/overview");
+    history.push('/dashboard/summary')
   };
 
   useEffect(() => {

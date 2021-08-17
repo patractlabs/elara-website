@@ -39,20 +39,25 @@
   "Public API Access Service for Polkadot Ecosystem": "Public API Access Service for Polkadot Ecosystem",
   "Contact & Subscription": "Contact & Subscription",
   "Subscribe": "Subscribe",
-  "LIVE NETWORKS": "LIVE NETWORKS",
-  "TEST NETWORKS": "TEST NETWORKS",
-  "Kusama Parallel Chain": "Kusama Parachain",
-  "dailyReq": "Requests Today",
-  "dailyBandwidth": "Bandwidth Today",
-  "AvgResTime": "Avg. Response Time",
-  "InvalidReq": "Invalid Request",
+  "Live Networks": "Live Networks",
+  "Test Networks": "Test Networks",
+  "Polkadot Parchains": "Polkadot Parchains",
+  "Kusama Parachains": "Kusama Parchains",
+  "Westend Parachains": "Westend Parchains",
+  "Rococo Parachains": "Rococo Parchains",
+  "Create": "Create",
+  "Project": "Project",
 
-  "overview": {
+  "summary": {
     "Project": "Project",
     "Team": "Team",
     "Network": "Network",
     "Created": "Created",
     "Status": "Status",
+    "dailyReq": "Requests Today",
+    "dailyBandwidth": "Bandwidth Today",
+    "AvgResTime": "Avg. Response Time",
+    "InvalidReq": "Invalid Request",
     "projectName": "Project Name"
   },
 
@@ -76,6 +81,10 @@
   },
 
   "Details": {
+    "Request": "Request",
+    "Bandwidth": "Bandwidth",
+    "Hrs": "Hrs",
+    "Days": "Days",
     "RequestAndBandwidth": "Requests / Bandwidth Statistics",
     "TopCall": "Call Method Statistics",
     "Last30days": "Last 30 Days",
@@ -93,7 +102,15 @@
     "maxChar": "Within 16 characters",
     "projectName": "Project Name",
     "rateLimitLabel": "Per Second Requests Rate-Limiting",
-    "dailyTotalReqLable": "Per Day Total Requests"
+    "dailyTotalReqLable": "Per Day Total Requests",
+    "invalidLimitReqs": "Recent Invalid / Rate Limited Requests",
+    "Method": "Method",
+    "ErrorCode": "Error Code",
+    "ResponseTime": "Response Time",
+    "Time": "Time",
+    "DelProject": "Delete Project",
+    "GeneralSettings": "General Settings",
+    "RequestLimiting": "Request Limiting"
   },
 
   "user": {
@@ -116,8 +133,10 @@
     "fail": "Failed",
     "created": "Created successfully",
     "updated": "Update successfully",
+    "delete": "Delete successfully",
     "Subscribe Successfully": "Subscribe Successfully",
-    "Subscribe Failed": "Subscribe Failed"
+    "Subscribe Failed": "Subscribe Failed",
+    "copy": "Click to copy"
   },
 
   "modal": {

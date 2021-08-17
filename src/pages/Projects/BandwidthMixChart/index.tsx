@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { apiFetchProjectStaticsOfRange } from '../../../core/data/api'
 import { RangeChartData } from '../../../core/types/classes/project'
 import { RequestType } from '../../../core/enum'
+import EmptySample from '../../../shared/components/EmptySample'
 
 enum rangeEnum {
   '24hours' = '24-hours',
@@ -21,7 +22,7 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
   const [chartType, setChartType] =
     useState<keyof typeof RequestType>('bandwidth')
   const [chartRange, setChartRange] = useState('24-hours')
-  const [mixChartData, setMixChartData] = useState<RangeChartData>()
+  const [mixChartData, setMixChartData] = useState<RangeChartData>({timeline: [],stats: []})
 
   // fetMixChartData
   useEffect(() => {
@@ -36,20 +37,20 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
 
   // setCurChartData
   useEffect(() => {
+    const hasData = mixChartData.stats.map((i) => i[chartType]).some(data => data !== 0)
+    if (!hasData) { return }
     let reqBandwidthEchartOptions = {}
     const [_, rangeType] = chartRange.split('-')
-    const xAxis = mixChartData?.timeline.map((data) => {
+    const xAxis = mixChartData.timeline.map((data) => {
       if (rangeType === 'hours') {
         const [_, t] = data.split(' ')
         return t
-      }
-      if (rangeType === 'days') {
+      } else {
         const [_, m, d] = data.split('-')
         return `${m}-${d}`
       }
     })
-    console.log(xAxis?.reverse())
-    console.log(mixChartData?.stats.map((i) => i[chartType]).reverse())
+
     reqBandwidthEchartOptions = {
       xAxis: {
         type: 'category',
@@ -71,7 +72,7 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       },
       series: [
         {
-          data: mixChartData?.stats.map((i) => i[chartType]).reverse(),
+          data: mixChartData.stats.map((i) => i[chartType]).reverse(),
           type: 'bar',
           itemStyle: {
             color: '#EFEFEF',
@@ -81,7 +82,7 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
           },
         },
         {
-          data: mixChartData?.stats.map((i) => i[chartType]).reverse(),
+          data: mixChartData.stats.map((i) => i[chartType]).reverse(),
           type: 'line',
           symbol: 'none',
           itemStyle: {
@@ -113,8 +114,8 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
           }}
           value={chartType}
         >
-          <Radio value={RequestType.request}>Request</Radio>
-          <Radio value={RequestType.bandwidth}>Bandwidth</Radio>
+          <Radio value={RequestType.request}>{t('Details.Request')}</Radio>
+          <Radio value={RequestType.bandwidth}>{t('Details.Bandwidth')}</Radio>
         </Radio.Group>
         <Radio.Group
           onChange={(e) => {
@@ -122,12 +123,19 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
           }}
           value={chartRange}
         >
-          <Radio value={rangeEnum['24hours']}>24 Hrs</Radio>
-          <Radio value={rangeEnum['7days']}>7 Days</Radio>
-          <Radio value={rangeEnum['30days']}>30 Days</Radio>
+          <Radio value={rangeEnum['24hours']}>24 {t('Details.Hrs')}</Radio>
+          <Radio value={rangeEnum['7days']}>7 {t('Details.Days')}</Radio>
+          <Radio value={rangeEnum['30days']}>30 {t('Details.Days')}</Radio>
         </Radio.Group>
       </div>
-      <div ref={reqBandwidthEchart} style={{ height: '334px' }}></div>
+      {mixChartData.stats &&
+      mixChartData?.stats
+        .map((i) => i[chartType])
+        .every((data) => data === 0) ? (
+        <EmptySample height={232} title="No data" />
+      ) : (
+        <div ref={reqBandwidthEchart} style={{ height: '334px' }}></div>
+      )}
     </div>
   )
 }

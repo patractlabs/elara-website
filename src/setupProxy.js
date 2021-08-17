@@ -5,8 +5,9 @@ module.exports = function (app) {
     '/accountApi',
     proxy.createProxyMiddleware({
       // target: "https://elara.patract.io",
+      target: "https://test-elara2.patract.cn",
       // target: 'http://120.26.70.42:7000',
-      target:'http://47.111.179.222:7000',
+      // target:'http://47.111.179.222:7000',
       changeOrigin: true,
       pathRewrite: {
         '^/accountApi': '',
