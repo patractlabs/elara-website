@@ -109,15 +109,6 @@ const Projects: FC<{}> = () => {
         chain: projectInfo[tabNum]?.chain,
         pid: projectInfo[tabNum]?.pid,
       }).then((res) => {
-        // res.list = [
-        //   {
-        //     proto: 'wss',
-        //     method: 'health',
-        //     code: 200,
-        //     delay: 2,
-        //     time: '2020-01-01 23:22',
-        //   },
-        // ]
         setInvalidData(res)
       })
     },

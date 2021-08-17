@@ -26,20 +26,24 @@ const Pagination: FC<{
     onChange(i, pageSize)
   }
 
-    const renderPageIndicator = () => {
+  const renderPageIndicator = () => {
     let start = firstPageNum
     let end = lastPageNum
-    if (currentPage - 2 >= firstPageNum) {
-        start = currentPage - 2
-        }
-        end = start + 4
-        
-    if (end > lastPageNum) {
-        end = lastPageNum
+    if (currentPage - 2 >= firstPageNum && currentPage + 2 <= lastPageNum) {
+      start = currentPage - 2
+      end = currentPage + 2
     }
-    
-    console.log('start:', start, 'end:' , end);
-        
+    if (currentPage - 2 >= firstPageNum && currentPage + 2 > lastPageNum) {
+      end = lastPageNum
+      start = lastPageNum - 4 > firstPageNum ? lastPageNum - 4 : firstPageNum
+    }
+    if (currentPage - 2 < firstPageNum && currentPage + 2 <= lastPageNum) {
+      start = firstPageNum
+      end = firstPageNum + 4 > lastPageNum ? lastPageNum : firstPageNum + 4
+    }
+
+    console.log('start:', start, 'end:', end)
+
     let list = []
     for (let i = start; i <= end; i++) {
       list.push(i)
@@ -69,7 +73,9 @@ const Pagination: FC<{
             {i}
           </span>
         ))}
-        {end + 1 < lastPageNum && <span className="page-item ellipsis">...</span>}
+        {end + 1 < lastPageNum && (
+          <span className="page-item ellipsis">...</span>
+        )}
         {end < lastPageNum && (
           <span
             className="page-item"
@@ -89,15 +95,14 @@ const Pagination: FC<{
           className="pagination-select"
           defaultValue={pageSize}
           onChange={(val) => {
-              setPageSize(val)
-              const maxPage = Math.ceil(total / val)
-              if (maxPage < currentPage) {
-                  setCurrentPage(maxPage)
-                  onChange(maxPage, val)
-              } else {
-                  onChange(currentPage,val)
-              }
-              
+            setPageSize(val)
+            const maxPage = Math.ceil(total / val)
+            if (maxPage < currentPage) {
+              setCurrentPage(maxPage)
+              onChange(maxPage, val)
+            } else {
+              onChange(currentPage, val)
+            }
           }}
           suffixIcon={<img src={More} alt="more" />}
         >
