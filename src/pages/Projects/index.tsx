@@ -113,15 +113,6 @@ const Projects: FC<{}> = () => {
         chain: projectInfo[tabNum]?.chain,
         pid: projectInfo[tabNum]?.pid,
       }).then((res) => {
-        res.list = [
-          {
-            method: '2',
-            delay: 11,
-            proto: '1',
-            code: 200,
-            time: '2020',
-          },
-        ]
         setInvalidData(res)
       })
     },
