@@ -16,8 +16,8 @@ const CreateProjectModal: FC<{
   closeCallBack?: () => void
 }> = ({ visible = false, chain, setVisible, closeCallBack }) => {
 
-  const [selectedTeam, onSelectTeam] = useState<string>('')
-  const [selectedChain, onSelectChain] = useState<string>('')
+  const [selectedTeam, setSelectTeam] = useState<string>('')
+  const [selectedChain, setSelectChain] = useState<string>('')
   const [isValidProjectName, setIsValid] = useState<boolean>(true)
   const [projectName, setProjectName] = useState('')
   const { t } = useTranslation()
@@ -36,6 +36,16 @@ const CreateProjectModal: FC<{
       })
     }
     return list
+  }
+
+  const onSelectChain = (val: string) => {
+    setSelectChain(val)
+    setSelectTeam(_generateTeamOfChain(val))
+  }
+
+  const onSelectTeam = (val: string) => {
+    setSelectTeam(val)
+    setSelectChain('')
   }
 
   const _generateTeamOfChain = (chain?:string) => {
@@ -60,11 +70,13 @@ const CreateProjectModal: FC<{
         message.success(t('tip.created'))
         updateMenu()
         updateUser()
+        setProjectName('')
+        setSelectChain('')
+        setSelectTeam('')
         closeCallBack && closeCallBack()
       })
       .catch((res) => {
         message.error(t(res.msg))
-        console.log(res)
       })
     setVisible(false)
   }
@@ -104,7 +116,8 @@ const CreateProjectModal: FC<{
               type="text"
               className={`name ${
                 !isValidProjectName && !!projectName && 'error'
-              }`}
+                }`}
+              value={projectName}
               onChange={(e) => _onInputChange(e.target.value)}
               onBlur={(e) => _checkProjectName(e.target.value)}
             />
@@ -115,7 +128,7 @@ const CreateProjectModal: FC<{
             <div className="modal-body-field">
               <span className="title">{t('summary.Team')}</span>
               <Select
-                defaultValue=""
+                value={selectedTeam}
                 showSearch
                 style={{ width: 200 }}
                 optionFilterProp="label"
@@ -134,7 +147,7 @@ const CreateProjectModal: FC<{
             <div className="modal-body-field">
               <span className="title">{t('summary.Network')}</span>
               <Select
-                defaultValue=""
+                value={selectedChain}
                 showSearch
                 style={{ width: 200 }}
                 optionFilterProp="children"

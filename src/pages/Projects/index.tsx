@@ -48,6 +48,7 @@ const Projects: FC<{}> = () => {
   }, [user.id, params.chain])
 
   const handleUpdateProjectName = async () => {
+    if (nameRef.current!.value === projectInfo[tabNum].name) return
     return await apiUpdateProjectName({
       userId: user.id,
       chain: projectInfo[tabNum]?.chain,
@@ -182,10 +183,10 @@ const Projects: FC<{}> = () => {
                   {projectInfo[tabNum]?.reqCnt}
                 </OverviewCard>
                 <OverviewCard title={t('summary.dailyBandwidth')}>
-                  {projectInfo[tabNum]?.bw}
+                  {projectInfo[tabNum]?.bw} MB
                 </OverviewCard>
                 <OverviewCard title={t('summary.AvgResTime')}>
-                  {projectInfo[tabNum]?.timeoutDelay}
+                  {projectInfo[tabNum]?.timeoutDelay} ms
                 </OverviewCard>
                 <OverviewCard title={t('summary.InvalidReq')}>
                   {projectInfo[tabNum]?.inReqCnt}
@@ -312,7 +313,7 @@ const Projects: FC<{}> = () => {
                   ref={dailyRequsetRef}
                   label={t('Details.dailyTotalReqLable')}
                   defaultValue={
-                    Number(projectInfo[tabNum].reqDayLimit) > 0
+                    Number(projectInfo[tabNum].reqDayLimit) >= 0
                       ? projectInfo[tabNum].reqDayLimit
                       : ''
                   }

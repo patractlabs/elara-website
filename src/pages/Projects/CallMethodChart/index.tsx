@@ -43,8 +43,8 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
         },
       },
       grid: {
-        right: '10px',
-        left: '40',
+        right: '50px',
+        left: '150px',
         bottom: '20px',
       },
       xAxis: {
@@ -52,12 +52,22 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       },
       yAxis: {
         type: 'category',
-        data: chartData![chartType].list.map((i) => i.method),
+        data: chartData![chartType].list.reverse().map((i) => i.method),
       },
       series: [
         {
           type: 'bar',
-          data: chartData![chartType].list.map((i) => i.value),
+          data: chartData![chartType].list.map((i, idx) => ({
+            value: i.value,
+            itemStyle: {
+              color: `rgba(20,176,113, ${(idx+1)*0.3 })`,
+              borderRadius: [0, 20, 20, 0],
+            },
+            label: {
+              show: 10,
+              position: 'right'
+            }
+          })),
         },
       ],
     }

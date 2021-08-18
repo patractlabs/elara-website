@@ -58,6 +58,12 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
     })
 
     reqBandwidthEchartOptions = {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow',
+        },
+      },
       xAxis: {
         type: 'category',
         data: xAxis?.reverse(),
@@ -73,7 +79,7 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       },
       grid: {
         right: '10',
-        left: '30',
+        left: '50',
         bottom: '20',
       },
       series: [
