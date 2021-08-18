@@ -86,8 +86,8 @@ const Home: React.FC = (): ReactElement => {
   useEffect(() => {
     apiGetLast30DaysRequests().then((res) => {
 
-      requestOption.xAxis.data = res.timeline.map((i) => i.slice(5))
-      requestOption.series[0].data = res.stats.map(i => i.request)
+      requestOption.xAxis.data = res.timeline.map((i) => i.slice(5)).reverse()
+      requestOption.series[0].data = res.stats.map(i => i.request).reverse()
       
       const chart = echarts.init(requestsEchart.current!)
       chart.setOption(requestOption)
