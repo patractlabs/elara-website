@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState } from 'react'
 import { Select } from 'antd'
 import More from './images/more.svg'
 
@@ -16,10 +16,6 @@ const Pagination: FC<{
   const [pageSize, setPageSize] = useState(defaultPagesize)
   let firstPageNum = 1
   let lastPageNum = Math.ceil(total / pageSize)
-
-  useEffect(() => {
-    lastPageNum = Math.ceil(total / pageSize)
-  }, [pageSize, total])
 
   const onSetCurrentPage = (i: number) => {
     setCurrentPage(i)
@@ -41,8 +37,6 @@ const Pagination: FC<{
       start = firstPageNum
       end = firstPageNum + 4 > lastPageNum ? lastPageNum : firstPageNum + 4
     }
-
-    console.log('start:', start, 'end:', end)
 
     let list = []
     for (let i = start; i <= end; i++) {

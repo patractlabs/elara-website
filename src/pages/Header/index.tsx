@@ -48,13 +48,14 @@ const Header: React.FC = () => {
         break
     }
   }
-
+  console.log(user.level, t(user.level))
+  
   const UserMenu = (
     <ul className="user-menu">
       <li className="">
         <Link to="/dashboard/summary">
           <p>{t('user.Level')}</p>
-          <h3>{t(user.level)}</h3>
+          <h3>{t(`user.${user.level}`)}</h3>
         </Link>
       </li>
       <li className="user-menu-project-counts">

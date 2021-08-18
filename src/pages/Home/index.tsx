@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import "./index.css";
-import { apiGetTotalStatics, apiGetRequestsByDate } from '../../core/data/api'
+import { apiGetTotalStatics, apiGetLast30DaysRequests } from '../../core/data/api'
 import { useTranslation } from "react-i18next";
 import img1 from "../../assets/easy-use.webp";
 import img2 from "../../assets/cp2.svg";
@@ -84,17 +84,14 @@ const Home: React.FC = (): ReactElement => {
   }, []);
 
   useEffect(() => {
-    apiGetRequestsByDate(30).then((res) => {
-      const keys = Object.keys(res);
+    apiGetLast30DaysRequests().then((res) => {
 
-      requestOption.xAxis.data = keys.map(
-        (s) => s.slice(4, 6) + "-" + s.slice(6)
-      );
-      requestOption.series[0].data = keys.map((key) => res[key]);
-
-      const chart = echarts.init(requestsEchart.current!);
-      chart.setOption(requestOption);
-    });
+      requestOption.xAxis.data = res.timeline.map((i) => i.slice(5))
+      requestOption.series[0].data = res.stats.map(i => i.request)
+      
+      const chart = echarts.init(requestsEchart.current!)
+      chart.setOption(requestOption)
+    })
   }, []);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback, FC } from 'react'
+import { useState, useRef, useEffect, useCallback, useContext, FC } from 'react'
 import { message, Table, ConfigProvider } from 'antd'
 import Tooltip from '../../shared/components/Tooltip'
 import { useTranslation } from 'react-i18next'
@@ -23,7 +23,7 @@ import SettingField, { IRefReturnType } from './SettingField'
 import BasicModal from '../../shared/components/BasicModalContainer'
 import EmptySample from '../../shared/components/EmptySample'
 import Pagination from '../../shared/components/Pagination'
-
+import { DashboardContext } from '../../core/context/dashboard-context'
 import './index.css'
 
 const Projects: FC<{}> = () => {
@@ -32,9 +32,11 @@ const Projects: FC<{}> = () => {
   const [projectInfo, setProjectInfo] = useState<Project[]>([])
   const [invalidData, setInvalidData] = useState<InvalidTableDataExt>()
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
+  const { updateMenu } = useContext(DashboardContext)
   const nameRef = useRef<IRefReturnType>(null)
   const rateLimitRef = useRef<IRefReturnType>(null)
   const dailyRequsetRef = useRef<IRefReturnType>(null)
+  const { updateUser } = useApi()
   const { t } = useTranslation()
   const params = useParams<{ chain: string; state?: any }>()
   const { user } = useApi()
@@ -68,8 +70,8 @@ const Projects: FC<{}> = () => {
   const handleUpdateLimit = async () => {
     await apiUpdateProjectLimit({
       id: projectInfo[tabNum]?.id,
-      reqDayLimit: Number(rateLimitRef.current!.value),
-      reqSecLimit: Number(dailyRequsetRef.current!.value),
+      reqDayLimit: Number(dailyRequsetRef.current!.value),
+      reqSecLimit: Number(rateLimitRef.current!.value),
     }).then(
       () => {
         message.success(t('tip.updated'))
@@ -88,6 +90,8 @@ const Projects: FC<{}> = () => {
       () => {
         message.success(t('tip.delete'))
         updatePageData()
+        updateMenu()
+        updateUser()
         // 更新页面数据
       },
       (res) => {
@@ -109,6 +113,15 @@ const Projects: FC<{}> = () => {
         chain: projectInfo[tabNum]?.chain,
         pid: projectInfo[tabNum]?.pid,
       }).then((res) => {
+        res.list = [
+          {
+            method: '2',
+            delay: 11,
+            proto: '1',
+            code: 200,
+            time: '2020',
+          },
+        ]
         setInvalidData(res)
       })
     },
@@ -271,8 +284,6 @@ const Projects: FC<{}> = () => {
                       <Pagination
                         total={100}
                         onChange={(page, pageSize) => {
-                          console.log(page, pageSize)
-                          
                           changeProjectErrorStatics(page, pageSize)
                         }}
                       />
@@ -299,13 +310,21 @@ const Projects: FC<{}> = () => {
                 <SettingField
                   ref={rateLimitRef}
                   label={t('Details.rateLimitLabel')}
-                  defaultValue={projectInfo[tabNum].reqSecLimit}
+                  defaultValue={
+                    Number(projectInfo[tabNum].reqSecLimit) > 0
+                      ? projectInfo[tabNum].reqSecLimit
+                      : ''
+                  }
                   handleConfirm={handleUpdateLimit}
                 />
                 <SettingField
                   ref={dailyRequsetRef}
                   label={t('Details.dailyTotalReqLable')}
-                  defaultValue={projectInfo[tabNum].reqDayLimit}
+                  defaultValue={
+                    Number(projectInfo[tabNum].reqDayLimit) > 0
+                      ? projectInfo[tabNum].reqDayLimit
+                      : ''
+                  }
                   handleConfirm={handleUpdateLimit}
                 />
               </div>

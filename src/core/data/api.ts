@@ -10,10 +10,6 @@ import { Menu } from '../types/classes/chain'
 import { httpPost, httpGet } from './http'
 import { API_DOMAIN } from '../../config/origin'
 import {
-  ChainStats,
-  StatDay,
-  StatMonth,
-  StatWeek,
   StatT,
 } from '../types/classes/stat'
 import axios from 'axios'
@@ -43,13 +39,13 @@ export const apiLogin = async (): Promise<User> => {
 }
 
 /**
- * 退出登录
+ * logout'
  */
 export const apiLogout = async () =>
   await httpGet<undefined>(`${API_DOMAIN}/auth/logout`)
 
 /**
- * 新建数据
+ * create project
  */
 export const apiCreateProject = async (data: ProjectCreatDto) =>
   await httpPost<Project>(`${API_DOMAIN}/project/create`, data)
@@ -62,11 +58,20 @@ export const apiDelProject = async (data: {
 }) => await httpPost<unknown>(`${API_DOMAIN}/project/delete`, data)
 
 /**
- * 首页总数
+ * total requests on homepage
  */
 export const apiGetTotalStatics = async () =>
   await httpGet<{ bindwidth: number; request: number }>(
-    `${API_DOMAIN}/stat/total`
+    `${API_DOMAIN}/public/stat`
+  )
+
+/**
+ * requests by recent 30 days 
+ */
+export const apiGetLast30DaysRequests = async () =>
+  await httpPost<{ stats: { request: number; bandwidth: number }[]; timeline: string[] }>(
+    `${API_DOMAIN}/public/days`,
+    { days: 30 }
   )
 
 /**
@@ -95,20 +100,6 @@ export const apiFetchProjectList = async (
   res = res.map((item) => ({ ...item, ...item.stat }))
   return res
 }
-
-// /**
-//  * 控制台项目详情
-//  */
-// export const apiGetProjectDetail = async (id: string) =>
-//   await httpGet<Project>(`${API_DOMAIN}/project/${id}`)
-
-/**
- * project数据
- */
-export const apiGetProjectDailyStatics = async (data: {
-  chain: string
-  pid: string
-}) => await httpPost<Project>(`${API_DOMAIN}/stat/project/daily`, data)
 
 /**
  * project特定小时内的数据统计
@@ -161,35 +152,6 @@ export const apiUpdateProjectLimit = async (data: {
   reqSecLimit: number
   reqDayLimit: number
 }) => await httpPost<unknown>(`${API_DOMAIN}/project/update/limit`, data)
-
-/**
- * 获取首页列表
- */
-export const apiGetChainStats = async () =>
-  await httpGet<ChainStats>(`${API_DOMAIN}/stat/chain`)
-
-/**
- * 获取过去n天，每天请求数
- */
-export const apiGetRequestsByDate = async (days: number) =>
-  await httpGet<ChainStats>(`${API_DOMAIN}/stat/requests/${days}`)
-/**
- * 控制台详情七天数据
- */
-export const apiGetWeekDetails = async (id: string) =>
-  await httpGet<StatWeek>(`${API_DOMAIN}/stat/week/${id}`)
-
-/**
- * 控制台详情30天数据
- */
-export const apiGetMonthDetails = async (id: string) =>
-  await httpGet<StatMonth>(`${API_DOMAIN}/stat/month/${id}`)
-
-/**
- * 控制台详情项目当天统计数据
- */
-export const apiGetDayDetail = async (id: string) =>
-  await httpGet<StatDay>(`${API_DOMAIN}/stat/day/${id}`)
 
 /**
  * 订阅邮箱

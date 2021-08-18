@@ -77,6 +77,7 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
               className="icon"
               alt="edit"
               onClick={() => {
+                intRef.current?.focus()
                 setEditable(true)
               }}
             />

@@ -21,7 +21,7 @@ const CreateProjectModal: FC<{
   const [isValidProjectName, setIsValid] = useState<boolean>(true)
   const [projectName, setProjectName] = useState('')
   const { t } = useTranslation()
-  const { user } = useApi()
+  const { user, updateUser } = useApi()
   const { chains, updateMenu } = useContext(DashboardContext)
 
   const _generateTeamsList = () => {
@@ -59,6 +59,7 @@ const CreateProjectModal: FC<{
       .then(() => {
         message.success(t('tip.created'))
         updateMenu()
+        updateUser()
         closeCallBack && closeCallBack()
       })
       .catch((res) => {

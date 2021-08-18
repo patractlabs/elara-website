@@ -1,6 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react'
-// import { ChainName } from '../enum'
-// import { Project } from '../../core/types/classes/project'
 import { apiFetchMenuList } from '../data/api'
 import { useApi } from '../hooks/useApi'
 import { Menu } from '../types/classes/chain'

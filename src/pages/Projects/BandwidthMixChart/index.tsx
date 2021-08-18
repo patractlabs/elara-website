@@ -22,7 +22,10 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
   const [chartType, setChartType] =
     useState<keyof typeof RequestType>('bandwidth')
   const [chartRange, setChartRange] = useState('24-hours')
-  const [mixChartData, setMixChartData] = useState<RangeChartData>({timeline: [],stats: []})
+  const [mixChartData, setMixChartData] = useState<RangeChartData>({
+    timeline: [],
+    stats: [],
+  })
 
   // fetMixChartData
   useEffect(() => {
@@ -35,10 +38,13 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
     })
   }, [chain, pid, chartRange])
 
-  // setCurChartData
   useEffect(() => {
-    const hasData = mixChartData.stats.map((i) => i[chartType]).some(data => data !== 0)
-    if (!hasData) { return }
+    const hasData = mixChartData.stats
+      .map((i) => i[chartType])
+      .some((data) => data !== 0)
+    if (!hasData) {
+      return
+    }
     let reqBandwidthEchartOptions = {}
     const [_, rangeType] = chartRange.split('-')
     const xAxis = mixChartData.timeline.map((data) => {
@@ -61,14 +67,14 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       },
       yAxis: {
         type: 'value',
-        axisLabel: {
-          inside: true,
-        },
+        // axisLabel: {
+        //   inside: true,
+        // },
       },
       grid: {
-          right: '10px',
-          left: '0',
-        bottom: '20px',
+        right: '10',
+        left: '30',
+        bottom: '20',
       },
       series: [
         {
