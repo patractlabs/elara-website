@@ -48,7 +48,6 @@ const Header: React.FC = () => {
         break
     }
   }
-  console.log(user.level, t(user.level))
   
   const UserMenu = (
     <ul className="user-menu">

@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect, useImperativeHandle } from 'react'
+import React, { useState, useRef, useEffect, useImperativeHandle } from 'react'
 import Tooltip from '../../../shared/components/Tooltip'
 import TooltipIcon from '../../../assets/tooltip.svg'
 import EditIcon from '../../../assets/edit-icon.svg'
@@ -29,8 +29,7 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
   useEffect(() => {
     setValue(defaultValue)
   }, [defaultValue])
-  console.log('defaultValue', defaultValue)
-  
+
   const onHandleConfirm = () => {
     handleConfirm().then((errMsg) => {
       if (!errMsg) {

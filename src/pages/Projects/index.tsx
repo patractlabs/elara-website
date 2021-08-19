@@ -49,24 +49,25 @@ const Projects: FC<{}> = () => {
 
   const handleUpdateProjectName = async () => {
     if (nameRef.current!.value === projectInfo[tabNum].name) return
-    if (!/^[a-zA-Z]{4,16}$/.test(nameRef.current!.value)) return t('tip.invalidName')
-      return await apiUpdateProjectName({
-        userId: user.id,
-        chain: projectInfo[tabNum]?.chain,
-        id: projectInfo[tabNum]?.id,
-        name: nameRef.current!.value,
-      }).then(
-        () => {
-          message.success(t('tip.updated'))
-          // 更新页面数据
-          updatePageData()
-          return ''
-        },
-        (res) => {
-          message.error(t('tip.fail'))
-          return res.msg
-        }
-      )
+    if (!/^[a-zA-Z]{4,16}$/.test(nameRef.current!.value))
+      return t('tip.invalidName')
+    return await apiUpdateProjectName({
+      userId: user.id,
+      chain: projectInfo[tabNum]?.chain,
+      id: projectInfo[tabNum]?.id,
+      name: nameRef.current!.value,
+    }).then(
+      () => {
+        message.success(t('tip.updated'))
+        // 更新页面数据
+        updatePageData()
+        return ''
+      },
+      (res) => {
+        message.error(t('tip.fail'))
+        return res.msg
+      }
+    )
   }
 
   const handleUpdateLimit = async (val: string) => {
@@ -135,7 +136,6 @@ const Projects: FC<{}> = () => {
             className={`tab-item ${tabNum === index && 'active'}`}
             onClick={() => {
               setTabNum(index)
-              console.log(projectInfo[tabNum].name)
             }}
           >
             {data.name}
