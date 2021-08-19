@@ -136,7 +136,9 @@
     "delete": "Delete successfully",
     "Subscribe Successfully": "Subscribe Successfully",
     "Subscribe Failed": "Subscribe Failed",
-    "copy": "Click to copy"
+    "copy": "Click to copy",
+    "invalidName": "Please enter 4 - 16 digits of the alphabet",
+    "invalidNumber": "Please input a number"
   },
 
   "modal": {

@@ -87,7 +87,7 @@ const CreateProjectModal: FC<{
   }
 
   const _checkProjectName = (name: string) => {
-    let reg = /[a-zA-Z]{4,32}/
+    let reg = /^[a-zA-Z]{4,16}$/
     setIsValid(reg.test(name))
   }
 
