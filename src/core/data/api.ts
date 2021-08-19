@@ -21,7 +21,7 @@ export const apiLogin = async (): Promise<User> => {
   const res = await httpGet<{
     projectNum: number
     user: {
-      id: string
+      id: number
       name: string
       status: string
       level: string
@@ -77,20 +77,20 @@ export const apiGetLast30DaysRequests = async () =>
 /**
  * 控制台菜单数据
  */
-export const apiFetchMenuList = async (id: string) =>
+export const apiFetchMenuList = async (id: number) =>
   await httpPost<Menu>(`${API_DOMAIN}/chain/list`, { userId: id })
 
 /**
  * 用户数据概览 dashboard card
  */
-export const apiGetUserDailyStatics = async (id: string) =>
+export const apiGetUserDailyStatics = async (id: number) =>
   await httpPost<StatT>(`${API_DOMAIN}/user/detail/statistic`, { userId: id })
 
 /**
  * 控制台用户project table数据
  */
 export const apiFetchProjectList = async (
-  id: string,
+  id: number,
   chain?: string
 ): Promise<Project[]> => {
   let res = await httpPost<any[]>(`${API_DOMAIN}/project/list`, {
@@ -138,7 +138,7 @@ export const apiFetchProjectErrorStatics = async (data: {
  * project name 更新
  */
 export const apiUpdateProjectName = async (data: {
-  userId: string
+  userId: number
   chain: string
   id: string
   name: string

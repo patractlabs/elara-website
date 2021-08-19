@@ -1,5 +1,5 @@
 export class ProjectCreatDto {
-  userId: string
+  userId: number
   chain: string
   name: string
   team: string

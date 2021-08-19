@@ -12,7 +12,7 @@ if (getCookie('sid')) {
 export const useUser = () => {
   const [isLogged, setIsLoggged] = useState<boolean>(_isLogged);
   const [user, setUser] = useState<User>({
-    id: "",
+    id: 0,
     name: "",
     projectNum: 0,
     maxProjectNum: 0,

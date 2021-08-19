@@ -1,5 +1,5 @@
 export class User {
-  id: string
+  id: number
   name: string
   level: string
   maxProjectNum: number
