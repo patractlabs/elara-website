@@ -16,10 +16,10 @@ const CreateProjectModal: FC<{
   closeCallBack?: () => void
 }> = ({ visible = false, chain, setVisible, closeCallBack }) => {
 
-  const [selectedTeam, setSelectTeam] = useState<string>('')
-  const [selectedChain, setSelectChain] = useState<string>('')
-  const [isValidProjectName, setIsValid] = useState<boolean>(true)
   const [projectName, setProjectName] = useState('')
+  const [selectedTeam, setSelectTeam] = useState('')
+  const [selectedChain, setSelectChain] = useState('')
+  const [isValidProjectName, setIsValid] = useState(true)
   const { t } = useTranslation()
   const { user, updateUser } = useApi()
   const { chains, updateMenu } = useContext(DashboardContext)
@@ -87,7 +87,7 @@ const CreateProjectModal: FC<{
   }
 
   const _checkProjectName = (name: string) => {
-    let reg = /^[a-zA-Z]{4,16}$/
+    let reg = /^[a-zA-Z]{4}[a-zA-Z0-9]{0,10}$/
     setIsValid(reg.test(name))
   }
 
@@ -116,7 +116,7 @@ const CreateProjectModal: FC<{
               type="text"
               className={`name ${
                 !isValidProjectName && !!projectName && 'error'
-                }`}
+              }`}
               value={projectName}
               onChange={(e) => _onInputChange(e.target.value)}
               onBlur={(e) => _checkProjectName(e.target.value)}
@@ -125,25 +125,6 @@ const CreateProjectModal: FC<{
         </div>
         {!chain && (
           <div className="modal-body-row">
-            <div className="modal-body-field">
-              <span className="title">{t('summary.Team')}</span>
-              <Select
-                value={selectedTeam}
-                showSearch
-                style={{ width: 200 }}
-                optionFilterProp="label"
-                suffixIcon={<img src={ExpandIcon} alt="expand" />}
-                onChange={(v) => {
-                  onSelectTeam(v)
-                }}
-              >
-                {_generateTeamsList().map((team) => (
-                  <Option value={team} key={team}>
-                    {team}
-                  </Option>
-                ))}
-              </Select>
-            </div>
             <div className="modal-body-field">
               <span className="title">{t('summary.Network')}</span>
               <Select
@@ -170,6 +151,26 @@ const CreateProjectModal: FC<{
                       </Option>
                     ))}
                   </OptGroup>
+                ))}
+              </Select>
+            </div>
+            <div className="modal-body-field">
+              <span className="title">{t('summary.Team')}</span>
+              <Select
+                disabled
+                value={selectedTeam}
+                showSearch
+                style={{ width: 200 }}
+                optionFilterProp="label"
+                suffixIcon={<img src={ExpandIcon} alt="expand" />}
+                onChange={(v) => {
+                  onSelectTeam(v)
+                }}
+              >
+                {_generateTeamsList().map((team) => (
+                  <Option value={team} key={team}>
+                    {team}
+                  </Option>
                 ))}
               </Select>
             </div>

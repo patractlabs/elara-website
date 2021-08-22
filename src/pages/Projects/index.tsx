@@ -1,28 +1,26 @@
 import { useState, useRef, useEffect, useCallback, useContext, FC } from 'react'
-import { message, Table, ConfigProvider } from 'antd'
-import Tooltip from '../../shared/components/Tooltip'
+import { message } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
-import copy from 'copy-to-clipboard'
 import { ENDPOINTS_URL, WSS_ENDPOINTS_URL } from '../../config/origin'
 import OverviewCard from '../../shared/components/OverviewCard'
 import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
 import { useApi } from '../../core/hooks/useApi'
-import { Project, InvalidTableDataExt } from '../../core/types/classes/project'
+import { Project } from '../../core/types/classes/project'
 import { formatTime } from '../../shared/utils'
 import {
   apiFetchProjectList,
-  apiFetchProjectErrorStatics,
   apiUpdateProjectName,
   apiUpdateProjectLimit,
   apiDelProject,
 } from '../../core/data/api'
+import ClipboardTxt from './ClipboardTxt'
 import BandwidthMixChart from './BandwidthMixChart'
 import CallMethodChart from './CallMethodChart'
+import InvalidReqTable from './InvalidReqTable'
 import SettingField, { IRefReturnType } from './SettingField'
 import BasicModal from '../../shared/components/BasicModalContainer'
 import EmptySample from '../../shared/components/EmptySample'
-import Pagination from '../../shared/components/Pagination'
 import { DashboardContext } from '../../core/context/dashboard-context'
 import './index.css'
 
@@ -30,7 +28,6 @@ const Projects: FC<{}> = () => {
   const [tabNum, setTabNum] = useState(0)
   const [viewType, switchToView] = useState<'setting' | 'request'>('request')
   const [projectInfo, setProjectInfo] = useState<Project[]>([])
-  const [invalidData, setInvalidData] = useState<InvalidTableDataExt>()
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
   const { updateMenu } = useContext(DashboardContext)
   const nameRef = useRef<IRefReturnType>(null)
@@ -49,7 +46,7 @@ const Projects: FC<{}> = () => {
 
   const handleUpdateProjectName = async () => {
     if (nameRef.current!.value === projectInfo[tabNum].name) return
-    if (!/^[a-zA-Z]{4,16}$/.test(nameRef.current!.value))
+    if (!/^[a-zA-Z]{4}[a-zA-Z0-9]{0,10}$/.test(nameRef.current!.value))
       return t('tip.invalidName')
     return await apiUpdateProjectName({
       userId: user.id,
@@ -107,24 +104,7 @@ const Projects: FC<{}> = () => {
 
   useEffect(() => {
     updatePageData()
-  }, [params.chain, user.id, updatePageData])
-
-  const changeProjectErrorStatics = useCallback(
-    (page: number, size: number) => {
-      apiFetchProjectErrorStatics({
-        page,
-        size,
-        chain: projectInfo[tabNum]?.chain,
-        pid: projectInfo[tabNum]?.pid,
-      }).then((res) => {
-        setInvalidData(res)
-      })
-    },
-    [projectInfo, tabNum]
-  )
-  useEffect(() => {
-    changeProjectErrorStatics(1, 10)
-  }, [changeProjectErrorStatics])
+  }, [params.chain, user.id, updatePageData]) 
 
   return (
     <div className="projects">
@@ -196,40 +176,16 @@ const Projects: FC<{}> = () => {
               </div>
               <div className="api stat-card">
                 <div className="title">API</div>
-                <div className="api-info">
-                  <div className="title">Project ID</div>
-                  <div
-                    className="value"
-                    onClick={() => copy(projectInfo[tabNum]?.pid)}
-                  >
-                    <Tooltip title={t('tip.copy')}>
-                      {projectInfo[tabNum]?.pid}
-                    </Tooltip>
-                  </div>
-                </div>
-                <div className="api-info">
-                  <div className="title">Project Secret</div>
-                  <div
-                    className="value"
-                    onClick={() => copy(projectInfo[tabNum]?.secret)}
-                  >
-                    <Tooltip title={t('tip.copy')}>
-                      {projectInfo[tabNum]?.secret}
-                    </Tooltip>
-                  </div>
-                </div>
-                <div className="api-info">
-                  <div className="title">Endpoints(WSS)</div>
-                  <div className="value" onClick={() => copy(wssEndpointUrl)}>
-                    <Tooltip title={t('tip.copy')}>{wssEndpointUrl}</Tooltip>
-                  </div>
-                </div>
-                <div className="api-info">
-                  <div className="title">Endpoints(HTTPS)</div>
-                  <div className="value" onClick={() => copy(httpEndpointUrl)}>
-                    <Tooltip title={t('tip.copy')}>{httpEndpointUrl}</Tooltip>
-                  </div>
-                </div>
+                <ClipboardTxt
+                  label="Project ID"
+                  txt={projectInfo[tabNum]?.pid}
+                />
+                <ClipboardTxt
+                  label="Project Secret"
+                  txt={projectInfo[tabNum]?.secret}
+                />
+                <ClipboardTxt label="Endpoints(WSS)" txt={wssEndpointUrl} />
+                <ClipboardTxt label="Endpoints(HTTPS)" txt={httpEndpointUrl} />
               </div>
               <BandwidthMixChart
                 chain={projectInfo[tabNum]?.chain}
@@ -239,52 +195,10 @@ const Projects: FC<{}> = () => {
                 chain={projectInfo[tabNum]?.chain}
                 pid={projectInfo[tabNum]?.pid}
               />
-              <div className="requsets-chart stat-card">
-                <div className="title">{t('Details.invalidLimitReqs')}</div>
-                <div className="invalid-table">
-                  <ConfigProvider
-                    renderEmpty={() => (
-                      <EmptySample title="No data" height={232} />
-                    )}
-                  >
-                    <Table
-                      rowKey={(data) => data.method}
-                      dataSource={invalidData?.list}
-                      columns={[
-                        {
-                          title: t('Details.Method'),
-                          dataIndex: 'method',
-                          key: 'method',
-                        },
-                        {
-                          title: t('Details.ErrorCode'),
-                          dataIndex: 'code',
-                          key: 'code',
-                        },
-                        {
-                          title: t('Details.ResponseTime'),
-                          dataIndex: 'delay',
-                          key: 'delay',
-                        },
-                        {
-                          title: t('Details.Time'),
-                          dataIndex: 'time',
-                          key: 'time',
-                        },
-                      ]}
-                      pagination={false}
-                    ></Table>
-                    {invalidData?.list && invalidData?.list.length > 0 && (
-                      <Pagination
-                        total={100}
-                        onChange={(page, pageSize) => {
-                          changeProjectErrorStatics(page, pageSize)
-                        }}
-                      />
-                    )}
-                  </ConfigProvider>
-                </div>
-              </div>
+              <InvalidReqTable
+                chain={projectInfo[tabNum]?.chain}
+                pid={projectInfo[tabNum]?.pid}
+              />
             </div>
           )}
           {viewType === 'setting' && (
@@ -302,6 +216,7 @@ const Projects: FC<{}> = () => {
               <div className="setting-item">
                 <div className="title">{t('Details.RequestLimiting')}</div>
                 <SettingField
+                  type="number"
                   ref={rateLimitRef}
                   label={t('Details.rateLimitLabel')}
                   defaultValue={
@@ -314,6 +229,7 @@ const Projects: FC<{}> = () => {
                   }
                 />
                 <SettingField
+                  type="number"
                   ref={dailyRequsetRef}
                   label={t('Details.dailyTotalReqLable')}
                   defaultValue={

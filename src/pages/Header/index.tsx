@@ -29,6 +29,7 @@ const Header: React.FC = () => {
       homeHeight.setHeight(0)
       delCookie()
       setIsLoggged(false)
+      localStorage.removeItem('user')
     })
     return () => {}
   }
@@ -103,6 +104,7 @@ const Header: React.FC = () => {
       })
       .catch(() => {
         setIsLoggged(false)
+        localStorage.removeItem('user')
       })
   }, [setIsLoggged, setUser])
 

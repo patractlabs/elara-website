@@ -77,10 +77,10 @@ const Home: React.FC = (): ReactElement => {
   useEffect(() => {
     setLoaded(true);
     apiGetTotalStatics().then((data) => setTotal(data.request))
-    const timer = setInterval(() => {
-      apiGetTotalStatics().then((data) => setTotal(data.request))
-    }, 1200);
-    return () => clearInterval(timer);
+    // const timer = setInterval(() => {
+    //   apiGetTotalStatics().then((data) => setTotal(data.request))
+    // }, 1200);
+    // return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {

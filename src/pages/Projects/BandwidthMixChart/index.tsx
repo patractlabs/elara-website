@@ -18,6 +18,7 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
   pid,
 }) => {
   const reqBandwidthEchart = useRef(null)
+  const unMount = useRef(false)
   const { t } = useTranslation()
   const [chartType, setChartType] =
     useState<keyof typeof RequestType>('bandwidth')
@@ -34,8 +35,11 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       { chain, pid, [rangeType]: Number(rangeValue) },
       rangeType
     ).then((res) => {
-      setMixChartData(res)
+      if (!unMount.current) setMixChartData(res)
     })
+    return () => {
+      unMount.current = true
+    }
   }, [chain, pid, chartRange])
 
   useEffect(() => {

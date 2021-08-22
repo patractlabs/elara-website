@@ -120,16 +120,17 @@ const Dashboard: FC = (): ReactElement => {
   const history = useHistory()
 
   const renderMenu = () => {
-    const types = Object.keys(chains) as NetworkType[]
+    const types = Object.keys(subMenuMap) as NetworkType[]
+    
     return (
       <div>
-        {types.map((type) => (
-          <CollapsedChains
+        {types.map((type) => {
+          return chains[type] ? <CollapsedChains
             type={type}
             chains={chains[type] as Chain[]}
             key={type}
-          />
-        ))}
+          /> : null
+        })}
       </div>
     )
   }

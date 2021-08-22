@@ -51,17 +51,16 @@ export const chainIconMap = {
   bifrost: img20,
   westmint: img21,
 }
-
 export const subMenuMap: Record<
   NetworkType,
   { title: string; icon: typeof LiveNetworks }
 > = {
-  live: { title: 'Live Networks', icon: LiveNetworks },
-  test: { title: 'Test Networks', icon: TestNetworks },
   polkadot: { title: 'Polkadot Parchains', icon: PolkadotParachains },
   kusama: { title: 'Kusama Parachains', icon: KusamaParachains },
   westend: { title: 'Westend Parachains', icon: WestendParachains },
   rococo: { title: 'Rococo Parachains', icon: RococoParachains },
+  live: { title: 'Live Networks', icon: LiveNetworks },
+  test: { title: 'Test Networks', icon: TestNetworks },
 }
 
 export type NetworkType =

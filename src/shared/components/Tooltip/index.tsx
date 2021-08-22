@@ -1,7 +1,11 @@
-import { Tooltip } from 'antd'
+import { Tooltip, TooltipProps } from 'antd'
 import { FC } from 'react'
 
-const StyledTooltip: FC<{ title: string}> = ({ children, title ,...rest}) => {
+const StyledTooltip: FC<{ title: string } & TooltipProps> = ({
+  children,
+  title,
+  ...rest
+}) => {
   return (
     <Tooltip
       placement="top"
@@ -12,7 +16,7 @@ const StyledTooltip: FC<{ title: string}> = ({ children, title ,...rest}) => {
         borderRadius: '5px',
         background: '#000000',
         fontSize: '12px',
-        width: "max-content",
+        width: 'max-content',
         minWidth: 'auto',
         minHeight: 'auto',
       }}

@@ -10,6 +10,7 @@ interface ISettingField {
   label: string
   defaultValue: string
   tooltip?: string
+  type?: 'number'
   handleConfirm: () => Promise<any>
 }
 
@@ -17,11 +18,11 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
   props,
   ref
 ) => {
-  const { label, defaultValue, tooltip, handleConfirm } = props
+  const { label, defaultValue, tooltip, type, handleConfirm } = props
   const [editable, setEditable] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [value, setValue] = useState(defaultValue)
-  const intRef = useRef<HTMLInputElement>(null)
+  const intRef = useRef<HTMLInputElement>(null!)
   useImperativeHandle<unknown, IRefReturnType>(ref, () => ({ value: value }), [
     value,
   ])
@@ -38,6 +39,7 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
       setErrorMsg(errMsg)
     })
   }
+
   return (
     <div className="field">
       <div className="label">{label}</div>
@@ -51,8 +53,12 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
           readOnly={!editable}
           ref={intRef}
           onChange={(e) => {
-            setErrorMsg('')
-            setValue(e.target.value)
+            if (type === 'number' && isNaN(Number(e.target.value))) {
+              return
+            } else {
+              setErrorMsg('')
+              setValue(e.target.value)
+            }
           }}
         />
         {errorMsg && <div className="error-text">{errorMsg}</div>}

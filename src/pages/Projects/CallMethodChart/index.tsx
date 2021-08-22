@@ -7,11 +7,12 @@ import { CallMethodsDataExt } from '../../../core/types/classes/project'
 import { RequestType } from '../../../core/enum'
 import EmptySample from '../../../shared/components/EmptySample'
 
-const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
+const CallMethodChart: FC<{ chain: string; pid: string }> = ({
   chain,
   pid,
 }) => {
   const chartRef = useRef(null)
+  const unMount = useRef(false)
   const { t } = useTranslation()
   const [chartType, setChartType] =
     useState<keyof typeof RequestType>('bandwidth')
@@ -23,8 +24,11 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
   // fetMixChartData
   useEffect(() => {
     apiFetchProjectMethodsStatics({ chain, pid }).then((res) => {
-      setChartData(res)
+      if (!unMount.current) setChartData(res)
     })
+    return () => {
+      unMount.current = true
+    }
   }, [chain, pid])
 
   // setCurChartData
@@ -101,4 +105,4 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
   )
 }
 
-export default BandwidthMixChart
+export default CallMethodChart
