@@ -12,6 +12,7 @@ import PatractLinkSVG from '../../assets/patract-link.svg'
 import { LoginModal } from '../../shared/components/LoginModal'
 import { useApi } from '../../core/hooks/useApi'
 import { Language } from '../../core/enum'
+import LanguageSvg from '../../assets/language.svg'
 
 enum ScrollTarget {
   Home = 'Home',
@@ -161,21 +162,9 @@ const Header: React.FC = () => {
               />
             </a>
           </li>
-        </ul>
-        <ul className="head-right">
-          <li style={{ marginRight: '40px' }}>
+          <li>
             <Dropdown overlay={LanguageMenu}>
-              <span>
-                <span style={{ marginRight: '8px', cursor: 'pointer' }}>
-                  {i18n.language === Language.en ? 'English ' : '中文 '}
-                </span>
-                <DownOutlined
-                  style={{
-                    display: 'inline-block',
-                    color: '#2A292B',
-                  }}
-                />
-              </span>
+              <img src={LanguageSvg} alt="lang" className="language-icon"/>
             </Dropdown>
           </li>
           {isLogged ? (
