@@ -4,6 +4,7 @@ import {
   Project,
   RangeChartData,
   InvalidTableDataExt,
+  CountryTableDataExt,
   CallMethodsDataExt,
 } from '../types/classes/project'
 import { Menu } from '../types/classes/chain'
@@ -133,6 +134,20 @@ export const apiFetchProjectErrorStatics = async (data: {
   pid: string
 }) =>
   await httpPost<InvalidTableDataExt>(`${API_DOMAIN}/stat/project/error`, data)
+
+/**
+ * country table
+ */
+export const apiFetchCountry = async (data: {
+  size: number
+  page: number
+  chain: string
+  pid: string
+}) =>  await httpPost<CountryTableDataExt>(
+    `${API_DOMAIN}/stat/project/country`,
+    data
+  )
+
 
 /**
  * project name 更新

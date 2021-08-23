@@ -82,6 +82,8 @@
 
   "Details": {
     "Request": "Request",
+    "Country": "Country",
+    "OfTotal": "Of Total",
     "Bandwidth": "Bandwidth",
     "Hrs": "Hrs",
     "Days": "Days",
@@ -109,7 +111,8 @@
     "Time": "Time",
     "DelProject": "Delete Project",
     "GeneralSettings": "General Settings",
-    "RequestLimiting": "Request Limiting"
+    "RequestLimiting": "Request Limiting",
+    "RequestByCountry": "Daily Requests By Country"
   },
 
   "user": {

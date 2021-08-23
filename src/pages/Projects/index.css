@@ -328,3 +328,21 @@
 .icon {
   cursor: pointer;
 }
+
+.elara-table  {
+  padding-top: 12px;
+}
+
+.elara-table .elara-pagination {
+  padding-top: 20px;
+}
+
+.elara-table .ant-table-row {
+  height: 32px;
+}
+
+.elara-table .ant-table-tbody > tr > td,.elara-table .ant-table-thead > tr > th {
+  border-bottom: 1px solid #efefef;
+}
+
+

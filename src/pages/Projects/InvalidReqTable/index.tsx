@@ -1,4 +1,4 @@
-import { FC, useState, useCallback, useEffect, useRef } from 'react'
+import { FC, useState, useCallback, useEffect } from 'react'
 import { Table, ConfigProvider } from 'antd'
 import { useTranslation } from 'react-i18next'
 import EmptySample from '../../../shared/components/EmptySample'
@@ -9,7 +9,6 @@ import { apiFetchProjectErrorStatics } from '../../../core/data/api'
 const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
   const { chain, pid } = props
     const [invalidData, setInvalidData] = useState<InvalidTableDataExt>()
-    const unMount = useRef(false)
     const { t } = useTranslation()
 
   const changeProjectErrorStatics = useCallback(
@@ -20,7 +19,7 @@ const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
         chain,
         pid,
       }).then((res) => {
-          if (!unMount.current) setInvalidData(res)
+          setInvalidData(res) 
       })
     },
     [chain, pid]
@@ -28,19 +27,19 @@ const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
 
   useEffect(() => {
     changeProjectErrorStatics(1, 10)
-    return () => {unMount.current = true}
   }, [changeProjectErrorStatics])
 
   return (
-    <div className="requsets-chart stat-card">
+    <div className="stat-card">
       <div className="title">{t('Details.invalidLimitReqs')}</div>
-      <div className="invalid-table">
+      <div className="elara-table">
         <ConfigProvider
           renderEmpty={() => <EmptySample title="No data" height={232} />}
         >
           <Table
-            rowKey={(data) => data.method}
+            rowKey={(data) => data.time}
             dataSource={invalidData?.list}
+            scroll={{ y: 330 }}
             columns={[
               {
                 title: t('Details.Method'),

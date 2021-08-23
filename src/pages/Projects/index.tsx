@@ -18,6 +18,7 @@ import ClipboardTxt from './ClipboardTxt'
 import BandwidthMixChart from './BandwidthMixChart'
 import CallMethodChart from './CallMethodChart'
 import InvalidReqTable from './InvalidReqTable'
+import CountryTable from './CountryTable'
 import SettingField, { IRefReturnType } from './SettingField'
 import BasicModal from '../../shared/components/BasicModalContainer'
 import EmptySample from '../../shared/components/EmptySample'
@@ -113,7 +114,7 @@ const Projects: FC<{}> = () => {
         {projectInfo.map((data, index) => (
           <div
             key={data.name}
-            className={`tab-item ${tabNum === index && 'active'}`}
+            className={`tab-item ${tabNum === index ? 'active' : ''}`}
             onClick={() => {
               setTabNum(index)
             }}
@@ -188,16 +189,20 @@ const Projects: FC<{}> = () => {
                 <ClipboardTxt label="Endpoints(HTTPS)" txt={httpEndpointUrl} />
               </div>
               <BandwidthMixChart
-                chain={projectInfo[tabNum]?.chain}
-                pid={projectInfo[tabNum]?.pid}
+                chain={projectInfo[tabNum].chain}
+                pid={projectInfo[tabNum].pid}
               />
               <CallMethodChart
-                chain={projectInfo[tabNum]?.chain}
-                pid={projectInfo[tabNum]?.pid}
+                chain={projectInfo[tabNum].chain}
+                pid={projectInfo[tabNum].pid}
               />
               <InvalidReqTable
-                chain={projectInfo[tabNum]?.chain}
-                pid={projectInfo[tabNum]?.pid}
+                chain={projectInfo[tabNum].chain}
+                pid={projectInfo[tabNum].pid}
+              />
+              <CountryTable
+                chain={projectInfo[tabNum].chain}
+                pid={projectInfo[tabNum].pid}
               />
             </div>
           )}

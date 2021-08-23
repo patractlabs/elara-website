@@ -12,7 +12,6 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
   pid,
 }) => {
   const chartRef = useRef(null)
-  const unMount = useRef(false)
   const { t } = useTranslation()
   const [chartType, setChartType] =
     useState<keyof typeof RequestType>('bandwidth')
@@ -24,11 +23,8 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
   // fetMixChartData
   useEffect(() => {
     apiFetchProjectMethodsStatics({ chain, pid }).then((res) => {
-      if (!unMount.current) setChartData(res)
+      setChartData(res)
     })
-    return () => {
-      unMount.current = true
-    }
   }, [chain, pid])
 
   // setCurChartData
@@ -56,21 +52,21 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
       },
       yAxis: {
         type: 'category',
-        data: chartData![chartType].list.reverse().map((i) => i.method),
+        data: chartData![chartType].list.map((i) => i.method),
       },
       series: [
         {
           type: 'bar',
-          data: chartData![chartType].list.map((i, idx) => ({
+          data: chartData![chartType].list.slice().reverse().map((i, idx) => ({
             value: i.value,
             itemStyle: {
-              color: `rgba(20,176,113, ${(idx+1)*0.3 })`,
+              color: `rgba(20,176,113, ${(idx + 1) * 0.3})`,
               borderRadius: [0, 20, 20, 0],
             },
             label: {
               show: 10,
-              position: 'right'
-            }
+              position: 'right',
+            },
           })),
         },
       ],

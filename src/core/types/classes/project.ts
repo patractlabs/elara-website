@@ -37,6 +37,20 @@ export interface InvalidTableDataExt {
   list: InvalidTableData[]
 }
 
+export interface CountryData {
+  country: string
+  request: string
+  percentage: string
+}
+
+export interface CountryTableDataExt {
+  total: number
+  size: number
+  page: number
+  pages: number
+  list: CountryData[]
+}
+
 export interface CallMethodsData {
   total: number
   list: {method: string, value: number}[]

@@ -18,7 +18,6 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
   pid,
 }) => {
   const reqBandwidthEchart = useRef(null)
-  const unMount = useRef(false)
   const { t } = useTranslation()
   const [chartType, setChartType] =
     useState<keyof typeof RequestType>('bandwidth')
@@ -35,11 +34,8 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       { chain, pid, [rangeType]: Number(rangeValue) },
       rangeType
     ).then((res) => {
-      if (!unMount.current) setMixChartData(res)
+      setMixChartData({ ...res })
     })
-    return () => {
-      unMount.current = true
-    }
   }, [chain, pid, chartRange])
 
   useEffect(() => {
@@ -50,17 +46,6 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       return
     }
     let reqBandwidthEchartOptions = {}
-    const [_, rangeType] = chartRange.split('-')
-    const xAxis = mixChartData.timeline.map((data) => {
-      if (rangeType === 'hours') {
-        const [_, t] = data.split(' ')
-        return t
-      } else {
-        const [_, m, d] = data.split('-')
-        return `${m}-${d}`
-      }
-    })
-
     reqBandwidthEchartOptions = {
       tooltip: {
         trigger: 'axis',
@@ -70,7 +55,7 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       },
       xAxis: {
         type: 'category',
-        data: xAxis?.reverse(),
+        data: mixChartData.timeline.slice().reverse(),
         axisTick: {
           alignWithLabel: true,
         },
@@ -88,7 +73,10 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       },
       series: [
         {
-          data: mixChartData.stats.map((i) => i[chartType]).reverse(),
+          data: mixChartData.stats
+            .map((i) => i[chartType])
+            .slice()
+            .reverse(),
           type: 'bar',
           itemStyle: {
             color: '#EFEFEF',
@@ -98,7 +86,10 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
           },
         },
         {
-          data: mixChartData.stats.map((i) => i[chartType]).reverse(),
+          data: mixChartData.stats
+            .map((i) => i[chartType])
+            .slice()
+            .reverse(),
           type: 'line',
           symbol: 'none',
           itemStyle: {

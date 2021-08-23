@@ -80,6 +80,8 @@
 
   "Details": {
     "Request": "请求数",
+    "Country": "国家",
+    "OfTotal": "占比",
     "Bandwidth": "带宽",
     "Hrs": "小时",
     "Days": "天",
@@ -107,7 +109,8 @@
     "Time": "时间",
     "DelProject": "删除项目",
     "GeneralSettings": "通用",
-    "RequestLimiting": "请求限制"
+    "RequestLimiting": "请求限制",
+    "RequestByCountry": "国家访问量"
   },
 
   "user": {
