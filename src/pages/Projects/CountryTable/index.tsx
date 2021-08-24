@@ -26,7 +26,7 @@ const CountryTable: FC<{ chain: string; pid: string }> = (props) => {
   )
 
   useEffect(() => {
-    changeCountryStatics(1, 10)
+    changeCountryStatics(0, 10)
   }, [changeCountryStatics])
 
   return (
@@ -63,7 +63,7 @@ const CountryTable: FC<{ chain: string; pid: string }> = (props) => {
             <Pagination
               total={100}
               onChange={(page, pageSize) => {
-                changeCountryStatics(page-1, pageSize)
+                changeCountryStatics(page - 1, pageSize)
               }}
             />
           )}
