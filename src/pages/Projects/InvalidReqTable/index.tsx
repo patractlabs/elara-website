@@ -26,7 +26,7 @@ const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
   )
 
   useEffect(() => {
-    changeProjectErrorStatics(1, 10)
+    changeProjectErrorStatics(0, 10)
   }, [changeProjectErrorStatics])
 
   return (
@@ -66,9 +66,9 @@ const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
           ></Table>
           {invalidData?.list && invalidData?.list.length > 0 && (
             <Pagination
-              total={100}
+              total={invalidData.total}
               onChange={(page, pageSize) => {
-                changeProjectErrorStatics(page, pageSize)
+                changeProjectErrorStatics(page-1, pageSize)
               }}
             />
           )}

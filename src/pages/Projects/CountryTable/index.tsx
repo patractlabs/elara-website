@@ -8,7 +8,7 @@ import { apiFetchCountry } from '../../../core/data/api'
 
 const CountryTable: FC<{ chain: string; pid: string }> = (props) => {
   const { chain, pid } = props
-  const [invalidData, setInvalidData] = useState<CountryTableDataExt>()
+  const [countryData, setCountryData] = useState<CountryTableDataExt>()
   const { t } = useTranslation()
 
   const changeCountryStatics = useCallback(
@@ -19,7 +19,7 @@ const CountryTable: FC<{ chain: string; pid: string }> = (props) => {
         chain,
         pid,
       }).then((res) => {
-        setInvalidData(res)
+        setCountryData(res)
       })
     },
     [chain, pid]
@@ -39,7 +39,7 @@ const CountryTable: FC<{ chain: string; pid: string }> = (props) => {
           <Table
             scroll={{ y: 330 }}
             rowKey={(data) => data.country}
-            dataSource={invalidData?.list}
+            dataSource={countryData?.list}
             columns={[
               {
                 title: t('Details.Country'),
@@ -59,11 +59,11 @@ const CountryTable: FC<{ chain: string; pid: string }> = (props) => {
             ]}
             pagination={false}
           ></Table>
-          {invalidData?.list && invalidData?.list.length > 0 && (
+          {countryData?.list && countryData?.list.length > 0 && (
             <Pagination
               total={100}
               onChange={(page, pageSize) => {
-                changeCountryStatics(page, pageSize)
+                changeCountryStatics(page-1, pageSize)
               }}
             />
           )}
