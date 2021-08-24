@@ -34,10 +34,9 @@ const Projects: FC<{}> = () => {
   const nameRef = useRef<IRefReturnType>(null)
   const rateLimitRef = useRef<IRefReturnType>(null)
   const dailyRequsetRef = useRef<IRefReturnType>(null)
-  const { updateUser } = useApi()
   const { t } = useTranslation()
   const params = useParams<{ chain: string; state?: any }>()
-  const { user } = useApi()
+  const { user, updateUser} = useApi()
   const wssEndpointUrl = `${WSS_ENDPOINTS_URL}/${projectInfo[tabNum]?.chain}/${projectInfo[tabNum]?.pid}`
   const httpEndpointUrl = `${ENDPOINTS_URL}/${projectInfo[tabNum]?.chain}/${projectInfo[tabNum]?.pid}`
   const updatePageData = useCallback(async () => {
@@ -105,7 +104,7 @@ const Projects: FC<{}> = () => {
 
   useEffect(() => {
     updatePageData()
-  }, [params.chain, user.id, updatePageData]) 
+  }, [params.chain, user.id, tabNum, updatePageData]) 
 
   return (
     <div className="projects">
