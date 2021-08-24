@@ -38,8 +38,25 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
     chartOptions = {
       tooltip: {
         trigger: 'axis',
-        axisPointer: {
-          type: 'shadow',
+        textStyle: {
+          color: '#616460',
+          fontSize: 12,
+          textBorderWidth: 2,
+          fontWeight: 'bolder',
+        },
+        extraCssText:
+          'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
+        formatter: function (param: any) {
+          if (chartType === 'bandwidth') {
+            const kbVal = param[0].data.value
+            let res =
+              kbVal > 1000
+                ? (kbVal / 1000).toFixed(2) + ' MB'
+                : kbVal.toFixed(2) + ' KB'
+            return `${param[0].axisValue} <br/> ${res}`
+          } else {
+            return `${param[0].axisValue} <br/> ${param[0].data}`
+          }
         },
       },
       grid: {
@@ -53,21 +70,38 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
       yAxis: {
         type: 'category',
         data: chartData![chartType].list.map((i) => i.method),
+        axisPointer: {},
       },
       series: [
         {
           type: 'bar',
-          data: chartData![chartType].list.slice().reverse().map((i, idx) => ({
-            value: i.value,
-            itemStyle: {
-              color: `rgba(20,176,113, ${(idx + 1) * 0.3})`,
-              borderRadius: [0, 20, 20, 0],
+          data: chartData![chartType].list
+            .slice()
+            .reverse()
+            .map((i, idx) => {
+              return {
+                value: chartType === 'bandwidth' ? i.value / 1000 : i.value,
+                itemStyle: {
+                  color: `rgba(20,176,113, ${(idx + 1) * 0.3})`,
+                  borderRadius: [0, 20, 20, 0],
+                },
+              }
+            }),
+          label: {
+            show: 10,
+            position: 'right',
+            distance: 12,
+            formatter: function (params: any) {
+              const val = params.data.value
+              if (chartType === 'bandwidth') {
+                return val > 1000
+                  ? (val / 1000).toFixed(2) + ' MB'
+                  : val.toFixed(2) + ' KB'
+              } else {
+                return val
+              }
             },
-            label: {
-              show: 10,
-              position: 'right',
-            },
-          })),
+          },
         },
       ],
     }

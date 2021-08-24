@@ -20,7 +20,7 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
   const reqBandwidthEchart = useRef(null)
   const { t } = useTranslation()
   const [chartType, setChartType] =
-    useState<keyof typeof RequestType>('bandwidth')
+    useState<keyof typeof RequestType>('request')
   const [chartRange, setChartRange] = useState('24-hours')
   const [mixChartData, setMixChartData] = useState<RangeChartData>({
     timeline: [],
@@ -49,8 +49,25 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
     reqBandwidthEchartOptions = {
       tooltip: {
         trigger: 'axis',
-        axisPointer: {
-          type: 'shadow',
+        textStyle: {
+          color: '#616460',
+          fontSize: 12,
+          textBorderWidth: 2,
+          fontWeight: 'bolder',
+        },
+        extraCssText:
+          'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
+        formatter: function (param: { data: number; axisValue: string }[]) {
+          if (chartType === 'bandwidth') {
+            const kbVal = param[0].data
+            let res =
+              kbVal > 1000
+                ? (kbVal / 1000).toFixed(2) + ' MB'
+                : kbVal.toFixed(2) + ' KB'
+            return `${param[0].axisValue} <br/> ${res}`
+          } else {
+            return `${param[0].axisValue} <br/> ${param[0].data}`
+          }
         },
       },
       xAxis: {
@@ -59,12 +76,16 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
         axisTick: {
           alignWithLabel: true,
         },
+        axisLabel: {
+          show: true,
+          formatter: function (value: string) {
+            if (chartRange === rangeEnum['24hours']) return value.slice(6)
+            return value.slice(5)
+          },
+        },
       },
       yAxis: {
         type: 'value',
-        // axisLabel: {
-        //   inside: true,
-        // },
       },
       grid: {
         right: '10',
@@ -74,20 +95,10 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
       series: [
         {
           data: mixChartData.stats
-            .map((i) => i[chartType])
-            .slice()
-            .reverse(),
-          type: 'bar',
-          itemStyle: {
-            color: '#EFEFEF',
-          },
-          tooltip: {
-            trigger: 'none',
-          },
-        },
-        {
-          data: mixChartData.stats
-            .map((i) => i[chartType])
+            .map((i) => {
+              if (chartType === 'bandwidth') return i[chartType] / 1000
+              return i[chartType]
+            })
             .slice()
             .reverse(),
           type: 'line',
@@ -98,11 +109,21 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
           lineStyle: {
             width: 4,
           },
+        },
+        {
+          data: mixChartData.stats
+            .map((i) => {
+              if (chartType === 'bandwidth') return i[chartType] / 1000
+              return i[chartType]
+            })
+            .slice()
+            .reverse(),
+          type: 'bar',
+          itemStyle: {
+            color: '#EFEFEF',
+          },
           tooltip: {
-            trigger: 'axis',
-            position: 'top',
-            backgroundColor: '#fff',
-            borderColor: '#fff',
+            trigger: 'none',
           },
         },
       ],
