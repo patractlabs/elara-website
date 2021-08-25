@@ -49,7 +49,9 @@ const Summary: FC<{}> = () => {
           {statics.reqCnt}
         </OverviewCard>
         <OverviewCard title={t('summary.dailyBandwidth')}>
-          {statics.bw} MB
+          {statics.bw / 1000 > 1000
+            ? `${(statics.bw / 1000000).toFixed(2)} MB`
+            : `${(statics.bw / 1000).toFixed(2)} KB`}
         </OverviewCard>
         <OverviewCard title={t('summary.AvgResTime')}>
           {statics.delay} ms

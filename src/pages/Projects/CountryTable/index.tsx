@@ -61,7 +61,7 @@ const CountryTable: FC<{ chain: string; pid: string }> = (props) => {
           ></Table>
           {countryData?.list && countryData?.list.length > 0 && (
             <Pagination
-              total={100}
+              total={countryData.total}
               onChange={(page, pageSize) => {
                 changeCountryStatics(page - 1, pageSize)
               }}

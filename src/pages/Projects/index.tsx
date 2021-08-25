@@ -162,16 +162,18 @@ const Projects: FC<{}> = () => {
             <div className="request-section">
               <div className="category">
                 <OverviewCard title={t('summary.dailyReq')}>
-                  {projectInfo[tabNum]?.reqCnt}
+                  {projectInfo[tabNum].reqCnt}
                 </OverviewCard>
                 <OverviewCard title={t('summary.dailyBandwidth')}>
-                  {projectInfo[tabNum]?.bw} MB
+                  {projectInfo[tabNum].bw / 1000 > 1000
+                    ? `${(projectInfo[tabNum].bw / 1000000).toFixed(2)} MB`
+                    : `${(projectInfo[tabNum].bw / 1000).toFixed(2)} KB`}
                 </OverviewCard>
                 <OverviewCard title={t('summary.AvgResTime')}>
-                  {projectInfo[tabNum]?.timeoutDelay} ms
+                  {projectInfo[tabNum].timeoutDelay} ms
                 </OverviewCard>
                 <OverviewCard title={t('summary.InvalidReq')}>
-                  {projectInfo[tabNum]?.inReqCnt}
+                  {projectInfo[tabNum].inReqCnt}
                 </OverviewCard>
               </div>
               <div className="api stat-card">
