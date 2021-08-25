@@ -3,11 +3,11 @@ import React, { useEffect, useMemo, useContext, FC, ReactElement } from "react";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import Projects from "../Projects";
 import Details from "../Details";
-import { ChainName } from '../../core/enum';
-import { DashboardContext } from '../../core/context/dashboard-context';
-import DropdownSvg from '../../assets/dropdown.svg';
-import { useTranslation } from 'react-i18next';
-import { Chain } from '../../core/types/classes/chain';
+import { ChainName } from "../../core/enum";
+import { DashboardContext } from "../../core/context/dashboard-context";
+import DropdownSvg from "../../assets/dropdown.svg";
+import { useTranslation } from "react-i18next";
+import { Chain } from "../../core/types/classes/chain";
 
 const CollapsedChains: FC<{
   title: string;
@@ -28,45 +28,59 @@ const CollapsedChains: FC<{
     <div>
       <div className="chain-type" onClick={() => toggleCollapse(!collapse)}>
         <span>{title}</span>
-        <img src={DropdownSvg} alt="" style={{ transform: collapse ? 'scaleY(1)' : 'scaleY(-1)' }} />
+        <img
+          src={DropdownSvg}
+          alt=""
+          style={{ transform: collapse ? "scaleY(1)" : "scaleY(-1)" }}
+        />
       </div>
-      {
-        !collapse &&
-          <ul className="project-list">
-            {
-              chains.map(chain => 
-                <li
-                  key={chain.name}
-                  className={ choosedChain === chain.name ? 'project-item project-item-active' : 'project-item' }
-                  onClick={ () => history.push(`/dashboard/projects/${chain.name}`) }
-                >
-                  <img src={ chain.img } alt="" />
-                  <div className="project-item-main">
-                    <span>{ chain.title }</span>
-                    {
-                      !!chain.count &&
-                        <div
-                          className={
-                            choosedChain === chain.name ?
-                              'project-counts project-counts-active' : 'project-counts project-counts-default'
-                          }
-                        >
-                          { chain.count }
-                        </div>
+      {!collapse && (
+        <ul className="project-list">
+          {chains.map((chain) => (
+            <li
+              key={chain.name}
+              className={
+                choosedChain === chain.name
+                  ? "project-item project-item-active"
+                  : "project-item"
+              }
+              onClick={() => history.push(`/dashboard/projects/${chain.name}`)}
+            >
+              <img src={chain.img} alt="" />
+              <div className="project-item-main">
+                <span>{chain.title}</span>
+                {!!chain.count && (
+                  <div
+                    className={
+                      choosedChain === chain.name
+                        ? "project-counts project-counts-active"
+                        : "project-counts project-counts-default"
                     }
+                  >
+                    {chain.count}
                   </div>
-                </li>
-              )
-            }
-          </ul>
-      }
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
 
 const Dashboard: FC = (): ReactElement => {
   const location = useLocation();
-  const { update, chains, liveCollapse, setLiveCollapse, testCollapse, setTestCollapse, kusamaParaCollapse, setKusamaParaCollapse } = useContext(DashboardContext);
+  const {
+    update,
+    chains,
+    liveCollapse,
+    setLiveCollapse,
+    testCollapse,
+    setTestCollapse,
+    kusamaParaCollapse,
+    setKusamaParaCollapse,
+  } = useContext(DashboardContext);
   const { t } = useTranslation();
   const history = useHistory();
 
@@ -75,52 +89,67 @@ const Dashboard: FC = (): ReactElement => {
 
   /** redirect to default chain's projects */
   useEffect(() => {
-    if (location.pathname === '/dashboard/projects/' || location.pathname === '/dashboard/projects') {
+    if (
+      location.pathname === "/dashboard/projects/" ||
+      location.pathname === "/dashboard/projects"
+    ) {
       history.push(`/dashboard/projects/${ChainName.Polkadot}`);
     }
   }, [location.pathname, history]);
 
   const choosedChain = useMemo(() => {
-    const paths = location.pathname.split('/');
+    const paths = location.pathname.split("/");
     let chainName: string = ChainName.Polkadot;
-    if (location.pathname.startsWith('/dashboard/details') && paths[3]) {
+    if (location.pathname.startsWith("/dashboard/details") && paths[3]) {
       chainName = paths[3];
-    } else if (location.pathname.startsWith('/dashboard/projects') && paths[3]) {
+    } else if (
+      location.pathname.startsWith("/dashboard/projects") &&
+      paths[3]
+    ) {
       chainName = paths[3];
     }
     return chainName;
   }, [location.pathname]);
-  
+
   return (
     // animated fadeInLeft
     <div className="dashboard">
       <div className="sider">
         <CollapsedChains
-          title={t('LIVE NETWORKS')}
+          title={t("LIVE NETWORKS")}
           collapse={liveCollapse}
           toggleCollapse={setLiveCollapse}
           choosedChain={choosedChain}
-          chains={chains.filter(chain => chain.networkType === 'live')}
+          chains={chains.filter((chain) => chain.networkType === "live")}
         />
         <CollapsedChains
-          title={t('TEST NETWORKS')}
+          title={t("TEST NETWORKS")}
           collapse={testCollapse}
           toggleCollapse={setTestCollapse}
           choosedChain={choosedChain}
-          chains={chains.filter(chain => chain.networkType === "test")}
+          chains={chains.filter((chain) => chain.networkType === "test")}
         />
         <CollapsedChains
-          title={t('Kusama Parallel Chain')}
+          title={t("Kusama Parallel Chain")}
           collapse={kusamaParaCollapse}
           toggleCollapse={setKusamaParaCollapse}
           choosedChain={choosedChain}
-          chains={chains.filter(chain => chain.networkType === "kusamaPara")}
+          chains={chains.filter((chain) => chain.networkType === "kusamaPara")}
         />
       </div>
       <div className="content">
+        <div className="notification">
+          {t("notify1")}
+          <span className="deadline">{t("notify2")}</span>
+          {t("notify3")}
+          {t("notify4")}
+        </div>
         <Switch>
           <Route path="/dashboard/projects/:chain" component={Projects}></Route>
-          <Route path="/dashboard/details/:chain/:projectId" component={Details}></Route>
+          <Route
+            path="/dashboard/details/:chain/:projectId"
+            component={Details}
+          ></Route>
         </Switch>
       </div>
     </div>

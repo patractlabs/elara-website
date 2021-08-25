@@ -96,3 +96,14 @@
   height: 100%;
   overflow-y: auto;
 }
+
+.notification {
+  background: #fff;
+  padding: 5px 10px;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.deadline {
+  color: red;
+}
