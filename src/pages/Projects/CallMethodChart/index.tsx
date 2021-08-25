@@ -75,7 +75,7 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
       },
       yAxis: {
         type: 'category',
-        data: chartData![chartType].list.map((i) => i.method),
+        data: chartData![chartType].list.map((i) => i.method).reverse(),
         axisLabel: {
           margin: 16,
           color: '#7c7e7c',
