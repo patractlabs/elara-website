@@ -14,7 +14,7 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
   const chartRef = useRef(null)
   const { t } = useTranslation()
   const [chartType, setChartType] =
-    useState<keyof typeof RequestType>('bandwidth')
+    useState<keyof typeof RequestType>('request')
   const [chartData, setChartData] = useState<CallMethodsDataExt>({
     request: { total: 0, list: [] },
     bandwidth: { total: 0, list: [] },
@@ -55,26 +55,51 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
                 : kbVal.toFixed(2) + ' KB'
             return `${param[0].axisValue} <br/> ${res}`
           } else {
-            return `${param[0].axisValue} <br/> ${param[0].data}`
+            return `${param[0].axisValue} <br/> ${param[0].data.value}`
           }
         },
       },
       grid: {
+        top: '20px',
         right: '50px',
         left: '150px',
         bottom: '20px',
       },
       xAxis: {
         type: 'value',
+        axisLine: {
+          lineStyle: {
+            color: '#7C7E7C',
+          },
+        },
       },
       yAxis: {
         type: 'category',
         data: chartData![chartType].list.map((i) => i.method),
-        axisPointer: {},
+        axisLabel: {
+          margin: 16,
+          color: '#7c7e7c',
+          fontSize: 12,
+          width: 140,
+          overflow: 'truncate',
+          ellipsis: true,
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#7c7e7c',
+          },
+        },
+        axisTick: {
+          length: 8,
+          lineStyle: {
+            color: '#7c7e7c',
+          },
+        },
       },
       series: [
         {
           type: 'bar',
+          barWidth: 20,
           data: chartData![chartType].list
             .slice()
             .reverse()
@@ -91,6 +116,8 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
             show: 10,
             position: 'right',
             distance: 12,
+            fontWeight: 'bolder',
+            color: "#616460",
             formatter: function (params: any) {
               const val = params.data.value
               if (chartType === 'bandwidth') {
@@ -107,6 +134,7 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
     }
     const instance = echarts.init(chartRef.current!)
     instance.setOption(chartOptions)
+    instance.resize({ height: chartData[chartType].list.length * 30 + 50 })
   }, [chartData, chartType])
 
   return (
@@ -127,7 +155,7 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
         </Radio.Group>
       </div>
       {chartData && chartData![chartType].list.length > 0 ? (
-        <div ref={chartRef} style={{ height: '334px' }}></div>
+        <div ref={chartRef} style={{ height: chartData[chartType].list.length * 30 + 50 }}></div>
       ) : (
         <EmptySample height={232} title="No data" />
       )}

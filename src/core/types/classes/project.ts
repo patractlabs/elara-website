@@ -12,7 +12,7 @@ export class Project {
   secret: string
   reqCnt: number
   bw: number
-  timeoutDelay: number
+  delay: number
   inReqCnt: number
   reqSecLimit: string
   reqDayLimit: string

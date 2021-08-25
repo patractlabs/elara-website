@@ -170,7 +170,7 @@ const Projects: FC<{}> = () => {
                     : `${(projectInfo[tabNum].bw / 1000).toFixed(2)} KB`}
                 </OverviewCard>
                 <OverviewCard title={t('summary.AvgResTime')}>
-                  {projectInfo[tabNum].timeoutDelay} ms
+                  {projectInfo[tabNum].delay} ms
                 </OverviewCard>
                 <OverviewCard title={t('summary.InvalidReq')}>
                   {projectInfo[tabNum].inReqCnt}
