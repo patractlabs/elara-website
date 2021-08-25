@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useContext, FC } from 'react'
 import { message } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { ENDPOINTS_URL, WSS_ENDPOINTS_URL } from '../../config/origin'
 import OverviewCard from '../../shared/components/OverviewCard'
 import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
@@ -26,6 +26,7 @@ import { DashboardContext } from '../../core/context/dashboard-context'
 import './index.css'
 
 const Projects: FC<{}> = () => {
+  const location = useLocation<{ pid: string }>()
   const [tabNum, setTabNum] = useState(0)
   const [viewType, switchToView] = useState<'setting' | 'request'>('request')
   const [projectInfo, setProjectInfo] = useState<Project[]>([])
@@ -36,7 +37,7 @@ const Projects: FC<{}> = () => {
   const dailyRequsetRef = useRef<IRefReturnType>(null)
   const { t } = useTranslation()
   const params = useParams<{ chain: string; state?: any }>()
-  const { user, updateUser} = useApi()
+  const { user, updateUser } = useApi()
   const wssEndpointUrl = `${WSS_ENDPOINTS_URL}/${projectInfo[tabNum]?.chain}/${projectInfo[tabNum]?.pid}`
   const httpEndpointUrl = `${ENDPOINTS_URL}/${projectInfo[tabNum]?.chain}/${projectInfo[tabNum]?.pid}`
   const updatePageData = useCallback(async () => {
@@ -104,7 +105,15 @@ const Projects: FC<{}> = () => {
 
   useEffect(() => {
     updatePageData()
-  }, [params.chain, user.id, tabNum, updatePageData]) 
+  }, [params.chain, user.id, tabNum, updatePageData])
+
+  useEffect(() => {
+    if (projectInfo.length > 0 && location.state) {
+      const idx = projectInfo.findIndex((i) => i.pid === location.state.pid)
+      setTabNum(idx)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projectInfo.length, location.state])
 
   return (
     <div className="projects">
