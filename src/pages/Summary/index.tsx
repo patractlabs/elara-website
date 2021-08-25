@@ -15,7 +15,7 @@ import EmptySample from '../../shared/components/EmptySample'
 import { chainIconMap } from '../../core/types/classes/chain'
 
 import './index.css'
-import { formatTime } from '../../shared/utils'
+import { formatTime, formatBandwidth } from '../../shared/utils'
 
 const Summary: FC<{}> = () => {
   const [statics, setStatics] = useState<StatT>({
@@ -49,9 +49,7 @@ const Summary: FC<{}> = () => {
           {statics.reqCnt}
         </OverviewCard>
         <OverviewCard title={t('summary.dailyBandwidth')}>
-          {statics.bw / 1000 > 1000
-            ? `${(statics.bw / 1000000).toFixed(2)} MB`
-            : `${(statics.bw / 1000).toFixed(2)} KB`}
+          {formatBandwidth(statics.bw)}
         </OverviewCard>
         <OverviewCard title={t('summary.AvgResTime')}>
           {statics.delay} ms
@@ -124,9 +122,11 @@ const Summary: FC<{}> = () => {
               title: t('summary.dailyBandwidth'),
               dataIndex: 'bw',
               key: 'bw',
-              render: (data: string) => (
-                <div style={{ fontWeight: 700 }}>{data} M</div>
-              ),
+              render: (data: number) => {
+                return (
+                  <div style={{ fontWeight: 700 }}>{formatBandwidth(data)}</div>
+                )
+              },
             },
             {
               title: t('summary.Created'),

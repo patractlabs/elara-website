@@ -6,6 +6,7 @@ import { apiFetchProjectStaticsOfRange } from '../../../core/data/api'
 import { RangeChartData } from '../../../core/types/classes/project'
 import { RequestType } from '../../../core/enum'
 import EmptySample from '../../../shared/components/EmptySample'
+import { formatBandwidth } from '../../../shared/utils/index'
 
 enum rangeEnum {
   '24hours' = '24-hours',
@@ -60,11 +61,7 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
         formatter: function (param: { data: number; axisValue: string }[]) {
           if (chartType === 'bandwidth') {
             const kbVal = param[0].data
-            let res =
-              kbVal > 1000
-                ? (kbVal / 1000).toFixed(2) + ' MB'
-                : kbVal.toFixed(2) + ' KB'
-            return `${param[0].axisValue} <br/> ${res}`
+            return `${param[0].axisValue} <br/> ${formatBandwidth(kbVal)}`
           } else {
             return `${param[0].axisValue} <br/> ${param[0].data}`
           }

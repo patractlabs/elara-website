@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { apiFetchProjectMethodsStatics } from '../../../core/data/api'
 import { CallMethodsDataExt } from '../../../core/types/classes/project'
 import { RequestType } from '../../../core/enum'
+import { formatBandwidth } from '../../../shared/utils/index'
 import EmptySample from '../../../shared/components/EmptySample'
 
 const CallMethodChart: FC<{ chain: string; pid: string }> = ({
@@ -48,12 +49,9 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
           'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
         formatter: function (param: any) {
           if (chartType === 'bandwidth') {
-            const kbVal = param[0].data.value
-            let res =
-              kbVal > 1000
-                ? (kbVal / 1000).toFixed(2) + ' MB'
-                : kbVal.toFixed(2) + ' KB'
-            return `${param[0].axisValue} <br/> ${res}`
+            return `${param[0].axisValue} <br/> ${formatBandwidth(
+              param[0].data.value
+            )}`
           } else {
             return `${param[0].axisValue} <br/> ${param[0].data.value}`
           }
@@ -61,7 +59,7 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
       },
       grid: {
         top: '20px',
-        right: '50px',
+        right: '80px',
         left: '150px',
         bottom: '20px',
       },
@@ -105,7 +103,7 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
             .reverse()
             .map((i, idx) => {
               return {
-                value: chartType === 'bandwidth' ? i.value / 1000 : i.value,
+                value: i.value,
                 itemStyle: {
                   color: `rgba(20,176,113, ${(idx + 1) * 0.3})`,
                   borderRadius: [0, 20, 20, 0],
@@ -120,10 +118,8 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
             color: "#616460",
             formatter: function (params: any) {
               const val = params.data.value
-              if (chartType === 'bandwidth') {
-                return val > 1000
-                  ? (val / 1000).toFixed(2) + ' MB'
-                  : val.toFixed(2) + ' KB'
+              if (chartType === 'bandwidth') {                
+                return formatBandwidth(val)
               } else {
                 return val
               }

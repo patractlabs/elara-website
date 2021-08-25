@@ -31,9 +31,10 @@ const delCookie = () => {
   document.cookie = "sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
-export {
-  formatTime,
-  formatSize,
-  delCookie,
-  getCookie,
+const formatBandwidth = (val:number):string => {
+  const data = val / 1000
+  if (data > 1000) return (data / 1000).toFixed(2) + ' MB'
+  return data.toFixed(2) + ' KB'
 }
+
+export { formatTime, formatSize, delCookie, getCookie, formatBandwidth }

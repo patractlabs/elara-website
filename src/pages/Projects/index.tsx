@@ -7,7 +7,7 @@ import OverviewCard from '../../shared/components/OverviewCard'
 import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
 import { useApi } from '../../core/hooks/useApi'
 import { Project } from '../../core/types/classes/project'
-import { formatTime } from '../../shared/utils'
+import { formatTime, formatBandwidth } from '../../shared/utils'
 import {
   apiFetchProjectList,
   apiUpdateProjectName,
@@ -165,9 +165,7 @@ const Projects: FC<{}> = () => {
                   {projectInfo[tabNum].reqCnt}
                 </OverviewCard>
                 <OverviewCard title={t('summary.dailyBandwidth')}>
-                  {projectInfo[tabNum].bw / 1000 > 1000
-                    ? `${(projectInfo[tabNum].bw / 1000000).toFixed(2)} MB`
-                    : `${(projectInfo[tabNum].bw / 1000).toFixed(2)} KB`}
+                  {formatBandwidth(projectInfo[tabNum].bw)}
                 </OverviewCard>
                 <OverviewCard title={t('summary.AvgResTime')}>
                   {projectInfo[tabNum].delay} ms
