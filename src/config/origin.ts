@@ -14,7 +14,7 @@ if (process.env.REACT_APP_NODE_ENV === 'development') {
   ENDPOINTS_URL = 'https://test-service.elara2.patract.cn'
   WSS_ENDPOINTS_URL = 'wss://test-service.elara2.patract.cn'
 } else if (process.env.REACT_APP_NODE_ENV === 'production') {
-  API_DOMAIN = 'https://elara.patract.io/api'
+  API_DOMAIN = 'https://elara2.patract.io/api'
 
   ENDPOINTS_URL = 'https://service.elara.patract.io'
   WSS_ENDPOINTS_URL = 'wss://service.elara.patract.io'
