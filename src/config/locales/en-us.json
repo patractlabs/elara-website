@@ -45,7 +45,7 @@
   "notify1": "The new Elara 2.0 has been released, with higher speed nodes and more comprehensive statistics.",
   "notify2": "Elara 1.0 nodes will be phased out of maintenance on 1 September ",
   "notify3": ", so please complete your project migration as soon as possible~ New Elara version: ",
-  "notify4": "https://service.elara.patract.io",
+  "notify4": "https://elara2.patract.io",
 
   "listPage": {
     "Name": "Name",
