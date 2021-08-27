@@ -50,7 +50,7 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
         formatter: function (param: any) {
           if (chartType === 'bandwidth') {
             return `${param[0].axisValue} <br/> ${formatBandwidth(
-              param[0].data.value
+              param[0].data.value * 1000
             )}`
           } else {
             return `${param[0].axisValue} <br/> ${param[0].data.value}`
@@ -103,7 +103,7 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
             .reverse()
             .map((i, idx) => {
               return {
-                value: i.value,
+                value: chartType === 'bandwidth' ? i.value / 1000 : i.value,
                 itemStyle: {
                   color: `rgba(20,176,113, ${(idx + 1) * 0.3})`,
                   borderRadius: [0, 20, 20, 0],
@@ -119,7 +119,7 @@ const CallMethodChart: FC<{ chain: string; pid: string }> = ({
             formatter: function (params: any) {
               const val = params.data.value
               if (chartType === 'bandwidth') {                
-                return formatBandwidth(val)
+                return formatBandwidth(val*1000)
               } else {
                 return val
               }
