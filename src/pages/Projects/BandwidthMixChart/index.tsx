@@ -60,8 +60,8 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
           'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
         formatter: function (param: { data: number; axisValue: string }[]) {
           if (chartType === 'bandwidth') {
-            const kbVal = param[0].data
-            return `${param[0].axisValue} <br/> ${formatBandwidth(kbVal)}`
+            const kbVal = param[0].data         
+            return `${param[0].axisValue} <br/> ${formatBandwidth(kbVal*1000)}`
           } else {
             return `${param[0].axisValue} <br/> ${param[0].data}`
           }
