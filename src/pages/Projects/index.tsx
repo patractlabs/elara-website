@@ -91,12 +91,13 @@ const Projects: FC<{}> = () => {
     apiDelProject({ id: projectInfo[tabNum].id }).then(
       () => {
         message.success(t('tip.delete'))
+        setTabNum(tabNum - 1 > 0 ? tabNum - 1 : 0)
         updatePageData()
         updateMenu()
         updateUser()
         // 更新页面数据
       },
-      (res) => {
+      () => {
         message.success(t('tip.fail'))
       }
     )
