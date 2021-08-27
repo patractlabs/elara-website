@@ -30,6 +30,7 @@ const Projects: FC<{}> = () => {
   const [tabNum, setTabNum] = useState(0)
   const [viewType, switchToView] = useState<'setting' | 'request'>('request')
   const [projectInfo, setProjectInfo] = useState<Project[]>([])
+  const delBtnIsDisabled = useRef(false)
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
   const { updateMenu } = useContext(DashboardContext)
   const nameRef = useRef<IRefReturnType>(null)
@@ -88,6 +89,8 @@ const Projects: FC<{}> = () => {
   }
 
   const handleDelProject = () => {
+    if (delBtnIsDisabled.current) return
+    delBtnIsDisabled.current = true
     apiDelProject({ id: projectInfo[tabNum].id }).then(
       () => {
         message.success(t('tip.delete'))
@@ -100,7 +103,9 @@ const Projects: FC<{}> = () => {
       () => {
         message.success(t('tip.fail'))
       }
-    )
+    ).finally(() => {
+      delBtnIsDisabled.current = false
+    })
     setDeleteModalVisible(false)
   }
 

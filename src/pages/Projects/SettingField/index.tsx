@@ -22,6 +22,7 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
   const [editable, setEditable] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [value, setValue] = useState(defaultValue)
+  const canSubmit = useRef(true)
   const intRef = useRef<HTMLInputElement>(null!)
   useImperativeHandle<unknown, IRefReturnType>(ref, () => ({ value: value }), [
     value,
@@ -32,12 +33,18 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
   }, [defaultValue])
 
   const onHandleConfirm = () => {
-    handleConfirm().then((errMsg) => {
-      if (!errMsg) {
-        setEditable(false)
-      }
-      setErrorMsg(errMsg)
-    })
+    if (!canSubmit.current) return
+    canSubmit.current = false
+    handleConfirm()
+      .then((errMsg) => {
+        if (!errMsg) {
+          setEditable(false)
+        }
+        setErrorMsg(errMsg)
+      })
+      .finally(() => {
+        canSubmit.current = true
+      })
   }
 
   return (

@@ -1,4 +1,4 @@
-import { Dispatch, FC, useState, useContext } from 'react'
+import { Dispatch, FC, useState, useContext, useRef } from 'react'
 import { message, Modal, Select } from 'antd'
 import { apiCreateProject } from '../../../core/data/api'
 import { useTranslation } from 'react-i18next'
@@ -15,11 +15,11 @@ const CreateProjectModal: FC<{
   setVisible: Dispatch<boolean>
   closeCallBack?: () => void
 }> = ({ visible = false, chain, setVisible, closeCallBack }) => {
-
   const [projectName, setProjectName] = useState('')
   const [selectedTeam, setSelectTeam] = useState('')
   const [selectedChain, setSelectChain] = useState('')
   const [isValidProjectName, setIsValid] = useState(true)
+  const createBtnIsDisabled = useRef(false)
   const { t } = useTranslation()
   const { user, updateUser } = useApi()
   const { chains, updateMenu } = useContext(DashboardContext)
@@ -48,7 +48,7 @@ const CreateProjectModal: FC<{
     setSelectChain('')
   }
 
-  const _generateTeamOfChain = (chain?:string) => {
+  const _generateTeamOfChain = (chain?: string) => {
     for (let type in chains) {
       for (let i = 0; i < chains[type].length; i++) {
         if (chains[type][i].name === chain) {
@@ -60,6 +60,8 @@ const CreateProjectModal: FC<{
   }
 
   const _createProject = () => {
+    if (createBtnIsDisabled.current) return
+    createBtnIsDisabled.current = true
     apiCreateProject({
       userId: user.id,
       chain: chain || selectedChain,
@@ -77,6 +79,9 @@ const CreateProjectModal: FC<{
       })
       .catch((res) => {
         message.error(t(res.msg))
+      })
+      .finally(() => {
+        createBtnIsDisabled.current = false
       })
     setVisible(false)
   }
