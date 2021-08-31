@@ -1,5 +1,4 @@
 .add-button {
-  width: 175px;
   height: 32px;
   opacity: 1;
   border-radius: 16px;
@@ -7,9 +6,10 @@
   text-align: left;
   color: #ffffff;
   line-height: 16px;
-  font-size: 12px;
-  background: url("./images/add.svg") no-repeat 10px center #14b071;
+  font-size: 13px;
+  background: url('./images/add.svg') no-repeat 10px center #14b071;
   padding-left: 34px;
+  padding-right: 16px;
   background-size: 14px 14px;
   border: none;
   cursor: pointer;
@@ -26,6 +26,11 @@
   border-radius: 12px;
   overflow: hidden;
   padding: 30px;
+}
+
+.create-porject .ant-modal-footer {
+  padding: 14px 0 0;
+  border-top: none;
 }
 
 .ant-modal-close {
@@ -99,7 +104,7 @@
 }
 
 .modal-body-field > .name.error {
-  border-bottom: 2px solid #DF3D4B;
+  border-bottom: 2px solid #df3d4b;
 }
 
 .ant-select-item {
@@ -126,7 +131,7 @@
 
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
   color: #14b071;
-  background: url("./images/selected.svg") no-repeat right 4px center;
+  background: url('./images/selected.svg') no-repeat right 4px center;
 }
 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
@@ -168,12 +173,6 @@
   padding-left: 12px;
 }
 
-.ant-modal-footer {
-  border-top: none;
-  padding-top: 14px;
-  padding-bottom: 0;
-}
-
 .ant-btn {
   background: #fff;
   border-radius: 12px;
@@ -194,6 +193,11 @@
 .ant-btn:hover {
   color: #119a63;
 }
+
+.ant-modal-footer .ant-btn + .ant-btn {
+  margin: 0;
+}
+
 .ant-btn + .ant-btn:hover {
   color: #fff;
   background: #119a63;

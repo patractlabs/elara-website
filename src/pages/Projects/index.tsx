@@ -91,21 +91,23 @@ const Projects: FC<{}> = () => {
   const handleDelProject = () => {
     if (delBtnIsDisabled.current) return
     delBtnIsDisabled.current = true
-    apiDelProject({ id: projectInfo[tabNum].id }).then(
-      () => {
-        message.success(t('tip.delete'))
-        setTabNum(tabNum - 1 > 0 ? tabNum - 1 : 0)
-        updatePageData()
-        updateMenu()
-        updateUser()
-        // 更新页面数据
-      },
-      () => {
-        message.success(t('tip.fail'))
-      }
-    ).finally(() => {
-      delBtnIsDisabled.current = false
-    })
+    apiDelProject({ id: projectInfo[tabNum].id })
+      .then(
+        () => {
+          message.success(t('tip.delete'))
+          setTabNum(tabNum - 1 > 0 ? tabNum - 1 : 0)
+          updatePageData()
+          updateMenu()
+          updateUser()
+          // 更新页面数据
+        },
+        () => {
+          message.success(t('tip.fail'))
+        }
+      )
+      .finally(() => {
+        delBtnIsDisabled.current = false
+      })
     setDeleteModalVisible(false)
   }
 
@@ -177,16 +179,16 @@ const Projects: FC<{}> = () => {
             <div className="request-section">
               <div className="category">
                 <OverviewCard title={t('summary.dailyReq')}>
-                  {projectInfo[tabNum].reqCnt}
+                  {projectInfo[tabNum]?.reqCnt}
                 </OverviewCard>
                 <OverviewCard title={t('summary.dailyBandwidth')}>
-                  {formatBandwidth(projectInfo[tabNum].bw)}
+                  {formatBandwidth(projectInfo[tabNum]?.bw)}
                 </OverviewCard>
                 <OverviewCard title={t('summary.AvgResTime')}>
-                  {projectInfo[tabNum].delay} ms
+                  {projectInfo[tabNum]?.delay} ms
                 </OverviewCard>
                 <OverviewCard title={t('summary.InvalidReq')}>
-                  {projectInfo[tabNum].inReqCnt}
+                  {projectInfo[tabNum]?.inReqCnt}
                 </OverviewCard>
               </div>
               <div className="api stat-card">
@@ -203,20 +205,20 @@ const Projects: FC<{}> = () => {
                 <ClipboardTxt label="Endpoints(HTTPS)" txt={httpEndpointUrl} />
               </div>
               <BandwidthMixChart
-                chain={projectInfo[tabNum].chain}
-                pid={projectInfo[tabNum].pid}
+                chain={projectInfo[tabNum]?.chain}
+                pid={projectInfo[tabNum]?.pid}
               />
               <CallMethodChart
-                chain={projectInfo[tabNum].chain}
-                pid={projectInfo[tabNum].pid}
+                chain={projectInfo[tabNum]?.chain}
+                pid={projectInfo[tabNum]?.pid}
               />
               <InvalidReqTable
-                chain={projectInfo[tabNum].chain}
-                pid={projectInfo[tabNum].pid}
+                chain={projectInfo[tabNum]?.chain}
+                pid={projectInfo[tabNum]?.pid}
               />
               <CountryTable
-                chain={projectInfo[tabNum].chain}
-                pid={projectInfo[tabNum].pid}
+                chain={projectInfo[tabNum]?.chain}
+                pid={projectInfo[tabNum]?.pid}
               />
             </div>
           )}
@@ -228,7 +230,7 @@ const Projects: FC<{}> = () => {
                   ref={nameRef}
                   label={t('Details.projectName')}
                   tooltip={t('Details.maxChar')}
-                  defaultValue={projectInfo[tabNum].name}
+                  defaultValue={projectInfo[tabNum]?.name}
                   handleConfirm={handleUpdateProjectName}
                 />
               </div>
@@ -238,9 +240,10 @@ const Projects: FC<{}> = () => {
                   type="number"
                   ref={rateLimitRef}
                   label={t('Details.rateLimitLabel')}
+                  placeholder={t('Details.NotSet')}
                   defaultValue={
-                    Number(projectInfo[tabNum].reqSecLimit) > 0
-                      ? projectInfo[tabNum].reqSecLimit
+                    Number(projectInfo[tabNum]?.reqSecLimit) > 0
+                      ? projectInfo[tabNum]?.reqSecLimit
                       : ''
                   }
                   handleConfirm={() =>
@@ -251,9 +254,10 @@ const Projects: FC<{}> = () => {
                   type="number"
                   ref={dailyRequsetRef}
                   label={t('Details.dailyTotalReqLable')}
+                  placeholder={t('Details.NotSet')}
                   defaultValue={
-                    Number(projectInfo[tabNum].reqDayLimit) >= 0
-                      ? projectInfo[tabNum].reqDayLimit
+                    Number(projectInfo[tabNum]?.reqDayLimit) >= 0
+                      ? projectInfo[tabNum]?.reqDayLimit
                       : ''
                   }
                   handleConfirm={() =>

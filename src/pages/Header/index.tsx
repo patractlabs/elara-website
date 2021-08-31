@@ -8,7 +8,6 @@ import { apiLogin, apiLogout } from '../../core/data/api'
 import { delCookie } from '../../shared/utils/index'
 import logo from '../../assets/logo.svg'
 import signOut from '../../assets/quit.svg'
-import PatractLinkSVG from '../../assets/patract-link.svg'
 import { LoginModal } from '../../shared/components/LoginModal'
 import { useApi } from '../../core/hooks/useApi'
 import { Language } from '../../core/enum'
@@ -50,7 +49,7 @@ const Header: React.FC = () => {
         break
     }
   }
-  
+
   const UserMenu = (
     <ul className="user-menu">
       <li className="">
@@ -126,7 +125,6 @@ const Header: React.FC = () => {
           className="logo"
           alt=""
         />
-        <span className="title">Elara</span>
       </Link>
       <div className="head-content">
         <ul className="head-tabs">
@@ -153,18 +151,8 @@ const Header: React.FC = () => {
             </a>
           </li>
           <li>
-            <a target="_blank" rel="noreferrer" href="https://patract.io/">
-              Patract
-              <img
-                style={{ marginLeft: '4px', position: 'relative', top: '-3px' }}
-                src={PatractLinkSVG}
-                alt=""
-              />
-            </a>
-          </li>
-          <li>
             <Dropdown overlay={LanguageMenu}>
-              <img src={LanguageSvg} alt="lang" className="language-icon"/>
+              <img src={LanguageSvg} alt="lang" className="language-icon" />
             </Dropdown>
           </li>
           {isLogged ? (

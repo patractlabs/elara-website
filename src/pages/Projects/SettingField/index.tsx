@@ -9,6 +9,7 @@ export type IRefReturnType = { readonly value: string }
 interface ISettingField {
   label: string
   defaultValue: string
+  placeholder?: string
   tooltip?: string
   type?: 'number'
   handleConfirm: () => Promise<any>
@@ -18,7 +19,8 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
   props,
   ref
 ) => {
-  const { label, defaultValue, tooltip, type, handleConfirm } = props
+  const { label, defaultValue, tooltip, type, placeholder, handleConfirm } =
+    props
   const [editable, setEditable] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [value, setValue] = useState(defaultValue)
@@ -53,9 +55,10 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
       <div className="form-item">
         <input
           type="text"
-          className={`${editable && 'editable'} ${
-            errorMsg && value && 'error'
+          className={`${editable ? 'editable' : ''} ${
+            errorMsg && value ? 'error' : ''
           }`}
+          placeholder={placeholder}
           value={value}
           readOnly={!editable}
           ref={intRef}
@@ -66,6 +69,10 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
               setErrorMsg('')
               setValue(e.target.value)
             }
+          }}
+          onBlur={() => {
+            setValue(defaultValue)
+            setEditable(false)
           }}
         />
         {errorMsg && <div className="error-text">{errorMsg}</div>}
@@ -80,7 +87,10 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
               src={ConfirmIcon}
               className="icon"
               alt="ok"
-              onClick={onHandleConfirm}
+              onMouseDown={(e) => {
+                e.stopPropagation()
+                onHandleConfirm()
+              }}
             />
           )}
           {!editable && (
@@ -88,7 +98,8 @@ const SettingField: React.ForwardRefRenderFunction<unknown, ISettingField> = (
               src={EditIcon}
               className="icon"
               alt="edit"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation()
                 intRef.current?.focus()
                 setEditable(true)
               }}

@@ -1,64 +1,64 @@
-import { message, Input, Button, Popover } from "antd";
-import React, { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { apiSubscribe } from "../../core/data/api";
-import { DiscordSvg } from "../../shared/components/svg/Discord";
-import { ElementSvg } from "../../shared/components/svg/Element";
-import { GithubSvg } from "../../shared/components/svg/Github";
-import { MediumSvg } from "../../shared/components/svg/Medium";
-import { TelegramSvg } from "../../shared/components/svg/Telegram";
-import { TwitterSvg } from "../../shared/components/svg/Twitter";
-import { WechatSvg } from "../../shared/components/svg/Wechat";
-import { YoutubeSvg } from "../../shared/components/svg/Youtube";
-import Logo from "../../assets/logo.svg";
-import WechatQRCode from "../../assets/wechat-qrcode.jpg";
+import { message, Input, Button, Popover } from 'antd'
+import React, { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { apiSubscribe } from '../../core/data/api'
+import { DiscordSvg } from '../../shared/components/svg/Discord'
+import { ElementSvg } from '../../shared/components/svg/Element'
+import { GithubSvg } from '../../shared/components/svg/Github'
+import { MediumSvg } from '../../shared/components/svg/Medium'
+import { TelegramSvg } from '../../shared/components/svg/Telegram'
+import { TwitterSvg } from '../../shared/components/svg/Twitter'
+import { WechatSvg } from '../../shared/components/svg/Wechat'
+import { YoutubeSvg } from '../../shared/components/svg/Youtube'
+import Logo2 from '../../assets/logo2.svg'
+import WechatQRCode from '../../assets/wechat-qrcode.jpg'
 
-import "./index.css";
+import './index.css'
 
-const green = "#14B071";
-const defaultGray = "#2A292B";
+const green = '#14B071'
+const defaultGray = '#2A292B'
 
 enum IconLink {
-  Wechat = "Wechat",
-  Twitter = "Twitter",
-  Medium = "Medium",
-  Telegram = "Telegram",
-  Discord = "Discord",
-  Youtube = "Youtube",
-  Element = "Element",
-  Github = "Github",
-  Null = "Null",
+  Wechat = 'Wechat',
+  Twitter = 'Twitter',
+  Medium = 'Medium',
+  Telegram = 'Telegram',
+  Discord = 'Discord',
+  Youtube = 'Youtube',
+  Element = 'Element',
+  Github = 'Github',
+  Null = 'Null',
 }
 
 const Footer: React.FC = () => {
-  const [subLoading, setSubLoading] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>("");
+  const [subLoading, setSubLoading] = useState<boolean>(false)
+  const [email, setEmail] = useState<string>('')
   const [iconLinkHoverAt, setIconLinkHoverAt] = useState<IconLink>(
     IconLink.Null
-  );
-  const { t } = useTranslation();
+  )
+  const { t } = useTranslation()
 
   const onSubscribe = () => {
-    setSubLoading(true);
+    setSubLoading(true)
     apiSubscribe({ email })
       .then(
-        () => message.success(t("tip.Subscribe Successfully")),
-        () => message.error(t("tip.Subscribe Failed"))
+        () => message.success(t('tip.Subscribe Successfully')),
+        () => message.error(t('tip.Subscribe Failed'))
       )
-      .finally(() => setSubLoading(false));
-  };
+      .finally(() => setSubLoading(false))
+  }
 
   const disabled = useMemo(() => {
     // const reg = new RegExp('[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*');
-    return !email;
-  }, [email]);
+    return !email
+  }, [email])
 
   return (
     <footer className="home-footer" id="home-footer">
       <div className="footer-content">
         <div className="footer-sites-holder">
           <div className="site-class">
-            <h3>{t("footer.Websites")}</h3>
+            <h3>{t('footer.Websites')}</h3>
             <ul className="site-list">
               <li className="site">
                 <a target="_blank" rel="noreferrer" href="https://patract.io">
@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="site-class">
-            <h3>{t("footer.Contracts")}</h3>
+            <h3>{t('footer.Contracts')}</h3>
             <ul className="site-list">
               <li className="site">
                 <a
@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="site-class">
-            <h3>{t("footer.Tools")}</h3>
+            <h3>{t('footer.Tools')}</h3>
             <ul className="site-list">
               <li className="site">
                 <a
@@ -171,7 +171,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="site-class">
-            <h3>{t("footer.Services")}</h3>
+            <h3>{t('footer.Services')}</h3>
             <ul className="site-list">
               <li className="site">
                 <a
@@ -204,16 +204,16 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="contact">
-          <h2>{t("Contact & Subscription")}</h2>
-          <div style={{ display: "flex" }}>
+          <h2>{t('Contact & Subscription')}</h2>
+          <div style={{ display: 'flex' }}>
             <Input
-              placeholder={t("footer.Enter your email account")}
+              placeholder={t('footer.Enter your email account')}
               onChange={(e) => setEmail(e.target.value)}
               style={{
                 flex: 1,
-                height: "48px",
-                width: "300px",
-                marginRight: "10px",
+                height: '48px',
+                width: '300px',
+                marginRight: '10px',
               }}
             />
             <Button
@@ -221,14 +221,14 @@ const Footer: React.FC = () => {
               loading={subLoading}
               onClick={onSubscribe}
               style={{
-                fontSize: "16px",
-                color: "white",
-                backgroundColor: "#14B071",
-                height: "48px",
-                width: "120px",
+                fontSize: '16px',
+                color: 'white',
+                backgroundColor: '#14B071',
+                height: '48px',
+                width: '120px',
               }}
             >
-              {t("Subscribe")}
+              {t('Subscribe')}
             </Button>
           </div>
           <ul className="contact-list">
@@ -236,7 +236,7 @@ const Footer: React.FC = () => {
               <Popover
                 content={
                   <img
-                    style={{ width: "150px", height: "150px" }}
+                    style={{ width: '150px', height: '150px' }}
                     src={WechatQRCode}
                     alt=""
                   />
@@ -244,7 +244,7 @@ const Footer: React.FC = () => {
                 title={null}
               >
                 <span
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                   onMouseOver={() => setIconLinkHoverAt(IconLink.Wechat)}
                   onMouseOut={() => setIconLinkHoverAt(IconLink.Null)}
                 >
@@ -367,8 +367,7 @@ const Footer: React.FC = () => {
       </div>
       <div className="footer-info">
         <div className="logo-wrapper">
-          <img src={Logo} alt="" />
-          <span className="title">Elara</span>
+          <img src={Logo2} alt="" />
         </div>
         <div className="footer-info-row">
           <p className="copyright">
@@ -380,7 +379,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

@@ -9,13 +9,13 @@
   background: white;
   box-shadow: 0px 1px rgb(0 0 0 / 10%);
   display: flex;
-  color: #3F3F3F;
+  color: #3f3f3f;
   font-size: 16px;
 }
 
 .head-main .title {
   font-weight: 800;
-  color: #3F3F3F;
+  color: #3f3f3f;
   padding-left: 10px;
 }
 
@@ -32,16 +32,13 @@
 .tab-title-bottom {
   height: 5px;
   border-radius: 3px;
-  background-color: #14B071;
+  background-color: #14b071;
   position: relative;
   top: 5px;
 }
 
 .head-tabs li {
   padding: 0px 20px;
-  font-size: 15px;
-  font-weight: 400;
-  color: #2A292B;
   line-height: 20px;
 }
 
@@ -50,7 +47,10 @@
 }
 
 .head-tabs li a {
-  color: #2A292B;
+  color: #3f3f3f;
+  font-size: 15px;
+  font-family: WorkSans;
+  font-weight: 500;
 }
 .head-tabs li a:hover {
   color: #686868;
@@ -68,7 +68,7 @@
   border-radius: 18px;
   text-align: center;
   line-height: 36px;
-  background: #14B071;
+  background: #14b071;
   cursor: pointer;
   user-select: none;
 }
@@ -77,7 +77,7 @@
 }
 
 .user-menu {
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 8px 15px 0px rgba(149, 156, 182, 0.15);
   padding: 12px 16px;
   width: 159px;
@@ -99,10 +99,10 @@
 .user-menu .menu-split {
   margin: 16px 0px 12px 0px;
   height: 1px;
-  background-color: #E7E7E7;
+  background-color: #e7e7e7;
 }
 .user-menu-logout .sign-out {
-  color: #FF3043;
+  color: #ff3043;
   cursor: pointer;
   display: flex;
   align-items: center;

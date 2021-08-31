@@ -1,11 +1,17 @@
 .summary-card {
-  width: 215px;
+  width: 25%;
   height: 96px;
   opacity: 1;
   background: #f6f6f6;
   border-radius: 12px;
   padding: 0 20px;
+  margin-right: 25px;
 }
+
+.summary-card:last-of-type {
+  margin-right: 0;
+}
+
 .summary-card > span {
   display: block;
   padding: 20px 0 12px;

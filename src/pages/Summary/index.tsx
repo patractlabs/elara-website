@@ -13,6 +13,7 @@ import OverviewCard from '../../shared/components/OverviewCard'
 import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
 import EmptySample from '../../shared/components/EmptySample'
 import { chainIconMap } from '../../core/types/classes/chain'
+import MoreSvg from '../../assets/arrow_forward.svg'
 
 import './index.css'
 import { formatTime, formatBandwidth } from '../../shared/utils'
@@ -25,6 +26,7 @@ const Summary: FC<{}> = () => {
     inReqCnt: 0,
   })
   const [projectList, setProjectList] = useState<Project[]>([])
+  const [rowActive, setRowActive] = useState(-1)
   const { t } = useTranslation()
   const history = useHistory()
   const { user } = useApi()
@@ -73,7 +75,10 @@ const Summary: FC<{}> = () => {
           size="small"
           pagination={false}
           rowKey={(record) => record.id}
-          onRow={(project) => ({
+          rowClassName={(record, index) =>
+            index === rowActive ? 'rowActive' : ''
+          }
+          onRow={(project, index) => ({
             onClick: () =>
               history.push({
                 pathname: `/dashboard/projects/${project.chain}`,
@@ -81,6 +86,12 @@ const Summary: FC<{}> = () => {
                   pid: project.pid,
                 },
               }),
+            onMouseEnter: () => {
+              setRowActive(index ?? -1)
+            },
+            onMouseLeave: () => {
+              setRowActive(-1)
+            },
           })}
           columns={[
             {
@@ -141,6 +152,19 @@ const Summary: FC<{}> = () => {
               render: (data: string) => (
                 <div className={`table-status-item ${data}`}>{data}</div>
               ),
+            },
+            {
+              title: '',
+              dataIndex: 'operation',
+              width: 20,
+              render: (data, record, index) =>
+                index === rowActive ? (
+                  <img src={MoreSvg} alt="more" />
+                ) : (
+                  <span
+                    style={{ width: '16px', height: '16px', display: 'block' }}
+                  ></span>
+                ),
             },
           ]}
           dataSource={projectList}

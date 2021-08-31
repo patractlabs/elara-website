@@ -26,7 +26,6 @@
 }
 
 .projects-tabs > .tab-item {
-  width: 140px;
   height: 52px;
   background: #e8e8e8;
   color: #3f3f3f;
@@ -75,10 +74,14 @@
   text-align: left;
   color: #3f3f3f;
   line-height: 16px;
-  padding-left: 18px;
+  padding-left: 20px;
   background: no-repeat center left;
-  background-size: 12px 12px;
+  background-size: 16px 16px;
   margin-right: 25px;
+}
+
+.projects > .main .info-item:last-of-type {
+  margin-right: 0;
 }
 
 .projects > .main .info-item.created {
@@ -148,7 +151,7 @@
   font-weight: 500;
 }
 
-.request-section .stat-card > .title>span {
+.request-section .stat-card > .title > span {
   font-size: 12px;
   text-align: left;
   color: #7c7e7c;
@@ -201,8 +204,10 @@
   padding: 0 4px;
 }
 
-.ant-radio-wrapper:hover .ant-radio, .ant-radio:hover .ant-radio-inner, .ant-radio-input:focus + .ant-radio-inner {
-    border-color: #14b071;
+.ant-radio-wrapper:hover .ant-radio,
+.ant-radio:hover .ant-radio-inner,
+.ant-radio-input:focus + .ant-radio-inner {
+  border-color: #14b071;
 }
 
 .request-section .api > .api-info {
@@ -232,6 +237,7 @@
   background-color: #f9f9f9;
   padding: 20px;
   margin-bottom: 20px;
+  border-radius: 8px;
 }
 
 .setting-item .title {
@@ -247,6 +253,7 @@
 .setting-item .field {
   margin-bottom: 10px;
   line-height: 40px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
 }
@@ -291,14 +298,12 @@
   text-align: left;
   line-height: 16px;
   font-size: 12px;
- 
 }
 
 .setting-item .field > .form-item > input.editable:focus {
   border-bottom: 2px solid #14b071;
   cursor: text;
 }
-
 
 .setting-item .field > .form-item > .icon-group {
   float: right;
@@ -321,15 +326,15 @@
 .setting-item.setting-delete-btn {
   color: #df3d4b;
   font-size: 14px;
-  text-align: center;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .icon {
   cursor: pointer;
 }
 
-.elara-table  {
+.elara-table {
   padding-top: 12px;
 }
 
@@ -341,8 +346,7 @@
   height: 32px;
 }
 
-.elara-table .ant-table-tbody > tr > td,.elara-table .ant-table-thead > tr > th {
+.elara-table .ant-table-tbody > tr > td,
+.elara-table .ant-table-thead > tr > th {
   border-bottom: 1px solid #efefef;
 }
-
-

@@ -123,6 +123,7 @@ const CreateProjectModal: FC<{
                 !isValidProjectName && !!projectName && 'error'
               }`}
               value={projectName}
+              placeholder={t('Details.maxChar')}
               onChange={(e) => _onInputChange(e.target.value)}
               onBlur={(e) => _checkProjectName(e.target.value)}
             />

@@ -1,6 +1,8 @@
 import { Tooltip, TooltipProps } from 'antd'
 import { FC } from 'react'
 
+import './index.css'
+
 const StyledTooltip: FC<{ title: string } & TooltipProps> = ({
   children,
   title,
@@ -10,6 +12,7 @@ const StyledTooltip: FC<{ title: string } & TooltipProps> = ({
     <Tooltip
       placement="top"
       title={title}
+      className="tooltip-body"
       overlayInnerStyle={{
         height: '28px',
         lineHeight: '16px',
@@ -22,7 +25,7 @@ const StyledTooltip: FC<{ title: string } & TooltipProps> = ({
       }}
       {...rest}
     >
-      {children}
+      <span className="tooltip-content">{children}</span>
     </Tooltip>
   )
 }

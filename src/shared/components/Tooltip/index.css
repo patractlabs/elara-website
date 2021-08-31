@@ -1,0 +1,14 @@
+.tooltip-body {
+  position: relative;
+  padding: 0 10px;
+  left: -10px;
+  height: 20px;
+  display: inline-block;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.ant-tooltip-open.tooltip-body {
+  border-radius: 10px;
+  background: #efefef;
+}

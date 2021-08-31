@@ -13,7 +13,7 @@ import Summary from '../Summary'
 import { ChainName } from '../../core/enum'
 import { DashboardContext } from '../../core/context/dashboard-context'
 import DropdownSvg from '../../assets/dropdown.svg'
-import DashboardSvg from '../../assets/dashboard.svg'
+import DashboardIcon from '../../shared/components/svg/DashboardIcon'
 import { useTranslation } from 'react-i18next'
 import {
   Chain,
@@ -21,7 +21,6 @@ import {
   chainIconMap,
   subMenuMap,
 } from '../../core/types/classes/chain'
-
 
 const CollapsedChains: FC<{
   type: NetworkType
@@ -31,7 +30,7 @@ const CollapsedChains: FC<{
   const history = useHistory()
   const { t } = useTranslation()
   const { collapse, setCollapse } = useContext(DashboardContext)
-  
+
   const choosedChain = useMemo(() => {
     const paths = location.pathname.split('/')
     let chainName: string = ''
@@ -56,20 +55,26 @@ const CollapsedChains: FC<{
   const renderIcon = () => {
     const Icons = subMenuMap[type].icon
     return <Icons collapse={collapse.indexOf(type) < 0} />
-  }  
+  }
 
   return (
     <Fragment>
       <div className="chain-type" onClick={toggleCollapse}>
         <div className="chain-type-title">
           {renderIcon()}
-          <span>{t(subMenuMap[type]['title'])}</span>
+          <span
+            className={`category-title ${
+              collapse.indexOf(type) > -1 ? 'active' : ''
+            }`}
+          >
+            {t(subMenuMap[type]['title'])}
+          </span>
           <img
             src={DropdownSvg}
             alt=""
             style={{
               transform:
-                collapse.indexOf(type) > -1 ? 'scaleY(1)' : 'scaleY(-1)',
+                collapse.indexOf(type) > -1 ? 'scaleY(-1)' : 'scaleY(1)',
             }}
           />
         </div>
@@ -121,15 +126,17 @@ const Dashboard: FC = (): ReactElement => {
 
   const renderMenu = () => {
     const types = Object.keys(subMenuMap) as NetworkType[]
-    
+
     return (
       <div>
         {types.map((type) => {
-          return chains[type] ? <CollapsedChains
-            type={type}
-            chains={chains[type] as Chain[]}
-            key={type}
-          /> : null
+          return chains[type] ? (
+            <CollapsedChains
+              type={type}
+              chains={chains[type] as Chain[]}
+              key={type}
+            />
+          ) : null
         })}
       </div>
     )
@@ -151,11 +158,13 @@ const Dashboard: FC = (): ReactElement => {
       <div className="sider">
         <Link
           className={`sidebar-title ${
-            location.pathname === '/dashboard/summary' && 'active'
+            location.pathname === '/dashboard/summary' ? 'active' : ''
           }`}
           to="/dashboard/summary"
         >
-          <img src={DashboardSvg} alt="" />
+          <DashboardIcon
+            collapse={location.pathname !== '/dashboard/summary'}
+          />
           {t('dashboard')}
         </Link>
         {renderMenu()}
