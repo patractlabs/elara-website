@@ -5,6 +5,7 @@ import { useParams, useLocation } from 'react-router-dom'
 import { ENDPOINTS_URL, WSS_ENDPOINTS_URL } from '../../config/origin'
 import OverviewCard from '../../shared/components/OverviewCard'
 import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
+import TooltipIcon from '../../assets/tooltip.svg'
 import { useApi } from '../../core/hooks/useApi'
 import { Project } from '../../core/types/classes/project'
 import { formatTime, formatBandwidth } from '../../shared/utils'
@@ -21,20 +22,23 @@ import InvalidReqTable from './InvalidReqTable'
 import CountryTable from './CountryTable'
 import SettingField, { IRefReturnType } from './SettingField'
 import BasicModal from '../../shared/components/BasicModalContainer'
-import EmptySample from '../../shared/components/EmptySample'
+import Tooltip from '../../shared/components/Tooltip'
 import { DashboardContext } from '../../core/context/dashboard-context'
 import './index.css'
+import EmptyByDesc from '../../shared/components/EmptyByDesc'
 
 const Projects: FC<{}> = () => {
   const location = useLocation<{ pid: string }>()
+  const [loading, setloading] = useState(true)
   const [tabNum, setTabNum] = useState(0)
   const [viewType, switchToView] = useState<'setting' | 'request'>('request')
   const [projectInfo, setProjectInfo] = useState<Project[]>([])
+  const [timestamp, setTimestamp] = useState(Date.now())
   const delBtnIsDisabled = useRef(false)
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
   const { updateMenu } = useContext(DashboardContext)
   const nameRef = useRef<IRefReturnType>(null)
-  const rateLimitRef = useRef<IRefReturnType>(null)
+  const bwDayLimitRef = useRef<IRefReturnType>(null)
   const dailyRequsetRef = useRef<IRefReturnType>(null)
   const { t } = useTranslation()
   const params = useParams<{ chain: string; state?: any }>()
@@ -44,17 +48,18 @@ const Projects: FC<{}> = () => {
   const updatePageData = useCallback(async () => {
     const res = await apiFetchProjectList(user.id, params.chain)
     setProjectInfo(res)
+    setloading(false)
   }, [user.id, params.chain])
 
   const handleUpdateProjectName = async () => {
     if (nameRef.current!.value === projectInfo[tabNum].name) return
-    if (!/^[a-zA-Z]{4}[a-zA-Z0-9]{0,10}$/.test(nameRef.current!.value))
+    if (!/^[a-zA-Z]{4}[a-zA-Z0-9]{0,10}$/.test(`${nameRef.current!.value}`))
       return t('tip.invalidName')
     return await apiUpdateProjectName({
       userId: user.id,
       chain: projectInfo[tabNum]?.chain,
       id: projectInfo[tabNum]?.id,
-      name: nameRef.current!.value,
+      name: `${nameRef.current!.value}`,
     }).then(
       () => {
         message.success(t('tip.updated'))
@@ -69,12 +74,12 @@ const Projects: FC<{}> = () => {
     )
   }
 
-  const handleUpdateLimit = async (val: string) => {
+  const handleUpdateLimit = async (val: string | number) => {
     if (isNaN(Number(val))) return t('tip.invalidNumber')
     await apiUpdateProjectLimit({
       id: projectInfo[tabNum]?.id,
       reqDayLimit: Number(dailyRequsetRef.current!.value),
-      reqSecLimit: Number(rateLimitRef.current!.value),
+      bwDayLimit: Number(bwDayLimitRef.current!.value),
     }).then(
       () => {
         message.success(t('tip.updated'))
@@ -123,22 +128,30 @@ const Projects: FC<{}> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectInfo.length, location.state])
 
-  return (
+  return loading ? null : (
     <div className="projects">
-      <CreateProjectBtn chain={params.chain} onCloseCallback={updatePageData} />
-      <div className="projects-tabs">
-        {projectInfo.map((data, index) => (
-          <div
-            key={data.name}
-            className={`tab-item ${tabNum === index ? 'active' : ''}`}
-            onClick={() => {
-              setTabNum(index)
-            }}
-          >
-            {data.name}
+      {projectInfo.length > 0 && (
+        <>
+          <CreateProjectBtn
+            chain={params.chain}
+            onCloseCallback={updatePageData}
+          />
+
+          <div className="projects-tabs">
+            {projectInfo.map((data, index) => (
+              <div
+                key={data.name}
+                className={`tab-item ${tabNum === index ? 'active' : ''}`}
+                onClick={() => {
+                  setTabNum(index)
+                }}
+              >
+                {data.name}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
       {projectInfo.length > 0 ? (
         <div className="main">
           <div className="info-container">
@@ -174,14 +187,60 @@ const Projects: FC<{}> = () => {
             >
               {t('Details.Settings')}
             </div>
+            <button
+              className="project-refresh-btn"
+              onClick={() => setTimestamp(Date.now())}
+            >
+              <Tooltip title={t('tip.GetLastestData')} bg={false}>
+                {t('Details.Refresh')}
+              </Tooltip>
+            </button>
           </div>
           {viewType === 'request' && (
             <div className="request-section">
               <div className="category">
-                <OverviewCard title={t('summary.dailyReq')}>
+                <OverviewCard
+                  title={
+                    <>
+                      {t('summary.dailyReq')}
+                      <Tooltip title={t('tip.RequestNumTip')} bg={false}>
+                        <img
+                          src={TooltipIcon}
+                          alt="info"
+                          style={{
+                            width: '16px',
+                            height: '16px',
+                            marginLeft: '4px',
+                            cursor: 'pointer',
+                            verticalAlign: 'middle',
+                          }}
+                        />
+                      </Tooltip>
+                    </>
+                  }
+                >
                   {projectInfo[tabNum]?.reqCnt}
                 </OverviewCard>
-                <OverviewCard title={t('summary.dailyBandwidth')}>
+                <OverviewCard
+                  title={
+                    <>
+                      {t('summary.dailyBandwidth')}
+                      <Tooltip title={t('tip.BandwidthNumTip')} bg={false}>
+                        <img
+                          src={TooltipIcon}
+                          alt="info"
+                          style={{
+                            width: '16px',
+                            height: '16px',
+                            marginLeft: '4px',
+                            cursor: 'pointer',
+                            verticalAlign: 'middle',
+                          }}
+                        />
+                      </Tooltip>
+                    </>
+                  }
+                >
                   {formatBandwidth(projectInfo[tabNum]?.bw)}
                 </OverviewCard>
                 <OverviewCard title={t('summary.AvgResTime')}>
@@ -207,18 +266,22 @@ const Projects: FC<{}> = () => {
               <BandwidthMixChart
                 chain={projectInfo[tabNum]?.chain}
                 pid={projectInfo[tabNum]?.pid}
+                timestamp={timestamp}
               />
               <CallMethodChart
                 chain={projectInfo[tabNum]?.chain}
                 pid={projectInfo[tabNum]?.pid}
+                timestamp={timestamp}
               />
               <InvalidReqTable
                 chain={projectInfo[tabNum]?.chain}
                 pid={projectInfo[tabNum]?.pid}
+                timestamp={timestamp}
               />
               <CountryTable
                 chain={projectInfo[tabNum]?.chain}
                 pid={projectInfo[tabNum]?.pid}
+                timestamp={timestamp}
               />
             </div>
           )}
@@ -238,16 +301,16 @@ const Projects: FC<{}> = () => {
                 <div className="title">{t('Details.RequestLimiting')}</div>
                 <SettingField
                   type="number"
-                  ref={rateLimitRef}
-                  label={t('Details.rateLimitLabel')}
+                  ref={bwDayLimitRef}
+                  label={t('Details.bandwidthLimitLabel')}
                   placeholder={t('Details.NotSet')}
                   defaultValue={
-                    Number(projectInfo[tabNum]?.reqSecLimit) > 0
-                      ? projectInfo[tabNum]?.reqSecLimit
+                    Number(projectInfo[tabNum]?.bwDayLimit) > 0
+                      ? projectInfo[tabNum]?.bwDayLimit
                       : ''
                   }
                   handleConfirm={() =>
-                    handleUpdateLimit(rateLimitRef.current!.value)
+                    handleUpdateLimit(bwDayLimitRef.current!.value)
                   }
                 />
                 <SettingField
@@ -276,7 +339,14 @@ const Projects: FC<{}> = () => {
         </div>
       ) : (
         <div className="project-empty">
-          <EmptySample title="No project" height={560} />
+          <EmptyByDesc
+            CreateBtn={
+              <CreateProjectBtn
+                chain={params.chain}
+                onCloseCallback={updatePageData}
+              />
+            }
+          />
         </div>
       )}
       <BasicModal

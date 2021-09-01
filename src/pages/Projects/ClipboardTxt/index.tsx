@@ -24,9 +24,7 @@ const ClipboardTxt: FC<{ label: string; txt: string }> = (props) => {
           }, 200)
         }}
       >
-        <Tooltip title={t(tooltipTxt)}>
-          {txt}
-        </Tooltip>
+        <Tooltip title={t(tooltipTxt)}>{txt}</Tooltip>
       </div>
     </div>
   )

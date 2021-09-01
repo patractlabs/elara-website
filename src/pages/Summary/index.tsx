@@ -12,8 +12,11 @@ import { Project } from '../../core/types/classes/project'
 import OverviewCard from '../../shared/components/OverviewCard'
 import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
 import EmptySample from '../../shared/components/EmptySample'
+import EmptyByDesc from '../../shared/components/EmptyByDesc'
 import { chainIconMap } from '../../core/types/classes/chain'
 import MoreSvg from '../../assets/arrow_forward.svg'
+import TooltipIcon from '../../assets/tooltip.svg'
+import Tooltip from '../../shared/components/Tooltip'
 
 import './index.css'
 import { formatTime, formatBandwidth } from '../../shared/utils'
@@ -50,7 +53,25 @@ const Summary: FC<{}> = () => {
         <OverviewCard title={t('summary.dailyReq')}>
           {statics.reqCnt}
         </OverviewCard>
-        <OverviewCard title={t('summary.dailyBandwidth')}>
+        <OverviewCard
+          title={
+            <>
+              {t('summary.dailyBandwidth')}
+              <Tooltip title={t('tip.MaxBandwidth')} bg={false}>
+                <img
+                  src={TooltipIcon}
+                  alt="info"
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    marginLeft: '4px',
+                    cursor: 'pointer',
+                  }}
+                />
+              </Tooltip>
+            </>
+          }
+        >
           {formatBandwidth(statics.bw)}
         </OverviewCard>
         <OverviewCard title={t('summary.AvgResTime')}>
@@ -62,114 +83,131 @@ const Summary: FC<{}> = () => {
       </div>
       <div className="table-bar">
         <div className="total">
-          {t('Project')} (<span className="count">{projectList.length}</span>
-          /10)
+          {t('Project')} (
+          <Tooltip title={t('tip.MaxNum')} bg={false}>
+            <span className="count">{projectList.length}</span>/
+            {user.maxProjectNum})
+          </Tooltip>
         </div>
-        <CreateProjectBtn onCloseCallback={updateProjetList} />
+        {projectList.length > 0 && (
+          <CreateProjectBtn onCloseCallback={updateProjetList} />
+        )}
       </div>
-      <ConfigProvider
-        renderEmpty={() => <EmptySample title="No data" height={352} />}
-      >
-        <Table
-          className="summary-table"
-          size="small"
-          pagination={false}
-          rowKey={(record) => record.id}
-          rowClassName={(record, index) =>
-            index === rowActive ? 'rowActive' : ''
-          }
-          onRow={(project, index) => ({
-            onClick: () =>
-              history.push({
-                pathname: `/dashboard/projects/${project.chain}`,
-                state: {
-                  pid: project.pid,
-                },
-              }),
-            onMouseEnter: () => {
-              setRowActive(index ?? -1)
-            },
-            onMouseLeave: () => {
-              setRowActive(-1)
-            },
-          })}
-          columns={[
-            {
-              title: t('summary.Project'),
-              dataIndex: 'name',
-              key: 'name',
-              render: (text: string) => (
-                <span style={{ color: '#14B071' }}>{text}</span>
-              ),
-            },
-            {
-              title: t('summary.Team'),
-              dataIndex: 'team',
-              key: 'team',
-              render: (data: string) => (
-                <span className="td-span-default">{data}</span>
-              ),
-            },
-            {
-              title: t('summary.Network'),
-              dataIndex: 'chain',
-              key: 'chain',
-              render: (data: keyof typeof chainIconMap) => (
-                <span className="table-chain-item">
-                  <img src={chainIconMap[data]} alt="" />
-                  {data}
-                </span>
-              ),
-            },
-            {
-              title: t('summary.dailyReq'),
-              dataIndex: 'reqCnt',
-              key: 'reqCnt',
-              render: (data: number) => (
-                <span style={{ fontWeight: 700 }}>{data}</span>
-              ),
-            },
-            {
-              title: t('summary.dailyBandwidth'),
-              dataIndex: 'bw',
-              key: 'bw',
-              render: (data: number) => {
-                return (
-                  <div style={{ fontWeight: 700 }}>{formatBandwidth(data)}</div>
-                )
+      {projectList.length > 0 ? (
+        <ConfigProvider
+          renderEmpty={() => <EmptySample title="No data" height={352} />}
+        >
+          <Table
+            className="summary-table"
+            size="small"
+            pagination={false}
+            rowKey={(record) => record.id}
+            rowClassName={(record, index) =>
+              index === rowActive ? 'rowActive' : ''
+            }
+            onRow={(project, index) => ({
+              onClick: () =>
+                history.push({
+                  pathname: `/dashboard/projects/${project.chain}`,
+                  state: {
+                    pid: project.pid,
+                  },
+                }),
+              onMouseEnter: () => {
+                setRowActive(index ?? -1)
               },
-            },
-            {
-              title: t('summary.Created'),
-              dataIndex: 'createdAt',
-              key: 'createdAt',
-              render: (data: string) => formatTime(data),
-            },
-            {
-              title: t('summary.Status'),
-              dataIndex: 'status',
-              key: 'status',
-              render: (data: string) => (
-                <div className={`table-status-item ${data}`}>{data}</div>
-              ),
-            },
-            {
-              title: '',
-              dataIndex: 'operation',
-              width: 20,
-              render: (data, record, index) =>
-                index === rowActive ? (
-                  <img src={MoreSvg} alt="more" />
-                ) : (
-                  <span
-                    style={{ width: '16px', height: '16px', display: 'block' }}
-                  ></span>
+              onMouseLeave: () => {
+                setRowActive(-1)
+              },
+            })}
+            columns={[
+              {
+                title: t('summary.Project'),
+                dataIndex: 'name',
+                key: 'name',
+                render: (text: string) => (
+                  <span style={{ color: '#14B071' }}>{text}</span>
                 ),
-            },
-          ]}
-          dataSource={projectList}
-        ></Table>
-      </ConfigProvider>
+              },
+              {
+                title: t('summary.Team'),
+                dataIndex: 'team',
+                key: 'team',
+                render: (data: string) => (
+                  <span className="td-span-default">{data}</span>
+                ),
+              },
+              {
+                title: t('summary.Network'),
+                dataIndex: 'chain',
+                key: 'chain',
+                render: (data: keyof typeof chainIconMap) => (
+                  <span className="table-chain-item">
+                    <img src={chainIconMap[data]} alt="" />
+                    {data}
+                  </span>
+                ),
+              },
+              {
+                title: t('summary.dailyReq'),
+                dataIndex: 'reqCnt',
+                key: 'reqCnt',
+                render: (data: number) => (
+                  <span style={{ fontWeight: 700 }}>{data}</span>
+                ),
+              },
+              {
+                title: t('summary.dailyBandwidth'),
+                dataIndex: 'bw',
+                key: 'bw',
+                render: (data: number) => {
+                  return (
+                    <div style={{ fontWeight: 700 }}>
+                      {formatBandwidth(data)}
+                    </div>
+                  )
+                },
+              },
+              {
+                title: t('summary.Created'),
+                dataIndex: 'createdAt',
+                key: 'createdAt',
+                render: (data: string) => formatTime(data),
+              },
+              {
+                title: t('summary.Status'),
+                dataIndex: 'status',
+                key: 'status',
+                render: (data: string) => (
+                  <div className={`table-status-item ${data}`}>{data}</div>
+                ),
+              },
+              {
+                title: '',
+                dataIndex: 'operation',
+                width: 20,
+                render: (data, record, index) =>
+                  index === rowActive ? (
+                    <img src={MoreSvg} alt="more" />
+                  ) : (
+                    <span
+                      style={{
+                        width: '16px',
+                        height: '16px',
+                        display: 'block',
+                      }}
+                    ></span>
+                  ),
+              },
+            ]}
+            dataSource={projectList}
+          ></Table>
+        </ConfigProvider>
+      ) : (
+        <EmptyByDesc
+          CreateBtn={<CreateProjectBtn onCloseCallback={updateProjetList} />}
+        />
+      )}
     </div>
   )
 }

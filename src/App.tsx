@@ -1,25 +1,25 @@
-import "./App.css";
+import './App.css'
 
-import React, { FC, ReactElement, Suspense, useEffect } from "react";
-import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
-import "./i18n";
-import useRouter from "./core/hooks/useRouter";
-import Home from "./pages/Home";
-import Header from "./pages/Header";
-import Dashboard from "./pages/Dashboard";
-import PageLoading from "./pages/PageLoading";
-import { ApiProvider } from "./core/context/api";
-import { useApi } from "./core/hooks/useApi";
-import { useTranslation } from "react-i18next";
-import { Language } from "./core/enum";
-import { DashboardProvider } from "./core/context/dashboard-context";
+import React, { FC, ReactElement, Suspense, useEffect } from 'react'
+import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom'
+import './i18n'
+import useRouter from './core/hooks/useRouter'
+import Home from './pages/Home'
+import Header from './pages/Header'
+import Dashboard from './pages/Dashboard'
+import PageLoading from './pages/PageLoading'
+import { ApiProvider } from './core/context/api'
+import { useApi } from './core/hooks/useApi'
+import { useTranslation } from 'react-i18next'
+import { Language } from './core/enum'
+import { DashboardProvider } from './core/context/dashboard-context'
 
 const AuthRoute: FC<{
-  component: FC;
-  path: string;
+  component: FC
+  path: string
 }> = ({ component: Component, ...rest }): ReactElement => {
-  const { isLogged } = useApi();
-  const { location } = useRouter();
+  const { isLogged } = useApi()
+  const { location } = useRouter()
 
   return (
     <Route
@@ -32,18 +32,18 @@ const AuthRoute: FC<{
         )
       }
     />
-  );
-};
+  )
+}
 
 const App: FC = (): ReactElement => {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation()
 
   useEffect(() => {
-    i18n.language = i18n.language.toLowerCase().includes("zh")
+    i18n.language = i18n.language.toLowerCase().includes('zh')
       ? Language.zh
-      : Language.en;
-    console.log("lang", i18n.language);
-  }, [i18n]);
+      : Language.en
+    console.log('lang', i18n.language)
+  }, [i18n])
 
   return (
     <ApiProvider>
@@ -67,6 +67,6 @@ const App: FC = (): ReactElement => {
       </div>
     </ApiProvider>
   )
-};
+}
 
-export default App;
+export default App

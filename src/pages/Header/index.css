@@ -5,12 +5,12 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 2;
   background: white;
   box-shadow: 0px 1px rgb(0 0 0 / 10%);
   display: flex;
   color: #3f3f3f;
   font-size: 16px;
+  z-index: 9;
 }
 
 .head-main .title {
@@ -26,7 +26,7 @@
   min-width: 700px;
 }
 .head-tabs {
-  display: inline-flex;
+  display: flex;
   align-items: center;
 }
 .tab-title-bottom {
@@ -38,6 +38,7 @@
 }
 
 .head-tabs li {
+  display: flex;
   padding: 0px 20px;
   line-height: 20px;
 }
@@ -52,6 +53,11 @@
   font-family: WorkSans;
   font-weight: 500;
 }
+
+.head-tabs li a.selected {
+  color: #14b071;
+}
+
 .head-tabs li a:hover {
   color: #686868;
 }

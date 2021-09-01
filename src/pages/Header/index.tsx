@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './index.css'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Menu, Dropdown } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
@@ -129,17 +129,25 @@ const Header: React.FC = () => {
       <div className="head-content">
         <ul className="head-tabs">
           <li>
-            <Link to="/" onClick={() => scrollTo(ScrollTarget.Home)}>
+            <NavLink
+              exact
+              to="/"
+              activeStyle={{
+                color: '#14B071',
+              }}
+            >
               {t('home')}
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/dashboard/summary"
-              onClick={() => scrollTo(ScrollTarget.Service)}
+              activeStyle={{
+                color: '#14B071',
+              }}
             >
               {t('dashboard')}
-            </Link>
+            </NavLink>
           </li>
           <li>
             <a

@@ -14,10 +14,11 @@ enum rangeEnum {
   '30days' = '30-days',
 }
 
-const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
-  chain,
-  pid,
-}) => {
+const BandwidthMixChart: FC<{
+  chain: string
+  pid: string
+  timestamp: number
+}> = ({ chain, pid, timestamp }) => {
   const reqBandwidthEchart = useRef(null)
   const { t } = useTranslation()
   const [chartType, setChartType] =
@@ -37,9 +38,11 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
     ).then((res) => {
       setMixChartData({ ...res })
     })
-  }, [chain, pid, chartRange])
+  }, [chain, pid, chartRange, timestamp])
 
   useEffect(() => {
+    console.log('render')
+
     const hasData = mixChartData.stats
       .map((i) => i[chartType])
       .some((data) => data !== 0)
@@ -60,8 +63,10 @@ const BandwidthMixChart: FC<{ chain: string; pid: string }> = ({
           'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
         formatter: function (param: { data: number; axisValue: string }[]) {
           if (chartType === 'bandwidth') {
-            const kbVal = param[0].data         
-            return `${param[0].axisValue} <br/> ${formatBandwidth(kbVal*1000)}`
+            const kbVal = param[0].data
+            return `${param[0].axisValue} <br/> ${formatBandwidth(
+              kbVal * 1000
+            )}`
           } else {
             return `${param[0].axisValue} <br/> ${param[0].data}`
           }

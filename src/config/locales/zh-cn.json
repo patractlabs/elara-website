@@ -1,6 +1,6 @@
 {
   "home": "首页",
-  "dashboard": "概览",
+  "dashboard": "看板",
   "contactUs": "联系我们",
   "Documentation": "API 文档",
 
@@ -8,6 +8,7 @@
   "bannerTitle2": "Elara向波卡开发者提供免费、即时和可扩展的区块链API接入服务，包括Polkadot、Kusama等",
   "bannerBtn": "开始免费使用",
   "Cumulative": "累计请求数",
+  "TotalBandwidth": "累计带宽",
 
   "Product": "服务优势",
   "Easy": "简单易用",
@@ -26,13 +27,12 @@
   "AllNetworks1": "",
   "1000000requests": "每个账户每天 ",
   "1000000requests1": "1,000,000 次请求 ",
-  "10projects": "10 个项目",
   "Direct": "直接客户支持",
   "NeedMore": "需要更多的服务？",
   "YouCan": "您可以通过以下渠道联系我们，我们将为您提供定制方案",
   "No Data": "暂无数据",
   "We provide you": "我们为您提供",
-  "10 Projects": "10 个免费项目",
+  "Projects": "个免费项目",
   "All networks in the Polkadot ecosystem": "波卡生态所有网络",
   "Public API Access Service for Polkadot Ecosystem": "波卡生态的公共API接入服务",
   "Contact & Subscription": "联系和订阅",
@@ -78,6 +78,7 @@
   },
 
   "Details": {
+    "Refresh": "刷新",
     "Request": "请求数",
     "Country": "国家",
     "OfTotal": "占比",
@@ -90,7 +91,6 @@
     "Requests": "请求数据",
     "Settings": "设置",
     "NotSet": "未设置",
-    "Requests Today": "今日请求数",
     "WeekRequests": "周请求数统计",
     "WeekBandwidth": "周带宽统计",
     "Creation Time": "创建时间",
@@ -101,6 +101,7 @@
     "maxChar": "16个字符内",
     "projectName": "项目名称",
     "rateLimitLabel": "每秒请求数上限",
+    "bandwidthLimitLabel": "每日带宽上限",
     "dailyTotalReqLable": "每日请求总数上限",
     "invalidLimitReqs": "无效/限速 请求数",
     "Method": "方法",
@@ -140,7 +141,19 @@
     "copy": "点击复制到剪切板",
     "copied": "已复制",
     "invalidName": "请输入4-16个英文字符",
-    "invalidNumber": "请输入数字"
+    "invalidNumber": "请输入数字",
+    "MaxNum": "Elara为开发者提供10个免费项目，如果你需要定制，请联系我们",
+    "MaxBandwidth": "每天的带宽限制为10GB",
+    "GetLastestData": "获取最新数据",
+    "RequestNumTip": "可在“设置”页自定义每日请求上限",
+    "BandwidthNumTip": "可在“设置”页自定义每日带宽上限",
+    "EmptyConclusion": "Elara向波卡开发者提供免费、即时和可扩展的区块链API接入服务",
+    "EmptyUsageTitle": "开始使用",
+    "EmptyParagraph1": "1. 点击“新建项目”",
+    "EmptyParagraph2": "2. 输入项目名称，选择链的类型",
+    "EmptyParagraph3": "3. 复制Endpoint链接，发送API请求",
+    "EmptyParagraph4": "4. 在 项目的“请求数据”页面查看统计信息",
+    "EmptyParagraph5": "5. 在 项目的“设置”页面修改项目限制"
   },
 
   "modal": {

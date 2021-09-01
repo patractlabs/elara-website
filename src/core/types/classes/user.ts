@@ -4,4 +4,5 @@ export class User {
   level: string
   maxProjectNum: number
   projectNum: number
+  bwDayLimit: number
 }

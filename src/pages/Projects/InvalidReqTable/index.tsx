@@ -6,10 +6,12 @@ import Pagination from '../../../shared/components/Pagination'
 import { InvalidTableDataExt } from '../../../core/types/classes/project'
 import { apiFetchProjectErrorStatics } from '../../../core/data/api'
 
-const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
-  const { chain, pid } = props
-    const [invalidData, setInvalidData] = useState<InvalidTableDataExt>()
-    const { t } = useTranslation()
+const InvalidReqTable: FC<{ chain: string; pid: string; timestamp: number }> = (
+  props
+) => {
+  const { chain, pid, timestamp } = props
+  const [invalidData, setInvalidData] = useState<InvalidTableDataExt>()
+  const { t } = useTranslation()
 
   const changeProjectErrorStatics = useCallback(
     (page: number, size: number) => {
@@ -19,7 +21,7 @@ const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
         chain,
         pid,
       }).then((res) => {
-          setInvalidData(res) 
+        setInvalidData(res)
       })
     },
     [chain, pid]
@@ -27,7 +29,7 @@ const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
 
   useEffect(() => {
     changeProjectErrorStatics(0, 10)
-  }, [changeProjectErrorStatics])
+  }, [changeProjectErrorStatics, timestamp])
 
   return (
     <div className="stat-card">
@@ -39,7 +41,9 @@ const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
           <Table
             rowKey={(data) => data.time}
             dataSource={invalidData?.list}
-            scroll={{ y: 330 }}
+            scroll={{
+              y: 330,
+            }}
             columns={[
               {
                 title: t('Details.Method'),
@@ -68,7 +72,7 @@ const InvalidReqTable: FC<{ chain: string; pid: string }> = (props) => {
             <Pagination
               total={invalidData.total}
               onChange={(page, pageSize) => {
-                changeProjectErrorStatics(page-1, pageSize)
+                changeProjectErrorStatics(page - 1, pageSize)
               }}
             />
           )}

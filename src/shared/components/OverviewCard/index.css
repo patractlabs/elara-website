@@ -12,10 +12,12 @@
   margin-right: 0;
 }
 
-.summary-card > span {
-  display: block;
+.summary-card > .title {
+  display: flex;
   padding: 20px 0 12px;
   color: #616460;
+  align-items: flex-start;
+  justify-content: flex-start;
   line-height: 16px;
   font-size: 12px;
 }

@@ -10,9 +10,7 @@ import {
 import { Menu } from '../types/classes/chain'
 import { httpPost, httpGet } from './http'
 import { API_DOMAIN } from '../../config/origin'
-import {
-  StatT,
-} from '../types/classes/stat'
+import { StatT } from '../types/classes/stat'
 import axios from 'axios'
 
 /**
@@ -26,7 +24,7 @@ export const apiLogin = async (): Promise<User> => {
       name: string
       status: string
       level: string
-      limit: { projectNum: number }
+      limit: { projectNum: number; bwDayLimit: number }
     }
   }>(`${API_DOMAIN}/auth/login`)
 
@@ -36,6 +34,7 @@ export const apiLogin = async (): Promise<User> => {
     level: res.user.level,
     maxProjectNum: res.user.limit.projectNum,
     projectNum: res.projectNum,
+    bwDayLimit: res.user.limit.bwDayLimit,
   }
 }
 
@@ -52,28 +51,27 @@ export const apiCreateProject = async (data: ProjectCreatDto) =>
   await httpPost<Project>(`${API_DOMAIN}/project/create`, data)
 
 /**
- * project delete 
+ * project delete
  */
-export const apiDelProject = async (data: {
-  id: string
-}) => await httpPost<unknown>(`${API_DOMAIN}/project/delete`, data)
+export const apiDelProject = async (data: { id: string }) =>
+  await httpPost<unknown>(`${API_DOMAIN}/project/delete`, data)
 
 /**
  * total requests on homepage
  */
 export const apiGetTotalStatics = async () =>
-  await httpGet<{ bindwidth: number; request: number }>(
+  await httpGet<{ bandwidth: number; request: number }>(
     `${API_DOMAIN}/public/stat`
   )
 
 /**
- * requests by recent 30 days 
+ * requests by recent 30 days
  */
 export const apiGetLast30DaysRequests = async () =>
-  await httpPost<{ stats: { request: number; bandwidth: number }[]; timeline: string[] }>(
-    `${API_DOMAIN}/public/days`,
-    { days: 30 }
-  )
+  await httpPost<{
+    stats: { request: number; bandwidth: number }[]
+    timeline: string[]
+  }>(`${API_DOMAIN}/public/days`, { days: 30 })
 
 /**
  * 控制台菜单数据
@@ -143,11 +141,11 @@ export const apiFetchCountry = async (data: {
   page: number
   chain: string
   pid: string
-}) =>  await httpPost<CountryTableDataExt>(
+}) =>
+  await httpPost<CountryTableDataExt>(
     `${API_DOMAIN}/stat/project/country`,
     data
   )
-
 
 /**
  * project name 更新
@@ -164,8 +162,8 @@ export const apiUpdateProjectName = async (data: {
  */
 export const apiUpdateProjectLimit = async (data: {
   id: string
-  reqSecLimit: number
   reqDayLimit: number
+  bwDayLimit: number
 }) => await httpPost<unknown>(`${API_DOMAIN}/project/update/limit`, data)
 
 /**

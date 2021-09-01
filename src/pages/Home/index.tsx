@@ -24,53 +24,16 @@ import { Countup } from '../../shared/components/Countup'
 
 const imgList = [img1, img2, img3, img4, img5, img6, img7, img8]
 
-const requestOption: any = {
-  xAxis: {
-    type: 'category',
-    data: [],
-    axisTick: {
-      alignWithLabel: true,
-    },
-  },
-  yAxis: {
-    type: 'value',
-  },
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'cross',
-      label: {
-        backgroundColor: '#283b56',
-        precision: 0,
-      },
-    },
-    textStyle: {
-      color: '#616460',
-      fontSize: 12,
-      textBorderWidth: 2,
-      fontWeight: 'bolder',
-    },
-    extraCssText:
-      'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
-  },
-  series: [
-    {
-      data: [],
-      type: 'bar',
-      itemStyle: {
-        color: '#14B071',
-      },
-    },
-  ],
-}
-
 const Home: React.FC = (): ReactElement => {
   const [isLoginModalVisible, setLoginModalVisible] = useState(false)
-  const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState({ request: 0, bandwidth: 0 })
   const [loaded, setLoaded] = useState<boolean>(false)
+  const [chartType, setChartType] = useState<'request' | 'bandwidth'>(
+    'bandwidth'
+  )
   const requestsEchart = useRef<HTMLDivElement>(null)
   const history = useHistory()
-  const { isLogged, homeHeight } = useApi()
+  const { isLogged, user, homeHeight } = useApi()
   const { t, i18n } = useTranslation()
   const carousel = useRef<any>(null)
 
@@ -87,22 +50,86 @@ const Home: React.FC = (): ReactElement => {
 
   useEffect(() => {
     setLoaded(true)
-    apiGetTotalStatics().then((data) => setTotal(data.request))
+    apiGetTotalStatics().then((data) => {
+      setTotal(data)
+    })
     const timer = setInterval(() => {
-      apiGetTotalStatics().then((data) => setTotal(data.request))
+      apiGetTotalStatics().then((data) => setTotal(data))
     }, 1200)
     return () => clearInterval(timer)
   }, [])
 
   useEffect(() => {
     apiGetLast30DaysRequests().then((res) => {
-      requestOption.xAxis.data = res.timeline.map((i) => i.slice(5)).reverse()
-      requestOption.series[0].data = res.stats.map((i) => i.request).reverse()
+      const requestOption: any = {
+        xAxis: {
+          type: 'category',
+          data: res.timeline.map((i) => i.slice(5)).reverse(),
+          axisTick: {
+            alignWithLabel: true,
+          },
+        },
+        yAxis: {
+          type: 'value',
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            label: {
+              backgroundColor: '#283b56',
+              precision: 0,
+            },
+          },
+          textStyle: {
+            color: '#616460',
+            fontSize: 12,
+            textBorderWidth: 2,
+            fontWeight: 'bolder',
+          },
+          formatter: function (data: { value: number }[]) {
+            if (chartType === 'request') return data[0].value + ''
+            return data[0].value.toFixed(2) + ' MB'
+          },
+          extraCssText:
+            'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
+        },
+        grid: {
+          right: '100',
+          left: '100',
+          bottom: '20',
+        },
+        series: [
+          {
+            data: res.stats
+              .map((i) => {
+                if (chartType === 'request') return i[chartType]
+                return i[chartType] / 1000000
+              })
+              .reverse(),
+            type: 'bar',
+            itemStyle: {
+              color: '#14B071',
+            },
+          },
+        ],
+      }
+      // requestOption.xAxis.data = res.timeline.map((i) => i.slice(5)).reverse()
+      // requestOption.series[0].data = res.stats
+      //   .map((i) => {
+      //     if (chartType === 'request') return i[chartType]
+      //     return i[chartType] / 1000000
+      //   })
+      //   .reverse()
 
+      // requestOption.tooltip.formatter = function (data: { value: number }[]) {
+      //   if (chartType === 'request') return data[0].value
+      //   return data[0].value.toFixed(2) + ' MB'
+      // }
       const chart = echarts.init(requestsEchart.current!)
       chart.setOption(requestOption)
     })
-  }, [])
+  }, [chartType])
 
   useEffect(() => {
     if (!carousel.current) {
@@ -143,13 +170,46 @@ const Home: React.FC = (): ReactElement => {
               : 'banner-img banner-img2'
           }
         ></div>
-
+        <div className="countup-contanier">
+          <div
+            className="countup-section"
+            onClick={() => setChartType('bandwidth')}
+          >
+            <span
+              className={`countup-title ${
+                chartType === 'bandwidth' ? 'active' : ''
+              }`}
+            >
+              {t('TotalBandwidth')}
+            </span>
+            <span className="countup">
+              <Countup
+                number={Math.floor(total.bandwidth / (1024 * 1024 * 1024))}
+              />
+              G
+            </span>
+          </div>
+          <div
+            className="countup-section"
+            onClick={() => setChartType('request')}
+          >
+            <span
+              className={`countup-title ${
+                chartType === 'request' ? 'active' : ''
+              }`}
+            >
+              {t('Cumulative')}
+            </span>
+            <span className="countup">
+              <Countup number={total.request} />
+            </span>
+          </div>
+        </div>
         <div className="banner-center-holder">
-          <span className="countup-title">{t('Cumulative')}</span>
-          <span className="countup">
-            <Countup number={total} />
-          </span>
-          <div ref={requestsEchart} style={{ width: '60%', height: '355px' }} />
+          <div
+            ref={requestsEchart}
+            style={{ width: '900px', height: '355px' }}
+          />
           <div className="active-btn" onClick={gotoDashboard}>
             {t('bannerBtn')}
           </div>
@@ -208,17 +268,22 @@ const Home: React.FC = (): ReactElement => {
                   {i18n.language === Language.zh && (
                     <p className="product-tip">每天每个账户</p>
                   )}
-                  <p className="product-text">1,000 MB</p>
+                  <p className="product-text">
+                    {user.bwDayLimit / 1000000000} G
+                  </p>
                   <p className="product-tip">
                     {i18n.language === Language.zh
                       ? '高速带宽'
-                      : 'High speed bandwidth for every account every day'}
+                      : 'Bandwidth for every account every day'}
                   </p>
                 </div>
               </div>
               <div>
                 <div className="autoplay-content">
-                  <p className="product-text">{t('10 Projects')}</p>
+                  <p className="product-text">
+                    {user.maxProjectNum}
+                    {t('Projects')}
+                  </p>
                 </div>
               </div>
             </Carousel>

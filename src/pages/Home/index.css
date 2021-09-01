@@ -8,7 +8,7 @@
 .Home_banner {
   position: relative;
   width: 100%;
-  background: #FFFFFF;
+  background: #ffffff;
   overflow: hidden;
 }
 .banner-img {
@@ -19,40 +19,40 @@
   width: 300px;
 }
 .banner-img1 {
-  background-image: url("../../assets/banner-img1.png");
+  background-image: url('../../assets/banner-img1.png');
   top: 0px;
   right: -300px;
   height: 265px;
 }
 .banner-img1-animation {
   animation: rightEnter;
-  animation-duration:  1.2s;
+  animation-duration: 1.2s;
   animation-delay: 0s;
   animation-fill-mode: forwards;
 }
 .banner-img2 {
   bottom: 0px;
   left: -300px;
-  background-image: url("../../assets/banner-img2.png");
+  background-image: url('../../assets/banner-img2.png');
   width: 220px;
   height: 220px;
   background-size: cover;
 }
 .banner-img2-animation {
   animation: leftEnter;
-  animation-duration:  1.2s;
+  animation-duration: 1.2s;
   animation-delay: 0s;
   animation-fill-mode: forwards;
 }
 .banner-title-holder {
   z-index: 200;
   position: relative;
-  background-image: url("../../assets/banner-bg.svg");
-  height: 300px;
+  background-image: url('../../assets/banner-bg.svg');
   background-size: 100% 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 40px;
 }
 
 .banner_title1 {
@@ -78,19 +78,45 @@
   flex-direction: column;
   align-items: center;
 }
+
+.countup-contanier {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countup-contanier .countup-section {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 66px;
+}
+
 .countup-title {
   height: 24px;
-  color: #949593;
   font-size: 16px;
-  margin-bottom: 10px;
+  font-weight: 400;
+  text-align: right;
+  color: #7c7e7c;
   line-height: 24px;
 }
+
+.countup-title.active {
+  border-bottom: 2px solid #14b071;
+}
+
 .countup {
   font-family: WorkSans;
   font-weight: bold;
-  font-size: 40px;
-  color: #2A292B;
+  color: #2a292b;
   letter-spacing: 6px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
 }
 .active-btn {
   user-select: none;
@@ -100,8 +126,8 @@
   display: inline-flex;
   width: 176px;
   height: 56px;
-  margin-bottom: 30px;
-  background: #14B071;
+  margin: 40px 0 30px;
+  background: #14b071;
   border-radius: 28px;
   color: white;
   font-weight: 600;
@@ -109,11 +135,11 @@
 }
 .active-btn:hover {
   background: white;
-  border: 1px solid #14B071;
-  color: #14B071;
+  border: 1px solid #14b071;
+  color: #14b071;
 }
 .advantage-holder {
-  background: #EFEFEF;
+  background: #efefef;
   padding: 100px 0px;
 }
 .advantage-row {
@@ -141,7 +167,7 @@
   margin: 20px 0px;
   font-size: 18px;
   font-weight: 600;
-  color: #14B071;
+  color: #14b071;
   line-height: 24px;
   height: 24px;
 }
@@ -151,7 +177,7 @@
   flex-direction: column;
   align-items: center;
   height: 796px;
-  background: linear-gradient(270deg, #1AB174 0%, #118A68 100%);
+  background: linear-gradient(270deg, #1ab174 0%, #118a68 100%);
 }
 .product h2 {
   height: 68px;
@@ -170,17 +196,18 @@
   position: relative;
   justify-content: space-between;
 }
-.product-left, .product-right {
+.product-left,
+.product-right {
   background-size: 240% 100%;
   width: 265px;
   height: 100%;
 }
 .product-left {
-  background-image: url("../../assets/bg-left.svg");
+  background-image: url('../../assets/bg-left.svg');
   transform: scaleX(-1);
 }
 .product-right {
-  background-image: url("../../assets/bg-right.svg");
+  background-image: url('../../assets/bg-right.svg');
 }
 .autoplay-content {
   display: flex;
@@ -192,7 +219,7 @@
 
 .all-chain {
   text-align: center;
-  background-image: url("../../assets/all-chain.webp");
+  background-image: url('../../assets/all-chain.webp');
   background-size: 100% 100%;
   width: 588px;
   height: 304px;
@@ -211,7 +238,7 @@
 .product-tip {
   font-size: 20px;
   font-weight: 400;
-  color: #DEF4EC;
+  color: #def4ec;
 }
 .product-text {
   font-family: WorkSans;
@@ -221,7 +248,7 @@
   line-height: 80px;
   height: 80px;
   font-size: 80px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 700;
 }
 .black-btn {
@@ -233,13 +260,13 @@
   width: 176px;
   height: 56px;
   line-height: 56px;
-  background: #2A292B;
+  background: #2a292b;
   border-radius: 28px;
   font-size: 16px;
   font-weight: 600;
 }
 .black-btn:hover {
   background: white;
-  color: #14B071;
+  color: #14b071;
   /* border: 1px solid #2A292B; */
 }

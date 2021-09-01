@@ -14,8 +14,9 @@ export class Project {
   bw: number
   delay: number
   inReqCnt: number
-  reqSecLimit: string
-  reqDayLimit: string
+  reqSecLimit: number
+  reqDayLimit: number
+  bwDayLimit: number
 }
 export interface RangeChartData {
   timeline: string[]
@@ -53,7 +54,10 @@ export interface CountryTableDataExt {
 
 export interface CallMethodsData {
   total: number
-  list: {method: string, value: number}[]
+  list: { method: string; value: number }[]
 }
 
-export type CallMethodsDataExt = Record<keyof typeof RequestType, CallMethodsData>
+export type CallMethodsDataExt = Record<
+  keyof typeof RequestType,
+  CallMethodsData
+>

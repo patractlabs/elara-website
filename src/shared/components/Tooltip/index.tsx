@@ -3,8 +3,9 @@ import { FC } from 'react'
 
 import './index.css'
 
-const StyledTooltip: FC<{ title: string } & TooltipProps> = ({
+const StyledTooltip: FC<{ title: string; bg?: boolean } & TooltipProps> = ({
   children,
+  bg = true,
   title,
   ...rest
 }) => {
@@ -12,7 +13,7 @@ const StyledTooltip: FC<{ title: string } & TooltipProps> = ({
     <Tooltip
       placement="top"
       title={title}
-      className="tooltip-body"
+      className={`${bg ? `tooltip-bg` : ''} tooltip-body`}
       overlayInnerStyle={{
         height: '28px',
         lineHeight: '16px',

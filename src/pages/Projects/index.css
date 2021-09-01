@@ -19,10 +19,9 @@
 .project-empty {
   width: 100%;
   min-height: 560px;
-  position: relative;
-  top: -12px;
   border-radius: 12px;
   background: #fff;
+  padding: 20px;
 }
 
 .projects-tabs > .tab-item {
@@ -105,6 +104,7 @@
 }
 
 .projects .view-switch {
+  position: relative;
   height: 32px;
   line-height: 32px;
   font-size: 24px;
@@ -129,6 +129,29 @@
 
 .projects .view-switch > div.active:active {
   color: #0e8756;
+}
+
+.projects .view-switch .project-refresh-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 16px 0 36px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3f3f3f;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  background: url('../../assets/replay_circle_filled_black.svg') no-repeat left
+    10px center;
+  background-color: #efefef;
+}
+
+.projects .view-switch .project-refresh-btn:active {
+  background-color: #dddddd;
 }
 
 .request-section .category {
@@ -229,6 +252,11 @@
   color: #7c7e7c;
 }
 
+.request-section .api > .api-info > .value > .tooltip-body {
+  padding: 0 10px;
+  left: -10px;
+}
+
 .req-bandwidth-chart {
   padding: 20px;
 }
@@ -309,7 +337,8 @@
   float: right;
   vertical-align: middle;
   position: absolute;
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 16px;
   margin: auto;
   display: flex;
@@ -344,6 +373,11 @@
 
 .elara-table .ant-table-row {
   height: 32px;
+}
+
+.elara-table .ant-table-tbody,
+.elara-table .ant-table-tbody > tr > td:hover {
+  background: #f9f9f9;
 }
 
 .elara-table .ant-table-tbody > tr > td,

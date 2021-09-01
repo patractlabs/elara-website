@@ -4,11 +4,11 @@ import TooltipIcon from '../../../assets/tooltip.svg'
 import EditIcon from '../../../assets/edit-icon.svg'
 import ConfirmIcon from '../../../assets/confirm-icon.svg'
 
-export type IRefReturnType = { readonly value: string }
+export type IRefReturnType = { readonly value: string | number }
 
 interface ISettingField {
   label: string
-  defaultValue: string
+  defaultValue: string | number
   placeholder?: string
   tooltip?: string
   type?: 'number'

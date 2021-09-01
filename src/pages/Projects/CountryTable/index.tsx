@@ -6,8 +6,10 @@ import Pagination from '../../../shared/components/Pagination'
 import { CountryTableDataExt } from '../../../core/types/classes/project'
 import { apiFetchCountry } from '../../../core/data/api'
 
-const CountryTable: FC<{ chain: string; pid: string }> = (props) => {
-  const { chain, pid } = props
+const CountryTable: FC<{ chain: string; pid: string; timestamp: number }> = (
+  props
+) => {
+  const { chain, pid, timestamp } = props
   const [countryData, setCountryData] = useState<CountryTableDataExt>()
   const { t } = useTranslation()
 
@@ -27,7 +29,7 @@ const CountryTable: FC<{ chain: string; pid: string }> = (props) => {
 
   useEffect(() => {
     changeCountryStatics(0, 10)
-  }, [changeCountryStatics])
+  }, [changeCountryStatics, timestamp])
 
   return (
     <div className="stat-card">
