@@ -146,7 +146,7 @@ const Header: React.FC = () => {
                   setLoginModalVisible(true)
                 }
               }}
-              to="/dashboard/summary"
+              to="/dashboard"
               activeStyle={{
                 color: '#14B071',
               }}

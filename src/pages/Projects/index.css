@@ -242,9 +242,11 @@
 }
 
 .request-section .api > .api-info > .title {
-  font-weight: 700;
+  font-weight: bolder;
   color: #3f3f3f;
   padding-bottom: 8px;
+  font-size: 13px;
+  font-family: WorkSans, WorkSans-Bold;
 }
 
 .request-section .api > .api-info > .value {
