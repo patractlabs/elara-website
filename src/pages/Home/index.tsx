@@ -89,7 +89,7 @@ const Home: React.FC = (): ReactElement => {
           },
           formatter: function (data: { value: number }[]) {
             if (chartType === 'request') return data[0].value + ''
-            return data[0].value.toFixed(2) + ' MB'
+            return data[0].value.toFixed(2) + ' GB'
           },
           extraCssText:
             'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
@@ -104,7 +104,7 @@ const Home: React.FC = (): ReactElement => {
             data: res.stats
               .map((i) => {
                 if (chartType === 'request') return i[chartType]
-                return i[chartType] / 1000000
+                return i[chartType] / Math.pow(1024, 3)
               })
               .reverse(),
             type: 'bar',
@@ -184,9 +184,9 @@ const Home: React.FC = (): ReactElement => {
             </span>
             <span className="countup">
               <Countup
-                number={Math.floor(total.bandwidth / (1024 * 1024 * 1024))}
+                number={Math.floor(total.bandwidth / Math.pow(1024, 3))}
               />
-              G
+              GB
             </span>
           </div>
           <div
@@ -269,7 +269,7 @@ const Home: React.FC = (): ReactElement => {
                     <p className="product-tip">每天每个账户</p>
                   )}
                   <p className="product-text">
-                    {user.bwDayLimit / 1000000000} G
+                    {Math.floor(user.bwDayLimit / Math.pow(1000, 3))} GB
                   </p>
                   <p className="product-tip">
                     {i18n.language === Language.zh

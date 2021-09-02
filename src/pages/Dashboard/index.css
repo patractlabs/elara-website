@@ -5,6 +5,7 @@
   display: flex;
 }
 .sider {
+  min-width: 260px;
   width: 260px;
   float: left;
   margin-right: 20px;
@@ -37,8 +38,15 @@
   margin-right: 16px;
 }
 .sider .project-list {
-  /* background-color: white; */
+  display: none;
+  overflow: hidden;
 }
+
+.sider .project-list.active {
+  display: block;
+  transition: height 2s;
+}
+
 .sider .project-item {
   position: relative;
   cursor: pointer;
@@ -64,7 +72,7 @@
   border-radius: 50%;
 }
 
-.sider .project-item.suspend::before {
+.sider .project-item.inactive::before {
   content: '';
   position: absolute;
   top: 18px;
@@ -88,11 +96,15 @@
   border-radius: 22px;
   font-weight: bold;
 }
+
 .sider .project-item:hover {
   transform: scale(1.1);
-  border-radius: 22px;
   transition: all 0.2s;
 }
+.sider .project-item-active:hover {
+  transform: scale(1);
+}
+
 .sider .project-item img {
   height: 25px;
   width: 25px;

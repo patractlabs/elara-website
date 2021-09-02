@@ -26,6 +26,7 @@ import Tooltip from '../../shared/components/Tooltip'
 import { DashboardContext } from '../../core/context/dashboard-context'
 import './index.css'
 import EmptyByDesc from '../../shared/components/EmptyByDesc'
+import PageLoading from '../../shared/components/PageLoading'
 
 const Projects: FC<{}> = () => {
   const location = useLocation<{ pid: string }>()
@@ -84,10 +85,11 @@ const Projects: FC<{}> = () => {
       () => {
         message.success(t('tip.updated'))
         updatePageData()
+        updateMenu()
         // 更新页面数据
       },
       (res) => {
-        message.success(t('tip.fail'))
+        message.error(t('tip.fail'))
         return res.msg
       }
     )
@@ -125,10 +127,11 @@ const Projects: FC<{}> = () => {
       const idx = projectInfo.findIndex((i) => i.pid === location.state.pid)
       setTabNum(idx)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projectInfo.length, location.state])
+  }, [projectInfo, location.state])
 
-  return loading ? null : (
+  return loading ? (
+    <PageLoading />
+  ) : (
     <div className="projects">
       {projectInfo.length > 0 && (
         <>
@@ -200,6 +203,11 @@ const Projects: FC<{}> = () => {
             <div className="request-section">
               <div className="category">
                 <OverviewCard
+                  percentageData={{
+                    used: projectInfo[tabNum]?.reqCnt,
+                    limit: projectInfo[tabNum].reqDayLimit,
+                    onlyPercentage: false,
+                  }}
                   title={
                     <>
                       {t('summary.dailyReq')}
@@ -222,6 +230,11 @@ const Projects: FC<{}> = () => {
                   {projectInfo[tabNum]?.reqCnt}
                 </OverviewCard>
                 <OverviewCard
+                  percentageData={{
+                    used: projectInfo[tabNum]?.bw,
+                    limit: projectInfo[tabNum].bwDayLimit,
+                    onlyPercentage: true,
+                  }}
                   title={
                     <>
                       {t('summary.dailyBandwidth')}

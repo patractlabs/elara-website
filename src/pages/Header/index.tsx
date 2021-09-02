@@ -141,6 +141,11 @@ const Header: React.FC = () => {
           </li>
           <li>
             <NavLink
+              onClick={() => {
+                if (!isLogged) {
+                  setLoginModalVisible(true)
+                }
+              }}
               to="/dashboard/summary"
               activeStyle={{
                 color: '#14B071',

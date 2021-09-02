@@ -1,5 +1,5 @@
 import './index.css'
-import React, {
+import {
   useEffect,
   useMemo,
   useContext,
@@ -7,7 +7,14 @@ import React, {
   ReactElement,
   Fragment,
 } from 'react'
-import { Switch, Route, useHistory, useLocation, Link } from 'react-router-dom'
+import {
+  Switch,
+  Route,
+  useHistory,
+  useLocation,
+  Link,
+  Redirect,
+} from 'react-router-dom'
 import Projects from '../Projects'
 import Summary from '../Summary'
 import { ChainName } from '../../core/enum'
@@ -29,7 +36,7 @@ const CollapsedChains: FC<{
   const location = useLocation()
   const history = useHistory()
   const { t } = useTranslation()
-  const { collapse, setCollapse } = useContext(DashboardContext)
+  const { collapse, toggleCollapse } = useContext(DashboardContext)
 
   const choosedChain = useMemo(() => {
     const paths = location.pathname.split('/')
@@ -42,16 +49,6 @@ const CollapsedChains: FC<{
     return chainName
   }, [location.pathname])
 
-  const toggleCollapse = () => {
-    const idx = collapse.indexOf(type)
-    if (idx > -1) {
-      collapse.splice(idx, 1)
-    } else {
-      collapse.push(type)
-    }
-    setCollapse(collapse.slice())
-  }
-
   const renderIcon = () => {
     const Icons = subMenuMap[type].icon
     return <Icons collapse={collapse.indexOf(type) < 0} />
@@ -59,7 +56,7 @@ const CollapsedChains: FC<{
 
   return (
     <Fragment>
-      <div className="chain-type" onClick={toggleCollapse}>
+      <div className="chain-type" onClick={() => toggleCollapse(type)}>
         <div className="chain-type-title">
           {renderIcon()}
           <span
@@ -78,41 +75,35 @@ const CollapsedChains: FC<{
             }}
           />
         </div>
-        {collapse.indexOf(type) > -1 && (
-          <ul className="project-list">
-            {chains.map((chain) => (
-              <li
-                key={chain.name}
-                className={`
+        <ul
+          className={`project-list ${
+            collapse.indexOf(type) > -1 ? 'active' : ''
+          }`}
+        >
+          {chains.map((chain) => (
+            <li
+              key={chain.name}
+              className={`
               project-item
               ${choosedChain === chain.name ? 'project-item-active' : ''}
               ${chain.status}
               `}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  // 请求数据
-                  history.push(`/dashboard/projects/${chain.name}/`)
-                }}
-              >
-                <img src={chainIconMap[chain.name]} alt="" />
-                <div className="project-item-main">
-                  <span>{chain.name}</span>
-                  {!!chain.count && (
-                    <div
-                      className={
-                        choosedChain === chain.name
-                          ? 'project-counts project-counts-active'
-                          : 'project-counts project-counts-default'
-                      }
-                    >
-                      {chain.count}
-                    </div>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+              onClick={(e) => {
+                e.stopPropagation()
+                // 请求数据
+                history.push(`/dashboard/projects/${chain.name}/`)
+              }}
+            >
+              <img src={chainIconMap[chain.name]} alt="" />
+              <div className="project-item-main">
+                <span>{chain.name}</span>
+                {!!chain.count && (
+                  <span className="project-counts">{chain.count}</span>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </Fragment>
   )
@@ -173,6 +164,7 @@ const Dashboard: FC = (): ReactElement => {
         <Switch>
           <Route path="/dashboard/projects/:chain" component={Projects}></Route>
           <Route path="/dashboard/summary" component={Summary}></Route>
+          <Redirect to="/dashboard/summary" />
         </Switch>
       </div>
     </div>

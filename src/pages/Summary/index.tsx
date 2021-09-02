@@ -17,6 +17,7 @@ import { chainIconMap } from '../../core/types/classes/chain'
 import MoreSvg from '../../assets/arrow_forward.svg'
 import TooltipIcon from '../../assets/tooltip.svg'
 import Tooltip from '../../shared/components/Tooltip'
+import PageLoading from '../../shared/components/PageLoading'
 
 import './index.css'
 import { formatTime, formatBandwidth } from '../../shared/utils'
@@ -30,6 +31,7 @@ const Summary: FC<{}> = () => {
   })
   const [projectList, setProjectList] = useState<Project[]>([])
   const [rowActive, setRowActive] = useState(-1)
+  const [loading, setloading] = useState(true)
   const { t } = useTranslation()
   const history = useHistory()
   const { user } = useApi()
@@ -37,6 +39,7 @@ const Summary: FC<{}> = () => {
   const updateProjetList = useCallback(() => {
     apiFetchProjectList(user.id).then((res) => {
       setProjectList(res)
+      setloading(false)
     })
   }, [user.id])
 
@@ -47,10 +50,17 @@ const Summary: FC<{}> = () => {
     updateProjetList()
   }, [user.id, updateProjetList])
 
-  return (
+  return !loading ? (
     <div className="summary">
       <div className="category">
-        <OverviewCard title={t('summary.dailyReq')}>
+        <OverviewCard
+          title={t('summary.dailyReq')}
+          percentageData={{
+            used: statics.reqCnt,
+            limit: user.reqDayLimit,
+            onlyPercentage: false,
+          }}
+        >
           {statics.reqCnt}
         </OverviewCard>
         <OverviewCard
@@ -71,6 +81,11 @@ const Summary: FC<{}> = () => {
               </Tooltip>
             </>
           }
+          percentageData={{
+            used: statics.bw,
+            limit: user.bwDayLimit,
+            onlyPercentage: true,
+          }}
         >
           {formatBandwidth(statics.bw)}
         </OverviewCard>
@@ -209,6 +224,8 @@ const Summary: FC<{}> = () => {
         />
       )}
     </div>
+  ) : (
+    <PageLoading />
   )
 }
 

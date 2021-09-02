@@ -1,8 +1,10 @@
 import { ProjectStatus, RequestType } from '../../enum'
+import { NetworkType } from './chain'
 // import {StatT} from './stat'
 
 export class Project {
   name: string
+  network: NetworkType
   createdAt: string
   team: string
   chain: string

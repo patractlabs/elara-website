@@ -24,7 +24,7 @@ export const apiLogin = async (): Promise<User> => {
       name: string
       status: string
       level: string
-      limit: { projectNum: number; bwDayLimit: number }
+      limit: { projectNum: number; bwDayLimit: number; reqDayLimit: number }
     }
   }>(`${API_DOMAIN}/auth/login`)
 
@@ -35,6 +35,7 @@ export const apiLogin = async (): Promise<User> => {
     maxProjectNum: res.user.limit.projectNum,
     projectNum: res.projectNum,
     bwDayLimit: res.user.limit.bwDayLimit,
+    reqDayLimit: res.user.limit.reqDayLimit,
   }
 }
 

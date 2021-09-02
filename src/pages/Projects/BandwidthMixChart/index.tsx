@@ -41,8 +41,6 @@ const BandwidthMixChart: FC<{
   }, [chain, pid, chartRange, timestamp])
 
   useEffect(() => {
-    console.log('render')
-
     const hasData = mixChartData.stats
       .map((i) => i[chartType])
       .some((data) => data !== 0)
