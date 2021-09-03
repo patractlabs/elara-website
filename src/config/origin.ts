@@ -9,10 +9,10 @@ if (process.env.REACT_APP_NODE_ENV === 'development') {
   ENDPOINTS_URL = 'https://test-elara2.patract.cn/api'
   WSS_ENDPOINTS_URL = 'wss://test-service.elara2.patract.cn'
 } else if (process.env.REACT_APP_NODE_ENV === 'pre-production') {
-  API_DOMAIN = 'https://test-elara2.patract.cn/api'
+  API_DOMAIN = 'https://test-pro.elara2.patract.cn/api'
 
-  ENDPOINTS_URL = 'https://test-service.elara2.patract.cn'
-  WSS_ENDPOINTS_URL = 'wss://test-service.elara2.patract.cn'
+  ENDPOINTS_URL = 'https://test-pro.service.elara2.patract.cn'
+  WSS_ENDPOINTS_URL = 'wss://test-pro.service.elara2.patract.cn'
 } else if (process.env.REACT_APP_NODE_ENV === 'production') {
   API_DOMAIN = 'https://elara2.patract.io/api'
 
