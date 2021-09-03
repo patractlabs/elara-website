@@ -70,15 +70,21 @@ const BandwidthMixChart: FC<{
       },
       xAxis: {
         axisLine: {
-          onZero: false,
-          symbolOffset: [20, 20],
+          lineStyle: {
+            color: '#C5C7C4',
+          },
         },
+        min: -1,
         type: 'category',
         data: mixChartData.timeline.slice().reverse(),
         axisTick: {
           alignWithLabel: true,
+          length: 8,
         },
         axisLabel: {
+          color: '#949593',
+          margin: 6,
+          lineHeight: 16,
           interArrival: 20,
           formatter: function (value: string) {
             if (chartRange === rangeEnum['24hours']) return value.slice(6)
@@ -103,7 +109,7 @@ const BandwidthMixChart: FC<{
         },
       },
       grid: {
-        right: '10',
+        right: '0',
         left: '5',
         bottom: '20',
       },
