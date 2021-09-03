@@ -6,7 +6,7 @@ import { apiFetchProjectStaticsOfRange } from '../../../core/data/api'
 import { RangeChartData } from '../../../core/types/classes/project'
 import { RequestType } from '../../../core/enum'
 import EmptySample from '../../../shared/components/EmptySample'
-import { formatBandwidth, formatSize } from '../../../shared/utils/index'
+import { formatSize } from '../../../shared/utils/index'
 
 enum rangeEnum {
   '24hours' = '24-hours',
