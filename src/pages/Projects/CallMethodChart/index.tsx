@@ -13,7 +13,7 @@ const CallMethodChart: FC<{ chain: string; pid: string; timestamp: number }> =
     const chartRef = useRef(null)
     const { t } = useTranslation()
     const [chartType, setChartType] =
-      useState<keyof typeof RequestType>('request')
+      useState<keyof typeof RequestType>('bandwidth')
     const [chartData, setChartData] = useState<CallMethodsDataExt>({
       request: { total: 0, list: [] },
       bandwidth: { total: 0, list: [] },
@@ -144,10 +144,10 @@ const CallMethodChart: FC<{ chain: string; pid: string; timestamp: number }> =
             }}
             value={chartType}
           >
-            <Radio value={RequestType.request}>{t('Details.Request')}</Radio>
             <Radio value={RequestType.bandwidth}>
               {t('Details.Bandwidth')}
             </Radio>
+            <Radio value={RequestType.request}>{t('Details.Request')}</Radio>
           </Radio.Group>
         </div>
         {chartData && chartData![chartType].list.length > 0 ? (

@@ -8,7 +8,7 @@ import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
 import TooltipIcon from '../../assets/tooltip.svg'
 import { useApi } from '../../core/hooks/useApi'
 import { Project } from '../../core/types/classes/project'
-import { formatTime, formatBandwidth } from '../../shared/utils'
+import { formatTime, formatSize } from '../../shared/utils'
 import {
   apiFetchProjectList,
   apiUpdateProjectName,
@@ -204,6 +204,34 @@ const Projects: FC<{}> = () => {
               <div className="category">
                 <OverviewCard
                   percentageData={{
+                    formatter: formatSize,
+                    used: projectInfo[tabNum]?.bw,
+                    limit: projectInfo[tabNum].bwDayLimit,
+                    onlyPercentage: false,
+                  }}
+                  title={
+                    <>
+                      {t('summary.dailyBandwidth')}
+                      <Tooltip title={t('tip.BandwidthNumTip')} bg={false}>
+                        <img
+                          src={TooltipIcon}
+                          alt="info"
+                          style={{
+                            width: '16px',
+                            height: '16px',
+                            marginLeft: '4px',
+                            cursor: 'pointer',
+                            verticalAlign: 'middle',
+                          }}
+                        />
+                      </Tooltip>
+                    </>
+                  }
+                >
+                  {formatSize(projectInfo[tabNum]?.bw)}
+                </OverviewCard>
+                <OverviewCard
+                  percentageData={{
                     used: projectInfo[tabNum]?.reqCnt,
                     limit: projectInfo[tabNum].reqDayLimit,
                     onlyPercentage: false,
@@ -228,33 +256,6 @@ const Projects: FC<{}> = () => {
                   }
                 >
                   {projectInfo[tabNum]?.reqCnt}
-                </OverviewCard>
-                <OverviewCard
-                  percentageData={{
-                    used: projectInfo[tabNum]?.bw,
-                    limit: projectInfo[tabNum].bwDayLimit,
-                    onlyPercentage: true,
-                  }}
-                  title={
-                    <>
-                      {t('summary.dailyBandwidth')}
-                      <Tooltip title={t('tip.BandwidthNumTip')} bg={false}>
-                        <img
-                          src={TooltipIcon}
-                          alt="info"
-                          style={{
-                            width: '16px',
-                            height: '16px',
-                            marginLeft: '4px',
-                            cursor: 'pointer',
-                            verticalAlign: 'middle',
-                          }}
-                        />
-                      </Tooltip>
-                    </>
-                  }
-                >
-                  {formatBandwidth(projectInfo[tabNum]?.bw)}
                 </OverviewCard>
                 <OverviewCard title={t('summary.AvgResTime')}>
                   {projectInfo[tabNum]?.delay} ms

@@ -86,7 +86,7 @@
     "Bandwidth": "Bandwidth",
     "Hrs": "Hrs",
     "Days": "Days",
-    "RequestAndBandwidth": "Requests / Bandwidth Statistics",
+    "RequestAndBandwidth": "Bandwidth / Requests Statistics",
     "TopCall": "Call Method Statistics",
     "Last30days": "Last 30 Days",
     "Requests": "Requests",
@@ -102,7 +102,7 @@
     "maxChar": "Within 16 characters",
     "projectName": "Project Name",
     "rateLimitLabel": "Per Second Requests Rate-Limiting",
-    "bandwidthLimitLabel": "Per Day Total Bandwidth",
+    "bandwidthLimitLabel": "Per Day Total Bandwidth (byte)",
     "dailyTotalReqLable": "Per Day Total Requests",
     "invalidLimitReqs": "Recent Invalid / Rate Limited Requests",
     "Method": "Method",
@@ -154,7 +154,9 @@
     "EmptyParagraph2": "2. Enter the project name and select the type of chain",
     "EmptyParagraph3": "3. Copy the endpoint link and send the API request",
     "EmptyParagraph4": "4. View statistics on the \"Requests\" page of the project",
-    "EmptyParagraph5": "5. Modify project restrictions on the \"Settings\" page of the project"
+    "EmptyParagraph5": "5. Modify project restrictions on the \"Settings\" page of the project",
+    "PublicEndpointDoc": "You can also use the <strong>public API</strong> provided by us without creating an account, but it will be subject to a bandwidth limit of <strong>50MB/s</strong> (shared by everyone).<br/>",
+    "APIDoc": "Check the details"
   },
 
   "modal": {

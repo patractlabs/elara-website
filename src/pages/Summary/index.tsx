@@ -54,16 +54,6 @@ const Summary: FC<{}> = () => {
     <div className="summary">
       <div className="category">
         <OverviewCard
-          title={t('summary.dailyReq')}
-          percentageData={{
-            used: statics.reqCnt,
-            limit: user.reqDayLimit,
-            onlyPercentage: false,
-          }}
-        >
-          {statics.reqCnt}
-        </OverviewCard>
-        <OverviewCard
           title={
             <>
               {t('summary.dailyBandwidth')}
@@ -88,6 +78,16 @@ const Summary: FC<{}> = () => {
           }}
         >
           {formatBandwidth(statics.bw)}
+        </OverviewCard>
+        <OverviewCard
+          title={t('summary.dailyReq')}
+          percentageData={{
+            used: statics.reqCnt,
+            limit: user.reqDayLimit,
+            onlyPercentage: false,
+          }}
+        >
+          {statics.reqCnt}
         </OverviewCard>
         <OverviewCard title={t('summary.AvgResTime')}>
           {statics.delay} ms

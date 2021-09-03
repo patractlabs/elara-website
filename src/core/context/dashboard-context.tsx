@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { apiFetchMenuList } from '../data/api'
 import { useApi } from '../hooks/useApi'
-import { Menu, NetworkType } from '../types/classes/chain'
+import { Menu, NetworkType, chainIconMap } from '../types/classes/chain'
 
 const DashboardContext: React.Context<{
   chains: Menu
@@ -37,11 +37,14 @@ const DashboardProvider = (props: Props): React.ReactElement<Props> => {
   }
 
   useEffect(() => {
-    const chain = location.pathname.split('/')[3] as NetworkType
+    const chain = location.pathname.split('/')[3] as keyof typeof chainIconMap
 
     for (let type in chains) {
       const selectedChainInfo = chains[type].find((info) => info.name === chain)
-      if (selectedChainInfo && collapse.indexOf(chain) === -1) {
+      if (
+        selectedChainInfo &&
+        collapse.indexOf(selectedChainInfo.network) === -1
+      ) {
         collapse.push(selectedChainInfo.network)
         setCollapse(collapse.slice())
       }
@@ -50,8 +53,6 @@ const DashboardProvider = (props: Props): React.ReactElement<Props> => {
   }, [location.pathname, chains])
 
   useEffect(() => {
-    console.log('xxx')
-
     updateMenu()
   }, [updateMenu])
 

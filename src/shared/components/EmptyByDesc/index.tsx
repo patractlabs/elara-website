@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, Trans } from 'react-i18next'
 import LogoSvg from '../../../assets/logo.svg'
 
 import './index.css'
@@ -24,6 +24,12 @@ const EmptyByDesc: FC<{ CreateBtn: ReactNode }> = (props) => {
           <li className="para">{t('tip.EmptyParagraph5')}</li>
         </ul>
       </div>
+      <p className="empty-desc-endpoint">
+        <Trans>{t('tip.PublicEndpointDoc')}</Trans>
+      </p>
+      <a className="empty-desc-href" href="https://docs.elara.patract.io/">
+        {t('tip.APIDoc')}
+      </a>
     </>
   )
 }

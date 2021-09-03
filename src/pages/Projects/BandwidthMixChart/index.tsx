@@ -6,7 +6,7 @@ import { apiFetchProjectStaticsOfRange } from '../../../core/data/api'
 import { RangeChartData } from '../../../core/types/classes/project'
 import { RequestType } from '../../../core/enum'
 import EmptySample from '../../../shared/components/EmptySample'
-import { formatBandwidth } from '../../../shared/utils/index'
+import { formatBandwidth, formatSize } from '../../../shared/utils/index'
 
 enum rangeEnum {
   '24hours' = '24-hours',
@@ -22,7 +22,7 @@ const BandwidthMixChart: FC<{
   const reqBandwidthEchart = useRef(null)
   const { t } = useTranslation()
   const [chartType, setChartType] =
-    useState<keyof typeof RequestType>('request')
+    useState<keyof typeof RequestType>('bandwidth')
   const [chartRange, setChartRange] = useState('24-hours')
   const [mixChartData, setMixChartData] = useState<RangeChartData>({
     timeline: [],
@@ -61,23 +61,25 @@ const BandwidthMixChart: FC<{
           'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
         formatter: function (param: { data: number; axisValue: string }[]) {
           if (chartType === 'bandwidth') {
-            const kbVal = param[0].data
-            return `${param[0].axisValue} <br/> ${formatBandwidth(
-              kbVal * 1000
-            )}`
+            const data = param[0].data
+            return `${param[0].axisValue} <br/> ${formatSize(data)}`
           } else {
             return `${param[0].axisValue} <br/> ${param[0].data}`
           }
         },
       },
       xAxis: {
+        axisLine: {
+          onZero: false,
+          symbolOffset: [20, 20],
+        },
         type: 'category',
         data: mixChartData.timeline.slice().reverse(),
         axisTick: {
           alignWithLabel: true,
         },
         axisLabel: {
-          show: true,
+          interArrival: 20,
           formatter: function (value: string) {
             if (chartRange === rangeEnum['24hours']) return value.slice(6)
             return value.slice(5)
@@ -86,19 +88,29 @@ const BandwidthMixChart: FC<{
       },
       yAxis: {
         type: 'value',
+        axisLabel: {
+          verticalAlign: 'bottom',
+          align: 'left',
+          color: '#949593',
+          lineHeight: 16,
+          margin: 2,
+          formatter: function (value: number) {
+            if (chartType === 'bandwidth') {
+              return formatSize(value)
+            }
+            return value
+          },
+        },
       },
       grid: {
         right: '10',
-        left: '50',
+        left: '5',
         bottom: '20',
       },
       series: [
         {
           data: mixChartData.stats
-            .map((i) => {
-              if (chartType === 'bandwidth') return i[chartType] / 1000
-              return i[chartType]
-            })
+            .map((i) => i[chartType])
             .slice()
             .reverse(),
           type: 'line',
@@ -142,8 +154,8 @@ const BandwidthMixChart: FC<{
           }}
           value={chartType}
         >
-          <Radio value={RequestType.request}>{t('Details.Request')}</Radio>
           <Radio value={RequestType.bandwidth}>{t('Details.Bandwidth')}</Radio>
+          <Radio value={RequestType.request}>{t('Details.Request')}</Radio>
         </Radio.Group>
         <Radio.Group
           onChange={(e) => {

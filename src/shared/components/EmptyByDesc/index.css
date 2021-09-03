@@ -8,6 +8,11 @@
   height: 32px;
 }
 
+.empty-usage-container {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #efefef;
+}
+
 .empty-usage-container h2 {
   font-size: 16px;
   font-weight: bold;
@@ -16,11 +21,36 @@
   margin-top: 20px;
 }
 
-.para {
+.empty-usage-container .para {
   font-size: 16px;
   font-weight: 400;
   text-align: left;
   color: #3f3f3f;
   line-height: 20px;
   margin-top: 10px;
+}
+
+.empty-desc-endpoint {
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+.empty-desc-href {
+  height: 16px;
+  font-size: 12px;
+  font-family: WorkSans, WorkSans-SemiBold;
+  font-weight: SemiBold;
+  text-decoration: underline;
+  text-align: left;
+  color: #14b071;
+  line-height: 16px;
+}
+
+.empty-desc-href:hover {
+  color: #119a63;
+  text-decoration: underline;
+}
+.empty-desc-href:active {
+  color: #0e8756;
+  text-decoration: underline;
 }

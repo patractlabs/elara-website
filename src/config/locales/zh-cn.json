@@ -85,7 +85,7 @@
     "Bandwidth": "带宽",
     "Hrs": "小时",
     "Days": "天",
-    "RequestAndBandwidth": "请求/带宽 数据",
+    "RequestAndBandwidth": "带宽/请求 数据",
     "TopCall": "调用方法统计",
     "Last30days": "最近30天",
     "Requests": "请求数据",
@@ -101,7 +101,7 @@
     "maxChar": "16个字符内",
     "projectName": "项目名称",
     "rateLimitLabel": "每秒请求数上限",
-    "bandwidthLimitLabel": "每日带宽上限",
+    "bandwidthLimitLabel": "每日带宽上限 (byte)",
     "dailyTotalReqLable": "每日请求总数上限",
     "invalidLimitReqs": "无效/限速 请求数",
     "Method": "方法",
@@ -153,7 +153,9 @@
     "EmptyParagraph2": "2. 输入项目名称，选择链的类型",
     "EmptyParagraph3": "3. 复制Endpoint链接，发送API请求",
     "EmptyParagraph4": "4. 在 项目的“请求数据”页面查看统计信息",
-    "EmptyParagraph5": "5. 在 项目的“设置”页面修改项目限制"
+    "EmptyParagraph5": "5. 在 项目的“设置”页面修改项目限制",
+    "PublicEndpointDoc": "你也可以使用我们提供的<strong>公共API</strong>，无需创建账户，但会受到<strong>50MB/s</strong>（所有人共享）的带宽限制。",
+    "APIDoc": "查看详情"
   },
 
   "modal": {

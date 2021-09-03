@@ -26,30 +26,28 @@ import KusamaParachains from '../../../shared/components/svg/KusamaParachains'
 import WestendParachains from '../../../shared/components/svg/WestendParachains'
 import RococoParachains from '../../../shared/components/svg/RococoParachains'
 
-
-
 export const chainIconMap = {
-  polkadot: img1,
-  kusama: img2,
-  jupiter: img3,
-  rococo: img4,
-  darwinia: img5,
-  dock: img6,
-  edgeware: img7,
-  kulupu: img8,
-  nodle: img9,
-  plasm: img10,
-  stafi: img11,
-  mandala: img12,
-  chainx: img13,
-  westend: img14,
-  subsocial: img15,
-  moonbasealpha: img16,
-  statemine: img17,
-  karura: img18,
-  moonriver: img19,
-  bifrost: img20,
-  westmint: img21,
+  Polkadot: img1,
+  Kusama: img2,
+  Jupiter: img3,
+  Rococo: img4,
+  Darwinia: img5,
+  Dock: img6,
+  Edgeware: img7,
+  Kulupu: img8,
+  Nodle: img9,
+  Plasm: img10,
+  Stafi: img11,
+  Mandala: img12,
+  Chainx: img13,
+  Westend: img14,
+  Subsocial: img15,
+  Moonbasealpha: img16,
+  Statemine: img17,
+  Karura: img18,
+  Moonriver: img19,
+  Bifrost: img20,
+  Westmint: img21,
 }
 export const subMenuMap: Record<
   NetworkType,
@@ -84,4 +82,6 @@ export interface Chain {
   status?: 'active' | 'suspend' | 'unknown'
 }
 
-export type Menu = Partial<Record<NetworkType, Chain[]>> & { [index: string]: Chain[] }
+export type Menu = Partial<Record<NetworkType, Chain[]>> & {
+  [index: string]: Chain[]
+}

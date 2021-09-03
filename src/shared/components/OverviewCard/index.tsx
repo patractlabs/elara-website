@@ -4,13 +4,18 @@ import './index.css'
 
 const OverviewCard: FC<{
   title: ReactNode
-  percentageData?: { used: number; limit: number; onlyPercentage: boolean }
+  percentageData?: {
+    used: number
+    limit: number
+    onlyPercentage: boolean
+    formatter?: Function
+  }
 }> = ({
   title = 'title',
   percentageData = { used: 0, limit: -1, onlyPercentage: false },
   children,
 }) => {
-  const { used, limit, onlyPercentage } = percentageData
+  const { used, limit, onlyPercentage, formatter } = percentageData
   return (
     <div className="summary-card">
       <div className="title">{title}</div>
@@ -20,7 +25,10 @@ const OverviewCard: FC<{
           <div className="usage">
             {onlyPercentage
               ? `${used / limit > 1 ? 100 : ((used / limit) * 100).toFixed(2)}%`
-              : `${used} (${((used / limit) * 100).toFixed(2)}%)`}
+              : `${formatter ? formatter(limit) : limit} (${(
+                  (used / limit) *
+                  100
+                ).toFixed(2)}%)`}
           </div>
           <div className="progress-bg">
             <span

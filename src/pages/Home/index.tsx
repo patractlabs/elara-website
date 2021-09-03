@@ -114,18 +114,6 @@ const Home: React.FC = (): ReactElement => {
           },
         ],
       }
-      // requestOption.xAxis.data = res.timeline.map((i) => i.slice(5)).reverse()
-      // requestOption.series[0].data = res.stats
-      //   .map((i) => {
-      //     if (chartType === 'request') return i[chartType]
-      //     return i[chartType] / 1000000
-      //   })
-      //   .reverse()
-
-      // requestOption.tooltip.formatter = function (data: { value: number }[]) {
-      //   if (chartType === 'request') return data[0].value
-      //   return data[0].value.toFixed(2) + ' MB'
-      // }
       const chart = echarts.init(requestsEchart.current!)
       chart.setOption(requestOption)
     })
