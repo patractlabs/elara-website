@@ -15,7 +15,7 @@ const formatTime = (val: string) => {
 }
 
 const formatSize = (bytes: number) => {
-  if (bytes === 0) return '0 B'
+  if (bytes < 1) return bytes + ' B'
   let k = 1024,
     sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
     i = Math.floor(Math.log(bytes) / Math.log(k))
