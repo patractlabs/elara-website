@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { apiFetchProjectMethodsStatics } from '../../../core/data/api'
 import { CallMethodsDataExt } from '../../../core/types/classes/project'
 import { RequestType } from '../../../core/enum'
-import { formatBandwidth } from '../../../shared/utils/index'
+import { formatSize, formatNumber } from '../../../shared/utils/index'
 import EmptySample from '../../../shared/components/EmptySample'
 
 const CallMethodChart: FC<{ chain: string; pid: string; timestamp: number }> =
@@ -47,11 +47,13 @@ const CallMethodChart: FC<{ chain: string; pid: string; timestamp: number }> =
             'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
           formatter: function (param: any) {
             if (chartType === 'bandwidth') {
-              return `${param[0].axisValue} <br/> ${formatBandwidth(
-                param[0].data.value * 1000
+              return `${param[0].axisValue} <br/> ${formatSize(
+                param[0].data.value
               )}`
             } else {
-              return `${param[0].axisValue} <br/> ${param[0].data.value}`
+              return `${param[0].axisValue} <br/> ${formatNumber(
+                param[0].data.value
+              )}`
             }
           },
         },
@@ -66,6 +68,14 @@ const CallMethodChart: FC<{ chain: string; pid: string; timestamp: number }> =
           axisLine: {
             lineStyle: {
               color: '#7C7E7C',
+            },
+          },
+          axisLabel: {
+            formatter: function (value: number) {
+              if (chartType === 'bandwidth') {
+                return formatSize(value)
+              }
+              return formatNumber(value)
             },
           },
         },
@@ -101,7 +111,7 @@ const CallMethodChart: FC<{ chain: string; pid: string; timestamp: number }> =
               .reverse()
               .map((i, idx) => {
                 return {
-                  value: chartType === 'bandwidth' ? i.value / 1000 : i.value,
+                  value: i.value,
                   itemStyle: {
                     color: `rgba(20,176,113, ${(idx + 1) * 0.3})`,
                     borderRadius: [0, 20, 20, 0],
@@ -117,9 +127,9 @@ const CallMethodChart: FC<{ chain: string; pid: string; timestamp: number }> =
               formatter: function (params: any) {
                 const val = params.data.value
                 if (chartType === 'bandwidth') {
-                  return formatBandwidth(val * 1000)
+                  return formatSize(val)
                 } else {
-                  return val
+                  return formatNumber(val)
                 }
               },
             },

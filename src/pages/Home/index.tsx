@@ -21,6 +21,7 @@ import { useHistory } from 'react-router'
 import { Carousel } from 'antd'
 import Footer from '../Footer'
 import { Countup } from '../../shared/components/Countup'
+import { formatSize, formatNumber } from '../../shared/utils'
 
 const imgList = [img1, img2, img3, img4, img5, img6, img7, img8]
 
@@ -71,11 +72,16 @@ const Home: React.FC = (): ReactElement => {
         },
         yAxis: {
           type: 'value',
+          axisLabel: {
+            formatter: function (value: number) {
+              if (chartType === 'request') return formatNumber(value)
+              return formatSize(value)
+            },
+          },
         },
         tooltip: {
           trigger: 'axis',
           axisPointer: {
-            type: 'cross',
             label: {
               backgroundColor: '#283b56',
               precision: 0,
@@ -87,9 +93,10 @@ const Home: React.FC = (): ReactElement => {
             textBorderWidth: 2,
             fontWeight: 'bolder',
           },
-          formatter: function (data: { value: number }[]) {
-            if (chartType === 'request') return data[0].value + ''
-            return data[0].value.toFixed(2) + ' GB'
+          formatter: function (data: { value: number; axisValue: string }[]) {
+            if (chartType === 'request')
+              return `${data[0].axisValue}<br>${formatNumber(data[0].value)}`
+            return `${data[0].axisValue}<br>${formatSize(data[0].value)}`
           },
           extraCssText:
             'box-shadow: 0px 4px 32px 0px rgba(0,0,0,0.20); padding: 8px 12px',
@@ -101,12 +108,7 @@ const Home: React.FC = (): ReactElement => {
         },
         series: [
           {
-            data: res.stats
-              .map((i) => {
-                if (chartType === 'request') return i[chartType]
-                return i[chartType] / Math.pow(1024, 3)
-              })
-              .reverse(),
+            data: res.stats.map((i) => i[chartType]).reverse(),
             type: 'bar',
             itemStyle: {
               color: '#14B071',

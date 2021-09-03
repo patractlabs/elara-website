@@ -1,9 +1,12 @@
 import { FC, ReactNode } from 'react'
+import Tooltip from '../Tooltip'
+import TooltipIcon from '../../../assets/tooltip.svg'
 
 import './index.css'
 
 const OverviewCard: FC<{
   title: ReactNode
+  tooltip?: string
   percentageData?: {
     used: number
     limit: number
@@ -12,13 +15,31 @@ const OverviewCard: FC<{
   }
 }> = ({
   title = 'title',
+  tooltip,
   percentageData = { used: 0, limit: -1, onlyPercentage: false },
   children,
 }) => {
   const { used, limit, onlyPercentage, formatter } = percentageData
   return (
     <div className="summary-card">
-      <div className="title">{title}</div>
+      <div className="title">
+        {title}
+        {tooltip && (
+          <Tooltip title={tooltip} bg={false}>
+            <img
+              src={TooltipIcon}
+              alt="info"
+              style={{
+                width: '16px',
+                height: '16px',
+                marginLeft: '4px',
+                cursor: 'pointer',
+                verticalAlign: 'middle',
+              }}
+            />
+          </Tooltip>
+        )}
+      </div>
       <div className="data">{children}</div>
       {percentageData && percentageData.limit > 0 && (
         <div className="indicator">

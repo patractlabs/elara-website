@@ -5,7 +5,6 @@ import { useParams, useLocation } from 'react-router-dom'
 import { ENDPOINTS_URL, WSS_ENDPOINTS_URL } from '../../config/origin'
 import OverviewCard from '../../shared/components/OverviewCard'
 import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
-import TooltipIcon from '../../assets/tooltip.svg'
 import { useApi } from '../../core/hooks/useApi'
 import { Project } from '../../core/types/classes/project'
 import { formatTime, formatSize } from '../../shared/utils'
@@ -209,24 +208,8 @@ const Projects: FC<{}> = () => {
                     limit: projectInfo[tabNum].bwDayLimit,
                     onlyPercentage: false,
                   }}
-                  title={
-                    <>
-                      {t('summary.dailyBandwidth')}
-                      <Tooltip title={t('tip.BandwidthNumTip')} bg={false}>
-                        <img
-                          src={TooltipIcon}
-                          alt="info"
-                          style={{
-                            width: '16px',
-                            height: '16px',
-                            marginLeft: '4px',
-                            cursor: 'pointer',
-                            verticalAlign: 'middle',
-                          }}
-                        />
-                      </Tooltip>
-                    </>
-                  }
+                  tooltip={t('tip.BandwidthNumTip')}
+                  title={t('summary.dailyBandwidth')}
                 >
                   {formatSize(projectInfo[tabNum]?.bw)}
                 </OverviewCard>
@@ -236,24 +219,8 @@ const Projects: FC<{}> = () => {
                     limit: projectInfo[tabNum].reqDayLimit,
                     onlyPercentage: false,
                   }}
-                  title={
-                    <>
-                      {t('summary.dailyReq')}
-                      <Tooltip title={t('tip.RequestNumTip')} bg={false}>
-                        <img
-                          src={TooltipIcon}
-                          alt="info"
-                          style={{
-                            width: '16px',
-                            height: '16px',
-                            marginLeft: '4px',
-                            cursor: 'pointer',
-                            verticalAlign: 'middle',
-                          }}
-                        />
-                      </Tooltip>
-                    </>
-                  }
+                  tooltip={t('tip.RequestNumTip')}
+                  title={t('summary.dailyReq')}
                 >
                   {projectInfo[tabNum]?.reqCnt}
                 </OverviewCard>

@@ -22,6 +22,11 @@ const formatSize = (bytes: number) => {
   return (bytes / Math.pow(k, i)).toFixed(1) + ' ' + sizes[i]
 }
 
+const formatNumber = (num: number) => {
+  var reg = /\d{1,3}(?=(\d{3})+$)/g
+  return (num + '').replace(reg, '$&,')
+}
+
 const getCookie = (name: string) => {
   const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
   const arr = document.cookie.match(reg)
@@ -36,10 +41,4 @@ const delCookie = () => {
   document.cookie = 'sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
 }
 
-const formatBandwidth = (val: number): string => {
-  const data = val / 1000
-  if (data > 1000) return (data / 1000).toFixed(2) + ' MB'
-  return data.toFixed(2) + ' KB'
-}
-
-export { formatTime, formatSize, delCookie, getCookie, formatBandwidth }
+export { formatTime, formatSize, formatNumber, delCookie, getCookie }

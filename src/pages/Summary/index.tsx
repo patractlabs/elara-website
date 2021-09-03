@@ -15,12 +15,11 @@ import EmptySample from '../../shared/components/EmptySample'
 import EmptyByDesc from '../../shared/components/EmptyByDesc'
 import { chainIconMap } from '../../core/types/classes/chain'
 import MoreSvg from '../../assets/arrow_forward.svg'
-import TooltipIcon from '../../assets/tooltip.svg'
 import Tooltip from '../../shared/components/Tooltip'
 import PageLoading from '../../shared/components/PageLoading'
 
 import './index.css'
-import { formatTime, formatBandwidth } from '../../shared/utils'
+import { formatTime, formatSize } from '../../shared/utils'
 
 const Summary: FC<{}> = () => {
   const [statics, setStatics] = useState<StatT>({
@@ -54,32 +53,18 @@ const Summary: FC<{}> = () => {
     <div className="summary">
       <div className="category">
         <OverviewCard
-          title={
-            <>
-              {t('summary.dailyBandwidth')}
-              <Tooltip title={t('tip.MaxBandwidth')} bg={false}>
-                <img
-                  src={TooltipIcon}
-                  alt="info"
-                  style={{
-                    width: '16px',
-                    height: '16px',
-                    marginLeft: '4px',
-                    cursor: 'pointer',
-                  }}
-                />
-              </Tooltip>
-            </>
-          }
+          title={t('summary.dailyBandwidth')}
+          tooltip={t('tip.MaxBandwidth')}
           percentageData={{
             used: statics.bw,
             limit: user.bwDayLimit,
             onlyPercentage: true,
           }}
         >
-          {formatBandwidth(statics.bw)}
+          {formatSize(statics.bw)}
         </OverviewCard>
         <OverviewCard
+          tooltip={t('tip.MaxRequest')}
           title={t('summary.dailyReq')}
           percentageData={{
             used: statics.reqCnt,
@@ -177,9 +162,7 @@ const Summary: FC<{}> = () => {
                 key: 'bw',
                 render: (data: number) => {
                   return (
-                    <div style={{ fontWeight: 700 }}>
-                      {formatBandwidth(data)}
-                    </div>
+                    <div style={{ fontWeight: 700 }}>{formatSize(data)}</div>
                   )
                 },
               },

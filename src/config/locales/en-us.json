@@ -145,6 +145,7 @@
     "invalidNumber": "Please input a number",
     "MaxNum": "Elara provides 10 free projects for developers, if you need customization, please contact us",
     "MaxBandwidth": "The total daily bandwidth limit is 10GB",
+    "MaxRequest": "The total daily requests limit is 1,000,000",
     "GetLastestData": "Get the latest data",
     "RequestNumTip": "you can customize the daily request limit on the \"Settings\" page",
     "BandwidthNumTip": "you can customize the daily bandwidth limit on the \"Settings\" page",
