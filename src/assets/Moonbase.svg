@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Moonbase Alpha</title>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#202751" offset="0%"></stop>
+            <stop stop-color="#101229" offset="49.3178564%"></stop>
+            <stop stop-color="#101228" offset="63.2668159%"></stop>
+            <stop stop-color="#0F1127" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Project_Requests" transform="translate(-76.000000, -964.000000)">
+            <g id="Moonbase-Alpha" transform="translate(76.000000, 964.000000)">
+                <path d="M12,0 C18.627417,0 24,5.372583 24,12 C24,18.627417 18.627417,24 12,24 C5.372583,24 0,18.627417 0,12 C0,5.372583 5.372583,0 12,0 Z" id="矩形" fill="url(#linearGradient-1)"></path>
+                <g id="编组-17备份" transform="translate(2.340000, 3.780000)">
+                    <path d="M11.4410959,0 C14.7716647,0 17.4716243,2.69995952 17.4716243,6.03052838 C17.4716243,6.03052838 17.4716243,6.03052838 17.4716243,6.03052838 C17.4716243,6.20694445 17.3286108,6.34995793 17.1521947,6.34997341 L5.72999707,6.34997341 C5.553581,6.34995793 5.41056751,6.20694445 5.41056751,6.03052838 C5.41056751,6.03052838 5.41056751,6.03052838 5.41056751,6.03052838 C5.41056751,2.69995952 8.11052704,0 11.4410959,0 Z" id="路径" fill="#53CBC8"></path>
+                    <circle id="椭圆形" fill="#E1147B" cx="3.19373777" cy="7.7776908" r="1"></circle>
+                    <circle id="椭圆形备份" fill="#E1147B" cx="0.375733855" cy="9.43091977" r="1"></circle>
+                    <circle id="椭圆形备份-2" fill="#E1147B" cx="3.19373777" cy="11.0841487" r="1"></circle>
+                    <circle id="椭圆形备份-3" fill="#E1147B" cx="1.08962818" cy="12.7373777" r="1"></circle>
+                    <circle id="椭圆形备份-4" fill="#E1147B" cx="9.43091977" cy="14.3906067" r="1"></circle>
+                    <circle id="椭圆形备份-5" fill="#E1147B" cx="5.59843444" cy="16.0438356" r="1"></circle>
+                    <rect id="矩形" fill="#E1147B" x="4.13307241" y="7.40195695" width="14.616047" height="1" rx="0.5"></rect>
+                    <rect id="矩形备份-6" fill="#E1147B" x="1.31506849" y="9.05518591" width="10.8962818" height="1" rx="0.5"></rect>
+                    <rect id="矩形备份-7" fill="#E1147B" x="4.13307241" y="10.7084149" width="13.0003914" height="1" rx="0.5"></rect>
+                    <rect id="矩形备份-8" fill="#E1147B" x="2.02896282" y="12.3616438" width="5.59843444" height="1" rx="0.5"></rect>
+                    <rect id="矩形备份-10" fill="#E1147B" x="10.3702544" y="14.0148728" width="6.98864971" height="1" rx="0.5"></rect>
+                    <rect id="矩形备份-11" fill="#E1147B" x="6.53776908" y="15.6681018" width="6.98864971" height="1" rx="0.5"></rect>
+                    <rect id="矩形备份-9" fill="#E1147B" x="8.3037182" y="12.3616438" width="10.8962818" height="1" rx="0.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

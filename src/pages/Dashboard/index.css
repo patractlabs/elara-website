@@ -136,7 +136,7 @@
 }
 
 .sider .chain-type img {
-  transform: scaleY(-1);
+  /* transform: scaleY(-1); */
   cursor: pointer;
   height: 24px;
   width: 24px;
