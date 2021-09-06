@@ -69,7 +69,7 @@ const Summary: FC<{}> = () => {
           percentageData={{
             used: statics.reqCnt,
             limit: user.reqDayLimit,
-            onlyPercentage: false,
+            onlyPercentage: true,
           }}
         >
           {statics.reqCnt}
