@@ -10,7 +10,7 @@ import {
 import { Menu } from '../types/classes/chain'
 import { httpPost, httpGet } from './http'
 import { API_DOMAIN } from '../../config/origin'
-import { StatT } from '../types/classes/stat'
+import { StatT, LimitData } from '../types/classes/stat'
 import axios from 'axios'
 
 /**
@@ -56,6 +56,12 @@ export const apiCreateProject = async (data: ProjectCreatDto) =>
  */
 export const apiDelProject = async (data: { id: string }) =>
   await httpPost<unknown>(`${API_DOMAIN}/project/delete`, data)
+
+/**
+ * elara limit data
+ */
+export const apiGetPublicSetting = async () =>
+  await httpGet<LimitData>(`${API_DOMAIN}/public/limit`)
 
 /**
  * total requests on homepage

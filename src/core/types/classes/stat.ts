@@ -6,3 +6,8 @@ export interface StatT {
   inReqCnt: number
   reqCnt: number
 }
+
+export interface LimitData {
+  projectNum: number
+  bwDayLimit: number
+}

@@ -1,9 +1,11 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import * as echarts from 'echarts'
 import './index.css'
+import { LimitData } from '../../core/types/classes/stat'
 import {
   apiGetTotalStatics,
   apiGetLast30DaysRequests,
+  apiGetPublicSetting,
 } from '../../core/data/api'
 import { useTranslation } from 'react-i18next'
 import img1 from '../../assets/easy-use.webp'
@@ -28,13 +30,17 @@ const imgList = [img1, img2, img3, img4, img5, img6, img7, img8]
 const Home: React.FC = (): ReactElement => {
   const [isLoginModalVisible, setLoginModalVisible] = useState(false)
   const [total, setTotal] = useState({ request: 0, bandwidth: 0 })
+  const [limit, setLimit] = useState<LimitData>({
+    bwDayLimit: 0,
+    projectNum: 0,
+  })
   const [loaded, setLoaded] = useState<boolean>(false)
   const [chartType, setChartType] = useState<'request' | 'bandwidth'>(
     'bandwidth'
   )
   const requestsEchart = useRef<HTMLDivElement>(null)
   const history = useHistory()
-  const { isLogged, user, homeHeight } = useApi()
+  const { isLogged, homeHeight } = useApi()
   const { t, i18n } = useTranslation()
   const carousel = useRef<any>(null)
 
@@ -47,6 +53,9 @@ const Home: React.FC = (): ReactElement => {
 
   useEffect(() => {
     window.scrollTo({ top: homeHeight.height })
+    apiGetPublicSetting().then((data) => {
+      setLimit(data)
+    })
   }, [homeHeight.height])
 
   useEffect(() => {
@@ -259,8 +268,7 @@ const Home: React.FC = (): ReactElement => {
                     <p className="product-tip">每天每个账户</p>
                   )}
                   <p className="product-text">
-                    {/* {Math.floor(user.bwDayLimit / Math.pow(1000, 3))} GB */}
-                    10 GB
+                    {Math.floor(limit.bwDayLimit / Math.pow(1000, 3))} GB
                   </p>
                   <p className="product-tip">
                     {i18n.language === Language.zh
@@ -272,8 +280,7 @@ const Home: React.FC = (): ReactElement => {
               <div>
                 <div className="autoplay-content">
                   <p className="product-text">
-                    {/* {user.maxProjectNum} */}
-                    10
+                    {limit.projectNum}
                     {t('Projects')}
                   </p>
                 </div>
