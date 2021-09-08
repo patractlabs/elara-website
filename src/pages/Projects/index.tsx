@@ -119,7 +119,7 @@ const Projects: FC<{}> = () => {
 
   useEffect(() => {
     updatePageData()
-  }, [params.chain, user.id, tabNum, updatePageData])
+  }, [updatePageData])
 
   useEffect(() => {
     if (projectInfo.length > 0 && location.state) {
