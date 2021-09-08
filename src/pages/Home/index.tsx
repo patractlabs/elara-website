@@ -268,7 +268,7 @@ const Home: React.FC = (): ReactElement => {
                     <p className="product-tip">每天每个账户</p>
                   )}
                   <p className="product-text">
-                    {Math.floor(limit.bwDayLimit / Math.pow(1000, 3))} GB
+                    {Math.floor(limit.bwDayLimit / Math.pow(1000, 3)) || 10} GB
                   </p>
                   <p className="product-tip">
                     {i18n.language === Language.zh
@@ -280,7 +280,7 @@ const Home: React.FC = (): ReactElement => {
               <div>
                 <div className="autoplay-content">
                   <p className="product-text">
-                    {limit.projectNum}
+                    {limit.projectNum || 10}
                     {t('Projects')}
                   </p>
                 </div>
