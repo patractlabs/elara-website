@@ -125,8 +125,10 @@ const Home: React.FC = (): ReactElement => {
           },
         ],
       }
-      const chart = echarts.init(requestsEchart.current!)
-      chart.setOption(requestOption)
+      if (requestsEchart.current) {
+        const chart = echarts.init(requestsEchart.current)
+        chart.setOption(requestOption)
+      }
     })
   }, [chartType])
 

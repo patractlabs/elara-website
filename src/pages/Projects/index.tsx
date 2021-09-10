@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useContext, FC } from 'react'
 import { message } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, useHistory } from 'react-router-dom'
 import { ENDPOINTS_URL, WSS_ENDPOINTS_URL } from '../../config/origin'
 import OverviewCard from '../../shared/components/OverviewCard'
 import CreateProjectBtn from '../../shared/components/CreateProjectBtn'
@@ -29,6 +29,7 @@ import PageLoading from '../../shared/components/PageLoading'
 
 const Projects: FC<{}> = () => {
   const location = useLocation<{ pid: string }>()
+  const history = useHistory()
   const [loading, setloading] = useState(true)
   const [tabNum, setTabNum] = useState(0)
   const [viewType, switchToView] = useState<'setting' | 'request'>('request')
@@ -101,8 +102,12 @@ const Projects: FC<{}> = () => {
       .then(
         () => {
           message.success(t('tip.delete'))
-          setTabNum(tabNum - 1 > 0 ? tabNum - 1 : 0)
-          updatePageData()
+          const nextTabIdx = tabNum - 1 >= 0 ? tabNum - 1 : 0
+          projectInfo.splice(tabNum, 1)
+          const data = projectInfo.slice()
+          handleSwitchTab(data[nextTabIdx]?.pid)
+          setProjectInfo(data)
+          switchToView('request')
           updateMenu()
           updateUser()
           // 更新页面数据
@@ -117,16 +122,26 @@ const Projects: FC<{}> = () => {
     setDeleteModalVisible(false)
   }
 
+  const handleSwitchTab = useCallback(
+    (pid: string) => {
+      history.replace(location.pathname, { pid })
+    },
+    [history, location.pathname]
+  )
+
   useEffect(() => {
     updatePageData()
   }, [updatePageData])
 
   useEffect(() => {
-    if (projectInfo.length > 0 && location.state) {
+    if (projectInfo.length > 0 && location.state?.pid) {
       const idx = projectInfo.findIndex((i) => i.pid === location.state.pid)
       setTabNum(idx)
     }
-  }, [projectInfo, location.state])
+    if (projectInfo.length > 0 && !location.state?.pid) {
+      handleSwitchTab(projectInfo[0].pid)
+    }
+  }, [projectInfo, location.state?.pid, handleSwitchTab])
 
   return loading ? (
     <PageLoading />
@@ -145,7 +160,7 @@ const Projects: FC<{}> = () => {
                 key={data.name}
                 className={`tab-item ${tabNum === index ? 'active' : ''}`}
                 onClick={() => {
-                  setTabNum(index)
+                  handleSwitchTab(projectInfo[index].pid)
                 }}
               >
                 {data.name}
@@ -205,7 +220,7 @@ const Projects: FC<{}> = () => {
                   percentageData={{
                     formatter: formatSize,
                     used: projectInfo[tabNum]?.bw,
-                    limit: projectInfo[tabNum].bwDayLimit,
+                    limit: projectInfo[tabNum]?.bwDayLimit,
                     onlyPercentage: false,
                   }}
                   tooltip={t('tip.BandwidthNumTip')}
@@ -216,7 +231,7 @@ const Projects: FC<{}> = () => {
                 <OverviewCard
                   percentageData={{
                     used: projectInfo[tabNum]?.reqCnt,
-                    limit: projectInfo[tabNum].reqDayLimit,
+                    limit: projectInfo[tabNum]?.reqDayLimit,
                     onlyPercentage: false,
                   }}
                   tooltip={t('tip.RequestNumTip')}
