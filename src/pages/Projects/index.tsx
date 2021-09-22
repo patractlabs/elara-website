@@ -206,7 +206,10 @@ const Projects: FC<{}> = () => {
             </div>
             <button
               className="project-refresh-btn"
-              onClick={() => setTimestamp(Date.now())}
+                onClick={() => {
+                  setTimestamp(Date.now())
+                  updatePageData()
+                }}
             >
               <Tooltip title={t('tip.GetLastestData')} bg={false}>
                 {t('Details.Refresh')}
