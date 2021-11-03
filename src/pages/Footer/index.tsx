@@ -305,7 +305,7 @@ const Footer: React.FC = () => {
               <a
                 target="_blank"
                 rel="noreferrer"
-                href="https://discord.gg/wJ8TnTfjcq"
+                href="https://discord.gg/znbmjYfvBR"
                 onMouseOver={() => setIconLinkHoverAt(IconLink.Discord)}
                 onMouseOut={() => setIconLinkHoverAt(IconLink.Null)}
               >
