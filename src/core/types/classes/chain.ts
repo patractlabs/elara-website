@@ -19,6 +19,7 @@ import img18 from '../../../assets/Karura.svg'
 import img19 from '../../../assets/Moonriver.svg'
 import img20 from '../../../assets/Bifrost.svg'
 import img21 from '../../../assets/Statemine.svg'
+import img22 from '../../../assets/Shell.svg'
 import LiveNetworks from '../../../shared/components/svg/LiveNetworks'
 import TestNetworks from '../../../shared/components/svg/TestNetworks'
 import PolkadotParachains from '../../../shared/components/svg/PolkadotParachains'
@@ -48,6 +49,7 @@ export const chainIconMap = {
   Moonriver: img19,
   Bifrost: img20,
   Westmint: img21,
+  Shell: img22,
 }
 export const subMenuMap: Record<
   NetworkType,
