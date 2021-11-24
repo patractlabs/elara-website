@@ -49,7 +49,7 @@ export const chainIconMap = {
   Moonriver: img19,
   Bifrost: img20,
   Westmint: img21,
-  Shell: img22,
+  Statemint: img22,
 }
 export const subMenuMap: Record<
   NetworkType,
