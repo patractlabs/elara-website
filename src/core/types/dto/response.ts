@@ -1,5 +1,5 @@
 export interface Res<T> {
   code?: number;
-  message: string;
+  msg: string;
   data: T;
 }

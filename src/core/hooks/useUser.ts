@@ -1,31 +1,34 @@
-import { User } from './../types/classes/user';
-import { useCallback, useState } from "react";
-import { apiLogin } from '../data/api';
+import { User } from './../types/classes/user'
+import { useCallback, useState } from 'react'
+import { apiLogin } from '../data/api'
+import { getCookie } from '../../shared/utils'
 
-let _isLogged = false;
-if (document.cookie.includes("sid")) {
-  _isLogged = true;
+let _isLogged = false
+
+if (getCookie('sid')) {
+  _isLogged = true
 }
 
 export const useUser = () => {
-  const [isLogged, setIsLoggged] = useState<boolean>(_isLogged);
-  const [ user, setUser ] = useState<User>({
-    uid: '',
-    username: '',
-    vip: '',
-    type: '',
-    cratetime: '',
-    ext: {
-      projects: 0,
-    },
-  });
+  const userData = localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user')!)
+    : {
+        id: 0,
+        name: '',
+        projectNum: 0,
+        maxProjectNum: 0,
+        level: '',
+      }
+  const [isLogged, setIsLoggged] = useState<boolean>(_isLogged)
+  const [user, setUser] = useState<User>(userData)
 
-  const updateUser = useCallback(() => apiLogin().then(_user => {
-      setIsLoggged(true);
-      setUser(_user);
-      localStorage.setItem("user", JSON.stringify(_user));
+  const updateUser = useCallback(() => {
+    return apiLogin().then((_user) => {
+      setIsLoggged(true)
+      setUser(_user)
+      localStorage.setItem('user', JSON.stringify(_user))
     })
-  , []);
+  }, [])
 
   return {
     isLogged,
@@ -33,5 +36,5 @@ export const useUser = () => {
     user,
     setUser,
     updateUser,
-  };
+  }
 }

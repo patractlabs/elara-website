@@ -1,10 +1,9 @@
 export class User {
-  uid: string;
-  username: string;
-  vip: string;
-  type: string;
-  cratetime: string;
-  ext: {
-    projects: number;
-  };
+  id: number
+  name: string
+  level: string
+  maxProjectNum: number
+  projectNum: number
+  bwDayLimit: number
+  reqDayLimit: number
 }

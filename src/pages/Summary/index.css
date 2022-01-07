@@ -1,0 +1,120 @@
+.summary {
+  width: 100%;
+  min-height: 600px;
+  background: #fff;
+  padding: 20px;
+}
+
+.category {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-bar {
+  display: flex;
+  align-items: center;
+  margin-top: 26px;
+  margin-bottom: 16px;
+}
+
+.total {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+  color: #3f3f3f;
+  line-height: 28px;
+}
+
+.total .count {
+  color: #14b071;
+}
+
+.summary-table {
+  clear: none;
+}
+
+.summary-table table {
+  border-spacing: 0 10px;
+}
+
+.summary-table td {
+  vertical-align: middle;
+}
+
+.summary-table .ant-table-small .ant-table-thead > tr > th {
+  height: 24px;
+  line-height: 16px;
+  background: none !important;
+  font-weight: bold;
+  color: #3f3f3f;
+}
+
+.summary-table .ant-table-cell:first-of-type {
+  border-radius: 8px 0 0 8px;
+}
+
+.summary-table .ant-table-cell:last-of-type {
+  border-radius: 0px 8px 8px 0;
+}
+
+.summary-table.ant-table-wrapper {
+  clear: none;
+}
+
+.summary-table.ant-table-wrapper::after {
+  clear: none;
+}
+
+.summary-table .ant-table-tbody {
+  border-radius: 8px;
+}
+
+.summary-table .ant-table-tbody > tr > td,
+.summary-table .ant-table-thead > tr > th {
+  font-size: 12px;
+  border-bottom: none;
+  background: #f9f9f9 !important;
+  padding: 0 20px !important;
+}
+
+.summary-table .ant-table-row {
+  height: 56px;
+  cursor: pointer;
+}
+
+.summary-table .ant-table-row.rowActive td {
+  background: #f6f6f6 !important;
+}
+
+.table-chain-item {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 8px;
+  background: #fff;
+  border-radius: 4px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.table-chain-item img {
+  margin-right: 4px;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.table-status-item {
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  background-position: left center;
+  padding-left: 16px;
+}
+
+.table-status-item.active {
+  background-image: url('../../assets/active-icon.svg');
+}
+
+.table-status-item.suspend {
+  background-image: url('../../assets/suspend-icon.svg');
+}

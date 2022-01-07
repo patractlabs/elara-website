@@ -1,4 +1,9 @@
 export class ProjectCreatDto {
-  chain: string;
-  name: string;
+  userId: number
+  chain: string
+  name: string
+  team: string
+  reqSecLimit?: number
+  reqDayLimit?: number
+  bwDayLimit?: number
 }
