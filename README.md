@@ -52,4 +52,4 @@ No State Container such as `Redux`, just use `Context` to manage the application
 
 ## Authorised Login
 
-This application only support Github Authorized Authentication Login. For more information,Refer to the elara [https://github.com/patractlabs/elara-ts] and the [Github documentation](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps).
+This application only support Github Authorized Authentication Login. For more information, Refer to the [elara](https://github.com/patractlabs/elara-ts).
