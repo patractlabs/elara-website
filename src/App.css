@@ -1,4 +1,4 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
 html,
 body,
@@ -81,11 +81,11 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -100,64 +100,64 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
+  display: block;
 }
 
 body {
-	line-height: 1;
+  line-height: 1;
 }
 
 ol,
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 blockquote,
 q {
-	quotes: none;
+  quotes: none;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-	content: '';
-	content: none;
+  content: "";
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .ant-btn-primary {
-	background: #39CA9F;
-	border-color: #39CA9F;
+  background: #39ca9f;
+  border-color: #39ca9f;
 }
-
 
 .ant-btn-primary:hover,
 .ant-btn-primary:focus {
-	color: #fff;
-	background: #449e83;
-	border-color: #449e83;
+  color: #fff;
+  background: #449e83;
+  border-color: #449e83;
 }
 
 html,
 body {
-	min-width: 1200px;
-  /* background: #EFF2F5; */
+  min-width: 1200px;
+  background: #f6f6f6;
 }
 
-.ant-layout.ant-layout-has-sider>.ant-layout,
-.ant-layout.ant-layout-has-sider>.ant-layout-content {
-	overflow-x: hidden;
+.ant-layout.ant-layout-has-sider > .ant-layout,
+.ant-layout.ant-layout-has-sider > .ant-layout-content {
+  overflow-x: hidden;
 }
-input, button {
+input,
+button {
   outline: none;
 }
-.ant-spin-dot-item{
-	background: #39CA9F;
+.ant-spin-dot-item {
+  background: #39ca9f;
 }
 .modal-button {
   font-size: 12px;
@@ -177,13 +177,13 @@ input, button {
 }
 .modal-button-default {
   min-width: 88px;
-  border: 1px solid #14B071;
+  border: 1px solid #14b071;
   background-color: white;
-  color: #2CA26E;
+  color: #2ca26e;
 }
 .modal-button-active {
   min-width: 88px;
   color: white;
-  background: #14B071;
+  background: #14b071;
   border-width: 0px;
 }

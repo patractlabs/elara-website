@@ -1,0 +1,12 @@
+.tooltip-body {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ant-tooltip-open.tooltip-bg {
+  border-radius: 10px;
+  background: #efefef;
+}

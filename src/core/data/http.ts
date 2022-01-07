@@ -28,7 +28,7 @@ service.interceptors.response.use(
     const err: APIError = {
       type: APIErrorType.business,
       err: null,
-      msg: response.data.message,
+      msg: response.data.msg,
     };
     return Promise.reject(err);
   },

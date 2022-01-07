@@ -1,86 +1,194 @@
-import { User } from './../types/classes/user';
-import { ProjectCreatDto } from './../types/dto/project-create';
-import { Project } from '../types/classes/project';
+import { User } from './../types/classes/user'
+import { ProjectCreatDto } from './../types/dto/project-create'
+import {
+  Project,
+  RangeChartData,
+  InvalidTableDataExt,
+  CountryTableDataExt,
+  CallMethodsDataExt,
+} from '../types/classes/project'
+import { Menu } from '../types/classes/chain'
 import { httpPost, httpGet } from './http'
-import { API_DOMAIN } from '../../config/origin';
-import { ChainStats, StatDay, StatMonth, StatWeek } from '../types/classes/stat';
-import axios from 'axios';
+import { API_DOMAIN } from '../../config/origin'
+import { StatT, LimitData } from '../types/classes/stat'
+import axios from 'axios'
 
 /**
  * 登陆
  */
-export const apiLogin =
-  async () => await httpGet<User>(`${API_DOMAIN}/auth/login`);
+export const apiLogin = async (): Promise<User> => {
+  const res = await httpGet<{
+    projectNum: number
+    user: {
+      id: number
+      name: string
+      status: string
+      level: string
+      limit: { projectNum: number; bwDayLimit: number; reqDayLimit: number }
+    }
+  }>(`${API_DOMAIN}/auth/login`)
+
+  return {
+    id: res.user.id,
+    name: res.user.name,
+    level: res.user.level,
+    maxProjectNum: res.user.limit.projectNum,
+    projectNum: res.projectNum,
+    bwDayLimit: res.user.limit.bwDayLimit,
+    reqDayLimit: res.user.limit.reqDayLimit,
+  }
+}
 
 /**
- * 退出登录
+ * logout'
  */
-export const apiLogout =
-  async () => await httpGet<undefined>(`${API_DOMAIN}/auth/logout`);
+export const apiLogout = async () =>
+  await httpGet<undefined>(`${API_DOMAIN}/auth/logout`)
 
 /**
- * 新建数据
+ * create project
  */
-export const apiCreateProject =
-  async (data: ProjectCreatDto) => await httpPost<Project>(`${API_DOMAIN}/project/create`, data);
+export const apiCreateProject = async (data: ProjectCreatDto) =>
+  await httpPost<Project>(`${API_DOMAIN}/project/create`, data)
 
 /**
- * 控制台获取数据
+ * project delete
  */
-export const apiGetProjectList =
-  async () => await httpGet<Project[]>(`${API_DOMAIN}/project/list`);
+export const apiDelProject = async (data: { id: string }) =>
+  await httpPost<unknown>(`${API_DOMAIN}/project/delete`, data)
 
 /**
- * 控制台项目详情
+ * elara limit data
  */
-export const apiGetProjectDetail =
-  async (id: string) => await httpGet<Project>(`${API_DOMAIN}/project/${id}`);
+export const apiGetPublicSetting = async () =>
+  await httpGet<LimitData>(`${API_DOMAIN}/public/limit`)
 
 /**
- * 获取首页列表
+ * total requests on homepage
  */
-export const apiGetChainStats =
-  async () => await httpGet<ChainStats>(`${API_DOMAIN}/stat/chain`);
+export const apiGetTotalStatics = async () =>
+  await httpGet<{ bandwidth: number; request: number }>(
+    `${API_DOMAIN}/public/stat`
+  )
 
 /**
- * 获取过去n天，每天请求数
+ * requests by recent 30 days
  */
-export const apiGetRequestsByDate =
-  async (days: number) => await httpGet<ChainStats>(`${API_DOMAIN}/stat/requests/${days}`);
-/**
- * 控制台详情七天数据
- */
-export const apiGetWeekDetails =
-  async (id: string) => await httpGet<StatWeek>(`${API_DOMAIN}/stat/week/${id}`);
-
+export const apiGetLast30DaysRequests = async () =>
+  await httpPost<{
+    stats: { request: number; bandwidth: number }[]
+    timeline: string[]
+  }>(`${API_DOMAIN}/public/days`, { days: 30 })
 
 /**
- * 控制台详情30天数据
+ * 控制台菜单数据
  */
-export const apiGetMonthDetails =
-  async (id: string) => await httpGet<StatMonth>(`${API_DOMAIN}/stat/month/${id}`);
+export const apiFetchMenuList = async (id: number) =>
+  await httpPost<Menu>(`${API_DOMAIN}/chain/list`, { userId: id })
 
 /**
- * 控制台详情项目当天统计数据
+ * 用户数据概览 dashboard card
  */
-export const apiGetDayDetail =
-  async (id: string) => await httpGet<StatDay>(`${API_DOMAIN}/stat/day/${id}`);
+export const apiGetUserDailyStatics = async (id: number) =>
+  await httpPost<StatT>(`${API_DOMAIN}/user/detail/statistic`, { userId: id })
 
+/**
+ * 控制台用户project table数据
+ */
+export const apiFetchProjectList = async (
+  id: number,
+  chain?: string
+): Promise<Project[]> => {
+  let res = await httpPost<any[]>(`${API_DOMAIN}/project/list`, {
+    userId: id,
+    chain,
+  })
+  res = res.map((item) => ({ ...item, ...item.stat }))
+  return res
+}
+
+/**
+ * project特定小时内的数据统计
+ */
+export const apiFetchProjectStaticsOfRange = async (
+  data: {
+    chain: string
+    pid: string
+    hours?: number
+    days?: number
+  },
+  types: string
+) => await httpPost<RangeChartData>(`${API_DOMAIN}/stat/project/${types}`, data)
+
+/**
+ * project methods statics
+ */
+export const apiFetchProjectMethodsStatics = async (data: {
+  pid: string
+  chain: string
+}) =>
+  await httpPost<CallMethodsDataExt>(`${API_DOMAIN}/stat/project/rank`, data)
+
+/**
+ * project无效请求表格数据
+ */
+export const apiFetchProjectErrorStatics = async (data: {
+  size: number
+  page: number
+  chain: string
+  pid: string
+}) =>
+  await httpPost<InvalidTableDataExt>(`${API_DOMAIN}/stat/project/error`, data)
+
+/**
+ * country table
+ */
+export const apiFetchCountry = async (data: {
+  size: number
+  page: number
+  chain: string
+  pid: string
+}) =>
+  await httpPost<CountryTableDataExt>(
+    `${API_DOMAIN}/stat/project/country`,
+    data
+  )
+
+/**
+ * project name 更新
+ */
+export const apiUpdateProjectName = async (data: {
+  userId: number
+  chain: string
+  id: string
+  name: string
+}) => await httpPost<unknown>(`${API_DOMAIN}/project/update/name`, data)
+
+/**
+ * project limit 更新
+ */
+export const apiUpdateProjectLimit = async (data: {
+  id: string
+  reqDayLimit: number
+  bwDayLimit: number
+}) => await httpPost<unknown>(`${API_DOMAIN}/project/update/limit`, data)
 
 /**
  * 订阅邮箱
  */
-export const apiSubscribe =
-  async ({
-    email,
-    emailType = 'subscribe',
-  }: {
-    email: string;
-    emailType?: string;
-  }) => {
-    const service = axios.create({
-      timeout: 15000,
-      withCredentials: false,
-    })
-    await service.post<void>('https://blog.patract.io/members/api/send-magic-link/', { email, emailType });
-  }
+export const apiSubscribe = async ({
+  email,
+  emailType = 'subscribe',
+}: {
+  email: string
+  emailType?: string
+}) => {
+  const service = axios.create({
+    timeout: 15000,
+    withCredentials: false,
+  })
+  await service.post<void>(
+    'https://blog.patract.io/members/api/send-magic-link/',
+    { email, emailType }
+  )
+}

@@ -10,6 +10,4 @@ export class ApiProps {
     height: number;
     setHeight: React.Dispatch<React.SetStateAction<number>>;
   };
-  updateProjectCountsSignal: number;
-  setUpdateProjectCountsSignal: React.Dispatch<React.SetStateAction<number>>;
 } 

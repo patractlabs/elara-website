@@ -1,6 +1,6 @@
 {
   "home": "首页",
-  "serve": "服务",
+  "dashboard": "看板",
   "contactUs": "联系我们",
   "Documentation": "API 文档",
 
@@ -8,6 +8,7 @@
   "bannerTitle2": "Elara向波卡开发者提供免费、即时和可扩展的区块链API接入服务，包括Polkadot、Kusama等",
   "bannerBtn": "开始免费使用",
   "Cumulative": "累计请求数",
+  "TotalBandwidth": "累计带宽",
 
   "Product": "服务优势",
   "Easy": "简单易用",
@@ -19,31 +20,44 @@
   "Ourhighly": "我们高度可扩展的基础架构确保可以快速接入Polkadot生态的所有中继链、平行链和基于Substrate的独立链等，让开发者的应用可以快速布局到新网络",
 
   "Customer": "专项服务",
-  "WeProvide": "如果应用请求量超过了账户免费额度，开发者可以随时联系我们提供定制化方案",
+  "WeProvide": "如果应用请求带宽超过了账户免费额度，开发者可以随时联系我们提供定制化方案",
 
   "service": "免费服务",
   "AllNetworks": "波卡生态所有网络",
   "AllNetworks1": "",
   "1000000requests": "每个账户每天 ",
   "1000000requests1": "1,000,000 次请求 ",
-  "10projects": "10 个项目",
   "Direct": "直接客户支持",
   "NeedMore": "需要更多的服务？",
   "YouCan": "您可以通过以下渠道联系我们，我们将为您提供定制方案",
   "No Data": "暂无数据",
   "We provide you": "我们为您提供",
-  "10 Projects": "10 个免费项目",
+  "Projects": "个免费项目",
   "All networks in the Polkadot ecosystem": "波卡生态所有网络",
   "Public API Access Service for Polkadot Ecosystem": "波卡生态的公共API接入服务",
   "Contact & Subscription": "联系和订阅",
   "Subscribe": "订阅",
-  "LIVE NETWORKS": "主网",
-  "TEST NETWORKS": "测试网",
-  "Kusama Parallel Chain": "Kusama 平行链",
-  "notify1": "全新的Elara 2.0已发布，更高速的节点和更全面的数据统计。",
-  "notify2": "9月1日 Elara 1.0节点将逐步停止维护",
-  "notify3": "，请尽快完成项目迁移~  新版Elara：",
-  "notify4": "https://elara2.patract.io",
+  "Live Networks": "主网",
+  "Test Networks": "测试网",
+  "Polkadot Parchains": "Polkadot 生态链",
+  "Kusama Parachains": "Kusama 生态链",
+  "Westend Parachains": "Westend 生态链",
+  "Rococo Parachains": "Rococo 生态链",
+  "Create": "创建",
+  "Project": "项目",
+
+  "summary": {
+    "Project": "项目",
+    "Team": "团队",
+    "Network": "网络",
+    "Created": "创建于",
+    "Status": "状态",
+    "dailyReq": "今日请求数",
+    "dailyBandwidth": "今日带宽",
+    "AvgResTime": "平均响应时间",
+    "InvalidReq": "无效请求数",
+    "projectName": "项目名称"
+  },
 
   "listPage": {
     "Name": "项目名称",
@@ -52,7 +66,6 @@
     "Status-Active": "运行中",
     "Status-Stop": "暂停",
     "Create Project": "新建项目",
-    "projectName": "项目名称",
     "PleaseProjectName": "请输入项目名称",
     "FormatError": "格式错误，正常格式：英文大小写字母，长度4-32",
     "onProject": "快来创建你的第一个",
@@ -65,16 +78,40 @@
   },
 
   "Details": {
-    "Requests Today": "今日请求数",
-    "TodayBandwidth": "今日带宽",
+    "Refresh": "刷新",
+    "Request": "请求数",
+    "Country": "国家",
+    "OfTotal": "占比",
+    "Bandwidth": "带宽",
+    "Hrs": "小时",
+    "Days": "天",
+    "RequestAndBandwidth": "带宽/请求 数据",
+    "TopCall": "调用方法统计",
+    "Last30days": "最近30天",
+    "Requests": "请求数据",
+    "Settings": "设置",
+    "NotSet": "未设置",
     "WeekRequests": "周请求数统计",
     "WeekBandwidth": "周带宽统计",
-    "TopCall": "top调用方法统计",
     "Creation Time": "创建时间",
     "Status": "状态",
     "30days-request-counts": "30天请求数统计",
     "30days-bandwidth": "30天带宽统计",
-    "30days-callmethods": "30天调用方法统计"
+    "30days-callmethods": "30天调用方法统计",
+    "maxChar": "16个字符内",
+    "projectName": "项目名称",
+    "rateLimitLabel": "每秒请求数上限",
+    "bandwidthLimitLabel": "每日带宽上限 (byte)",
+    "dailyTotalReqLable": "每日请求总数上限",
+    "invalidLimitReqs": "无效/限速 请求数",
+    "Method": "方法",
+    "ErrorCode": "错误码",
+    "ResponseTime": "响应时间",
+    "Time": "时间",
+    "DelProject": "删除项目",
+    "GeneralSettings": "通用",
+    "RequestLimiting": "请求限制",
+    "RequestByCountry": "国家访问量"
   },
 
   "user": {
@@ -82,6 +119,7 @@
     "Projects": "项目总数",
     "Personal": "个人",
     "Logout": "退出账户",
+    "normal": "普通",
     "team": "团队"
   },
 
@@ -96,13 +134,37 @@
   "tip": {
     "fail": "操作失败",
     "created": "创建成功",
+    "updated": "更新成功",
+    "delete": "删除成功",
     "Subscribe Successfully": "订阅成功",
-    "Subscribe Failed": "订阅失败"
+    "Subscribe Failed": "订阅失败",
+    "copy": "点击复制到剪切板",
+    "copied": "已复制",
+    "invalidName": "请输入4-16个英文字符",
+    "invalidNumber": "请输入数字",
+    "MaxNum": "Elara为开发者提供10个免费项目，如果你需要定制，请联系我们",
+    "MaxBandwidth": "每日带宽总量上限为10G",
+    "MaxRequest": "每日请求总量上限为1,000,000",
+    "GetLastestData": "获取最新数据",
+    "RequestNumTip": "可在“设置”页自定义每日请求上限",
+    "BandwidthNumTip": "可在“设置”页自定义每日带宽上限",
+    "EmptyConclusion": "Elara向波卡开发者提供免费、即时和可扩展的区块链API接入服务",
+    "EmptyUsageTitle": "开始使用",
+    "EmptyParagraph1": "1. 点击“新建项目”",
+    "EmptyParagraph2": "2. 输入项目名称，选择链的类型",
+    "EmptyParagraph3": "3. 复制Endpoint链接，发送API请求",
+    "EmptyParagraph4": "4. 在 项目的“请求数据”页面查看统计信息",
+    "EmptyParagraph5": "5. 在 项目的“设置”页面修改项目限制",
+    "PublicEndpointDoc": "你也可以使用我们提供的<strong>公共API</strong>，无需创建账户，但会受到<strong>50MB/s</strong>（所有人共享）的带宽限制。",
+    "APIDoc": "查看详情"
   },
 
   "modal": {
+    "create": "创建",
+    "delete": "删除",
     "cancel": "取消",
-    "ok": "确定"
+    "ok": "确定",
+    "deleteBody": "任何接入该项目的进程都将立即停止工作。在删除之前，请确保使用此项目的所有进程都已重新配置。"
   },
 
   "footer": {

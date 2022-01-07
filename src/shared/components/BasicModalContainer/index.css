@@ -1,0 +1,39 @@
+.basic-modal .ant-modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 30px;
+}
+
+.basic-modal .ant-modal-close {
+  top: 10px;
+  right: 10px;
+}
+
+.basic-modal .ant-modal-close > .ant-modal-close-x {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.basic-modal .ant-modal-header {
+  padding: 0 0 20px;
+  border-bottom: none;
+}
+
+.basic-modal .ant-modal-title {
+  height: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  color: #14b071;
+  line-height: 20px;
+}
+
+.basic-modal .ant-modal-body {
+  padding: 0;
+}
+
+.basic-modal .ant-modal-footer {
+  border-top: 0;
+  padding: 30px 0 0;
+}
